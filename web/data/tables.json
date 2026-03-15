@@ -1,0 +1,5272 @@
+[
+  {
+    "round": 1,
+    "table": [
+      {
+        "pos": "1",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "1",
+        "won": "1",
+        "draw": "0",
+        "lost": "0",
+        "gf": "3",
+        "ga": "0",
+        "gd": "3",
+        "points": "3",
+        "form": [
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "1",
+        "won": "1",
+        "draw": "0",
+        "lost": "0",
+        "gf": "2",
+        "ga": "1",
+        "gd": "1",
+        "points": "3",
+        "form": [
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "3",
+        "team": "DVTK",
+        "played": "1",
+        "won": "1",
+        "draw": "0",
+        "lost": "0",
+        "gf": "1",
+        "ga": "0",
+        "gd": "1",
+        "points": "3",
+        "form": [
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "4",
+        "team": "ETO AKADÉMIA",
+        "played": "1",
+        "won": "1",
+        "draw": "0",
+        "lost": "0",
+        "gf": "1",
+        "ga": "0",
+        "gd": "1",
+        "points": "3",
+        "form": [
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVSC",
+        "played": "1",
+        "won": "0",
+        "draw": "1",
+        "lost": "0",
+        "gf": "2",
+        "ga": "2",
+        "gd": "0",
+        "points": "1",
+        "form": [
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "6",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "1",
+        "won": "0",
+        "draw": "1",
+        "lost": "0",
+        "gf": "2",
+        "ga": "2",
+        "gd": "0",
+        "points": "1",
+        "form": [
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "7",
+        "team": "UTE",
+        "played": "1",
+        "won": "0",
+        "draw": "1",
+        "lost": "0",
+        "gf": "2",
+        "ga": "2",
+        "gd": "0",
+        "points": "1",
+        "form": [
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "8",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "1",
+        "won": "0",
+        "draw": "1",
+        "lost": "0",
+        "gf": "2",
+        "ga": "2",
+        "gd": "0",
+        "points": "1",
+        "form": [
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "9",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "1",
+        "won": "0",
+        "draw": "0",
+        "lost": "1",
+        "gf": "1",
+        "ga": "2",
+        "gd": "-1",
+        "points": "0",
+        "form": [
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "10",
+        "team": "MTK BUDAPEST",
+        "played": "1",
+        "won": "0",
+        "draw": "0",
+        "lost": "1",
+        "gf": "0",
+        "ga": "1",
+        "gd": "-1",
+        "points": "0",
+        "form": [
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "11",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "1",
+        "won": "0",
+        "draw": "0",
+        "lost": "1",
+        "gf": "0",
+        "ga": "1",
+        "gd": "-1",
+        "points": "0",
+        "form": [
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "1",
+        "won": "0",
+        "draw": "0",
+        "lost": "1",
+        "gf": "0",
+        "ga": "3",
+        "gd": "-3",
+        "points": "0",
+        "form": [
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/1.html"
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "table": [
+      {
+        "pos": "1",
+        "team": "DVTK",
+        "played": "2",
+        "won": "2",
+        "draw": "0",
+        "lost": "0",
+        "gf": "5",
+        "ga": "2",
+        "gd": "3",
+        "points": "6",
+        "form": [
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "2",
+        "team": "ETO AKADÉMIA",
+        "played": "2",
+        "won": "2",
+        "draw": "0",
+        "lost": "0",
+        "gf": "2",
+        "ga": "0",
+        "gd": "2",
+        "points": "6",
+        "form": [
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "3",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "2",
+        "won": "1",
+        "draw": "1",
+        "lost": "0",
+        "gf": "4",
+        "ga": "2",
+        "gd": "2",
+        "points": "4",
+        "form": [
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "4",
+        "team": "FERENCVÁROSI TC",
+        "played": "2",
+        "won": "1",
+        "draw": "1",
+        "lost": "0",
+        "gf": "3",
+        "ga": "2",
+        "gd": "1",
+        "points": "4",
+        "form": [
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "2",
+        "won": "1",
+        "draw": "0",
+        "lost": "1",
+        "gf": "3",
+        "ga": "2",
+        "gd": "1",
+        "points": "3",
+        "form": [
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "6",
+        "team": "MTK BUDAPEST",
+        "played": "2",
+        "won": "1",
+        "draw": "0",
+        "lost": "1",
+        "gf": "2",
+        "ga": "1",
+        "gd": "1",
+        "points": "3",
+        "form": [
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "2",
+        "won": "0",
+        "draw": "2",
+        "lost": "0",
+        "gf": "3",
+        "ga": "3",
+        "gd": "0",
+        "points": "2",
+        "form": [
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "8",
+        "team": "UTE",
+        "played": "2",
+        "won": "0",
+        "draw": "2",
+        "lost": "0",
+        "gf": "3",
+        "ga": "3",
+        "gd": "0",
+        "points": "2",
+        "form": [
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "9",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "2",
+        "won": "0",
+        "draw": "1",
+        "lost": "1",
+        "gf": "2",
+        "ga": "3",
+        "gd": "-1",
+        "points": "1",
+        "form": [
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "10",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "2",
+        "won": "0",
+        "draw": "1",
+        "lost": "1",
+        "gf": "2",
+        "ga": "3",
+        "gd": "-1",
+        "points": "1",
+        "form": [
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "11",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "2",
+        "won": "0",
+        "draw": "0",
+        "lost": "2",
+        "gf": "2",
+        "ga": "5",
+        "gd": "-3",
+        "points": "0",
+        "form": [
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "2",
+        "won": "0",
+        "draw": "0",
+        "lost": "2",
+        "gf": "0",
+        "ga": "5",
+        "gd": "-5",
+        "points": "0",
+        "form": [
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/2.html"
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "table": [
+      {
+        "pos": "1",
+        "team": "ETO AKADÉMIA",
+        "played": "3",
+        "won": "3",
+        "draw": "0",
+        "lost": "0",
+        "gf": "3",
+        "ga": "0",
+        "gd": "3",
+        "points": "9",
+        "form": [
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "3",
+        "won": "2",
+        "draw": "1",
+        "lost": "0",
+        "gf": "8",
+        "ga": "3",
+        "gd": "5",
+        "points": "7",
+        "form": [
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "3",
+        "team": "DVTK",
+        "played": "3",
+        "won": "2",
+        "draw": "1",
+        "lost": "0",
+        "gf": "6",
+        "ga": "3",
+        "gd": "3",
+        "points": "7",
+        "form": [
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "4",
+        "team": "MTK BUDAPEST",
+        "played": "3",
+        "won": "2",
+        "draw": "0",
+        "lost": "1",
+        "gf": "9",
+        "ga": "1",
+        "gd": "8",
+        "points": "6",
+        "form": [
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "3",
+        "won": "2",
+        "draw": "0",
+        "lost": "1",
+        "gf": "8",
+        "ga": "3",
+        "gd": "5",
+        "points": "6",
+        "form": [
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "6",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "3",
+        "won": "1",
+        "draw": "1",
+        "lost": "1",
+        "gf": "4",
+        "ga": "9",
+        "gd": "-5",
+        "points": "4",
+        "form": [
+          "V",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "7",
+        "team": "UTE",
+        "played": "3",
+        "won": "0",
+        "draw": "3",
+        "lost": "0",
+        "gf": "4",
+        "ga": "4",
+        "gd": "0",
+        "points": "3",
+        "form": [
+          "D",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "8",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "3",
+        "won": "0",
+        "draw": "2",
+        "lost": "1",
+        "gf": "3",
+        "ga": "4",
+        "gd": "-1",
+        "points": "2",
+        "form": [
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "9",
+        "team": "DVSC",
+        "played": "3",
+        "won": "0",
+        "draw": "2",
+        "lost": "1",
+        "gf": "4",
+        "ga": "8",
+        "gd": "-4",
+        "points": "2",
+        "form": [
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "10",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "3",
+        "won": "0",
+        "draw": "1",
+        "lost": "2",
+        "gf": "2",
+        "ga": "4",
+        "gd": "-2",
+        "points": "1",
+        "form": [
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "11",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "3",
+        "won": "0",
+        "draw": "1",
+        "lost": "2",
+        "gf": "1",
+        "ga": "6",
+        "gd": "-5",
+        "points": "1",
+        "form": [
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      },
+      {
+        "pos": "12",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "3",
+        "won": "0",
+        "draw": "0",
+        "lost": "3",
+        "gf": "3",
+        "ga": "10",
+        "gd": "-7",
+        "points": "0",
+        "form": [
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/3.html"
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "table": [
+      {
+        "pos": "1",
+        "team": "DVTK",
+        "played": "4",
+        "won": "3",
+        "draw": "1",
+        "lost": "0",
+        "gf": "8",
+        "ga": "4",
+        "gd": "4",
+        "points": "10",
+        "form": [
+          "GY",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "2",
+        "team": "ETO AKADÉMIA",
+        "played": "4",
+        "won": "3",
+        "draw": "1",
+        "lost": "0",
+        "gf": "5",
+        "ga": "2",
+        "gd": "3",
+        "points": "10",
+        "form": [
+          "D",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "3",
+        "team": "FERENCVÁROSI TC",
+        "played": "4",
+        "won": "2",
+        "draw": "2",
+        "lost": "0",
+        "gf": "10",
+        "ga": "5",
+        "gd": "5",
+        "points": "8",
+        "form": [
+          "D",
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "4",
+        "team": "MTK BUDAPEST",
+        "played": "4",
+        "won": "2",
+        "draw": "1",
+        "lost": "1",
+        "gf": "9",
+        "ga": "1",
+        "gd": "8",
+        "points": "7",
+        "form": [
+          "D",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "4",
+        "won": "2",
+        "draw": "0",
+        "lost": "2",
+        "gf": "9",
+        "ga": "5",
+        "gd": "4",
+        "points": "6",
+        "form": [
+          "V",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "6",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "4",
+        "won": "1",
+        "draw": "2",
+        "lost": "1",
+        "gf": "5",
+        "ga": "5",
+        "gd": "0",
+        "points": "5",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "7",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "4",
+        "won": "1",
+        "draw": "1",
+        "lost": "2",
+        "gf": "5",
+        "ga": "12",
+        "gd": "-7",
+        "points": "4",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "8",
+        "team": "UTE",
+        "played": "4",
+        "won": "0",
+        "draw": "4",
+        "lost": "0",
+        "gf": "6",
+        "ga": "6",
+        "gd": "0",
+        "points": "4",
+        "form": [
+          "D",
+          "D",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "4",
+        "won": "1",
+        "draw": "0",
+        "lost": "3",
+        "gf": "6",
+        "ga": "11",
+        "gd": "-5",
+        "points": "3",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "10",
+        "team": "DVSC",
+        "played": "4",
+        "won": "0",
+        "draw": "3",
+        "lost": "1",
+        "gf": "6",
+        "ga": "10",
+        "gd": "-4",
+        "points": "3",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "11",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "4",
+        "won": "0",
+        "draw": "2",
+        "lost": "2",
+        "gf": "1",
+        "ga": "6",
+        "gd": "-5",
+        "points": "2",
+        "form": [
+          "D",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      },
+      {
+        "pos": "12",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "4",
+        "won": "0",
+        "draw": "1",
+        "lost": "3",
+        "gf": "3",
+        "ga": "6",
+        "gd": "-3",
+        "points": "1",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/4.html"
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "table": [
+      {
+        "pos": "1",
+        "team": "FERENCVÁROSI TC",
+        "played": "5",
+        "won": "3",
+        "draw": "2",
+        "lost": "0",
+        "gf": "11",
+        "ga": "5",
+        "gd": "6",
+        "points": "11",
+        "form": [
+          "GY",
+          "D",
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "2",
+        "team": "MTK BUDAPEST",
+        "played": "5",
+        "won": "3",
+        "draw": "1",
+        "lost": "1",
+        "gf": "13",
+        "ga": "2",
+        "gd": "11",
+        "points": "10",
+        "form": [
+          "GY",
+          "D",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "3",
+        "team": "DVTK",
+        "played": "5",
+        "won": "3",
+        "draw": "1",
+        "lost": "1",
+        "gf": "8",
+        "ga": "5",
+        "gd": "3",
+        "points": "10",
+        "form": [
+          "V",
+          "GY",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "4",
+        "team": "ETO AKADÉMIA",
+        "played": "5",
+        "won": "3",
+        "draw": "1",
+        "lost": "1",
+        "gf": "6",
+        "ga": "5",
+        "gd": "1",
+        "points": "10",
+        "form": [
+          "V",
+          "D",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "5",
+        "won": "2",
+        "draw": "1",
+        "lost": "2",
+        "gf": "13",
+        "ga": "9",
+        "gd": "4",
+        "points": "7",
+        "form": [
+          "D",
+          "V",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "6",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "5",
+        "won": "2",
+        "draw": "1",
+        "lost": "2",
+        "gf": "8",
+        "ga": "14",
+        "gd": "-6",
+        "points": "7",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "7",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "5",
+        "won": "2",
+        "draw": "0",
+        "lost": "3",
+        "gf": "8",
+        "ga": "12",
+        "gd": "-4",
+        "points": "6",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "8",
+        "team": "DVSC",
+        "played": "5",
+        "won": "1",
+        "draw": "3",
+        "lost": "1",
+        "gf": "9",
+        "ga": "11",
+        "gd": "-2",
+        "points": "6",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "9",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "5",
+        "won": "1",
+        "draw": "2",
+        "lost": "2",
+        "gf": "7",
+        "ga": "8",
+        "gd": "-1",
+        "points": "5",
+        "form": [
+          "V",
+          "GY",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "10",
+        "team": "UTE",
+        "played": "5",
+        "won": "0",
+        "draw": "4",
+        "lost": "1",
+        "gf": "7",
+        "ga": "10",
+        "gd": "-3",
+        "points": "4",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "11",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "5",
+        "won": "0",
+        "draw": "2",
+        "lost": "3",
+        "gf": "7",
+        "ga": "10",
+        "gd": "-3",
+        "points": "2",
+        "form": [
+          "D",
+          "V",
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "5",
+        "won": "0",
+        "draw": "2",
+        "lost": "3",
+        "gf": "2",
+        "ga": "8",
+        "gd": "-6",
+        "points": "2",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/5.html"
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "6",
+        "won": "4",
+        "draw": "1",
+        "lost": "1",
+        "gf": "21",
+        "ga": "3",
+        "gd": "18",
+        "points": "13",
+        "form": [
+          "GY",
+          "GY",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "2",
+        "team": "ETO AKADÉMIA",
+        "played": "6",
+        "won": "4",
+        "draw": "1",
+        "lost": "1",
+        "gf": "7",
+        "ga": "5",
+        "gd": "2",
+        "points": "13",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "3",
+        "team": "FERENCVÁROSI TC",
+        "played": "6",
+        "won": "3",
+        "draw": "3",
+        "lost": "0",
+        "gf": "11",
+        "ga": "5",
+        "gd": "6",
+        "points": "12",
+        "form": [
+          "D",
+          "GY",
+          "D",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "4",
+        "team": "DVTK",
+        "played": "6",
+        "won": "3",
+        "draw": "1",
+        "lost": "2",
+        "gf": "9",
+        "ga": "7",
+        "gd": "2",
+        "points": "10",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVSC",
+        "played": "6",
+        "won": "2",
+        "draw": "3",
+        "lost": "1",
+        "gf": "11",
+        "ga": "12",
+        "gd": "-1",
+        "points": "9",
+        "form": [
+          "GY",
+          "GY",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "6",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "6",
+        "won": "2",
+        "draw": "2",
+        "lost": "2",
+        "gf": "13",
+        "ga": "9",
+        "gd": "4",
+        "points": "8",
+        "form": [
+          "D",
+          "D",
+          "V",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "7",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "6",
+        "won": "2",
+        "draw": "2",
+        "lost": "2",
+        "gf": "9",
+        "ga": "9",
+        "gd": "0",
+        "points": "8",
+        "form": [
+          "GY",
+          "V",
+          "GY",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "8",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "6",
+        "won": "2",
+        "draw": "1",
+        "lost": "3",
+        "gf": "8",
+        "ga": "16",
+        "gd": "-8",
+        "points": "7",
+        "form": [
+          "V",
+          "GY",
+          "V",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "6",
+        "won": "2",
+        "draw": "0",
+        "lost": "4",
+        "gf": "9",
+        "ga": "20",
+        "gd": "-11",
+        "points": "6",
+        "form": [
+          "V",
+          "GY",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "10",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "6",
+        "won": "1",
+        "draw": "2",
+        "lost": "3",
+        "gf": "9",
+        "ga": "10",
+        "gd": "-1",
+        "points": "5",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "11",
+        "team": "UTE",
+        "played": "6",
+        "won": "0",
+        "draw": "4",
+        "lost": "2",
+        "gf": "7",
+        "ga": "11",
+        "gd": "-4",
+        "points": "4",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "6",
+        "won": "0",
+        "draw": "2",
+        "lost": "4",
+        "gf": "3",
+        "ga": "10",
+        "gd": "-7",
+        "points": "2",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/6.html"
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "7",
+        "won": "5",
+        "draw": "1",
+        "lost": "1",
+        "gf": "25",
+        "ga": "3",
+        "gd": "22",
+        "points": "16",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "7",
+        "won": "4",
+        "draw": "3",
+        "lost": "0",
+        "gf": "14",
+        "ga": "5",
+        "gd": "9",
+        "points": "15",
+        "form": [
+          "GY",
+          "D",
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "3",
+        "team": "DVTK",
+        "played": "7",
+        "won": "4",
+        "draw": "1",
+        "lost": "2",
+        "gf": "11",
+        "ga": "8",
+        "gd": "3",
+        "points": "13",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "4",
+        "team": "ETO AKADÉMIA",
+        "played": "7",
+        "won": "4",
+        "draw": "1",
+        "lost": "2",
+        "gf": "8",
+        "ga": "7",
+        "gd": "1",
+        "points": "13",
+        "form": [
+          "V",
+          "GY",
+          "V",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVSC",
+        "played": "7",
+        "won": "3",
+        "draw": "3",
+        "lost": "1",
+        "gf": "15",
+        "ga": "13",
+        "gd": "2",
+        "points": "12",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "6",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "7",
+        "won": "2",
+        "draw": "2",
+        "lost": "3",
+        "gf": "14",
+        "ga": "13",
+        "gd": "1",
+        "points": "8",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "7",
+        "won": "2",
+        "draw": "2",
+        "lost": "3",
+        "gf": "12",
+        "ga": "11",
+        "gd": "1",
+        "points": "8",
+        "form": [
+          "GY",
+          "GY",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "8",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "7",
+        "won": "2",
+        "draw": "2",
+        "lost": "3",
+        "gf": "9",
+        "ga": "13",
+        "gd": "-4",
+        "points": "8",
+        "form": [
+          "V",
+          "GY",
+          "V",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "9",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "7",
+        "won": "2",
+        "draw": "1",
+        "lost": "4",
+        "gf": "8",
+        "ga": "19",
+        "gd": "-11",
+        "points": "7",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "10",
+        "team": "UTE",
+        "played": "7",
+        "won": "1",
+        "draw": "4",
+        "lost": "2",
+        "gf": "13",
+        "ga": "13",
+        "gd": "0",
+        "points": "7",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "11",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "7",
+        "won": "2",
+        "draw": "0",
+        "lost": "5",
+        "gf": "11",
+        "ga": "26",
+        "gd": "-15",
+        "points": "6",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "7",
+        "won": "0",
+        "draw": "2",
+        "lost": "5",
+        "gf": "4",
+        "ga": "13",
+        "gd": "-9",
+        "points": "2",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/7.html"
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "8",
+        "won": "6",
+        "draw": "1",
+        "lost": "1",
+        "gf": "27",
+        "ga": "4",
+        "gd": "23",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "8",
+        "won": "5",
+        "draw": "3",
+        "lost": "0",
+        "gf": "19",
+        "ga": "5",
+        "gd": "14",
+        "points": "18",
+        "form": [
+          "GY",
+          "GY",
+          "D",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "3",
+        "team": "DVTK",
+        "played": "8",
+        "won": "4",
+        "draw": "1",
+        "lost": "3",
+        "gf": "12",
+        "ga": "10",
+        "gd": "2",
+        "points": "13",
+        "form": [
+          "V",
+          "GY",
+          "V",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "4",
+        "team": "ETO AKADÉMIA",
+        "played": "8",
+        "won": "4",
+        "draw": "1",
+        "lost": "3",
+        "gf": "9",
+        "ga": "9",
+        "gd": "0",
+        "points": "13",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVSC",
+        "played": "8",
+        "won": "3",
+        "draw": "4",
+        "lost": "1",
+        "gf": "16",
+        "ga": "14",
+        "gd": "2",
+        "points": "13",
+        "form": [
+          "D",
+          "GY",
+          "GY",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "6",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "8",
+        "won": "3",
+        "draw": "2",
+        "lost": "3",
+        "gf": "16",
+        "ga": "14",
+        "gd": "2",
+        "points": "11",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "7",
+        "team": "UTE",
+        "played": "8",
+        "won": "2",
+        "draw": "4",
+        "lost": "2",
+        "gf": "15",
+        "ga": "14",
+        "gd": "1",
+        "points": "10",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "8",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "8",
+        "won": "2",
+        "draw": "3",
+        "lost": "3",
+        "gf": "11",
+        "ga": "15",
+        "gd": "-4",
+        "points": "9",
+        "form": [
+          "D",
+          "V",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "9",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "8",
+        "won": "2",
+        "draw": "2",
+        "lost": "4",
+        "gf": "13",
+        "ga": "13",
+        "gd": "0",
+        "points": "8",
+        "form": [
+          "V",
+          "GY",
+          "GY",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "8",
+        "won": "2",
+        "draw": "2",
+        "lost": "4",
+        "gf": "9",
+        "ga": "20",
+        "gd": "-11",
+        "points": "8",
+        "form": [
+          "D",
+          "V",
+          "V",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "11",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "8",
+        "won": "2",
+        "draw": "1",
+        "lost": "5",
+        "gf": "13",
+        "ga": "28",
+        "gd": "-15",
+        "points": "7",
+        "form": [
+          "D",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "8",
+        "won": "0",
+        "draw": "2",
+        "lost": "6",
+        "gf": "4",
+        "ga": "18",
+        "gd": "-14",
+        "points": "2",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/8.html"
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "table": [
+      {
+        "pos": "1",
+        "team": "FERENCVÁROSI TC",
+        "played": "9",
+        "won": "6",
+        "draw": "3",
+        "lost": "0",
+        "gf": "21",
+        "ga": "6",
+        "gd": "15",
+        "points": "21",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "2",
+        "team": "MTK BUDAPEST",
+        "played": "9",
+        "won": "6",
+        "draw": "1",
+        "lost": "2",
+        "gf": "28",
+        "ga": "6",
+        "gd": "22",
+        "points": "19",
+        "form": [
+          "V",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "9",
+        "won": "5",
+        "draw": "1",
+        "lost": "3",
+        "gf": "13",
+        "ga": "12",
+        "gd": "1",
+        "points": "16",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "4",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "9",
+        "won": "4",
+        "draw": "2",
+        "lost": "3",
+        "gf": "20",
+        "ga": "15",
+        "gd": "5",
+        "points": "14",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVSC",
+        "played": "9",
+        "won": "3",
+        "draw": "5",
+        "lost": "1",
+        "gf": "17",
+        "ga": "15",
+        "gd": "2",
+        "points": "14",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "9",
+        "won": "4",
+        "draw": "1",
+        "lost": "4",
+        "gf": "13",
+        "ga": "14",
+        "gd": "-1",
+        "points": "13",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "7",
+        "team": "UTE",
+        "played": "9",
+        "won": "3",
+        "draw": "4",
+        "lost": "2",
+        "gf": "18",
+        "ga": "14",
+        "gd": "4",
+        "points": "13",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "9",
+        "won": "3",
+        "draw": "2",
+        "lost": "4",
+        "gf": "16",
+        "ga": "15",
+        "gd": "1",
+        "points": "11",
+        "form": [
+          "GY",
+          "V",
+          "GY",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "9",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "9",
+        "won": "2",
+        "draw": "3",
+        "lost": "4",
+        "gf": "11",
+        "ga": "18",
+        "gd": "-7",
+        "points": "9",
+        "form": [
+          "V",
+          "D",
+          "V",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "9",
+        "won": "2",
+        "draw": "2",
+        "lost": "5",
+        "gf": "12",
+        "ga": "24",
+        "gd": "-12",
+        "points": "8",
+        "form": [
+          "V",
+          "D",
+          "V",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "11",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "9",
+        "won": "2",
+        "draw": "1",
+        "lost": "6",
+        "gf": "15",
+        "ga": "31",
+        "gd": "-16",
+        "points": "7",
+        "form": [
+          "V",
+          "D",
+          "V",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "9",
+        "won": "0",
+        "draw": "3",
+        "lost": "6",
+        "gf": "5",
+        "ga": "19",
+        "gd": "-14",
+        "points": "3",
+        "form": [
+          "D",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/9.html"
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "table": [
+      {
+        "pos": "1",
+        "team": "FERENCVÁROSI TC",
+        "played": "10",
+        "won": "7",
+        "draw": "3",
+        "lost": "0",
+        "gf": "24",
+        "ga": "7",
+        "gd": "17",
+        "points": "24",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "2",
+        "team": "MTK BUDAPEST",
+        "played": "10",
+        "won": "7",
+        "draw": "1",
+        "lost": "2",
+        "gf": "30",
+        "ga": "6",
+        "gd": "24",
+        "points": "22",
+        "form": [
+          "GY",
+          "V",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "10",
+        "won": "6",
+        "draw": "1",
+        "lost": "3",
+        "gf": "16",
+        "ga": "12",
+        "gd": "4",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "4",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "10",
+        "won": "5",
+        "draw": "2",
+        "lost": "3",
+        "gf": "23",
+        "ga": "16",
+        "gd": "7",
+        "points": "17",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVTK",
+        "played": "10",
+        "won": "5",
+        "draw": "1",
+        "lost": "4",
+        "gf": "16",
+        "ga": "15",
+        "gd": "1",
+        "points": "16",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "6",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "10",
+        "won": "4",
+        "draw": "2",
+        "lost": "4",
+        "gf": "18",
+        "ga": "16",
+        "gd": "2",
+        "points": "14",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "10",
+        "won": "3",
+        "draw": "5",
+        "lost": "2",
+        "gf": "17",
+        "ga": "17",
+        "gd": "0",
+        "points": "14",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "8",
+        "team": "UTE",
+        "played": "10",
+        "won": "3",
+        "draw": "4",
+        "lost": "3",
+        "gf": "19",
+        "ga": "17",
+        "gd": "2",
+        "points": "13",
+        "form": [
+          "V",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "9",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "10",
+        "won": "2",
+        "draw": "3",
+        "lost": "5",
+        "gf": "12",
+        "ga": "20",
+        "gd": "-8",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "10",
+        "won": "2",
+        "draw": "2",
+        "lost": "6",
+        "gf": "13",
+        "ga": "27",
+        "gd": "-14",
+        "points": "8",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "11",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "10",
+        "won": "2",
+        "draw": "1",
+        "lost": "7",
+        "gf": "16",
+        "ga": "34",
+        "gd": "-18",
+        "points": "7",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "10",
+        "won": "0",
+        "draw": "3",
+        "lost": "7",
+        "gf": "5",
+        "ga": "22",
+        "gd": "-17",
+        "points": "3",
+        "form": [
+          "V",
+          "D",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/10.html"
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "table": [
+      {
+        "pos": "1",
+        "team": "FERENCVÁROSI TC",
+        "played": "11",
+        "won": "8",
+        "draw": "3",
+        "lost": "0",
+        "gf": "27",
+        "ga": "8",
+        "gd": "19",
+        "points": "27",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "2",
+        "team": "MTK BUDAPEST",
+        "played": "11",
+        "won": "8",
+        "draw": "1",
+        "lost": "2",
+        "gf": "36",
+        "ga": "8",
+        "gd": "28",
+        "points": "25",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "11",
+        "won": "6",
+        "draw": "1",
+        "lost": "4",
+        "gf": "18",
+        "ga": "18",
+        "gd": "0",
+        "points": "19",
+        "form": [
+          "V",
+          "GY",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "4",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "11",
+        "won": "5",
+        "draw": "3",
+        "lost": "3",
+        "gf": "26",
+        "ga": "19",
+        "gd": "7",
+        "points": "18",
+        "form": [
+          "D",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "5",
+        "team": "DVTK",
+        "played": "11",
+        "won": "5",
+        "draw": "2",
+        "lost": "4",
+        "gf": "16",
+        "ga": "15",
+        "gd": "1",
+        "points": "17",
+        "form": [
+          "D",
+          "GY",
+          "V",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "6",
+        "team": "UTE",
+        "played": "11",
+        "won": "4",
+        "draw": "4",
+        "lost": "3",
+        "gf": "22",
+        "ga": "18",
+        "gd": "4",
+        "points": "16",
+        "form": [
+          "GY",
+          "V",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "11",
+        "won": "4",
+        "draw": "2",
+        "lost": "5",
+        "gf": "19",
+        "ga": "19",
+        "gd": "0",
+        "points": "14",
+        "form": [
+          "V",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "8",
+        "team": "DVSC",
+        "played": "11",
+        "won": "3",
+        "draw": "5",
+        "lost": "3",
+        "gf": "18",
+        "ga": "23",
+        "gd": "-5",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "D",
+          "D",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "11",
+        "won": "3",
+        "draw": "1",
+        "lost": "7",
+        "gf": "22",
+        "ga": "35",
+        "gd": "-13",
+        "points": "10",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "10",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "11",
+        "won": "2",
+        "draw": "3",
+        "lost": "6",
+        "gf": "13",
+        "ga": "23",
+        "gd": "-10",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "11",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "11",
+        "won": "2",
+        "draw": "3",
+        "lost": "6",
+        "gf": "16",
+        "ga": "30",
+        "gd": "-14",
+        "points": "9",
+        "form": [
+          "D",
+          "V",
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "11",
+        "won": "0",
+        "draw": "4",
+        "lost": "7",
+        "gf": "5",
+        "ga": "22",
+        "gd": "-17",
+        "points": "4",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/11.html"
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "table": [
+      {
+        "pos": "1",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "2",
+        "team": "MTK BUDAPEST",
+        "played": "12",
+        "won": "9",
+        "draw": "1",
+        "lost": "2",
+        "gf": "39",
+        "ga": "9",
+        "gd": "30",
+        "points": "28",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "12",
+        "won": "6",
+        "draw": "2",
+        "lost": "4",
+        "gf": "20",
+        "ga": "20",
+        "gd": "0",
+        "points": "20",
+        "form": [
+          "D",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "4",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "20",
+        "gd": "7",
+        "points": "19",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "5",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "12",
+        "won": "5",
+        "draw": "2",
+        "lost": "5",
+        "gf": "17",
+        "ga": "18",
+        "gd": "-1",
+        "points": "17",
+        "form": [
+          "V",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "12",
+        "won": "3",
+        "draw": "2",
+        "lost": "7",
+        "gf": "24",
+        "ga": "37",
+        "gd": "-13",
+        "points": "11",
+        "form": [
+          "D",
+          "GY",
+          "V",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "10",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "12",
+        "won": "2",
+        "draw": "3",
+        "lost": "7",
+        "gf": "13",
+        "ga": "25",
+        "gd": "-12",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "11",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "12",
+        "won": "2",
+        "draw": "3",
+        "lost": "7",
+        "gf": "16",
+        "ga": "32",
+        "gd": "-16",
+        "points": "9",
+        "form": [
+          "V",
+          "D",
+          "V",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "12",
+        "won": "0",
+        "draw": "5",
+        "lost": "7",
+        "gf": "6",
+        "ga": "23",
+        "gd": "-17",
+        "points": "5",
+        "form": [
+          "D",
+          "D",
+          "V",
+          "D",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/12.html"
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+      }
+    ]
+  },
+  {
+    "round": 14,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      }
+    ]
+  },
+  {
+    "round": 15,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      }
+    ]
+  },
+  {
+    "round": 16,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      }
+    ]
+  },
+  {
+    "round": 17,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      }
+    ]
+  },
+  {
+    "round": 18,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      }
+    ]
+  },
+  {
+    "round": 19,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      }
+    ]
+  },
+  {
+    "round": 20,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      }
+    ]
+  },
+  {
+    "round": 21,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      }
+    ]
+  },
+  {
+    "round": 22,
+    "table": [
+      {
+        "pos": "1",
+        "team": "MTK BUDAPEST",
+        "played": "13",
+        "won": "10",
+        "draw": "1",
+        "lost": "2",
+        "gf": "43",
+        "ga": "9",
+        "gd": "34",
+        "points": "31",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "2",
+        "team": "FERENCVÁROSI TC",
+        "played": "12",
+        "won": "9",
+        "draw": "3",
+        "lost": "0",
+        "gf": "30",
+        "ga": "8",
+        "gd": "22",
+        "points": "30",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "3",
+        "team": "ETO AKADÉMIA",
+        "played": "13",
+        "won": "7",
+        "draw": "2",
+        "lost": "4",
+        "gf": "22",
+        "ga": "21",
+        "gd": "1",
+        "points": "23",
+        "form": [
+          "GY",
+          "D",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "4",
+        "team": "UTE",
+        "played": "12",
+        "won": "5",
+        "draw": "4",
+        "lost": "3",
+        "gf": "24",
+        "ga": "18",
+        "gd": "6",
+        "points": "19",
+        "form": [
+          "GY",
+          "GY",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "5",
+        "team": "PUSKÁS AKADÉMIA",
+        "played": "13",
+        "won": "5",
+        "draw": "4",
+        "lost": "4",
+        "gf": "27",
+        "ga": "24",
+        "gd": "3",
+        "points": "19",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "6",
+        "team": "DVTK",
+        "played": "13",
+        "won": "5",
+        "draw": "3",
+        "lost": "5",
+        "gf": "20",
+        "ga": "21",
+        "gd": "-1",
+        "points": "18",
+        "form": [
+          "D",
+          "V",
+          "D",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "7",
+        "team": "DVSC",
+        "played": "12",
+        "won": "4",
+        "draw": "5",
+        "lost": "3",
+        "gf": "20",
+        "ga": "23",
+        "gd": "-3",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "D",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "8",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "12",
+        "won": "4",
+        "draw": "2",
+        "lost": "6",
+        "gf": "19",
+        "ga": "22",
+        "gd": "-3",
+        "points": "14",
+        "form": [
+          "V",
+          "V",
+          "GY",
+          "GY",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "9",
+        "team": "VIDEOTON FC FEHÉRVÁR",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "27",
+        "ga": "40",
+        "gd": "-13",
+        "points": "12",
+        "form": [
+          "D",
+          "D",
+          "GY",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "10",
+        "team": "VASAS KUBALA AKADÉMIA",
+        "played": "13",
+        "won": "3",
+        "draw": "3",
+        "lost": "7",
+        "gf": "18",
+        "ga": "33",
+        "gd": "-15",
+        "points": "12",
+        "form": [
+          "GY",
+          "V",
+          "D",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "11",
+        "team": "ILLÉS AKADÉMIA",
+        "played": "13",
+        "won": "2",
+        "draw": "3",
+        "lost": "8",
+        "gf": "14",
+        "ga": "27",
+        "gd": "-13",
+        "points": "9",
+        "form": [
+          "V",
+          "V",
+          "V",
+          "V",
+          "V"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "12",
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA",
+        "played": "13",
+        "won": "0",
+        "draw": "5",
+        "lost": "8",
+        "gf": "7",
+        "ga": "25",
+        "gd": "-18",
+        "points": "5",
+        "form": [
+          "V",
+          "D",
+          "D",
+          "V",
+          "D"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      }
+    ]
+  }
+]

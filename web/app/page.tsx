@@ -1197,11 +1197,40 @@ export default function Home() {
 
             <div style={statCardStyle}>
               <div style={statLabelStyle}>Forma</div>
-              <div style={statValueStyle}>
-                {selectedTeamProfile.form?.length
-                  ? selectedTeamProfile.form.join(" ")
-                  : "-"}
-              </div>
+              {selectedTeamProfile.form?.length ? (
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "8px",
+                    alignItems: "center",
+                    minHeight: "40px",
+                  }}
+                >
+                  {selectedTeamProfile.form.map((formItem, index) => (
+                    <span
+                      key={`${selectedTeamProfile.team}-form-${index}`}
+                      style={{
+                        ...getFormBadgeStyle(formItem),
+                        minWidth: isMobile ? "34px" : "38px",
+                        height: isMobile ? "32px" : "34px",
+                        borderRadius: "8px",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        fontSize: isMobile ? "15px" : "16px",
+                        fontWeight: 800,
+                        lineHeight: 1,
+                        boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.05)",
+                      }}
+                    >
+                      {formItem}
+                    </span>
+                  ))}
+                </div>
+              ) : (
+                <div style={statValueStyle}>-</div>
+              )}
             </div>
           </div>
         </section>

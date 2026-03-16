@@ -63,26 +63,13 @@ type TeamStrengthRow = {
   defenseIndex: number;
 };
 
-type ChampionshipChanceRow = {
-  team: string;
-  currentPoints: number;
-  simulatedAvgPoints: number;
-  titlePct: number;
-  top3Pct: number;
-  top6Pct: number;
-  lastPct: number;
-};
-
-type PoissonOutcome = {
-  homeGoals: number;
-  awayGoals: number;
-  probability: number;
-};
+type ViewMode = "dashboard" | "matches" | "table" | "goalscorers" | "stats";
 
 const allMatches = matches as Match[];
 const allTables = tables as RoundTable[];
 const allGoalscorers = goalscorers as RoundGoalscorers[];
-const rounds = Array.from({ length: 22 }, (_, i) => i + 1);
+const rounds = Array.from(new Set(allMatches.map((m) => m.round))).sort((a, b) => a - b);
+const ALL_TEAMS = "Összes csapat";
 
 const teamLogos: Record<string, string> = {
   DVSC: "/logos/dvsc.png",
@@ -101,62 +88,6 @@ const teamLogos: Record<string, string> = {
 
 function round2(value: number) {
   return Math.round(value * 100) / 100;
-}
-
-function factorial(n: number): number {
-  if (n <= 1) return 1;
-  let result = 1;
-  for (let i = 2; i <= n; i++) result *= i;
-  return result;
-}
-
-function poissonProbability(lambda: number, goals: number) {
-  return (Math.pow(lambda, goals) * Math.exp(-lambda)) / factorial(goals);
-}
-
-function buildPoissonMatrix(
-  homeLambda: number,
-  awayLambda: number,
-  maxGoals = 5
-): PoissonOutcome[] {
-  const rows: PoissonOutcome[] = [];
-
-  for (let homeGoals = 0; homeGoals <= maxGoals; homeGoals++) {
-    for (let awayGoals = 0; awayGoals <= maxGoals; awayGoals++) {
-      rows.push({
-        homeGoals,
-        awayGoals,
-        probability:
-          poissonProbability(homeLambda, homeGoals) *
-          poissonProbability(awayLambda, awayGoals),
-      });
-    }
-  }
-
-  return rows.sort((a, b) => b.probability - a.probability);
-}
-
-function sampleFromDistribution<T>(
-  items: T[],
-  getWeight: (item: T) => number
-): T {
-  const total = items.reduce((sum, item) => sum + getWeight(item), 0);
-
-  if (total <= 0) {
-    return items[0];
-  }
-
-  const randomValue = Math.random() * total;
-  let running = 0;
-
-  for (const item of items) {
-    running += getWeight(item);
-    if (randomValue <= running) {
-      return item;
-    }
-  }
-
-  return items[items.length - 1];
 }
 
 function parseHungarianDate(dateValue: string): Date | null {
@@ -186,8 +117,7 @@ function parseHungarianDate(dateValue: string): Date | null {
 
 function getClosestRound(matchesInput: Match[]): number {
   const now = new Date();
-
-  let bestRound = 1;
+  let bestRound = rounds[0] ?? 1;
   let bestDistance = Number.POSITIVE_INFINITY;
 
   for (const match of matchesInput) {
@@ -195,7 +125,6 @@ function getClosestRound(matchesInput: Match[]): number {
     if (!parsedDate) continue;
 
     const distance = Math.abs(parsedDate.getTime() - now.getTime());
-
     if (distance < bestDistance) {
       bestDistance = distance;
       bestRound = match.round;
@@ -234,6 +163,33 @@ function formatDateParts(dateValue: string) {
   };
 }
 
+function toNumber(value: string | number | null | undefined) {
+  if (typeof value === "number") return value;
+  if (!value) return 0;
+  const parsed = Number(String(value).replace(/,/g, ".").trim());
+  return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getStatusStyle(status: string): React.CSSProperties {
+  if (status === "Lejátszva") {
+    return { backgroundColor: "#dcfce7", color: "#166534" };
+  }
+
+  if (status === "Kiírva") {
+    return { backgroundColor: "#dbeafe", color: "#1e40af" };
+  }
+
+  if (status === "Halasztva") {
+    return { backgroundColor: "#fed7aa", color: "#9a3412" };
+  }
+
+  if (status === "Elmaradt") {
+    return { backgroundColor: "#fee2e2", color: "#991b1b" };
+  }
+
+  return { backgroundColor: "#e5e7eb", color: "#374151" };
+}
+
 function getFormBadgeStyle(form?: string): React.CSSProperties {
   if (!form) {
     return {
@@ -262,24 +218,80 @@ function getFormBadgeStyle(form?: string): React.CSSProperties {
   };
 }
 
-function getStatusStyle(status: string): React.CSSProperties {
-  if (status === "Lejátszva") {
-    return { backgroundColor: "#dcfce7", color: "#166534" };
-  }
+function EmptyBox({ text }: { text: string }) {
+  return (
+    <div style={emptyBoxStyle}>
+      {text}
+    </div>
+  );
+}
 
-  if (status === "Kiírva") {
-    return { backgroundColor: "#dbeafe", color: "#1e40af" };
-  }
+function LogoCircle({
+  logo,
+  team,
+  size = 30,
+}: {
+  logo: string | null;
+  team: string;
+  size?: number;
+}) {
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        borderRadius: "999px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        overflow: "hidden",
+        flexShrink: 0,
+      }}
+    >
+      {logo ? (
+        <Image src={logo} alt={team} width={size - 6} height={size - 6} style={{ objectFit: "contain" }} />
+      ) : (
+        <span style={{ fontSize: 10, color: "#6b7280" }}>N/A</span>
+      )}
+    </div>
+  );
+}
 
-  if (status === "Halasztva") {
-    return { backgroundColor: "#fed7aa", color: "#9a3412" };
-  }
+function MiniStat({ label, value }: { label: string; value: string | number }) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        borderRadius: "10px",
+        padding: "8px 6px",
+        textAlign: "center",
+      }}
+    >
+      <div style={{ fontSize: 11, color: "#6b7280", marginBottom: 2 }}>{label}</div>
+      <div style={{ fontSize: 15, fontWeight: 700, color: "#111827" }}>{value}</div>
+    </div>
+  );
+}
 
-  if (status === "Elmaradt") {
-    return { backgroundColor: "#fee2e2", color: "#991b1b" };
-  }
-
-  return { backgroundColor: "#e5e7eb", color: "#374151" };
+function KpiCard({
+  label,
+  value,
+  sub,
+}: {
+  label: string;
+  value: string | number;
+  sub?: string;
+}) {
+  return (
+    <div style={panelStyle}>
+      <div style={{ fontSize: 12, color: "#6b7280", marginBottom: 8 }}>{label}</div>
+      <div style={{ fontSize: 28, fontWeight: 800, color: "#111827", lineHeight: 1.1 }}>{value}</div>
+      {sub ? <div style={{ fontSize: 13, color: "#6b7280", marginTop: 6 }}>{sub}</div> : null}
+    </div>
+  );
 }
 
 function MatchCard({
@@ -295,91 +307,33 @@ function MatchCard({
   const isPlayed = match.status === "Lejátszva";
 
   return (
-    <div
-      style={{
-        backgroundColor: "#ffffff",
-        border: "1px solid #d1d5db",
-        borderRadius: "16px",
-        padding: isMobile ? "12px" : "16px",
-        boxShadow: "0 3px 10px rgba(0,0,0,0.06)",
-      }}
-    >
+    <div style={{ ...panelStyle, padding: isMobile ? "12px" : "16px" }}>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: isMobile ? "1fr 74px 1fr" : "1fr 90px 1fr",
+          gridTemplateColumns: isMobile ? "1fr 76px 1fr" : "1fr 92px 1fr",
           alignItems: "center",
           gap: isMobile ? "8px" : "12px",
         }}
       >
-        <div style={{ textAlign: "center", minWidth: 0 }}>
-          <div
-            style={{
-              fontSize: isMobile ? "12px" : "13px",
-              fontWeight: 700,
-              color: "#111827",
-              lineHeight: 1.2,
-              marginBottom: "10px",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {match.home}
-          </div>
-
-          <div
-            style={{
-              width: isMobile ? "38px" : "46px",
-              height: isMobile ? "38px" : "46px",
-              margin: "0 auto",
-              borderRadius: "999px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#f8fafc",
-              border: "1px solid #e5e7eb",
-              overflow: "hidden",
-            }}
-          >
-            {homeLogo ? (
-              <Image
-                src={homeLogo}
-                alt={match.home}
-                width={isMobile ? 30 : 38}
-                height={isMobile ? 30 : 38}
-                style={{ objectFit: "contain" }}
-              />
-            ) : (
-              <span style={{ fontSize: "12px", color: "#6b7280" }}>N/A</span>
-            )}
-          </div>
-        </div>
+        <TeamBadge team={match.home} />
 
         <div
           style={{
             backgroundColor: "#cf1626",
             color: "#ffffff",
-            borderRadius: "8px",
+            borderRadius: "10px",
             padding: isMobile ? "8px 6px" : "10px 8px",
             textAlign: "center",
             fontWeight: 700,
-            boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.12)",
-            minHeight: isMobile ? "60px" : "68px",
+            minHeight: isMobile ? "60px" : "72px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
           }}
         >
           {isPlayed ? (
-            <div
-              style={{
-                fontSize: isMobile ? "24px" : "30px",
-                lineHeight: 1,
-                whiteSpace: "nowrap",
-              }}
-            >
+            <div style={{ fontSize: isMobile ? "24px" : "30px", lineHeight: 1 }}>
               {match.home_goals ?? "-"}-{match.away_goals ?? "-"}
             </div>
           ) : (
@@ -388,13 +342,7 @@ function MatchCard({
                 {dateParts.shortDate}
               </div>
               {dateParts.time ? (
-                <div
-                  style={{
-                    fontSize: isMobile ? "16px" : "18px",
-                    lineHeight: 1.1,
-                    marginTop: "2px",
-                  }}
-                >
+                <div style={{ fontSize: isMobile ? "16px" : "18px", lineHeight: 1.1, marginTop: 2 }}>
                   {dateParts.time}
                 </div>
               ) : null}
@@ -402,59 +350,16 @@ function MatchCard({
           )}
         </div>
 
-        <div style={{ textAlign: "center", minWidth: 0 }}>
-          <div
-            style={{
-              fontSize: isMobile ? "12px" : "13px",
-              fontWeight: 700,
-              color: "#111827",
-              lineHeight: 1.2,
-              marginBottom: "10px",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {match.away}
-          </div>
-
-          <div
-            style={{
-              width: isMobile ? "38px" : "46px",
-              height: isMobile ? "38px" : "46px",
-              margin: "0 auto",
-              borderRadius: "999px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              backgroundColor: "#f8fafc",
-              border: "1px solid #e5e7eb",
-              overflow: "hidden",
-            }}
-          >
-            {awayLogo ? (
-              <Image
-                src={awayLogo}
-                alt={match.away}
-                width={isMobile ? 30 : 38}
-                height={isMobile ? 30 : 38}
-                style={{ objectFit: "contain" }}
-              />
-            ) : (
-              <span style={{ fontSize: "12px", color: "#6b7280" }}>N/A</span>
-            )}
-          </div>
-        </div>
+        <TeamBadge team={match.away} />
       </div>
 
       <div
         style={{
-          marginTop: "14px",
-          paddingTop: "12px",
+          marginTop: 14,
+          paddingTop: 12,
           borderTop: "1px solid #e5e7eb",
           display: "grid",
-          gap: "6px",
+          gap: 6,
         }}
       >
         <div
@@ -462,48 +367,58 @@ function MatchCard({
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "8px",
+            gap: 8,
             flexWrap: "wrap",
-            fontSize: isMobile ? "12px" : "14px",
+            fontSize: isMobile ? 12 : 14,
             color: "#111827",
             fontWeight: 600,
           }}
         >
           <span>{dateParts.full}</span>
           {match.status !== "Lejátszva" ? (
-            <span
-              style={{
-                ...getStatusStyle(match.status),
-                fontSize: "11px",
-                padding: "3px 8px",
-                borderRadius: "6px",
-                fontWeight: 600,
-              }}
-            >
+            <span style={{ ...getStatusStyle(match.status), fontSize: 11, padding: "3px 8px", borderRadius: 6, fontWeight: 700 }}>
               {match.status}
             </span>
           ) : null}
         </div>
+        <div style={{ fontSize: isMobile ? 12 : 14, color: "#374151" }}>{match.venue || "Nincs megadva"}</div>
+      </div>
+    </div>
+  );
+}
 
-        <div style={{ fontSize: isMobile ? "12px" : "14px", color: "#374151" }}>
-          {match.venue || "Nincs megadva"}
-        </div>
+function TeamBadge({ team }: { team: string }) {
+  const logo = getLogo(team);
+
+  return (
+    <div style={{ textAlign: "center", minWidth: 0 }}>
+      <div
+        style={{
+          fontSize: 13,
+          fontWeight: 700,
+          color: "#111827",
+          lineHeight: 1.2,
+          marginBottom: 10,
+          display: "-webkit-box",
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: "vertical",
+          overflow: "hidden",
+        }}
+      >
+        {team}
+      </div>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <LogoCircle logo={logo} team={team} size={44} />
       </div>
     </div>
   );
 }
 
 export default function Home() {
-  const [selectedRound, setSelectedRound] = useState<number>(
-    getClosestRound(allMatches)
-  );
-  const [view, setView] = useState<
-    "matches" | "table" | "goalscorers" | "stats"
-  >("matches");
+  const [selectedRound, setSelectedRound] = useState<number>(getClosestRound(allMatches));
+  const [view, setView] = useState<ViewMode>("dashboard");
   const [isMobile, setIsMobile] = useState(false);
-
-  const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>("");
-  const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>("");
+  const [selectedTeam, setSelectedTeam] = useState<string>(ALL_TEAMS);
 
   useEffect(() => {
     const updateIsMobile = () => {
@@ -512,106 +427,84 @@ export default function Home() {
 
     updateIsMobile();
     window.addEventListener("resize", updateIsMobile);
-
     return () => window.removeEventListener("resize", updateIsMobile);
   }, []);
 
+  const teamOptions = useMemo(() => {
+    return Array.from(new Set(allMatches.flatMap((m) => [m.home, m.away]))).sort((a, b) =>
+      a.localeCompare(b, "hu")
+    );
+  }, []);
+
   const filteredMatches = useMemo(() => {
-    return allMatches.filter((m) => m.round === selectedRound);
-  }, [selectedRound]);
+    return allMatches.filter((m) => {
+      const roundOk = m.round === selectedRound;
+      const teamOk = selectedTeam === ALL_TEAMS || m.home === selectedTeam || m.away === selectedTeam;
+      return roundOk && teamOk;
+    });
+  }, [selectedRound, selectedTeam]);
 
   const selectedTable = useMemo(() => {
     return allTables.find((t) => t.round === selectedRound);
   }, [selectedRound]);
 
+  const filteredTableRows = useMemo(() => {
+    if (!selectedTable) return [];
+    if (selectedTeam === ALL_TEAMS) return selectedTable.table;
+    return selectedTable.table.filter((row) => row.team === selectedTeam);
+  }, [selectedTable, selectedTeam]);
+
   const selectedGoalscorers = useMemo(() => {
     return allGoalscorers.find((g) => g.round === selectedRound);
   }, [selectedRound]);
 
+  const filteredGoalscorers = useMemo(() => {
+    const rows = selectedGoalscorers?.goalscorers ?? [];
+    if (selectedTeam === ALL_TEAMS) return rows;
+    return rows.filter((row) => row.team === selectedTeam);
+  }, [selectedGoalscorers, selectedTeam]);
+
   const playedMatches = useMemo(() => {
     return allMatches.filter(
-      (m) =>
-        m.status === "Lejátszva" &&
-        m.home_goals !== null &&
-        m.away_goals !== null
+      (m) => m.status === "Lejátszva" && m.home_goals !== null && m.away_goals !== null
     );
   }, []);
 
-  const teamOptions = useMemo(() => {
-    return Array.from(new Set(playedMatches.flatMap((m) => [m.home, m.away]))).sort(
-      (a, b) => a.localeCompare(b, "hu")
-    );
-  }, [playedMatches]);
-
-  useEffect(() => {
-    if (teamOptions.length > 0 && !selectedHomeTeam) {
-      setSelectedHomeTeam(teamOptions[0]);
-    }
-
-    if (teamOptions.length > 1 && !selectedAwayTeam) {
-      setSelectedAwayTeam(teamOptions[1]);
-    } else if (teamOptions.length > 0 && !selectedAwayTeam) {
-      setSelectedAwayTeam(teamOptions[0]);
-    }
-  }, [teamOptions, selectedHomeTeam, selectedAwayTeam]);
+  const playedMatchesForTeam = useMemo(() => {
+    if (selectedTeam === ALL_TEAMS) return playedMatches;
+    return playedMatches.filter((m) => m.home === selectedTeam || m.away === selectedTeam);
+  }, [playedMatches, selectedTeam]);
 
   const teamStrengthStats = useMemo(() => {
-    const teamMap = new Map<
-      string,
-      { matches: number; goalsFor: number; goalsAgainst: number }
-    >();
-
+    const teamMap = new Map<string, { matches: number; goalsFor: number; goalsAgainst: number }>();
     let totalGoals = 0;
 
     for (const match of playedMatches) {
       const homeGoals = match.home_goals ?? 0;
       const awayGoals = match.away_goals ?? 0;
-
       totalGoals += homeGoals + awayGoals;
 
-      const homeStats = teamMap.get(match.home) ?? {
-        matches: 0,
-        goalsFor: 0,
-        goalsAgainst: 0,
-      };
-
+      const homeStats = teamMap.get(match.home) ?? { matches: 0, goalsFor: 0, goalsAgainst: 0 };
       homeStats.matches += 1;
       homeStats.goalsFor += homeGoals;
       homeStats.goalsAgainst += awayGoals;
       teamMap.set(match.home, homeStats);
 
-      const awayStats = teamMap.get(match.away) ?? {
-        matches: 0,
-        goalsFor: 0,
-        goalsAgainst: 0,
-      };
-
+      const awayStats = teamMap.get(match.away) ?? { matches: 0, goalsFor: 0, goalsAgainst: 0 };
       awayStats.matches += 1;
       awayStats.goalsFor += awayGoals;
       awayStats.goalsAgainst += homeGoals;
       teamMap.set(match.away, awayStats);
     }
 
-    const leagueAvgGoalsPerTeamPerMatch =
-      playedMatches.length > 0 ? totalGoals / (playedMatches.length * 2) : 0;
+    const leagueAvgGoalsPerTeamPerMatch = playedMatches.length > 0 ? totalGoals / (playedMatches.length * 2) : 0;
 
     const rows: TeamStrengthRow[] = Array.from(teamMap.entries())
       .map(([team, stats]) => {
-        const goalsForPerMatch =
-          stats.matches > 0 ? stats.goalsFor / stats.matches : 0;
-
-        const goalsAgainstPerMatch =
-          stats.matches > 0 ? stats.goalsAgainst / stats.matches : 0;
-
-        const attackIndex =
-          leagueAvgGoalsPerTeamPerMatch > 0
-            ? goalsForPerMatch / leagueAvgGoalsPerTeamPerMatch
-            : 0;
-
-        const defenseIndex =
-          goalsAgainstPerMatch > 0
-            ? leagueAvgGoalsPerTeamPerMatch / goalsAgainstPerMatch
-            : 2;
+        const goalsForPerMatch = stats.matches > 0 ? stats.goalsFor / stats.matches : 0;
+        const goalsAgainstPerMatch = stats.matches > 0 ? stats.goalsAgainst / stats.matches : 0;
+        const attackIndex = leagueAvgGoalsPerTeamPerMatch > 0 ? goalsForPerMatch / leagueAvgGoalsPerTeamPerMatch : 0;
+        const defenseIndex = goalsAgainstPerMatch > 0 ? leagueAvgGoalsPerTeamPerMatch / goalsAgainstPerMatch : 2;
 
         return {
           team,
@@ -639,314 +532,131 @@ export default function Home() {
           m.round === round &&
           m.status === "Lejátszva" &&
           m.home_goals !== null &&
-          m.away_goals !== null
+          m.away_goals !== null &&
+          (selectedTeam === ALL_TEAMS || m.home === selectedTeam || m.away === selectedTeam)
       );
 
-      const totalGoals = roundMatches.reduce((sum, m) => {
-        return sum + (m.home_goals ?? 0) + (m.away_goals ?? 0);
-      }, 0);
-
-      const avgGoals =
-        roundMatches.length > 0 ? totalGoals / roundMatches.length : 0;
+      const totalGoals = roundMatches.reduce((sum, m) => sum + (m.home_goals ?? 0) + (m.away_goals ?? 0), 0);
 
       return {
         round,
         totalGoals,
-        avgGoals: round2(avgGoals),
       };
     });
 
-    const maxGoals = Math.max(...result.map((r) => r.totalGoals), 1);
-
-    return { rows: result, maxGoals };
-  }, []);
+    return {
+      rows: result,
+      maxGoals: Math.max(...result.map((r) => r.totalGoals), 1),
+    };
+  }, [selectedTeam]);
 
   const topScoringTeamsStats = useMemo(() => {
     const teamGoalsMap = new Map<string, number>();
 
-    for (const match of allMatches) {
-      if (
-        match.status !== "Lejátszva" ||
-        match.home_goals === null ||
-        match.away_goals === null
-      ) {
-        continue;
-      }
-
-      teamGoalsMap.set(
-        match.home,
-        (teamGoalsMap.get(match.home) ?? 0) + match.home_goals
-      );
-
-      teamGoalsMap.set(
-        match.away,
-        (teamGoalsMap.get(match.away) ?? 0) + match.away_goals
-      );
+    for (const match of playedMatches) {
+      teamGoalsMap.set(match.home, (teamGoalsMap.get(match.home) ?? 0) + (match.home_goals ?? 0));
+      teamGoalsMap.set(match.away, (teamGoalsMap.get(match.away) ?? 0) + (match.away_goals ?? 0));
     }
 
     const rows = Array.from(teamGoalsMap.entries())
       .map(([team, goals]) => ({ team, goals }))
       .sort((a, b) => b.goals - a.goals);
 
-    const maxGoals = Math.max(...rows.map((r) => r.goals), 1);
+    return {
+      rows: selectedTeam === ALL_TEAMS ? rows : rows.filter((row) => row.team === selectedTeam),
+      maxGoals: Math.max(...rows.map((r) => r.goals), 1),
+    };
+  }, [playedMatches, selectedTeam]);
 
-    return { rows, maxGoals };
-  }, []);
+  const standingsSnapshot = useMemo(() => {
+    if (!selectedTable) return null;
 
-  const selectedHomeStats = useMemo(() => {
-    return teamStrengthStats.rows.find((t) => t.team === selectedHomeTeam) ?? null;
-  }, [teamStrengthStats, selectedHomeTeam]);
+    const sorted = [...selectedTable.table].sort((a, b) => toNumber(b.points) - toNumber(a.points));
+    const topFour = sorted.slice(0, 4);
+    const selectedRow = selectedTeam === ALL_TEAMS ? null : sorted.find((row) => row.team === selectedTeam) ?? null;
 
-  const selectedAwayStats = useMemo(() => {
-    return teamStrengthStats.rows.find((t) => t.team === selectedAwayTeam) ?? null;
-  }, [teamStrengthStats, selectedAwayTeam]);
+    return { topFour, selectedRow, leaderPoints: toNumber(sorted[0]?.points) };
+  }, [selectedTable, selectedTeam]);
 
-  const poissonPrediction = useMemo(() => {
-    if (!selectedHomeStats || !selectedAwayStats) {
-      return null;
-    }
+  const dashboardStats = useMemo(() => {
+    const completedCount = playedMatches.length;
+    const totalGoals = playedMatches.reduce(
+      (sum, m) => sum + (m.home_goals ?? 0) + (m.away_goals ?? 0),
+      0
+    );
+    const goalsPerMatch = completedCount > 0 ? round2(totalGoals / completedCount) : 0;
 
-    const leagueBase = teamStrengthStats.leagueAvgGoalsPerTeamPerMatch;
+    const selectedRoundMatches = allMatches.filter((m) => m.round === selectedRound);
+    const selectedRoundPlayed = selectedRoundMatches.filter(
+      (m) => m.status === "Lejátszva" && m.home_goals !== null && m.away_goals !== null
+    );
 
-    const homeLambda =
-      selectedAwayStats.defenseIndex > 0
-        ? round2(
-            (leagueBase * selectedHomeStats.attackIndex) /
-              selectedAwayStats.defenseIndex
-          )
-        : 0;
+    const selectedRoundGoals = selectedRoundPlayed.reduce(
+      (sum, m) => sum + (m.home_goals ?? 0) + (m.away_goals ?? 0),
+      0
+    );
 
-    const awayLambda =
-      selectedHomeStats.defenseIndex > 0
-        ? round2(
-            (leagueBase * selectedAwayStats.attackIndex) /
-              selectedHomeStats.defenseIndex
-          )
-        : 0;
+    const highestScoringMatch = [...playedMatchesForTeam]
+      .sort(
+        (a, b) =>
+          (b.home_goals ?? 0) + (b.away_goals ?? 0) - ((a.home_goals ?? 0) + (a.away_goals ?? 0))
+      )[0];
 
-    const matrix = buildPoissonMatrix(homeLambda, awayLambda, 5);
-    const top3 = matrix.slice(0, 3).map((row) => ({
-      ...row,
-      probabilityPercent: round2(row.probability * 100),
-    }));
+    const biggestWin = [...playedMatchesForTeam]
+      .sort(
+        (a, b) =>
+          Math.abs((b.home_goals ?? 0) - (b.away_goals ?? 0)) -
+          Math.abs((a.home_goals ?? 0) - (a.away_goals ?? 0))
+      )[0];
 
-    const homeWin =
-      matrix
-        .filter((m) => m.homeGoals > m.awayGoals)
-        .reduce((sum, m) => sum + m.probability, 0) * 100;
-
-    const draw =
-      matrix
-        .filter((m) => m.homeGoals === m.awayGoals)
-        .reduce((sum, m) => sum + m.probability, 0) * 100;
-
-    const awayWin =
-      matrix
-        .filter((m) => m.homeGoals < m.awayGoals)
-        .reduce((sum, m) => sum + m.probability, 0) * 100;
+    const drawCount = playedMatchesForTeam.filter((m) => (m.home_goals ?? 0) === (m.away_goals ?? 0)).length;
 
     return {
-      homeLambda: round2(homeLambda),
-      awayLambda: round2(awayLambda),
-      top3,
-      homeWin: round2(homeWin),
-      draw: round2(draw),
-      awayWin: round2(awayWin),
+      completedCount,
+      totalGoals,
+      goalsPerMatch,
+      selectedRoundGoals,
+      selectedRoundPlayedCount: selectedRoundPlayed.length,
+      highestScoringMatch,
+      biggestWin,
+      drawCount,
     };
-  }, [selectedHomeStats, selectedAwayStats, teamStrengthStats]);
+  }, [playedMatches, playedMatchesForTeam, selectedRound]);
 
-  const championshipMonteCarlo = useMemo(() => {
-    const playedMatchesOnly = allMatches.filter(
-      (m) =>
-        m.status === "Lejátszva" &&
-        m.home_goals !== null &&
-        m.away_goals !== null
+  const teamDashboard = useMemo(() => {
+    if (selectedTeam === ALL_TEAMS) return null;
+
+    const teamTableRow = selectedTable?.table.find((row) => row.team === selectedTeam) ?? null;
+    const teamStrength = teamStrengthStats.rows.find((row) => row.team === selectedTeam) ?? null;
+    const teamMatches = allMatches.filter((m) => m.home === selectedTeam || m.away === selectedTeam);
+    const completedTeamMatches = teamMatches.filter(
+      (m) => m.status === "Lejátszva" && m.home_goals !== null && m.away_goals !== null
     );
 
-    const upcomingMatches = allMatches.filter(
-      (m) => m.status !== "Lejátszva" && m.home_goals === null && m.away_goals === null
-    );
+    const latestMatch = [...completedTeamMatches].sort((a, b) => {
+      const dA = parseHungarianDate(a.date)?.getTime() ?? 0;
+      const dB = parseHungarianDate(b.date)?.getTime() ?? 0;
+      return dB - dA;
+    })[0] ?? null;
 
-    const currentPointsMap = new Map<string, number>();
-    const currentGoalDiffMap = new Map<string, number>();
-    const currentGoalsForMap = new Map<string, number>();
+    const upcomingMatch = [...teamMatches]
+      .filter((m) => !(m.status === "Lejátszva" && m.home_goals !== null && m.away_goals !== null))
+      .sort((a, b) => {
+        const dA = parseHungarianDate(a.date)?.getTime() ?? Number.POSITIVE_INFINITY;
+        const dB = parseHungarianDate(b.date)?.getTime() ?? Number.POSITIVE_INFINITY;
+        return dA - dB;
+      })[0] ?? null;
 
-    for (const team of teamOptions) {
-      currentPointsMap.set(team, 0);
-      currentGoalDiffMap.set(team, 0);
-      currentGoalsForMap.set(team, 0);
-    }
+    const form = teamTableRow?.form?.slice(0, 5) ?? [];
 
-    for (const match of playedMatchesOnly) {
-      const homeGoals = match.home_goals ?? 0;
-      const awayGoals = match.away_goals ?? 0;
-
-      currentGoalsForMap.set(
-        match.home,
-        (currentGoalsForMap.get(match.home) ?? 0) + homeGoals
-      );
-
-      currentGoalsForMap.set(
-        match.away,
-        (currentGoalsForMap.get(match.away) ?? 0) + awayGoals
-      );
-
-      currentGoalDiffMap.set(
-        match.home,
-        (currentGoalDiffMap.get(match.home) ?? 0) + (homeGoals - awayGoals)
-      );
-
-      currentGoalDiffMap.set(
-        match.away,
-        (currentGoalDiffMap.get(match.away) ?? 0) + (awayGoals - homeGoals)
-      );
-
-      if (homeGoals > awayGoals) {
-        currentPointsMap.set(
-          match.home,
-          (currentPointsMap.get(match.home) ?? 0) + 3
-        );
-      } else if (homeGoals < awayGoals) {
-        currentPointsMap.set(
-          match.away,
-          (currentPointsMap.get(match.away) ?? 0) + 3
-        );
-      } else {
-        currentPointsMap.set(
-          match.home,
-          (currentPointsMap.get(match.home) ?? 0) + 1
-        );
-        currentPointsMap.set(
-          match.away,
-          (currentPointsMap.get(match.away) ?? 0) + 1
-        );
-      }
-    }
-
-    const simulationCount = 3000;
-    const titleCounts = new Map<string, number>();
-    const top3Counts = new Map<string, number>();
-    const top6Counts = new Map<string, number>();
-    const lastCounts = new Map<string, number>();
-    const totalPointsSums = new Map<string, number>();
-
-    for (const team of teamOptions) {
-      titleCounts.set(team, 0);
-      top3Counts.set(team, 0);
-      top6Counts.set(team, 0);
-      lastCounts.set(team, 0);
-      totalPointsSums.set(team, 0);
-    }
-
-    for (let simulation = 0; simulation < simulationCount; simulation++) {
-      const simPoints = new Map(currentPointsMap);
-      const simGoalDiff = new Map(currentGoalDiffMap);
-      const simGoalsFor = new Map(currentGoalsForMap);
-
-      for (const match of upcomingMatches) {
-        const homeStats = teamStrengthStats.rows.find((t) => t.team === match.home);
-        const awayStats = teamStrengthStats.rows.find((t) => t.team === match.away);
-
-        if (!homeStats || !awayStats) continue;
-
-        const leagueBase = teamStrengthStats.leagueAvgGoalsPerTeamPerMatch;
-
-        const homeLambda =
-          awayStats.defenseIndex > 0
-            ? (leagueBase * homeStats.attackIndex) / awayStats.defenseIndex
-            : 0.01;
-
-        const awayLambda =
-          homeStats.defenseIndex > 0
-            ? (leagueBase * awayStats.attackIndex) / homeStats.defenseIndex
-            : 0.01;
-
-        const matrix = buildPoissonMatrix(homeLambda, awayLambda, 5);
-        const sampled = sampleFromDistribution(matrix, (item) => item.probability);
-
-        simGoalsFor.set(
-          match.home,
-          (simGoalsFor.get(match.home) ?? 0) + sampled.homeGoals
-        );
-        simGoalsFor.set(
-          match.away,
-          (simGoalsFor.get(match.away) ?? 0) + sampled.awayGoals
-        );
-
-        simGoalDiff.set(
-          match.home,
-          (simGoalDiff.get(match.home) ?? 0) +
-            (sampled.homeGoals - sampled.awayGoals)
-        );
-        simGoalDiff.set(
-          match.away,
-          (simGoalDiff.get(match.away) ?? 0) +
-            (sampled.awayGoals - sampled.homeGoals)
-        );
-
-        if (sampled.homeGoals > sampled.awayGoals) {
-          simPoints.set(match.home, (simPoints.get(match.home) ?? 0) + 3);
-        } else if (sampled.homeGoals < sampled.awayGoals) {
-          simPoints.set(match.away, (simPoints.get(match.away) ?? 0) + 3);
-        } else {
-          simPoints.set(match.home, (simPoints.get(match.home) ?? 0) + 1);
-          simPoints.set(match.away, (simPoints.get(match.away) ?? 0) + 1);
-        }
-      }
-
-      const ranking = teamOptions
-        .map((team) => ({
-          team,
-          points: simPoints.get(team) ?? 0,
-          goalDiff: simGoalDiff.get(team) ?? 0,
-          goalsFor: simGoalsFor.get(team) ?? 0,
-        }))
-        .sort((a, b) => {
-          if (b.points !== a.points) return b.points - a.points;
-          if (b.goalDiff !== a.goalDiff) return b.goalDiff - a.goalDiff;
-          if (b.goalsFor !== a.goalsFor) return b.goalsFor - a.goalsFor;
-          return a.team.localeCompare(b.team, "hu");
-        });
-
-      ranking.forEach((row, index) => {
-        totalPointsSums.set(
-          row.team,
-          (totalPointsSums.get(row.team) ?? 0) + row.points
-        );
-
-        if (index === 0) {
-          titleCounts.set(row.team, (titleCounts.get(row.team) ?? 0) + 1);
-        }
-        if (index < 3) {
-          top3Counts.set(row.team, (top3Counts.get(row.team) ?? 0) + 1);
-        }
-        if (index < 6) {
-          top6Counts.set(row.team, (top6Counts.get(row.team) ?? 0) + 1);
-        }
-        if (index === ranking.length - 1) {
-          lastCounts.set(row.team, (lastCounts.get(row.team) ?? 0) + 1);
-        }
-      });
-    }
-
-    const rows: ChampionshipChanceRow[] = teamOptions
-      .map((team) => ({
-        team,
-        currentPoints: currentPointsMap.get(team) ?? 0,
-        simulatedAvgPoints: round2(
-          (totalPointsSums.get(team) ?? 0) / simulationCount
-        ),
-        titlePct: round2(((titleCounts.get(team) ?? 0) / simulationCount) * 100),
-        top3Pct: round2(((top3Counts.get(team) ?? 0) / simulationCount) * 100),
-        top6Pct: round2(((top6Counts.get(team) ?? 0) / simulationCount) * 100),
-        lastPct: round2(((lastCounts.get(team) ?? 0) / simulationCount) * 100),
-      }))
-      .sort((a, b) => b.titlePct - a.titlePct);
-
-    const maxTitlePct = Math.max(...rows.map((r) => r.titlePct), 1);
-
-    return { rows, simulationCount, maxTitlePct };
-  }, [teamOptions, teamStrengthStats]);
+    return {
+      teamTableRow,
+      teamStrength,
+      latestMatch,
+      upcomingMatch,
+      form,
+    };
+  }, [selectedTeam, selectedTable, teamStrengthStats]);
 
   return (
     <main
@@ -956,214 +666,259 @@ export default function Home() {
         backgroundColor: "#f3f4f6",
         minHeight: "100vh",
         color: "#111827",
-        maxWidth: "1100px",
+        maxWidth: "1200px",
         margin: "0 auto",
       }}
     >
-      <h1
-        style={{
-          fontSize: isMobile ? "22px" : "30px",
-          lineHeight: 1.2,
-          marginBottom: "8px",
-        }}
-      >
-        MLSZ Országos U15 Kiemelt
-      </h1>
-
-      <div style={{ marginBottom: "18px" }}>
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-            marginBottom: "14px",
-            flexWrap: "wrap",
-          }}
-        >
-          <button onClick={() => setView("matches")} style={tabButtonStyle(view === "matches")}>
-            Meccsek
-          </button>
-          <button onClick={() => setView("table")} style={tabButtonStyle(view === "table")}>
-            Tabella
-          </button>
-          <button
-            onClick={() => setView("goalscorers")}
-            style={tabButtonStyle(view === "goalscorers")}
-          >
-            Góllövők
-          </button>
-          <button onClick={() => setView("stats")} style={tabButtonStyle(view === "stats")}>
-            Statisztika
-          </button>
-        </div>
-
-        <div
-          style={{
-            fontSize: isMobile ? "15px" : "16px",
-            fontWeight: "bold",
-            marginBottom: "10px",
-          }}
-        >
-          Forduló kiválasztása
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            gap: "8px",
-            overflowX: "auto",
-            WebkitOverflowScrolling: "touch",
-            paddingBottom: "8px",
-          }}
-        >
-          {rounds.map((round) => (
-            <button
-              key={round}
-              onClick={() => setSelectedRound(round)}
-              style={{
-                minWidth: isMobile ? "40px" : "48px",
-                padding: isMobile ? "9px 10px" : "10px 12px",
-                borderRadius: "10px",
-                border: "1px solid #d1d5db",
-                backgroundColor: selectedRound === round ? "#2563eb" : "#ffffff",
-                color: selectedRound === round ? "#ffffff" : "#111827",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-            >
-              {round}
-            </button>
-          ))}
+      <div style={{ marginBottom: 18 }}>
+        <h1 style={{ fontSize: isMobile ? 24 : 32, lineHeight: 1.15, marginBottom: 8 }}>
+          MLSZ Országos U15 Kiemelt
+        </h1>
+        <div style={{ fontSize: isMobile ? 14 : 16, color: "#4b5563" }}>
+          Dashboard + csapatfókusz nézet. A csapatválasztó az összes fő modult szűri.
         </div>
       </div>
 
-      {view === "matches" ? (
-        <>
-          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            {selectedRound}. forduló meccsei
-          </h2>
+      <div style={{ ...panelStyle, marginBottom: 16 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))",
+            gap: 12,
+          }}
+        >
+          <SelectField label="Nézet">
+            <select value={view} onChange={(e) => setView(e.target.value as ViewMode)} style={selectStyle}>
+              <option value="dashboard">Dashboard</option>
+              <option value="matches">Meccsek</option>
+              <option value="table">Tabella</option>
+              <option value="goalscorers">Góllövők</option>
+              <option value="stats">Statisztika</option>
+            </select>
+          </SelectField>
 
+          <SelectField label="Forduló">
+            <select value={selectedRound} onChange={(e) => setSelectedRound(Number(e.target.value))} style={selectStyle}>
+              {rounds.map((round) => (
+                <option key={round} value={round}>
+                  {round}. forduló
+                </option>
+              ))}
+            </select>
+          </SelectField>
+
+          <SelectField label="Csapat">
+            <select value={selectedTeam} onChange={(e) => setSelectedTeam(e.target.value)} style={selectStyle}>
+              <option value={ALL_TEAMS}>{ALL_TEAMS}</option>
+              {teamOptions.map((team) => (
+                <option key={team} value={team}>
+                  {team}
+                </option>
+              ))}
+            </select>
+          </SelectField>
+        </div>
+      </div>
+
+      <div style={{ display: "flex", gap: 10, marginBottom: 16, flexWrap: "wrap" }}>
+        {[
+          ["dashboard", "Dashboard"],
+          ["matches", "Meccsek"],
+          ["table", "Tabella"],
+          ["goalscorers", "Góllövők"],
+          ["stats", "Statisztika"],
+        ].map(([key, label]) => (
+          <button key={key} onClick={() => setView(key as ViewMode)} style={tabButtonStyle(view === key)}>
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {view === "dashboard" ? (
+        <>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, minmax(0, 1fr))",
+              gap: 12,
+              marginBottom: 16,
+            }}
+          >
+            <KpiCard label="Aktuális forduló" value={selectedRound} sub="Kiválasztott forduló" />
+            <KpiCard label="Lejátszott meccsek" value={dashboardStats.completedCount} sub={selectedTeam === ALL_TEAMS ? "Liga összesen" : selectedTeam} />
+            <KpiCard label="Összes gól" value={dashboardStats.totalGoals} sub={selectedTeam === ALL_TEAMS ? "Liga összesen" : `${selectedTeam} meccsei`} />
+            <KpiCard label="Gól / meccs" value={dashboardStats.goalsPerMatch} sub="Átlag" />
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1.2fr 0.8fr",
+              gap: 16,
+              marginBottom: 16,
+            }}
+          >
+            <div style={panelStyle}>
+              <SectionTitle title={selectedTeam === ALL_TEAMS ? "Fordulóösszefoglaló" : `${selectedTeam} fókusz`} />
+
+              {selectedTeam === ALL_TEAMS ? (
+                <div style={{ display: "grid", gap: 12 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                    <MiniStat label="Forduló góljai" value={dashboardStats.selectedRoundGoals} />
+                    <MiniStat label="Lejátszott meccsek" value={dashboardStats.selectedRoundPlayedCount} />
+                  </div>
+                  <DashboardMatchLine label="Legtöbb gólos meccs" match={dashboardStats.highestScoringMatch} />
+                  <DashboardMatchLine label="Legnagyobb különbségű győzelem" match={dashboardStats.biggestWin} />
+                  <MiniStat label="Döntetlenek száma" value={dashboardStats.drawCount} />
+                </div>
+              ) : teamDashboard ? (
+                <div style={{ display: "grid", gap: 12 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8 }}>
+                    <MiniStat label="Helyezés" value={teamDashboard.teamTableRow?.pos ?? "-"} />
+                    <MiniStat label="Pont" value={teamDashboard.teamTableRow?.points ?? "-"} />
+                    <MiniStat label="GK" value={teamDashboard.teamTableRow?.gd ?? "-"} />
+                    <MiniStat label="M" value={teamDashboard.teamTableRow?.played ?? "-"} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 6 }}>Utolsó 5 forma</div>
+                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                      {teamDashboard.form.length === 0 ? (
+                        <span style={{ fontSize: 14, color: "#6b7280" }}>Nincs formaadat.</span>
+                      ) : (
+                        teamDashboard.form.map((item, index) => (
+                          <span
+                            key={`${item}-${index}`}
+                            style={{
+                              ...getFormBadgeStyle(item),
+                              minWidth: 28,
+                              height: 28,
+                              borderRadius: 999,
+                              display: "inline-flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              fontSize: 12,
+                              fontWeight: 700,
+                            }}
+                          >
+                            {item}
+                          </span>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                  <DashboardMatchLine label="Legutóbbi meccs" match={teamDashboard.latestMatch} />
+                  <DashboardMatchLine label="Következő meccs" match={teamDashboard.upcomingMatch} />
+                </div>
+              ) : (
+                <EmptyBox text="Ehhez a csapathoz nincs elég adat." />
+              )}
+            </div>
+
+            <div style={panelStyle}>
+              <SectionTitle title="Tabella pillanatkép" />
+              {!standingsSnapshot ? (
+                <EmptyBox text="Nincs tabellaadat." />
+              ) : (
+                <div style={{ display: "grid", gap: 10 }}>
+                  {standingsSnapshot.topFour.map((row) => (
+                    <StandingMiniRow key={row.team} row={row} highlight={row.team === selectedTeam} />
+                  ))}
+                  {selectedTeam !== ALL_TEAMS && standingsSnapshot.selectedRow ? (
+                    <div
+                      style={{
+                        marginTop: 8,
+                        paddingTop: 12,
+                        borderTop: "1px solid #e5e7eb",
+                        display: "grid",
+                        gap: 8,
+                      }}
+                    >
+                      <div style={{ fontSize: 13, color: "#6b7280" }}>Kiválasztott csapat</div>
+                      <StandingMiniRow row={standingsSnapshot.selectedRow} highlight />
+                      <div style={{ fontSize: 13, color: "#4b5563" }}>
+                        Hátrány az elsőhöz: {Math.max(0, standingsSnapshot.leaderPoints - toNumber(standingsSnapshot.selectedRow.points))} pont
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+              gap: 16,
+            }}
+          >
+            <div style={panelStyle}>
+              <SectionTitle title={selectedTeam === ALL_TEAMS ? "Góltrend fordulónként" : `${selectedTeam} góltrendje fordulónként`} />
+              <div style={{ display: "grid", gap: 10 }}>
+                {roundGoalsStats.rows.map((row) => (
+                  <BarRow
+                    key={row.round}
+                    label={`${row.round}. ford.`}
+                    value={`${row.totalGoals} gól`}
+                    widthPct={(row.totalGoals / roundGoalsStats.maxGoals) * 100}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div style={panelStyle}>
+              <SectionTitle title={selectedTeam === ALL_TEAMS ? "Legtöbb gólt szerző csapatok" : `${selectedTeam} támadó mutatója`} />
+              <div style={{ display: "grid", gap: 10 }}>
+                {(selectedTeam === ALL_TEAMS ? topScoringTeamsStats.rows.slice(0, 8) : topScoringTeamsStats.rows).map((row) => (
+                  <BarRow
+                    key={row.team}
+                    label={row.team}
+                    value={`${row.goals} gól`}
+                    widthPct={(row.goals / topScoringTeamsStats.maxGoals) * 100}
+                    logo={getLogo(row.team)}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </>
+      ) : null}
+
+      {view === "matches" ? (
+        <section>
+          <h2 style={sectionHeadingStyle}>
+            {selectedTeam === ALL_TEAMS ? `${selectedRound}. forduló meccsei` : `${selectedTeam} – ${selectedRound}. forduló`}
+          </h2>
           {filteredMatches.length === 0 ? (
-            <EmptyBox text="Nincs megjeleníthető meccs." />
+            <EmptyBox text="Nincs megjeleníthető meccs ehhez a szűréshez." />
           ) : (
-            <div style={{ display: "grid", gap: "14px" }}>
-              {filteredMatches.map((m, i) => (
-                <MatchCard key={i} match={m} isMobile={isMobile} />
+            <div style={{ display: "grid", gap: 14 }}>
+              {filteredMatches.map((match, index) => (
+                <MatchCard key={`${match.home}-${match.away}-${index}`} match={match} isMobile={isMobile} />
               ))}
             </div>
           )}
-        </>
-      ) : view === "table" ? (
-        <>
-          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            {selectedRound}. forduló tabellája
-          </h2>
+        </section>
+      ) : null}
 
+      {view === "table" ? (
+        <section>
+          <h2 style={sectionHeadingStyle}>{selectedRound}. forduló tabellája</h2>
           {!selectedTable || selectedTable.table.length === 0 ? (
             <EmptyBox text="Nincs megjeleníthető tabella." />
           ) : isMobile ? (
-            <div style={{ display: "grid", gap: "10px" }}>
-              {selectedTable.table.map((row, i) => {
-                const logo = getLogo(row.team);
-
-                return (
-                  <div key={i} style={mobileCardStyle}>
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "32px 1fr auto",
-                        gap: "10px",
-                        alignItems: "center",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontWeight: 700,
-                          fontSize: "15px",
-                          color: "#111827",
-                          textAlign: "center",
-                        }}
-                      >
-                        {row.pos}
-                      </div>
-
-                      <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: 0 }}>
-                        <LogoCircle logo={logo} team={row.team} size={26} />
-                        <div
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: 700,
-                            color: "#111827",
-                            lineHeight: 1.2,
-                          }}
-                        >
-                          {row.team}
-                        </div>
-                      </div>
-
-                      <div style={{ fontSize: "18px", fontWeight: 800 }}>{row.points}</div>
-                    </div>
-
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
-                        gap: "8px",
-                        marginBottom: "10px",
-                      }}
-                    >
-                      <MiniStat label="M" value={row.played} />
-                      <MiniStat label="GY" value={row.won} />
-                      <MiniStat label="D" value={row.draw} />
-                      <MiniStat label="V" value={row.lost} />
-                    </div>
-
-                    <div
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "repeat(4, 1fr)",
-                        gap: "8px",
-                        marginBottom: row.form?.length ? "10px" : "0",
-                      }}
-                    >
-                      <MiniStat label="LG" value={row.gf} />
-                      <MiniStat label="KG" value={row.ga} />
-                      <MiniStat label="GK" value={row.gd} />
-                      <MiniStat label="P" value={row.points} strong />
-                    </div>
-
-                    {row.form && row.form.length > 0 ? (
-                      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
-                        {row.form.map((f, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              ...getFormBadgeStyle(f),
-                              display: "inline-block",
-                              minWidth: "30px",
-                              padding: "6px 8px",
-                              borderRadius: "6px",
-                              fontWeight: "bold",
-                              fontSize: "12px",
-                              textAlign: "center",
-                            }}
-                          >
-                            {f}
-                          </span>
-                        ))}
-                      </div>
-                    ) : null}
-                  </div>
-                );
-              })}
+            <div style={{ display: "grid", gap: 10 }}>
+              {filteredTableRows.map((row) => (
+                <StandingMobileCard key={row.team} row={row} highlight={row.team === selectedTeam} />
+              ))}
             </div>
           ) : (
-            <div style={tableWrapStyle}>
-              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "950px" }}>
+            <div style={{ ...panelStyle, padding: 0, overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 860, backgroundColor: "#ffffff" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#e5e7eb" }}>
-                    <th style={thStyle}>#</th>
                     <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
+                    <th style={thStyle}>H</th>
                     <th style={thStyle}>M</th>
                     <th style={thStyle}>GY</th>
                     <th style={thStyle}>D</th>
@@ -1176,844 +931,317 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody>
-                  {selectedTable.table.map((row, i) => {
-                    const logo = getLogo(row.team);
-
-                    return (
-                      <tr key={i} style={{ backgroundColor: i < 3 ? "#f8fafc" : "#ffffff" }}>
-                        <td style={tdStyle}>{row.pos}</td>
-                        <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <LogoCircle logo={logo} team={row.team} size={24} />
-                            <span>{row.team}</span>
-                          </div>
-                        </td>
-                        <td style={tdStyle}>{row.played}</td>
-                        <td style={tdStyle}>{row.won}</td>
-                        <td style={tdStyle}>{row.draw}</td>
-                        <td style={tdStyle}>{row.lost}</td>
-                        <td style={tdStyle}>{row.gf}</td>
-                        <td style={tdStyle}>{row.ga}</td>
-                        <td style={tdStyle}>{row.gd}</td>
-                        <td style={{ ...tdStyle, fontWeight: "bold" }}>{row.points}</td>
-                        <td style={tdStyle}>
-                          {row.form && row.form.length > 0 ? (
-                            <div
+                  {filteredTableRows.map((row) => (
+                    <tr key={row.team} style={row.team === selectedTeam ? highlightedRowStyle : undefined}>
+                      <td style={{ ...tdStyle, textAlign: "left" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                          <span style={{ width: 22, fontWeight: 700 }}>{row.pos}</span>
+                          <LogoCircle logo={getLogo(row.team)} team={row.team} size={28} />
+                          <span style={{ fontWeight: 700 }}>{row.team}</span>
+                        </div>
+                      </td>
+                      <td style={tdStyle}>{row.pos}</td>
+                      <td style={tdStyle}>{row.played}</td>
+                      <td style={tdStyle}>{row.won}</td>
+                      <td style={tdStyle}>{row.draw}</td>
+                      <td style={tdStyle}>{row.lost}</td>
+                      <td style={tdStyle}>{row.gf}</td>
+                      <td style={tdStyle}>{row.ga}</td>
+                      <td style={tdStyle}>{row.gd}</td>
+                      <td style={{ ...tdStyle, fontWeight: 800 }}>{row.points}</td>
+                      <td style={tdStyle}>
+                        <div style={{ display: "flex", gap: 4, justifyContent: "center" }}>
+                          {(row.form ?? []).slice(0, 5).map((item, index) => (
+                            <span
+                              key={`${row.team}-${index}`}
                               style={{
-                                display: "flex",
-                                gap: "6px",
+                                ...getFormBadgeStyle(item),
+                                width: 24,
+                                height: 24,
+                                borderRadius: 999,
+                                display: "inline-flex",
+                                alignItems: "center",
                                 justifyContent: "center",
-                                flexWrap: "nowrap",
+                                fontSize: 11,
+                                fontWeight: 700,
                               }}
                             >
-                              {row.form.map((f, idx) => (
-                                <span
-                                  key={idx}
-                                  style={{
-                                    ...getFormBadgeStyle(f),
-                                    display: "inline-block",
-                                    minWidth: "32px",
-                                    padding: "6px 8px",
-                                    borderRadius: "4px",
-                                    fontWeight: "bold",
-                                    fontSize: "12px",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {f}
-                                </span>
-                              ))}
-                            </div>
-                          ) : (
-                            "-"
-                          )}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
-        </>
-      ) : view === "goalscorers" ? (
-        <>
-          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            {selectedRound}. forduló góllövői
-          </h2>
-
-          {!selectedGoalscorers || selectedGoalscorers.goalscorers.length === 0 ? (
-            <EmptyBox text="Nincs megjeleníthető góllövőlista." />
-          ) : isMobile ? (
-            <div style={{ display: "grid", gap: "10px" }}>
-              {selectedGoalscorers.goalscorers.map((row, i) => (
-                <div key={i} style={mobileCardStyle}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "40px 1fr auto",
-                      alignItems: "center",
-                      gap: "10px",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontWeight: 800,
-                        fontSize: "16px",
-                        textAlign: "center",
-                      }}
-                    >
-                      {row.pos}
-                    </div>
-                    <div>
-                      <div style={{ fontSize: "14px", fontWeight: 700 }}>{row.player}</div>
-                      <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "2px" }}>
-                        {row.team}
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        fontWeight: 800,
-                        fontSize: "20px",
-                        color: "#166534",
-                      }}
-                    >
-                      {row.goals}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div style={tableWrapStyle}>
-              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "720px" }}>
-                <thead>
-                  <tr style={{ backgroundColor: "#e5e7eb" }}>
-                    <th style={thStyle}>#</th>
-                    <th style={{ ...thStyle, textAlign: "left" }}>Játékos</th>
-                    <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
-                    <th style={thStyle}>Gól</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {selectedGoalscorers.goalscorers.map((row, i) => (
-                    <tr key={i}>
-                      <td style={tdStyle}>{row.pos}</td>
-                      <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                        {row.player}
+                              {item}
+                            </span>
+                          ))}
+                        </div>
                       </td>
-                      <td style={{ ...tdStyle, textAlign: "left" }}>{row.team}</td>
-                      <td style={{ ...tdStyle, fontWeight: "bold" }}>{row.goals}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           )}
-        </>
-      ) : (
-        <>
-          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            Liga statisztika
-          </h2>
+        </section>
+      ) : null}
 
-          <div style={{ display: "grid", gap: "16px" }}>
-            <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Góltrend fordulónként</div>
-              <div style={sectionSubTitleStyle}>
-                Fordulónkénti összgól
-              </div>
-
-              <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-                {roundGoalsStats.rows.map((row) => (
-                  <div
-                    key={row.round}
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: isMobile ? "58px 1fr" : "80px 1fr 70px 70px",
-                      gap: "10px",
-                      alignItems: "center",
-                    }}
-                  >
-                    <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 600 }}>
-                      {row.round}. ford.
+      {view === "goalscorers" ? (
+        <section>
+          <h2 style={sectionHeadingStyle}>{selectedRound}. forduló góllövőlista</h2>
+          {filteredGoalscorers.length === 0 ? (
+            <EmptyBox text="Nincs megjeleníthető góllövő ehhez a szűréshez." />
+          ) : isMobile ? (
+            <div style={{ display: "grid", gap: 10 }}>
+              {filteredGoalscorers.map((row) => (
+                <div key={`${row.player}-${row.team}`} style={panelStyle}>
+                  <div style={{ display: "grid", gridTemplateColumns: "34px 1fr auto", gap: 10, alignItems: "center" }}>
+                    <div style={{ fontWeight: 800, textAlign: "center" }}>{row.pos}</div>
+                    <div>
+                      <div style={{ fontWeight: 700 }}>{row.player}</div>
+                      <div style={{ fontSize: 13, color: "#4b5563", display: "flex", alignItems: "center", gap: 8, marginTop: 4 }}>
+                        <LogoCircle logo={getLogo(row.team)} team={row.team} size={22} />
+                        {row.team}
+                      </div>
                     </div>
-
-                    <div
-                      style={{
-                        backgroundColor: "#e5e7eb",
-                        height: "14px",
-                        borderRadius: "999px",
-                        overflow: "hidden",
-                      }}
-                    >
-                      <div
-                        style={{
-                          width: `${(row.totalGoals / roundGoalsStats.maxGoals) * 100}%`,
-                          height: "100%",
-                          backgroundColor: "#2563eb",
-                          borderRadius: "999px",
-                        }}
-                      />
-                    </div>
-
-					{isMobile ? (
-					  <div
-						style={{
-						  gridColumn: "1 / -1",
-						  display: "flex",
-						  justifyContent: "flex-end",
-						  fontSize: "12px",
-						  color: "#6b7280",
-						  marginTop: "-4px",
-						}}
-					  >
-						<span style={{ fontWeight: 700, color: "#111827" }}>
-						  {row.totalGoals} gól
-						</span>
-					  </div>
-					) : (
-					  <div
-						style={{
-						  fontSize: "14px",
-						  fontWeight: "bold",
-						  textAlign: "right",
-						}}
-					  >
-						{row.totalGoals} gól
-					  </div>
-					)}
+                    <div style={{ fontSize: 22, fontWeight: 800 }}>{row.goals}</div>
                   </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div style={{ ...panelStyle, padding: 0, overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", backgroundColor: "#ffffff" }}>
+                <thead>
+                  <tr style={{ backgroundColor: "#e5e7eb" }}>
+                    <th style={thStyle}>H</th>
+                    <th style={{ ...thStyle, textAlign: "left" }}>Játékos</th>
+                    <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
+                    <th style={thStyle}>Gól</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredGoalscorers.map((row) => (
+                    <tr key={`${row.player}-${row.team}`}>
+                      <td style={tdStyle}>{row.pos}</td>
+                      <td style={{ ...tdStyle, textAlign: "left", fontWeight: 700 }}>{row.player}</td>
+                      <td style={{ ...tdStyle, textAlign: "left" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <LogoCircle logo={getLogo(row.team)} team={row.team} size={24} />
+                          {row.team}
+                        </div>
+                      </td>
+                      <td style={{ ...tdStyle, fontWeight: 800 }}>{row.goals}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+      ) : null}
+
+      {view === "stats" ? (
+        <section>
+          <h2 style={sectionHeadingStyle}>Statisztika</h2>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 16, marginBottom: 16 }}>
+            <div style={panelStyle}>
+              <SectionTitle title={selectedTeam === ALL_TEAMS ? "Góltrend fordulónként" : `${selectedTeam} góltrendje fordulónként`} />
+              <div style={{ display: "grid", gap: 10 }}>
+                {roundGoalsStats.rows.map((row) => (
+                  <BarRow
+                    key={row.round}
+                    label={`${row.round}. ford.`}
+                    value={`${row.totalGoals} gól`}
+                    widthPct={(row.totalGoals / roundGoalsStats.maxGoals) * 100}
+                  />
                 ))}
               </div>
             </div>
 
-            <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Csapat támadó / védekező index</div>
-              <div style={sectionSubTitleStyle}>
-                Támadó index: 1 felett jobb a ligaátlagnál. Védekező index: 1 felett jobb
-                védekezés.
-              </div>
-
-              {isMobile ? (
-                <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-                  {teamStrengthStats.rows.map((row) => {
-                    const logo = getLogo(row.team);
-
-                    return (
-                      <div key={row.team} style={mobileCardStyle}>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "10px",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          <LogoCircle logo={logo} team={row.team} size={26} />
-                          <div style={{ minWidth: 0 }}>
-                            <div style={{ fontSize: "14px", fontWeight: 700 }}>{row.team}</div>
-                            <div style={{ fontSize: "12px", color: "#6b7280" }}>
-                              {row.matches} meccs
-                            </div>
-                          </div>
-                        </div>
-
-                        <div
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "repeat(2, 1fr)",
-                            gap: "8px",
-                            marginBottom: "8px",
-                          }}
-                        >
-                          <MiniStat label="LG" value={row.goalsFor} />
-                          <MiniStat label="KG" value={row.goalsAgainst} />
-                          <MiniStat label="LG / meccs" value={row.goalsForPerMatch} />
-                          <MiniStat label="KG / meccs" value={row.goalsAgainstPerMatch} />
-                        </div>
-
-                        <div
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "1fr 1fr",
-                            gap: "8px",
-                          }}
-                        >
-                          <MiniStat
-                            label="Támadó index"
-                            value={row.attackIndex}
-                            valueColor="#166534"
-                            strong
-                          />
-                          <MiniStat
-                            label="Védekező index"
-                            value={row.defenseIndex}
-                            valueColor="#1d4ed8"
-                            strong
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div style={tableWrapStyle}>
-                  <table
-                    style={{
-                      width: "100%",
-                      borderCollapse: "collapse",
-                      minWidth: "900px",
-                      backgroundColor: "#ffffff",
-                    }}
-                  >
-                    <thead>
-                      <tr style={{ backgroundColor: "#e5e7eb" }}>
-                        <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
-                        <th style={thStyle}>M</th>
-                        <th style={thStyle}>LG</th>
-                        <th style={thStyle}>KG</th>
-                        <th style={thStyle}>LG / meccs</th>
-                        <th style={thStyle}>KG / meccs</th>
-                        <th style={thStyle}>Támadó index</th>
-                        <th style={thStyle}>Védekező index</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {teamStrengthStats.rows.map((row) => {
-                        const logo = getLogo(row.team);
-
-                        return (
-                          <tr key={row.team}>
-                            <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                                <LogoCircle logo={logo} team={row.team} size={24} />
-                                <span>{row.team}</span>
-                              </div>
-                            </td>
-                            <td style={tdStyle}>{row.matches}</td>
-                            <td style={tdStyle}>{row.goalsFor}</td>
-                            <td style={tdStyle}>{row.goalsAgainst}</td>
-                            <td style={tdStyle}>{row.goalsForPerMatch}</td>
-                            <td style={tdStyle}>{row.goalsAgainstPerMatch}</td>
-                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#166534" }}>
-                              {row.attackIndex}
-                            </td>
-                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#1d4ed8" }}>
-                              {row.defenseIndex}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-
-            <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Poisson meccs-előrejelző</div>
-              <div style={sectionSubTitleStyle}>
-                A becslés a csapatok támadó és védekező indexéből számolt várható
-                gólértékekre épül.
-              </div>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                  gap: "12px",
-                  marginTop: "12px",
-                  marginBottom: "16px",
-                }}
-              >
-                <div>
-                  <div style={{ fontSize: "14px", fontWeight: 600, marginBottom: "6px" }}>
-                    Hazai csapat
-                  </div>
-                  <select
-                    value={selectedHomeTeam}
-                    onChange={(e) => setSelectedHomeTeam(e.target.value)}
-                    style={selectStyle}
-                  >
-                    {teamOptions.map((team) => (
-                      <option key={team} value={team}>
-                        {team}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <div style={{ fontSize: "14px", fontWeight: 600, marginBottom: "6px" }}>
-                    Vendég csapat
-                  </div>
-                  <select
-                    value={selectedAwayTeam}
-                    onChange={(e) => setSelectedAwayTeam(e.target.value)}
-                    style={selectStyle}
-                  >
-                    {teamOptions.map((team) => (
-                      <option key={team} value={team}>
-                        {team}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {poissonPrediction && selectedHomeStats && selectedAwayStats ? (
-                <div style={{ display: "grid", gap: "14px" }}>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr",
-                      gap: "12px",
-                    }}
-                  >
-                    <MetricCard label="Hazai várható gól" value={poissonPrediction.homeLambda} />
-                    <MetricCard label="Vendég várható gól" value={poissonPrediction.awayLambda} />
-                    <MetricCard
-                      label="Hazai győzelem"
-                      value={`${poissonPrediction.homeWin}%`}
-                      valueColor="#166534"
-                    />
-                    <MetricCard
-                      label="Döntetlen / vendég"
-                      value={`${poissonPrediction.draw}% / ${poissonPrediction.awayWin}%`}
-                    />
-                  </div>
-
-                  {isMobile ? (
-                    <div style={{ display: "grid", gap: "8px" }}>
-                      {poissonPrediction.top3.map((row, index) => (
-                        <div key={`${row.homeGoals}-${row.awayGoals}`} style={mobileCardStyle}>
-                          <div style={{ fontSize: "12px", color: "#6b7280", marginBottom: "4px" }}>
-                            {index + 1}. legvalószínűbb
-                          </div>
-                          <div style={{ fontSize: "14px", fontWeight: 700, marginBottom: "4px" }}>
-                            {selectedHomeTeam} {row.homeGoals}-{row.awayGoals} {selectedAwayTeam}
-                          </div>
-                          <div style={{ fontSize: "13px", color: "#111827" }}>
-                            {row.probabilityPercent}%
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div style={tableWrapStyle}>
-                      <table
-                        style={{
-                          width: "100%",
-                          borderCollapse: "collapse",
-                          minWidth: "600px",
-                        }}
-                      >
-                        <thead>
-                          <tr style={{ backgroundColor: "#e5e7eb" }}>
-                            <th style={thStyle}>#</th>
-                            <th style={{ ...thStyle, textAlign: "left" }}>
-                              Legvalószínűbb eredmény
-                            </th>
-                            <th style={thStyle}>Valószínűség</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {poissonPrediction.top3.map((row, index) => (
-                            <tr key={`${row.homeGoals}-${row.awayGoals}`}>
-                              <td style={tdStyle}>{index + 1}</td>
-                              <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                                {selectedHomeTeam} {row.homeGoals}-{row.awayGoals} {selectedAwayTeam}
-                              </td>
-                              <td style={{ ...tdStyle, fontWeight: "bold" }}>
-                                {row.probabilityPercent}%
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-                      gap: "12px",
-                    }}
-                  >
-                    <TeamInfoCard
-                      team={selectedHomeTeam}
-                      attackIndex={selectedHomeStats.attackIndex}
-                      defenseIndex={selectedHomeStats.defenseIndex}
-                    />
-                    <TeamInfoCard
-                      team={selectedAwayTeam}
-                      attackIndex={selectedAwayStats.attackIndex}
-                      defenseIndex={selectedAwayStats.defenseIndex}
-                    />
-                  </div>
-                </div>
-              ) : (
-                <EmptyBox text="Nincs elég adat az előrejelzéshez." />
-              )}
-            </div>
-
-            <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Bajnoki esélymodell</div>
-              <div style={sectionSubTitleStyle}>
-                {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült
-                bajnoki, top 3, top 6 és utolsó hely valószínűségek.
-              </div>
-
-              {isMobile ? (
-                <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-                  {championshipMonteCarlo.rows.map((row) => {
-                    const logo = getLogo(row.team);
-
-                    return (
-                      <div key={row.team} style={mobileCardStyle}>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "10px",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          <LogoCircle logo={logo} team={row.team} size={26} />
-                          <div style={{ minWidth: 0 }}>
-                            <div style={{ fontSize: "14px", fontWeight: 700 }}>{row.team}</div>
-                            <div style={{ fontSize: "12px", color: "#6b7280" }}>
-                              Jelenlegi pont: {row.currentPoints} • Várható: {row.simulatedAvgPoints}
-                            </div>
-                          </div>
-                        </div>
-
-                        <div
-                          style={{
-                            display: "grid",
-                            gridTemplateColumns: "1fr 1fr",
-                            gap: "8px",
-                          }}
-                        >
-                          <MiniStat label="Bajnoki esély" value={`${row.titlePct}%`} />
-                          <MiniStat label="Top 3" value={`${row.top3Pct}%`} valueColor="#166534" />
-                          <MiniStat label="Top 6" value={`${row.top6Pct}%`} valueColor="#1d4ed8" />
-                          <MiniStat label="Utolsó hely" value={`${row.lastPct}%`} valueColor="#991b1b" />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <div style={tableWrapStyle}>
-                  <table
-                    style={{
-                      width: "100%",
-                      borderCollapse: "collapse",
-                      minWidth: "950px",
-                      backgroundColor: "#ffffff",
-                    }}
-                  >
-                    <thead>
-                      <tr style={{ backgroundColor: "#e5e7eb" }}>
-                        <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
-                        <th style={thStyle}>Jelenlegi pont</th>
-                        <th style={thStyle}>Várható pont</th>
-                        <th style={thStyle}>Bajnoki esély</th>
-                        <th style={thStyle}>Top 3</th>
-                        <th style={thStyle}>Top 6</th>
-                        <th style={thStyle}>Utolsó hely</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {championshipMonteCarlo.rows.map((row) => {
-                        const logo = getLogo(row.team);
-
-                        return (
-                          <tr key={row.team}>
-                            <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                                <LogoCircle logo={logo} team={row.team} size={24} />
-                                <span>{row.team}</span>
-                              </div>
-                            </td>
-                            <td style={tdStyle}>{row.currentPoints}</td>
-                            <td style={tdStyle}>{row.simulatedAvgPoints}</td>
-                            <td style={tdStyle}>
-                              <div
-                                style={{
-                                  display: "grid",
-                                  gridTemplateColumns: "1fr 52px",
-                                  gap: "8px",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <div
-                                  style={{
-                                    backgroundColor: "#e5e7eb",
-                                    height: "14px",
-                                    borderRadius: "999px",
-                                    overflow: "hidden",
-                                  }}
-                                >
-                                  <div
-                                    style={{
-                                      width: `${
-                                        (row.titlePct / championshipMonteCarlo.maxTitlePct) * 100
-                                      }%`,
-                                      height: "100%",
-                                      backgroundColor: "#2563eb",
-                                      borderRadius: "999px",
-                                    }}
-                                  />
-                                </div>
-                                <div style={{ fontWeight: "bold" }}>{row.titlePct}%</div>
-                              </div>
-                            </td>
-                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#166534" }}>
-                              {row.top3Pct}%
-                            </td>
-                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#1d4ed8" }}>
-                              {row.top6Pct}%
-                            </td>
-                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#991b1b" }}>
-                              {row.lastPct}%
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
-            </div>
-
-            <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Legtöbb gólt szerző csapatok</div>
-
-              <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-                {topScoringTeamsStats.rows.map((row) => {
-                  const logo = getLogo(row.team);
-
-                  return (
-                    <div
-                      key={row.team}
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: isMobile ? "minmax(0, 1fr) 52px" : "minmax(0, 1fr) 120px 40px",
-                        alignItems: "center",
-                        gap: "10px",
-                      }}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                          minWidth: 0,
-                        }}
-                      >
-                        <LogoCircle logo={logo} team={row.team} size={24} />
-                        <div
-                          style={{
-                            fontSize: isMobile ? "13px" : "14px",
-                            color: "#111827",
-                            fontWeight: 600,
-                            minWidth: 0,
-                          }}
-                        >
-                          {row.team}
-                        </div>
-                      </div>
-
-                      {!isMobile ? (
-                        <div
-                          style={{
-                            backgroundColor: "#e5e7eb",
-                            height: "18px",
-                            borderRadius: "999px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: `${(row.goals / topScoringTeamsStats.maxGoals) * 100}%`,
-                              height: "100%",
-                              backgroundColor: "#16a34a",
-                              borderRadius: "999px",
-                            }}
-                          />
-                        </div>
-                      ) : null}
-
-                      <div
-                        style={{
-                          fontSize: isMobile ? "13px" : "14px",
-                          color: "#111827",
-                          fontWeight: "bold",
-                          textAlign: "right",
-                        }}
-                      >
-                        {row.goals}
-                      </div>
-                    </div>
-                  );
-                })}
+            <div style={panelStyle}>
+              <SectionTitle title="Legtöbb gólt szerző csapatok" />
+              <div style={{ display: "grid", gap: 10 }}>
+                {(selectedTeam === ALL_TEAMS ? topScoringTeamsStats.rows : topScoringTeamsStats.rows).map((row) => (
+                  <BarRow
+                    key={row.team}
+                    label={row.team}
+                    value={`${row.goals} gól`}
+                    widthPct={(row.goals / topScoringTeamsStats.maxGoals) * 100}
+                    logo={getLogo(row.team)}
+                  />
+                ))}
               </div>
             </div>
           </div>
-        </>
-      )}
+
+          <div style={panelStyle}>
+            <SectionTitle title="Csapat támadó / védekező index" />
+            <div style={{ fontSize: 13, color: "#6b7280", marginBottom: 12 }}>
+              Támadó index: 1 felett jobb a ligaátlagnál. Védekező index: 1 felett jobb védekezés.
+            </div>
+            <div style={{ overflowX: "auto", border: "1px solid #e5e7eb", borderRadius: 12 }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 900, backgroundColor: "#ffffff" }}>
+                <thead>
+                  <tr style={{ backgroundColor: "#e5e7eb" }}>
+                    <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
+                    <th style={thStyle}>M</th>
+                    <th style={thStyle}>LG</th>
+                    <th style={thStyle}>KG</th>
+                    <th style={thStyle}>LG / meccs</th>
+                    <th style={thStyle}>KG / meccs</th>
+                    <th style={thStyle}>Támadó index</th>
+                    <th style={thStyle}>Védekező index</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {teamStrengthStats.rows
+                    .filter((row) => selectedTeam === ALL_TEAMS || row.team === selectedTeam)
+                    .map((row) => (
+                      <tr key={row.team} style={row.team === selectedTeam ? highlightedRowStyle : undefined}>
+                        <td style={{ ...tdStyle, textAlign: "left" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                            <LogoCircle logo={getLogo(row.team)} team={row.team} size={24} />
+                            <span style={{ fontWeight: 700 }}>{row.team}</span>
+                          </div>
+                        </td>
+                        <td style={tdStyle}>{row.matches}</td>
+                        <td style={tdStyle}>{row.goalsFor}</td>
+                        <td style={tdStyle}>{row.goalsAgainst}</td>
+                        <td style={tdStyle}>{row.goalsForPerMatch}</td>
+                        <td style={tdStyle}>{row.goalsAgainstPerMatch}</td>
+                        <td style={{ ...tdStyle, fontWeight: 700 }}>{row.attackIndex}</td>
+                        <td style={{ ...tdStyle, fontWeight: 700 }}>{row.defenseIndex}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      ) : null}
     </main>
   );
 }
 
-function EmptyBox({ text }: { text: string }) {
+function SelectField({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        backgroundColor: "#ffffff",
-        border: "1px solid #d1d5db",
-        borderRadius: "14px",
-        padding: "16px",
-      }}
-    >
-      {text}
+    <div>
+      <div style={{ fontSize: 13, fontWeight: 700, color: "#374151", marginBottom: 6 }}>{label}</div>
+      {children}
     </div>
   );
 }
 
-function LogoCircle({
-  logo,
-  team,
-  size,
-}: {
-  logo: string | null;
-  team: string;
-  size: number;
-}) {
+function SectionTitle({ title }: { title: string }) {
+  return <div style={{ fontSize: 18, fontWeight: 800, marginBottom: 12, color: "#111827" }}>{title}</div>;
+}
+
+function DashboardMatchLine({ label, match }: { label: string; match: Match | null | undefined }) {
+  return (
+    <div style={{ padding: "10px 12px", backgroundColor: "#f8fafc", borderRadius: 10, border: "1px solid #e5e7eb" }}>
+      <div style={{ fontSize: 12, color: "#6b7280", marginBottom: 4 }}>{label}</div>
+      {match ? (
+        <div style={{ fontWeight: 700, color: "#111827" }}>
+          {match.home} {match.home_goals ?? "-"}:{match.away_goals ?? "-"} {match.away}
+        </div>
+      ) : (
+        <div style={{ color: "#6b7280" }}>Nincs adat.</div>
+      )}
+    </div>
+  );
+}
+
+function StandingMiniRow({ row, highlight = false }: { row: TableRow; highlight?: boolean }) {
   return (
     <div
       style={{
-        width: `${size + 4}px`,
-        height: `${size + 4}px`,
-        minWidth: `${size + 4}px`,
-        borderRadius: "999px",
-        display: "flex",
+        display: "grid",
+        gridTemplateColumns: "36px 1fr auto",
+        gap: 10,
         alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#f8fafc",
-        border: "1px solid #e5e7eb",
-        overflow: "hidden",
+        padding: "10px 12px",
+        borderRadius: 12,
+        border: highlight ? "1px solid #93c5fd" : "1px solid #e5e7eb",
+        backgroundColor: highlight ? "#eff6ff" : "#ffffff",
       }}
     >
-      {logo ? (
-        <Image
-          src={logo}
-          alt={team}
-          width={size}
-          height={size}
-          style={{ objectFit: "contain" }}
-        />
-      ) : null}
+      <div style={{ fontWeight: 800, textAlign: "center" }}>{row.pos}</div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+        <LogoCircle logo={getLogo(row.team)} team={row.team} size={24} />
+        <div style={{ fontWeight: 700, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{row.team}</div>
+      </div>
+      <div style={{ fontWeight: 800 }}>{row.points} p</div>
     </div>
   );
 }
 
-function MiniStat({
+function StandingMobileCard({ row, highlight = false }: { row: TableRow; highlight?: boolean }) {
+  return (
+    <div style={{ ...panelStyle, backgroundColor: highlight ? "#eff6ff" : "#ffffff", border: highlight ? "1px solid #93c5fd" : panelStyle.border }}>
+      <div style={{ display: "grid", gridTemplateColumns: "32px 1fr auto", gap: 10, alignItems: "center", marginBottom: 10 }}>
+        <div style={{ fontWeight: 800, textAlign: "center" }}>{row.pos}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <LogoCircle logo={getLogo(row.team)} team={row.team} size={28} />
+          <div style={{ fontWeight: 700 }}>{row.team}</div>
+        </div>
+        <div style={{ fontWeight: 800, fontSize: 20 }}>{row.points}</div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 8, marginBottom: 10 }}>
+        <MiniStat label="M" value={row.played} />
+        <MiniStat label="GY" value={row.won} />
+        <MiniStat label="D" value={row.draw} />
+        <MiniStat label="V" value={row.lost} />
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 8, marginBottom: 10 }}>
+        <MiniStat label="LG" value={row.gf} />
+        <MiniStat label="KG" value={row.ga} />
+        <MiniStat label="GK" value={row.gd} />
+      </div>
+
+      <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
+        {(row.form ?? []).slice(0, 5).map((item, index) => (
+          <span
+            key={`${row.team}-${index}`}
+            style={{
+              ...getFormBadgeStyle(item),
+              width: 24,
+              height: 24,
+              borderRadius: 999,
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 11,
+              fontWeight: 700,
+            }}
+          >
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function BarRow({
   label,
   value,
-  strong,
-  valueColor,
+  widthPct,
+  logo,
 }: {
   label: string;
-  value: string | number;
-  strong?: boolean;
-  valueColor?: string;
+  value: string;
+  widthPct: number;
+  logo?: string | null;
 }) {
   return (
-    <div
-      style={{
-        backgroundColor: "#f8fafc",
-        border: "1px solid #e5e7eb",
-        borderRadius: "10px",
-        padding: "8px",
-      }}
-    >
-      <div style={{ fontSize: "11px", color: "#6b7280", marginBottom: "4px" }}>{label}</div>
-      <div
-        style={{
-          fontSize: "14px",
-          fontWeight: strong ? 800 : 700,
-          color: valueColor || "#111827",
-        }}
-      >
-        {value}
+    <div style={{ display: "grid", gridTemplateColumns: "minmax(110px, 180px) 1fr auto", gap: 10, alignItems: "center" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, minWidth: 0 }}>
+        {logo ? <LogoCircle logo={logo} team={label} size={22} /> : null}
+        <div style={{ fontSize: 14, fontWeight: 700, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          {label}
+        </div>
       </div>
-    </div>
-  );
-}
-
-function MetricCard({
-  label,
-  value,
-  valueColor,
-}: {
-  label: string;
-  value: string | number;
-  valueColor?: string;
-}) {
-  return (
-    <div
-      style={{
-        backgroundColor: "#f8fafc",
-        border: "1px solid #e5e7eb",
-        borderRadius: "12px",
-        padding: "12px",
-      }}
-    >
-      <div style={{ fontSize: "12px", color: "#6b7280" }}>{label}</div>
-      <div
-        style={{
-          fontSize: "24px",
-          fontWeight: "bold",
-          color: valueColor || "#111827",
-          marginTop: "4px",
-        }}
-      >
-        {value}
+      <div style={{ backgroundColor: "#e5e7eb", height: 16, borderRadius: 999, overflow: "hidden" }}>
+        <div style={{ width: `${Math.max(0, Math.min(100, widthPct))}%`, height: "100%", backgroundColor: "#2563eb", borderRadius: 999 }} />
       </div>
-    </div>
-  );
-}
-
-function TeamInfoCard({
-  team,
-  attackIndex,
-  defenseIndex,
-}: {
-  team: string;
-  attackIndex: number;
-  defenseIndex: number;
-}) {
-  return (
-    <div
-      style={{
-        backgroundColor: "#f8fafc",
-        border: "1px solid #e5e7eb",
-        borderRadius: "12px",
-        padding: "12px",
-      }}
-    >
-      <div style={{ fontSize: "14px", fontWeight: 700, marginBottom: "6px" }}>{team}</div>
-      <div style={{ fontSize: "13px", color: "#374151" }}>
-        Támadó index: <strong>{attackIndex}</strong>
-      </div>
-      <div style={{ fontSize: "13px", color: "#374151", marginTop: "4px" }}>
-        Védekező index: <strong>{defenseIndex}</strong>
-      </div>
+      <div style={{ fontSize: 14, fontWeight: 800, textAlign: "right" }}>{value}</div>
     </div>
   );
 }
@@ -2025,52 +1253,42 @@ function tabButtonStyle(active: boolean): React.CSSProperties {
     border: "1px solid #d1d5db",
     backgroundColor: active ? "#2563eb" : "#ffffff",
     color: active ? "#ffffff" : "#111827",
-    fontWeight: "bold",
+    fontWeight: 700,
     cursor: "pointer",
   };
 }
 
-const sectionCardStyle: React.CSSProperties = {
+const panelStyle: React.CSSProperties = {
   backgroundColor: "#ffffff",
   border: "1px solid #d1d5db",
-  borderRadius: "14px",
+  borderRadius: "16px",
   padding: "16px",
-  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+  boxShadow: "0 3px 10px rgba(0,0,0,0.06)",
 };
 
-const sectionTitleStyle: React.CSSProperties = {
-  fontSize: "18px",
-  fontWeight: "bold",
-  marginBottom: "8px",
-  color: "#111827",
-};
-
-const sectionSubTitleStyle: React.CSSProperties = {
-  fontSize: "13px",
-  color: "#6b7280",
-};
-
-const tableWrapStyle: React.CSSProperties = {
-  overflowX: "auto",
-  WebkitOverflowScrolling: "touch",
-  border: "1px solid #e5e7eb",
-  borderRadius: "12px",
-  marginTop: "12px",
-};
-
-const mobileCardStyle: React.CSSProperties = {
-  backgroundColor: "#ffffff",
-  border: "1px solid #e5e7eb",
-  borderRadius: "12px",
-  padding: "12px",
+const emptyBoxStyle: React.CSSProperties = {
+  ...panelStyle,
+  color: "#4b5563",
 };
 
 const selectStyle: React.CSSProperties = {
   width: "100%",
-  padding: "10px 12px",
+  padding: "12px 14px",
   borderRadius: "10px",
   border: "1px solid #d1d5db",
   backgroundColor: "#ffffff",
+  color: "#111827",
+  fontSize: "14px",
+  outline: "none",
+};
+
+const sectionHeadingStyle: React.CSSProperties = {
+  fontSize: 22,
+  marginBottom: 14,
+};
+
+const highlightedRowStyle: React.CSSProperties = {
+  backgroundColor: "#eff6ff",
 };
 
 const thStyle: React.CSSProperties = {

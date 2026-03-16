@@ -8,24 +8,21 @@ SCRIPTS = [
 ]
 
 
-def run_script(module_name, label):
-    print(f"\n--- {label} indítása ---")
+def run_script(module_name: str, label: str) -> None:
+    print(f"[START] {label} ({module_name})")
+    module = importlib.import_module(module_name)
 
-    try:
-        importlib.import_module(module_name)
-        print(f"{label} kész.")
-    except Exception as e:
-        print(f"HIBA a {label} futásakor:")
-        print(e)
+    if hasattr(module, "main"):
+        module.main()
+
+    print(f"[OK] {label}")
 
 
-def main():
-    print("Adatok frissítése indul...")
-
+def main() -> None:
     for module_name, label in SCRIPTS:
         run_script(module_name, label)
 
-    print("\nMinden scraper lefutott.")
+    print("Minden adat frissítve.")
 
 
 if __name__ == "__main__":

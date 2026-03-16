@@ -505,6 +505,7 @@ export default function Home() {
   const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>("");
   const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>("");
   const [selectedTeamFilter, setSelectedTeamFilter] = useState<string>("Összes csapat");
+  const [matchScope, setMatchScope] = useState<"round" | "season">("round");
 
   useEffect(() => {
     const updateIsMobile = () => {
@@ -528,6 +529,34 @@ export default function Home() {
       (m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter
     );
   }, [selectedRound, selectedTeamFilter]);
+
+  const seasonTeamMatches = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") {
+      return [];
+    }
+
+    return allMatches
+      .filter((m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter)
+      .slice()
+      .sort((a, b) => {
+        const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
+        const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
+
+        if (aDate !== bDate) {
+          return aDate - bDate;
+        }
+
+        return a.round - b.round;
+      });
+  }, [selectedTeamFilter]);
+
+  const visibleMatches = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") {
+      return filteredMatches;
+    }
+
+    return matchScope === "season" ? seasonTeamMatches : filteredMatches;
+  }, [selectedTeamFilter, matchScope, filteredMatches, seasonTeamMatches]);
 
   const selectedTable = useMemo(() => {
     return allTables.find((t) => t.round === selectedRound);
@@ -612,6 +641,12 @@ export default function Home() {
       setSelectedTeamFilter("Összes csapat");
     }
   }, [selectedTeamFilter, teamOptions]);
+
+  useEffect(() => {
+    if (selectedTeamFilter === "Összes csapat" && matchScope !== "round") {
+      setMatchScope("round");
+    }
+  }, [selectedTeamFilter, matchScope]);
 
   const teamStrengthStats = useMemo(() => {
     const teamMap = new Map<
@@ -1111,6 +1146,30 @@ export default function Home() {
                 </option>
               ))}
             </select>
+
+            {selectedTeamFilter !== "Összes csapat" ? (
+              <div
+                style={{
+                  display: "flex",
+                  gap: "8px",
+                  marginTop: "10px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <button
+                  onClick={() => setMatchScope("round")}
+                  style={subTabButtonStyle(matchScope === "round")}
+                >
+                  Aktuális forduló
+                </button>
+                <button
+                  onClick={() => setMatchScope("season")}
+                  style={subTabButtonStyle(matchScope === "season")}
+                >
+                  Összes meccse
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -1241,14 +1300,16 @@ export default function Home() {
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             {selectedTeamFilter === "Összes csapat"
               ? `${selectedRound}. forduló meccsei`
+              : matchScope === "season"
+              ? `${selectedTeamFilter} – összes meccs`
               : `${selectedRound}. forduló – ${selectedTeamFilter} meccsei`}
           </h2>
 
-          {filteredMatches.length === 0 ? (
+          {visibleMatches.length === 0 ? (
             <EmptyBox text="Nincs megjeleníthető meccs." />
           ) : (
             <div style={{ display: "grid", gap: "14px" }}>
-              {filteredMatches.map((m, i) => (
+              {visibleMatches.map((m, i) => (
                 <MatchCard key={i} match={m} isMobile={isMobile} />
               ))}
             </div>
@@ -2249,6 +2310,19 @@ function tabButtonStyle(active: boolean): React.CSSProperties {
     backgroundColor: active ? "#2563eb" : "#ffffff",
     color: active ? "#ffffff" : "#111827",
     fontWeight: "bold",
+    cursor: "pointer",
+  };
+}
+
+function subTabButtonStyle(active: boolean): React.CSSProperties {
+  return {
+    padding: "8px 12px",
+    borderRadius: "10px",
+    border: "1px solid #d1d5db",
+    backgroundColor: active ? "#eff6ff" : "#ffffff",
+    color: active ? "#1d4ed8" : "#374151",
+    fontWeight: 700,
+    fontSize: "13px",
     cursor: "pointer",
   };
 }

@@ -549,6 +549,34 @@ export default function Home() {
     );
   }, [selectedGoalscorers, selectedTeamFilter]);
 
+
+  const selectedTeamProfile = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") {
+      return null;
+    }
+
+    const tableRow = selectedTable?.table.find(
+      (row) => row.team === selectedTeamFilter
+    );
+
+    const teamMatches = allMatches.filter(
+      (m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter
+    );
+
+    const playedTeamMatches = teamMatches.filter(
+      (m) => typeof m.home_goals === "number" && typeof m.away_goals === "number"
+    );
+
+    return {
+      team: selectedTeamFilter,
+      position: tableRow?.pos ?? null,
+      points: tableRow?.points ?? null,
+      goalDifference: tableRow?.gd ?? null,
+      playedMatches: playedTeamMatches.length,
+      form: tableRow?.form ?? [],
+    };
+  }, [selectedTeamFilter, selectedTable]);
+
   const playedMatches = useMemo(() => {
     return allMatches.filter(
       (m) =>
@@ -1125,6 +1153,59 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      {selectedTeamProfile && (
+        <section style={sectionCardStyle}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            {selectedTeamProfile.team} – csapatprofil
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(5, 1fr)",
+              gap: "12px",
+            }}
+          >
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Helyezés</div>
+              <div style={statValueStyle}>
+                {selectedTeamProfile.position ?? "-"}
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Pont</div>
+              <div style={statValueStyle}>
+                {selectedTeamProfile.points ?? "-"}
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Gólkülönbség</div>
+              <div style={statValueStyle}>
+                {selectedTeamProfile.goalDifference ?? "-"}
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Lejátszott meccsek</div>
+              <div style={statValueStyle}>
+                {selectedTeamProfile.playedMatches}
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Forma</div>
+              <div style={statValueStyle}>
+                {selectedTeamProfile.form?.length
+                  ? selectedTeamProfile.form.join(" ")
+                  : "-"}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {view === "matches" ? (
         <>
@@ -2184,6 +2265,26 @@ const selectStyle: React.CSSProperties = {
   borderRadius: "10px",
   border: "1px solid #d1d5db",
   backgroundColor: "#ffffff",
+};
+
+
+const statCardStyle: React.CSSProperties = {
+  background: "#f8fafc",
+  border: "1px solid #e5e7eb",
+  borderRadius: "12px",
+  padding: "14px",
+};
+
+const statLabelStyle: React.CSSProperties = {
+  fontSize: "12px",
+  color: "#6b7280",
+  marginBottom: "6px",
+};
+
+const statValueStyle: React.CSSProperties = {
+  fontSize: "22px",
+  fontWeight: 700,
+  color: "#111827",
 };
 
 const thStyle: React.CSSProperties = {

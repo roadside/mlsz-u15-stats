@@ -8,6 +8,7 @@ export type Match = {
   status: string;
   venue: string;
   source_url: string;
+  match_url?: string | null;
 };
 
 export type MatchGoalscorer = {

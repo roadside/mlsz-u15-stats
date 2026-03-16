@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 BASE = "https://adatbank.mlsz.hu/league/65/0/31621/{}.html"
+MATCH_URL_BASE = "https://adatbank.mlsz.hu"
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
@@ -21,6 +22,7 @@ PLAYED_SCORE_RE = re.compile(r"^\d+\s*-\s*\d+$")
 FULL_DATE_RE = re.compile(r"^\d{4}\.\s*\d{2}\.\s*\d{2}\.$")
 SHORT_DATE_RE = re.compile(r"^\d{2}[.-]\s*\d{2}\.$|^\d{2}[.-]\d{2}$")
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}$")
+MATCH_HREF_RE = re.compile(r"^/match/")
 
 STOP_MARKERS = {
     "Góllövő lista",
@@ -54,33 +56,24 @@ def normalize_lines(text: str):
 
 def detect_status_and_score(token: str):
     lower = token.lower()
-
     if "halaszt" in lower:
         return None, None, "Halasztva"
-
     if "elmarad" in lower:
         return None, None, "Elmaradt"
-
     if PLAYED_SCORE_RE.fullmatch(token):
         a, b = [int(x.strip()) for x in token.split("-")]
         return a, b, "Lejátszva"
-
-    # ha nem score, de meccsblokkban van, akkor kiírt
     return None, None, "Kiírva"
 
-def looks_like_team(line: str) -> bool:
-    if not line:
-        return False
-    if FULL_DATETIME_RE.fullmatch(line):
-        return False
-    if SHORT_DATETIME_RE.fullmatch(line):
-        return False
-    if PLAYED_SCORE_RE.fullmatch(line):
-        return False
-    lower = line.lower()
-    if "halaszt" in lower or "elmarad" in lower:
-        return False
-    return True
+def extract_match_urls(soup) -> list[str]:
+    """Kigyűjti a meccs-szintű URL-eket a forduló oldaláról."""
+    urls = []
+    for a in soup.find_all("a", href=MATCH_HREF_RE):
+        href = a["href"]
+        full_url = MATCH_URL_BASE + href if href.startswith("/") else href
+        if full_url not in urls:
+            urls.append(full_url)
+    return urls
 
 def parse_round(round_num: int):
     url = BASE.format(round_num)
@@ -90,6 +83,9 @@ def parse_round(round_num: int):
     soup = BeautifulSoup(response.content, "html.parser")
     text = soup.get_text("\n")
     lines = normalize_lines(text)
+
+    # Meccs URL-ek kiszedése a linkekből
+    match_urls = extract_match_urls(soup)
 
     try:
         start_idx = lines.index("Sorsolás")
@@ -103,13 +99,13 @@ def parse_round(round_num: int):
             break
 
     block = lines[start_idx + 1:end_idx]
-        
+
     matches = []
+    match_url_idx = 0
     i = 0
 
     while i < len(block):
-        # Lejátszott minta:
-        # home, score, away, full_date, time, venue
+        # Lejátszott minta: home, score, away, full_date, time, venue
         if i + 5 < len(block):
             home = block[i]
             score = block[i + 1]
@@ -124,6 +120,8 @@ def parse_round(round_num: int):
                 and TIME_RE.fullmatch(time_value)
             ):
                 home_goals, away_goals = [int(x.strip()) for x in score.split("-")]
+                match_url = match_urls[match_url_idx] if match_url_idx < len(match_urls) else None
+                match_url_idx += 1
 
                 matches.append({
                     "round": round_num,
@@ -134,14 +132,14 @@ def parse_round(round_num: int):
                     "away_goals": away_goals,
                     "status": "Lejátszva",
                     "venue": venue,
-                    "source_url": url
+                    "source_url": url,
+                    "match_url": match_url,
                 })
 
                 i += 6
                 continue
 
-        # Kiírt minta:
-        # home, short_date, time, away, full_date, time, venue
+        # Kiírt minta: home, short_date, time, away, full_date, time, venue
         if i + 6 < len(block):
             home = block[i]
             short_date = block[i + 1]
@@ -166,14 +164,14 @@ def parse_round(round_num: int):
                     "away_goals": None,
                     "status": "Kiírva",
                     "venue": venue,
-                    "source_url": url
+                    "source_url": url,
+                    "match_url": None,
                 })
 
                 i += 7
                 continue
 
-        # Kiírt minta időpont nélkül:
-        # home, short_date, away, full_date, venue
+        # Kiírt minta időpont nélkül: home, short_date, away, full_date, venue
         if i + 4 < len(block):
             home = block[i]
             short_date = block[i + 1]
@@ -195,12 +193,13 @@ def parse_round(round_num: int):
                     "away_goals": None,
                     "status": "Kiírva",
                     "venue": venue,
-                    "source_url": url
+                    "source_url": url,
+                    "match_url": None,
                 })
 
                 i += 5
                 continue
-                
+
         i += 1
 
     return matches

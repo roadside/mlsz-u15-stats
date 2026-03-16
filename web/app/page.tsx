@@ -464,7 +464,7 @@ function MatchCard({
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
             gap: "8px",
             flexWrap: "wrap",
@@ -707,22 +707,18 @@ export default function Home() {
       return [];
     }
 
-    const playerGoalMap = new Map<string, number>();
+    const latestGoalscorersRound = [...allGoalscorers].sort((a, b) => b.round - a.round)[0];
 
-    allGoalscorers.forEach((round) => {
-      round.goalscorers.forEach((g) => {
-        if (g.team === selectedTeamFilter) {
-          const goals = Number(g.goals) || 0;
-          playerGoalMap.set(g.player, (playerGoalMap.get(g.player) ?? 0) + goals);
-        }
-      });
-    });
+    if (!latestGoalscorersRound) {
+      return [];
+    }
 
-    return Array.from(playerGoalMap.entries())
-      .map(([player, goals]) => ({
-        player,
-        team: selectedTeamFilter,
-        goals,
+    return latestGoalscorersRound.goalscorers
+      .filter((g) => g.team === selectedTeamFilter)
+      .map((g) => ({
+        player: g.player,
+        team: g.team,
+        goals: Number(g.goals) || 0,
       }))
       .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player, "hu"))
       .slice(0, 5);
@@ -1939,6 +1935,8 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
+          )}
+        </>
           )}
         </section>
       ) : (

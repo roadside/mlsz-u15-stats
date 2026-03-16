@@ -86,6 +86,7 @@ def parse_round(round_num: int):
 
     # Meccs URL-ek kiszedése a linkekből
     match_urls = extract_match_urls(soup)
+    print(f"  {round_num}. forduló: {len(match_urls)} match URL találva")
 
     try:
         start_idx = lines.index("Sorsolás")

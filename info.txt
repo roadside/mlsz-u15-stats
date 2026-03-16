@@ -1,0 +1,12 @@
+11017 "Koronafa"
+11018 "Dorothea kőbánya"
+11019 "Vármező"
+11020 "Hengehold"
+11021 "Loch Ness"
+11022 "Sánc"
+11023 "Kőhomlokzat"
+11024 "Temze"
+11025 "Agyafúrt"
+
+cd C:\mlsz-mobile-app\web
+npm run dev

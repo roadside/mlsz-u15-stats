@@ -302,6 +302,10 @@ function MatchCard({
         borderRadius: "16px",
         padding: isMobile ? "12px" : "16px",
         boxShadow: "0 3px 10px rgba(0,0,0,0.06)",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
       <div
@@ -634,6 +638,67 @@ export default function Home() {
     return {
       previous: played.length > 0 ? played[played.length - 1] : null,
       next: upcoming.length > 0 ? upcoming[0] : null,
+    };
+  }, [selectedTeamFilter]);
+
+  const teamHomeAwayStats = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") {
+      return null;
+    }
+
+    const teamPlayedMatches = allMatches.filter(
+      (m) =>
+        (m.home === selectedTeamFilter || m.away === selectedTeamFilter) &&
+        m.status === "Lejátszva" &&
+        typeof m.home_goals === "number" &&
+        typeof m.away_goals === "number"
+    );
+
+    const createBucket = () => ({
+      matches: 0,
+      won: 0,
+      draw: 0,
+      lost: 0,
+      goalsFor: 0,
+      goalsAgainst: 0,
+      points: 0,
+    });
+
+    const home = createBucket();
+    const away = createBucket();
+
+    for (const match of teamPlayedMatches) {
+      const isHome = match.home === selectedTeamFilter;
+      const bucket = isHome ? home : away;
+      const gf = isHome ? match.home_goals ?? 0 : match.away_goals ?? 0;
+      const ga = isHome ? match.away_goals ?? 0 : match.home_goals ?? 0;
+
+      bucket.matches += 1;
+      bucket.goalsFor += gf;
+      bucket.goalsAgainst += ga;
+
+      if (gf > ga) {
+        bucket.won += 1;
+        bucket.points += 3;
+      } else if (gf === ga) {
+        bucket.draw += 1;
+        bucket.points += 1;
+      } else {
+        bucket.lost += 1;
+      }
+    }
+
+    const addDerived = (bucket: ReturnType<typeof createBucket>) => ({
+      ...bucket,
+      goalDifference: bucket.goalsFor - bucket.goalsAgainst,
+      goalsForPerMatch: bucket.matches > 0 ? round2(bucket.goalsFor / bucket.matches) : 0,
+      goalsAgainstPerMatch: bucket.matches > 0 ? round2(bucket.goalsAgainst / bucket.matches) : 0,
+      pointsPerMatch: bucket.matches > 0 ? round2(bucket.points / bucket.matches) : 0,
+    });
+
+    return {
+      home: addDerived(home),
+      away: addDerived(away),
     };
   }, [selectedTeamFilter]);
 
@@ -1333,9 +1398,10 @@ export default function Home() {
               display: "grid",
               gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
               gap: "16px",
+              alignItems: "stretch",
             }}
           >
-            <div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <div
                 style={{
                   fontSize: isMobile ? "16px" : "17px",
@@ -1346,16 +1412,18 @@ export default function Home() {
                 Előző mérkőzés
               </div>
               {teamPrevNextMatches.previous ? (
-                <MatchCard
-                  match={teamPrevNextMatches.previous}
-                  isMobile={isMobile}
-                />
+                <div style={{ flex: 1 }}>
+                  <MatchCard
+                    match={teamPrevNextMatches.previous}
+                    isMobile={isMobile}
+                  />
+                </div>
               ) : (
                 <EmptyBox text="Nincs még lejátszott mérkőzés." />
               )}
             </div>
 
-            <div>
+            <div style={{ display: "flex", flexDirection: "column" }}>
               <div
                 style={{
                   fontSize: isMobile ? "16px" : "17px",
@@ -1366,13 +1434,99 @@ export default function Home() {
                 Következő mérkőzés
               </div>
               {teamPrevNextMatches.next ? (
-                <MatchCard
-                  match={teamPrevNextMatches.next}
-                  isMobile={isMobile}
-                />
+                <div style={{ flex: 1 }}>
+                  <MatchCard
+                    match={teamPrevNextMatches.next}
+                    isMobile={isMobile}
+                  />
+                </div>
               ) : (
                 <EmptyBox text="Nincs következő kiírt mérkőzés." />
               )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {selectedTeamProfile && teamHomeAwayStats && (
+        <section style={sectionCardStyle}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            Hazai / idegenbeli bontás
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+              gap: "16px",
+            }}
+          >
+            <div style={statCardStyle}>
+              <div style={{ fontSize: "16px", fontWeight: 700, marginBottom: "12px" }}>
+                Hazai mérleg
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px" }}>
+                <div>
+                  <div style={statLabelStyle}>Meccs</div>
+                  <div style={statValueStyle}>{teamHomeAwayStats.home.matches}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Pont</div>
+                  <div style={statValueStyle}>{teamHomeAwayStats.home.points}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Mérleg</div>
+                  <div style={{ ...statValueStyle, fontSize: "20px" }}>
+                    {teamHomeAwayStats.home.won}-{teamHomeAwayStats.home.draw}-{teamHomeAwayStats.home.lost}
+                  </div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Gólkülönbség</div>
+                  <div style={statValueStyle}>{teamHomeAwayStats.home.goalDifference}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Lőtt gól / meccs</div>
+                  <div style={{ ...statValueStyle, fontSize: "20px" }}>{teamHomeAwayStats.home.goalsForPerMatch}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Kapott gól / meccs</div>
+                  <div style={{ ...statValueStyle, fontSize: "20px" }}>{teamHomeAwayStats.home.goalsAgainstPerMatch}</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={{ fontSize: "16px", fontWeight: 700, marginBottom: "12px" }}>
+                Idegenbeli mérleg
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "12px" }}>
+                <div>
+                  <div style={statLabelStyle}>Meccs</div>
+                  <div style={statValueStyle}>{teamHomeAwayStats.away.matches}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Pont</div>
+                  <div style={statValueStyle}>{teamHomeAwayStats.away.points}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Mérleg</div>
+                  <div style={{ ...statValueStyle, fontSize: "20px" }}>
+                    {teamHomeAwayStats.away.won}-{teamHomeAwayStats.away.draw}-{teamHomeAwayStats.away.lost}
+                  </div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Gólkülönbség</div>
+                  <div style={statValueStyle}>{teamHomeAwayStats.away.goalDifference}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Lőtt gól / meccs</div>
+                  <div style={{ ...statValueStyle, fontSize: "20px" }}>{teamHomeAwayStats.away.goalsForPerMatch}</div>
+                </div>
+                <div>
+                  <div style={statLabelStyle}>Kapott gól / meccs</div>
+                  <div style={{ ...statValueStyle, fontSize: "20px" }}>{teamHomeAwayStats.away.goalsAgainstPerMatch}</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

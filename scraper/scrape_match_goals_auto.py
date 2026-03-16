@@ -18,8 +18,6 @@ MATCH_LINK_RE = re.compile(
     rf"^/match/{LEAGUE_ID}/{SEASON_ID}/{COMPETITION_ID}/\d+/\d+\.html$"
 )
 
-SCORE_RE = re.compile(r"^\d+\s*-\s*\d+$")
-MINUTE_RE = re.compile(r"(?P<minute>\d{{1,3}})\s*'")
 STOP_MARKERS = {
     "Sárga lapok",
     "Piros lapok",
@@ -42,7 +40,7 @@ STOP_MARKERS = {
 }
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
+PROJECT_ROOT = CURRENT_DIR
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 WEB_DATA_DIR = os.path.join(PROJECT_ROOT, "web", "data")
 

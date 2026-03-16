@@ -10,6 +10,14 @@ export type Match = {
   source_url: string;
 };
 
+export type MatchGoalscorer = {
+  round: number;
+  home: string;
+  away: string;
+  home_scorers: { player: string; goals: number }[];
+  away_scorers: { player: string; goals: number }[];
+};
+
 export type TableRow = {
   pos: string;
   team: string;

@@ -4,8 +4,9 @@ import { useEffect, useMemo, useState } from "react";
 import matchesData from "../data/matches.json";
 import tablesData from "../data/tables.json";
 import goalscorersData from "../data/goalscorers.json";
+import matchGoalscorersData from "../data/match_goalscorers.json";
 
-import { Match, RoundTable, RoundGoalscorers } from "../components/types";
+import { Match, RoundTable, RoundGoalscorers, MatchGoalscorer } from "../components/types";
 import {
   getClosestRound,
   parseHungarianDate,
@@ -28,6 +29,7 @@ import { EmptyBox } from "../components/ui";
 const allMatches = matchesData as Match[];
 const allTables = tablesData as RoundTable[];
 const allGoalscorers = goalscorersData as RoundGoalscorers[];
+const allMatchGoalscorers = matchGoalscorersData as MatchGoalscorer[];
 const rounds = Array.from({ length: 22 }, (_, i) => i + 1);
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -600,7 +602,12 @@ export default function Home() {
             <EmptyBox text="Nincs megjeleníthető meccs." />
           ) : (
             <div style={{ display: "grid", gap: "14px" }}>
-              {visibleMatches.map((m, i) => <MatchCard key={i} match={m} isMobile={isMobile} />)}
+              {visibleMatches.map((m, i) => {
+                const scorers = allMatchGoalscorers.find(
+                  (g) => g.round === m.round && g.home === m.home && g.away === m.away
+                );
+                return <MatchCard key={i} match={m} isMobile={isMobile} goalscorers={scorers} />;
+              })}
             </div>
           )}
         </>

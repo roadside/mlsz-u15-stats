@@ -464,7 +464,7 @@ function MatchCard({
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
             gap: "8px",
             flexWrap: "wrap",
@@ -486,9 +486,7 @@ function MatchCard({
             >
               {match.status}
             </span>
-          ) : (
-            <span />
-          )}
+          ) : null}
         </div>
 
         <div style={{ fontSize: isMobile ? "12px" : "14px", color: "#374151" }}>
@@ -705,20 +703,31 @@ export default function Home() {
   }, [selectedTeamFilter]);
 
   const teamTopScorers = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat" || !selectedGoalscorers) {
+    if (selectedTeamFilter === "Összes csapat") {
       return [];
     }
 
-    return selectedGoalscorers.goalscorers
-      .filter((row) => row.team === selectedTeamFilter)
-      .slice()
-      .sort(
-        (a, b) =>
-          Number(b.goals) - Number(a.goals) ||
-          a.player.localeCompare(b.player, "hu")
-      )
+    const playerGoalMap = new Map<string, number>();
+
+    allGoalscorers.forEach((round) => {
+      round.goalscorers.forEach((g) => {
+        if (g.team === selectedTeamFilter) {
+          const goals = Number(g.goals) || 0;
+          playerGoalMap.set(g.player, (playerGoalMap.get(g.player) ?? 0) + goals);
+        }
+      });
+    });
+
+    return Array.from(playerGoalMap.entries())
+      .map(([player, goals]) => ({
+        player,
+        team: selectedTeamFilter,
+        goals,
+      }))
+      .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player, "hu"))
       .slice(0, 5);
-  }, [selectedGoalscorers, selectedTeamFilter]);
+  }, [selectedTeamFilter]);
+
 
   const playedMatches = useMemo(() => {
     return allMatches.filter(
@@ -1553,39 +1562,39 @@ export default function Home() {
       {selectedTeamProfile && (
         <section style={sectionCardStyle}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            Top góllövők – {selectedTeamProfile.team}
+            Top góllövők – {selectedTeamFilter}
           </h2>
 
           {teamTopScorers.length === 0 ? (
-            <EmptyBox text="Ehhez a csapathoz ezen a fordulón nincs megjeleníthető góllövő adat." />
+            <EmptyBox text="Nincs megjeleníthető góllövő adat." />
           ) : (
-            <div style={{ display: "grid", gap: "10px" }}>
+            <div style={{ display: "grid", gap: "12px" }}>
               {teamTopScorers.map((row, index) => (
                 <div
                   key={`${row.player}-${index}`}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: isMobile ? "40px 1fr 56px" : "48px 1fr 72px",
-                    gap: "12px",
+                    gridTemplateColumns: isMobile ? "44px 1fr auto" : "52px 1fr auto",
                     alignItems: "center",
-                    padding: isMobile ? "12px" : "14px",
+                    gap: "14px",
+                    padding: isMobile ? "14px" : "16px",
                     border: "1px solid #e5e7eb",
-                    borderRadius: "12px",
+                    borderRadius: "14px",
                     backgroundColor: "#f8fafc",
                   }}
                 >
                   <div
                     style={{
-                      width: isMobile ? "32px" : "36px",
-                      height: isMobile ? "32px" : "36px",
+                      width: isMobile ? "36px" : "40px",
+                      height: isMobile ? "36px" : "40px",
                       borderRadius: "999px",
-                      backgroundColor: "#dbeafe",
-                      color: "#1d4ed8",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       fontWeight: 800,
-                      fontSize: isMobile ? "14px" : "15px",
+                      fontSize: isMobile ? "20px" : "22px",
+                      color: "#1d4ed8",
+                      backgroundColor: "#dbeafe",
                     }}
                   >
                     {index + 1}
@@ -1595,8 +1604,9 @@ export default function Home() {
                     <div
                       style={{
                         fontSize: isMobile ? "14px" : "15px",
-                        fontWeight: 700,
+                        fontWeight: 800,
                         color: "#111827",
+                        textTransform: "uppercase",
                         lineHeight: 1.2,
                       }}
                     >
@@ -1615,10 +1625,10 @@ export default function Home() {
 
                   <div
                     style={{
-                      textAlign: "right",
-                      fontSize: isMobile ? "22px" : "24px",
-                      fontWeight: 800,
+                      fontSize: isMobile ? "18px" : "20px",
+                      fontWeight: 900,
                       color: "#166534",
+                      paddingLeft: "8px",
                     }}
                   >
                     {row.goals}
@@ -1629,6 +1639,7 @@ export default function Home() {
           )}
         </section>
       )}
+
 
       {view === "matches" ? (
         <>
@@ -1854,7 +1865,7 @@ export default function Home() {
           )}
         </>
       ) : view === "goalscorers" ? (
-        <>
+        <section style={sectionCardStyle}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             {selectedTeamFilter === "Összes csapat"
               ? `${selectedRound}. forduló góllövői`
@@ -1930,6 +1941,8 @@ export default function Home() {
             </div>
           )}
         </>
+          )}
+        </section>
       ) : (
         <>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>

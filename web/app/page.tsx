@@ -1871,7 +1871,7 @@ const nextOpponentStats = useMemo(() => {
       {selectedTeamProfile && nextOpponentStats && (
         <section style={sectionCardStyle}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            Következő ellenfél stat
+            Következő ellenfél
           </h2>
 
           <div
@@ -3067,7 +3067,11 @@ const nextOpponentStats = useMemo(() => {
             </div>
 
             <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Legtöbb gólt szerző csapatok</div>
+			  <div style={sectionTitleStyle}>
+				{selectedTeamFilter === "Összes csapat"
+				   ? "Legtöbb gólt szerző csapatok"
+				   : "A csapat összes gólja"}
+			  </div>
 
               <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
                 {visibleTopScoringTeamsRows.map((row) => {

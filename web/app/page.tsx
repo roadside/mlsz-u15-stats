@@ -895,6 +895,56 @@ const teamTableMovement = useMemo(() => {
   };
 }, [selectedTeamFilter]);
 
+const nextOpponentStats = useMemo(() => {
+  if (selectedTeamFilter === "Összes csapat" || !teamPrevNextMatches?.next) {
+    return null;
+  }
+
+  const nextMatch = teamPrevNextMatches.next;
+  const opponent =
+    nextMatch.home === selectedTeamFilter ? nextMatch.away : nextMatch.home;
+
+  const latestTable = [...allTables].sort((a, b) => b.round - a.round)[0];
+  const opponentTableRow = latestTable?.table.find((row) => row.team === opponent);
+
+  const headToHeadMatches = allMatches
+    .filter(
+      (m) =>
+        ((m.home === selectedTeamFilter && m.away === opponent) ||
+          (m.home === opponent && m.away === selectedTeamFilter)) &&
+        m.status === "Lejátszva" &&
+        typeof m.home_goals === "number" &&
+        typeof m.away_goals === "number"
+    )
+    .slice()
+    .sort((a, b) => {
+      const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
+      const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
+
+      if (aDate !== bDate) {
+        return aDate - bDate;
+      }
+
+      return a.round - b.round;
+    });
+
+  const lastHeadToHead =
+    headToHeadMatches.length > 0
+      ? headToHeadMatches[headToHeadMatches.length - 1]
+      : null;
+
+  return {
+    team: opponent,
+    position: opponentTableRow?.pos ?? "-",
+    points: opponentTableRow?.points ?? "-",
+    goalDifference: opponentTableRow?.gd ?? "-",
+    played: opponentTableRow?.played ?? "-",
+    form: opponentTableRow?.form ?? [],
+    lastHeadToHead,
+  };
+}, [selectedTeamFilter, teamPrevNextMatches]);
+
+
 
 
 
@@ -1815,6 +1865,202 @@ const teamTableMovement = useMemo(() => {
                 {teamTableMovement.movement > 0
                   ? `+${teamTableMovement.movement}`
                   : teamTableMovement.movement}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+
+      {selectedTeamProfile && nextOpponentStats && (
+        <section style={sectionCardStyle}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            Következő ellenfél stat
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr",
+              gap: "16px",
+              alignItems: "stretch",
+            }}
+          >
+            <div style={statCardStyle}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                  marginBottom: "12px",
+                }}
+              >
+                <div
+                  style={{
+                    width: "46px",
+                    height: "46px",
+                    borderRadius: "999px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    backgroundColor: "#f8fafc",
+                    border: "1px solid #e5e7eb",
+                    overflow: "hidden",
+                    flexShrink: 0,
+                  }}
+                >
+                  {getLogo(nextOpponentStats.team) ? (
+                    <Image
+                      src={getLogo(nextOpponentStats.team)!}
+                      alt={nextOpponentStats.team}
+                      width={38}
+                      height={38}
+                      style={{ objectFit: "contain" }}
+                    />
+                  ) : (
+                    <span style={{ fontSize: "12px", color: "#6b7280" }}>N/A</span>
+                  )}
+                </div>
+
+                <div style={{ minWidth: 0 }}>
+                  <div
+                    style={{
+                      fontSize: isMobile ? "16px" : "18px",
+                      fontWeight: 800,
+                      color: "#111827",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {nextOpponentStats.team}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      color: "#6b7280",
+                      marginTop: "4px",
+                    }}
+                  >
+                    Következő ellenfél
+                  </div>
+                </div>
+              </div>
+
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "12px",
+                }}
+              >
+                <div style={statCardStyle}>
+                  <div style={statLabelStyle}>Helyezés</div>
+                  <div style={statValueStyle}>{nextOpponentStats.position}.</div>
+                </div>
+
+                <div style={statCardStyle}>
+                  <div style={statLabelStyle}>Pont</div>
+                  <div style={statValueStyle}>{nextOpponentStats.points}</div>
+                </div>
+
+                <div style={statCardStyle}>
+                  <div style={statLabelStyle}>Gólkülönbség</div>
+                  <div style={statValueStyle}>{nextOpponentStats.goalDifference}</div>
+                </div>
+
+                <div style={statCardStyle}>
+                  <div style={statLabelStyle}>Lejátszott meccs</div>
+                  <div style={statValueStyle}>{nextOpponentStats.played}</div>
+                </div>
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div
+                style={{
+                  fontSize: "16px",
+                  fontWeight: 700,
+                  color: "#111827",
+                  marginBottom: "12px",
+                }}
+              >
+                Forma és egymás elleni
+              </div>
+
+              <div style={{ marginBottom: "14px" }}>
+                <div style={{ ...statLabelStyle, marginBottom: "8px" }}>Aktuális forma</div>
+                {nextOpponentStats.form.length ? (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexWrap: "wrap",
+                      gap: "8px",
+                    }}
+                  >
+                    {nextOpponentStats.form.map((formItem, index) => (
+                      <span
+                        key={`${nextOpponentStats.team}-form-${index}`}
+                        style={{
+                          ...getFormBadgeStyle(formItem),
+                          minWidth: "36px",
+                          height: "32px",
+                          borderRadius: "8px",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontSize: "15px",
+                          fontWeight: 800,
+                          lineHeight: 1,
+                        }}
+                      >
+                        {formItem}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <div style={{ color: "#6b7280", fontSize: "14px" }}>Nincs formaadat.</div>
+                )}
+              </div>
+
+              <div>
+                <div style={{ ...statLabelStyle, marginBottom: "8px" }}>Utolsó egymás elleni</div>
+                {nextOpponentStats.lastHeadToHead ? (
+                  <div
+                    style={{
+                      border: "1px solid #e5e7eb",
+                      borderRadius: "12px",
+                      padding: "12px",
+                      backgroundColor: "#f8fafc",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontSize: "14px",
+                        fontWeight: 700,
+                        color: "#111827",
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {nextOpponentStats.lastHeadToHead.home}{" "}
+                      {nextOpponentStats.lastHeadToHead.home_goals}-
+                      {nextOpponentStats.lastHeadToHead.away_goals}{" "}
+                      {nextOpponentStats.lastHeadToHead.away}
+                    </div>
+                    <div
+                      style={{
+                        marginTop: "6px",
+                        fontSize: "12px",
+                        color: "#6b7280",
+                      }}
+                    >
+                      {nextOpponentStats.lastHeadToHead.round}. forduló •{" "}
+                      {nextOpponentStats.lastHeadToHead.date}
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ color: "#6b7280", fontSize: "14px" }}>
+                    Ebben a szezonban még nincs lejátszott egymás elleni meccs.
+                  </div>
+                )}
               </div>
             </div>
           </div>

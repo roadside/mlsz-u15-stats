@@ -40,7 +40,7 @@ STOP_MARKERS = {
 }
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = CURRENT_DIR
+PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 WEB_DATA_DIR = os.path.join(PROJECT_ROOT, "web", "data")
 

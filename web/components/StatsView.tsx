@@ -1,10 +1,6 @@
 "use client";
 
 import React from "react";
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  Legend, ResponsiveContainer, Cell,
-} from "recharts";
 import { TeamStrengthRow, ChampionshipChanceRow } from "./types";
 import {
   sectionCardStyle,
@@ -324,68 +320,11 @@ export function StatsView({
         <div style={sectionCardStyle}>
           <div style={sectionTitleStyle}>Bajnoki esélymodell</div>
           <div style={sectionSubTitleStyle}>
-            {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült valószínűségek (%)
+            {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült bajnoki, top 3, top 6 és utolsó hely valószínűségek.
           </div>
 
-          {/* ── Bar chart ── */}
-          <div style={{ marginTop: "20px", width: "100%" }}>
-            <ResponsiveContainer width="100%" height={isMobile ? 320 : 380}>
-              <BarChart
-                data={visibleMonteCarloRows.map((r) => ({
-                  name: isMobile
-                    ? r.team.split(" ").pop() ?? r.team   // rövidítés mobilon: utolsó szó
-                    : r.team,
-                  "Bajnoki": r.titlePct,
-                  "Top 3": r.top3Pct,
-                  "Top 6": r.top6Pct,
-                  "Utolsó": r.lastPct,
-                  fullName: r.team,
-                  currentPoints: r.currentPoints,
-                  simulatedAvgPoints: r.simulatedAvgPoints,
-                }))}
-                margin={{ top: 8, right: 16, left: 0, bottom: isMobile ? 60 : 40 }}
-                barCategoryGap="20%"
-                barGap={2}
-              >
-                <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-                <XAxis
-                  dataKey="name"
-                  tick={{ fontSize: isMobile ? 10 : 12, fill: "#374151" }}
-                  angle={isMobile ? -40 : -25}
-                  textAnchor="end"
-                  interval={0}
-                />
-                <YAxis
-                  tickFormatter={(v) => `${v}%`}
-                  tick={{ fontSize: 12, fill: "#374151" }}
-                  width={42}
-                  domain={[0, 100]}
-                />
-                <Tooltip
-                  formatter={(value, name) => [`${value}%`, name as string]}
-                  labelFormatter={(label, payload) => {
-                    const row = payload?.[0]?.payload;
-                    return row
-                      ? `${row.fullName} — ${row.currentPoints} pt (várható: ${row.simulatedAvgPoints})`
-                      : label;
-                  }}
-                  contentStyle={{ fontSize: "13px", borderRadius: "8px" }}
-                />
-                <Legend
-                  wrapperStyle={{ fontSize: "13px", paddingTop: "8px" }}
-                  iconType="square"
-                />
-                <Bar dataKey="Bajnoki" fill="#2563eb" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Top 3"   fill="#16a34a" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Top 6"   fill="#0891b2" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="Utolsó"  fill="#dc2626" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* ── Részletes kártyák mobilon / táblázat desktopon ── */}
           {isMobile ? (
-            <div style={{ display: "grid", gap: "10px", marginTop: "16px" }}>
+            <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
               {visibleMonteCarloRows.map((row) => {
                 const logo = getLogo(row.team);
                 return (
@@ -410,17 +349,17 @@ export function StatsView({
               })}
             </div>
           ) : (
-            <div style={{ ...tableWrapStyle, marginTop: "16px" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "700px", backgroundColor: "#ffffff" }}>
+            <div style={tableWrapStyle}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "950px", backgroundColor: "#ffffff" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#e5e7eb" }}>
                     <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
                     <th style={thStyle}>Jelenlegi pont</th>
                     <th style={thStyle}>Várható pont</th>
-                    <th style={{ ...thStyle, color: "#2563eb" }}>Bajnoki</th>
-                    <th style={{ ...thStyle, color: "#16a34a" }}>Top 3</th>
-                    <th style={{ ...thStyle, color: "#0891b2" }}>Top 6</th>
-                    <th style={{ ...thStyle, color: "#dc2626" }}>Utolsó</th>
+                    <th style={thStyle}>Bajnoki esély</th>
+                    <th style={thStyle}>Top 3</th>
+                    <th style={thStyle}>Top 6</th>
+                    <th style={thStyle}>Utolsó hely</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -436,10 +375,24 @@ export function StatsView({
                         </td>
                         <td style={tdStyle}>{row.currentPoints}</td>
                         <td style={tdStyle}>{row.simulatedAvgPoints}</td>
-                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#2563eb" }}>{row.titlePct}%</td>
-                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#16a34a" }}>{row.top3Pct}%</td>
-                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#0891b2" }}>{row.top6Pct}%</td>
-                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#dc2626" }}>{row.lastPct}%</td>
+                        <td style={tdStyle}>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 52px", gap: "8px", alignItems: "center" }}>
+                            <div style={{ backgroundColor: "#e5e7eb", height: "14px", borderRadius: "999px", overflow: "hidden" }}>
+                              <div
+                                style={{
+                                  width: `${(row.titlePct / championshipMonteCarlo.maxTitlePct) * 100}%`,
+                                  height: "100%",
+                                  backgroundColor: "#2563eb",
+                                  borderRadius: "999px",
+                                }}
+                              />
+                            </div>
+                            <div style={{ fontWeight: "bold" }}>{row.titlePct}%</div>
+                          </div>
+                        </td>
+                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#166534" }}>{row.top3Pct}%</td>
+                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#1d4ed8" }}>{row.top6Pct}%</td>
+                        <td style={{ ...tdStyle, fontWeight: "bold", color: "#991b1b" }}>{row.lastPct}%</td>
                       </tr>
                     );
                   })}

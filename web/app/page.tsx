@@ -1944,7 +1944,6 @@ export default function Home() {
           )}
         </section>
       ) : (
-        <>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             Liga statisztika
           </h2>

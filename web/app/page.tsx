@@ -464,7 +464,7 @@ function MatchCard({
         <div
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "flex-end",
             alignItems: "center",
             gap: "8px",
             flexWrap: "wrap",
@@ -701,6 +701,60 @@ export default function Home() {
       away: addDerived(away),
     };
   }, [selectedTeamFilter]);
+
+  const teamMiniStats = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") {
+      return null;
+    }
+
+    const teamPlayedMatches = allMatches.filter(
+      (m) =>
+        (m.home === selectedTeamFilter || m.away === selectedTeamFilter) &&
+        m.status === "Lejátszva" &&
+        typeof m.home_goals === "number" &&
+        typeof m.away_goals === "number"
+    );
+
+    if (teamPlayedMatches.length === 0) {
+      return {
+        pointsPerMatch: 0,
+        goalsForPerMatch: 0,
+        goalsAgainstPerMatch: 0,
+        winRate: 0,
+      };
+    }
+
+    let points = 0;
+    let goalsFor = 0;
+    let goalsAgainst = 0;
+    let wins = 0;
+
+    for (const match of teamPlayedMatches) {
+      const isHome = match.home === selectedTeamFilter;
+      const gf = isHome ? match.home_goals ?? 0 : match.away_goals ?? 0;
+      const ga = isHome ? match.away_goals ?? 0 : match.home_goals ?? 0;
+
+      goalsFor += gf;
+      goalsAgainst += ga;
+
+      if (gf > ga) {
+        wins += 1;
+        points += 3;
+      } else if (gf === ga) {
+        points += 1;
+      }
+    }
+
+    const played = teamPlayedMatches.length;
+
+    return {
+      pointsPerMatch: round2(points / played),
+      goalsForPerMatch: round2(goalsFor / played),
+      goalsAgainstPerMatch: round2(goalsAgainst / played),
+      winRate: round2((wins / played) * 100),
+    };
+  }, [selectedTeamFilter]);
+
 
   const teamTopScorers = useMemo(() => {
     if (selectedTeamFilter === "Összes csapat") {
@@ -1285,7 +1339,7 @@ export default function Home() {
                   onClick={() => setMatchScope("season")}
                   style={subTabButtonStyle(matchScope === "season")}
                 >
-                  Összes forduló
+                  Összes meccse
                 </button>
               </div>
             ) : null}
@@ -1413,6 +1467,43 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {selectedTeamProfile && teamMiniStats && (
+        <section style={sectionCardStyle}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            Mini stat dashboard
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
+              gap: "12px",
+            }}
+          >
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Pont / meccs</div>
+              <div style={statValueStyle}>{teamMiniStats.pointsPerMatch}</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Lőtt gól / meccs</div>
+              <div style={statValueStyle}>{teamMiniStats.goalsForPerMatch}</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Kapott gól / meccs</div>
+              <div style={statValueStyle}>{teamMiniStats.goalsAgainstPerMatch}</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Győzelmi arány</div>
+              <div style={statValueStyle}>{teamMiniStats.winRate}%</div>
+            </div>
+          </div>
+        </section>
+      )}
+
 
       {selectedTeamProfile && teamPrevNextMatches && (
         <section style={sectionCardStyle}>
@@ -1935,6 +2026,8 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
+          )}
+        </>
           )}
         </section>
       ) : (

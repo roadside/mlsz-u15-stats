@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import matches from "../data/matches.json";
 import tables from "../data/tables.json";
@@ -52,11 +52,6 @@ type RoundGoalscorers = {
   goalscorers: GoalscorerRow[];
 };
 
-const allMatches = matches as Match[];
-const allTables = tables as RoundTable[];
-const allGoalscorers = goalscorers as RoundGoalscorers[];
-const rounds = Array.from({ length: 22 }, (_, i) => i + 1);
-
 type TeamStrengthRow = {
   team: string;
   matches: number;
@@ -84,21 +79,39 @@ type PoissonOutcome = {
   probability: number;
 };
 
+const allMatches = matches as Match[];
+const allTables = tables as RoundTable[];
+const allGoalscorers = goalscorers as RoundGoalscorers[];
+const rounds = Array.from({ length: 22 }, (_, i) => i + 1);
+
+const teamLogos: Record<string, string> = {
+  DVSC: "/logos/dvsc.png",
+  DVTK: "/logos/dvtk.png",
+  "ETO AKADÉMIA": "/logos/eto.png",
+  "FERENCVÁROSI TC": "/logos/ferencvaros.png",
+  "BUDAPEST HONVÉD FC": "/logos/honved.png",
+  "ILLÉS AKADÉMIA": "/logos/illes.png",
+  "MTK BUDAPEST": "/logos/mtk.png",
+  "PUSKÁS AKADÉMIA": "/logos/puskas.png",
+  "VÁRDA LABDARUGÓ AKADÉMIA": "/logos/varda.png",
+  "VASAS KUBALA AKADÉMIA": "/logos/vasas.png",
+  "VIDEOTON FC FEHÉRVÁR": "/logos/videoton.png",
+  UTE: "/logos/ute.png",
+};
+
 function round2(value: number) {
   return Math.round(value * 100) / 100;
-}
-
-function poissonProbability(lambda: number, goals: number) {
-  return (Math.pow(lambda, goals) * Math.exp(-lambda)) / factorial(goals);
 }
 
 function factorial(n: number): number {
   if (n <= 1) return 1;
   let result = 1;
-  for (let i = 2; i <= n; i++) {
-    result *= i;
-  }
+  for (let i = 2; i <= n; i++) result *= i;
   return result;
+}
+
+function poissonProbability(lambda: number, goals: number) {
+  return (Math.pow(lambda, goals) * Math.exp(-lambda)) / factorial(goals);
 }
 
 function buildPoissonMatrix(
@@ -110,14 +123,12 @@ function buildPoissonMatrix(
 
   for (let homeGoals = 0; homeGoals <= maxGoals; homeGoals++) {
     for (let awayGoals = 0; awayGoals <= maxGoals; awayGoals++) {
-      const probability =
-        poissonProbability(homeLambda, homeGoals) *
-        poissonProbability(awayLambda, awayGoals);
-
       rows.push({
         homeGoals,
         awayGoals,
-        probability,
+        probability:
+          poissonProbability(homeLambda, homeGoals) *
+          poissonProbability(awayLambda, awayGoals),
       });
     }
   }
@@ -173,13 +184,13 @@ function parseHungarianDate(dateValue: string): Date | null {
   return new Date(year, month, day, hours, minutes);
 }
 
-function getClosestRound(matches: Match[]): number {
+function getClosestRound(matchesInput: Match[]): number {
   const now = new Date();
 
   let bestRound = 1;
   let bestDistance = Number.POSITIVE_INFINITY;
 
-  for (const match of matches) {
+  for (const match of matchesInput) {
     const parsedDate = parseHungarianDate(match.date);
     if (!parsedDate) continue;
 
@@ -194,21 +205,6 @@ function getClosestRound(matches: Match[]): number {
   return bestRound;
 }
 
-const teamLogos: Record<string, string> = {
-  "DVSC": "/logos/dvsc.png",
-  "DVTK": "/logos/dvtk.png",
-  "ETO AKADÉMIA": "/logos/eto.png",
-  "FERENCVÁROSI TC": "/logos/ferencvaros.png",
-  "BUDAPEST HONVÉD FC": "/logos/honved.png",
-  "ILLÉS AKADÉMIA": "/logos/illes.png",
-  "MTK BUDAPEST": "/logos/mtk.png",
-  "PUSKÁS AKADÉMIA": "/logos/puskas.png",
-  "VÁRDA LABDARUGÓ AKADÉMIA": "/logos/varda.png",
-  "VASAS KUBALA AKADÉMIA": "/logos/vasas.png",
-  "VIDEOTON FC FEHÉRVÁR": "/logos/videoton.png",
-  "UTE": "/logos/ute.png",
-};
-
 function getLogo(teamName: string) {
   return teamLogos[teamName] || null;
 }
@@ -219,34 +215,21 @@ function formatDateParts(dateValue: string) {
   }
 
   const trimmed = dateValue.trim();
+  const match = trimmed.match(
+    /^(\d{4})\.\s*(\d{2})\.\s*(\d{2})\.?\s*(\d{1,2}:\d{2})?$/
+  );
 
-  const match = trimmed.match(/^(\d{4})\.\s*(\d{2})\.\s*(\d{2})\.\s*(\d{1,2}:\d{2})?$/);
-  if (match) {
-    const month = match[2];
-    const day = match[3];
-    const time = match[4] || "";
+  if (!match) {
     return {
-      shortDate: `${month}-${day}`,
-      time,
-      full: trimmed,
-    };
-  }
-
-  const matchWithoutTrailingDot = trimmed.match(/^(\d{4})\.\s*(\d{2})\.\s*(\d{2})\.?\s*(\d{1,2}:\d{2})?$/);
-  if (matchWithoutTrailingDot) {
-    const month = matchWithoutTrailingDot[2];
-    const day = matchWithoutTrailingDot[3];
-    const time = matchWithoutTrailingDot[4] || "";
-    return {
-      shortDate: `${month}-${day}`,
-      time,
+      shortDate: trimmed,
+      time: "",
       full: trimmed,
     };
   }
 
   return {
-    shortDate: trimmed,
-    time: "",
+    shortDate: `${match[2]}-${match[3]}`,
+    time: match[4] || "",
     full: trimmed,
   };
 }
@@ -280,42 +263,32 @@ function getFormBadgeStyle(form?: string): React.CSSProperties {
 }
 
 function getStatusStyle(status: string): React.CSSProperties {
-
   if (status === "Lejátszva") {
-    return {
-      backgroundColor: "#dcfce7",
-      color: "#166534"
-    }
+    return { backgroundColor: "#dcfce7", color: "#166534" };
   }
 
   if (status === "Kiírva") {
-    return {
-      backgroundColor: "#dbeafe",
-      color: "#1e40af"
-    }
+    return { backgroundColor: "#dbeafe", color: "#1e40af" };
   }
 
   if (status === "Halasztva") {
-    return {
-      backgroundColor: "#fed7aa",
-      color: "#9a3412"
-    }
+    return { backgroundColor: "#fed7aa", color: "#9a3412" };
   }
 
   if (status === "Elmaradt") {
-    return {
-      backgroundColor: "#fee2e2",
-      color: "#991b1b"
-    }
+    return { backgroundColor: "#fee2e2", color: "#991b1b" };
   }
 
-  return {
-    backgroundColor: "#e5e7eb",
-    color: "#374151"
-  }
+  return { backgroundColor: "#e5e7eb", color: "#374151" };
 }
 
-function MatchCard({ match }: { match: Match }) {
+function MatchCard({
+  match,
+  isMobile,
+}: {
+  match: Match;
+  isMobile: boolean;
+}) {
   const homeLogo = getLogo(match.home);
   const awayLogo = getLogo(match.away);
   const dateParts = formatDateParts(match.date);
@@ -327,27 +300,22 @@ function MatchCard({ match }: { match: Match }) {
         backgroundColor: "#ffffff",
         border: "1px solid #d1d5db",
         borderRadius: "16px",
-        padding: "16px",
+        padding: isMobile ? "12px" : "16px",
         boxShadow: "0 3px 10px rgba(0,0,0,0.06)",
       }}
     >
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 90px 1fr",
+          gridTemplateColumns: isMobile ? "1fr 74px 1fr" : "1fr 90px 1fr",
           alignItems: "center",
-          gap: "12px",
+          gap: isMobile ? "8px" : "12px",
         }}
       >
-        <div
-          style={{
-            textAlign: "center",
-            minWidth: 0,
-          }}
-        >
+        <div style={{ textAlign: "center", minWidth: 0 }}>
           <div
             style={{
-              fontSize: "13px",
+              fontSize: isMobile ? "12px" : "13px",
               fontWeight: 700,
               color: "#111827",
               lineHeight: 1.2,
@@ -363,8 +331,8 @@ function MatchCard({ match }: { match: Match }) {
 
           <div
             style={{
-              width: "46px",
-              height: "46px",
+              width: isMobile ? "38px" : "46px",
+              height: isMobile ? "38px" : "46px",
               margin: "0 auto",
               borderRadius: "999px",
               display: "flex",
@@ -379,8 +347,8 @@ function MatchCard({ match }: { match: Match }) {
               <Image
                 src={homeLogo}
                 alt={match.home}
-                width={38}
-                height={38}
+                width={isMobile ? 30 : 38}
+                height={isMobile ? 30 : 38}
                 style={{ objectFit: "contain" }}
               />
             ) : (
@@ -393,12 +361,12 @@ function MatchCard({ match }: { match: Match }) {
           style={{
             backgroundColor: "#cf1626",
             color: "#ffffff",
-            borderRadius: "6px",
-            padding: "10px 8px",
+            borderRadius: "8px",
+            padding: isMobile ? "8px 6px" : "10px 8px",
             textAlign: "center",
             fontWeight: 700,
             boxShadow: "inset 0 -1px 0 rgba(0,0,0,0.12)",
-            minHeight: "68px",
+            minHeight: isMobile ? "60px" : "68px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -407,7 +375,7 @@ function MatchCard({ match }: { match: Match }) {
           {isPlayed ? (
             <div
               style={{
-                fontSize: "30px",
+                fontSize: isMobile ? "24px" : "30px",
                 lineHeight: 1,
                 whiteSpace: "nowrap",
               }}
@@ -416,11 +384,17 @@ function MatchCard({ match }: { match: Match }) {
             </div>
           ) : (
             <>
-              <div style={{ fontSize: "18px", lineHeight: 1.1 }}>
+              <div style={{ fontSize: isMobile ? "16px" : "18px", lineHeight: 1.1 }}>
                 {dateParts.shortDate}
               </div>
               {dateParts.time ? (
-                <div style={{ fontSize: "18px", lineHeight: 1.1, marginTop: "2px" }}>
+                <div
+                  style={{
+                    fontSize: isMobile ? "16px" : "18px",
+                    lineHeight: 1.1,
+                    marginTop: "2px",
+                  }}
+                >
                   {dateParts.time}
                 </div>
               ) : null}
@@ -428,15 +402,10 @@ function MatchCard({ match }: { match: Match }) {
           )}
         </div>
 
-        <div
-          style={{
-            textAlign: "center",
-            minWidth: 0,
-          }}
-        >
+        <div style={{ textAlign: "center", minWidth: 0 }}>
           <div
             style={{
-              fontSize: "13px",
+              fontSize: isMobile ? "12px" : "13px",
               fontWeight: 700,
               color: "#111827",
               lineHeight: 1.2,
@@ -452,8 +421,8 @@ function MatchCard({ match }: { match: Match }) {
 
           <div
             style={{
-              width: "46px",
-              height: "46px",
+              width: isMobile ? "38px" : "46px",
+              height: isMobile ? "38px" : "46px",
               margin: "0 auto",
               borderRadius: "999px",
               display: "flex",
@@ -468,8 +437,8 @@ function MatchCard({ match }: { match: Match }) {
               <Image
                 src={awayLogo}
                 alt={match.away}
-                width={38}
-                height={38}
+                width={isMobile ? 30 : 38}
+                height={isMobile ? 30 : 38}
                 style={{ objectFit: "contain" }}
               />
             ) : (
@@ -479,53 +448,73 @@ function MatchCard({ match }: { match: Match }) {
         </div>
       </div>
 
-		<div
-		  style={{
-			marginTop: "14px",
-			paddingTop: "12px",
-			borderTop: "1px solid #e5e7eb",
-			display: "grid",
-			gap: "6px",
-		  }}
-		>
+      <div
+        style={{
+          marginTop: "14px",
+          paddingTop: "12px",
+          borderTop: "1px solid #e5e7eb",
+          display: "grid",
+          gap: "6px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "8px",
+            flexWrap: "wrap",
+            fontSize: isMobile ? "12px" : "14px",
+            color: "#111827",
+            fontWeight: 600,
+          }}
+        >
+          <span>{dateParts.full}</span>
+          {match.status !== "Lejátszva" ? (
+            <span
+              style={{
+                ...getStatusStyle(match.status),
+                fontSize: "11px",
+                padding: "3px 8px",
+                borderRadius: "6px",
+                fontWeight: 600,
+              }}
+            >
+              {match.status}
+            </span>
+          ) : null}
+        </div>
 
-		  <div
-			style={{
-			  display: "flex",
-			  justifyContent: "space-between",
-			  alignItems: "center",
-			  fontSize: "14px",
-			  color: "#111827",
-			  fontWeight: 600,
-			}}
-		  >
-			<span>{dateParts.full}</span>
-			{match.status !== "Lejátszva" && (
-			  <span
-				style={{
-				  ...getStatusStyle(match.status),
-				  fontSize: "11px",
-				  padding: "3px 8px",
-				  borderRadius: "6px",
-				  fontWeight: 600
-				}}
-			  >
-				{match.status}
-			  </span>
-			)}
-		  </div>
-
-		  <div style={{ fontSize: "14px", color: "#374151" }}>
-			{match.venue || "Nincs megadva"}
-		  </div>
-		</div>
+        <div style={{ fontSize: isMobile ? "12px" : "14px", color: "#374151" }}>
+          {match.venue || "Nincs megadva"}
+        </div>
+      </div>
     </div>
   );
 }
 
 export default function Home() {
-  const [selectedRound, setSelectedRound] = useState<number>(getClosestRound(allMatches));
-  const [view, setView] = useState<"matches" | "table" | "goalscorers" | "stats">("matches");
+  const [selectedRound, setSelectedRound] = useState<number>(
+    getClosestRound(allMatches)
+  );
+  const [view, setView] = useState<
+    "matches" | "table" | "goalscorers" | "stats"
+  >("matches");
+  const [isMobile, setIsMobile] = useState(false);
+
+  const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>("");
+  const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>("");
+
+  useEffect(() => {
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
 
   const filteredMatches = useMemo(() => {
     return allMatches.filter((m) => m.round === selectedRound);
@@ -549,15 +538,10 @@ export default function Home() {
   }, []);
 
   const teamOptions = useMemo(() => {
-    return Array.from(
-      new Set(
-        playedMatches.flatMap((m) => [m.home, m.away])
-      )
-    ).sort((a, b) => a.localeCompare(b, "hu"));
+    return Array.from(new Set(playedMatches.flatMap((m) => [m.home, m.away]))).sort(
+      (a, b) => a.localeCompare(b, "hu")
+    );
   }, [playedMatches]);
-
-  const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>("");
-  const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>("");
 
   useEffect(() => {
     if (teamOptions.length > 0 && !selectedHomeTeam) {
@@ -574,11 +558,7 @@ export default function Home() {
   const teamStrengthStats = useMemo(() => {
     const teamMap = new Map<
       string,
-      {
-        matches: number;
-        goalsFor: number;
-        goalsAgainst: number;
-      }
+      { matches: number; goalsFor: number; goalsAgainst: number }
     >();
 
     let totalGoals = 0;
@@ -678,10 +658,7 @@ export default function Home() {
 
     const maxGoals = Math.max(...result.map((r) => r.totalGoals), 1);
 
-    return {
-      rows: result,
-      maxGoals,
-    };
+    return { rows: result, maxGoals };
   }, []);
 
   const topScoringTeamsStats = useMemo(() => {
@@ -708,18 +685,12 @@ export default function Home() {
     }
 
     const rows = Array.from(teamGoalsMap.entries())
-      .map(([team, goals]) => ({
-        team,
-        goals,
-      }))
+      .map(([team, goals]) => ({ team, goals }))
       .sort((a, b) => b.goals - a.goals);
 
     const maxGoals = Math.max(...rows.map((r) => r.goals), 1);
 
-    return {
-      rows,
-      maxGoals,
-    };
+    return { rows, maxGoals };
   }, []);
 
   const selectedHomeStats = useMemo(() => {
@@ -739,12 +710,18 @@ export default function Home() {
 
     const homeLambda =
       selectedAwayStats.defenseIndex > 0
-        ? round2((leagueBase * selectedHomeStats.attackIndex) / selectedAwayStats.defenseIndex)
+        ? round2(
+            (leagueBase * selectedHomeStats.attackIndex) /
+              selectedAwayStats.defenseIndex
+          )
         : 0;
 
     const awayLambda =
       selectedHomeStats.defenseIndex > 0
-        ? round2((leagueBase * selectedAwayStats.attackIndex) / selectedHomeStats.defenseIndex)
+        ? round2(
+            (leagueBase * selectedAwayStats.attackIndex) /
+              selectedHomeStats.defenseIndex
+          )
         : 0;
 
     const matrix = buildPoissonMatrix(homeLambda, awayLambda, 5);
@@ -777,7 +754,7 @@ export default function Home() {
       awayWin: round2(awayWin),
     };
   }, [selectedHomeStats, selectedAwayStats, teamStrengthStats]);
-  
+
   const championshipMonteCarlo = useMemo(() => {
     const playedMatchesOnly = allMatches.filter(
       (m) =>
@@ -787,10 +764,7 @@ export default function Home() {
     );
 
     const upcomingMatches = allMatches.filter(
-      (m) =>
-        m.status !== "Lejátszva" &&
-        m.home_goals === null &&
-        m.away_goals === null
+      (m) => m.status !== "Lejátszva" && m.home_goals === null && m.away_goals === null
     );
 
     const currentPointsMap = new Map<string, number>();
@@ -849,8 +823,7 @@ export default function Home() {
       }
     }
 
-    const simulationCount = 5000;
-
+    const simulationCount = 3000;
     const titleCounts = new Map<string, number>();
     const top3Counts = new Map<string, number>();
     const top6Counts = new Map<string, number>();
@@ -874,9 +847,7 @@ export default function Home() {
         const homeStats = teamStrengthStats.rows.find((t) => t.team === match.home);
         const awayStats = teamStrengthStats.rows.find((t) => t.team === match.away);
 
-        if (!homeStats || !awayStats) {
-          continue;
-        }
+        if (!homeStats || !awayStats) continue;
 
         const leagueBase = teamStrengthStats.leagueAvgGoalsPerTeamPerMatch;
 
@@ -897,7 +868,6 @@ export default function Home() {
           match.home,
           (simGoalsFor.get(match.home) ?? 0) + sampled.homeGoals
         );
-
         simGoalsFor.set(
           match.away,
           (simGoalsFor.get(match.away) ?? 0) + sampled.awayGoals
@@ -905,12 +875,13 @@ export default function Home() {
 
         simGoalDiff.set(
           match.home,
-          (simGoalDiff.get(match.home) ?? 0) + (sampled.homeGoals - sampled.awayGoals)
+          (simGoalDiff.get(match.home) ?? 0) +
+            (sampled.homeGoals - sampled.awayGoals)
         );
-
         simGoalDiff.set(
           match.away,
-          (simGoalDiff.get(match.away) ?? 0) + (sampled.awayGoals - sampled.homeGoals)
+          (simGoalDiff.get(match.away) ?? 0) +
+            (sampled.awayGoals - sampled.homeGoals)
         );
 
         if (sampled.homeGoals > sampled.awayGoals) {
@@ -946,15 +917,12 @@ export default function Home() {
         if (index === 0) {
           titleCounts.set(row.team, (titleCounts.get(row.team) ?? 0) + 1);
         }
-
         if (index < 3) {
           top3Counts.set(row.team, (top3Counts.get(row.team) ?? 0) + 1);
         }
-
         if (index < 6) {
           top6Counts.set(row.team, (top6Counts.get(row.team) ?? 0) + 1);
         }
-
         if (index === ranking.length - 1) {
           lastCounts.set(row.team, (lastCounts.get(row.team) ?? 0) + 1);
         }
@@ -965,7 +933,9 @@ export default function Home() {
       .map((team) => ({
         team,
         currentPoints: currentPointsMap.get(team) ?? 0,
-        simulatedAvgPoints: round2((totalPointsSums.get(team) ?? 0) / simulationCount),
+        simulatedAvgPoints: round2(
+          (totalPointsSums.get(team) ?? 0) / simulationCount
+        ),
         titlePct: round2(((titleCounts.get(team) ?? 0) / simulationCount) * 100),
         top3Pct: round2(((top3Counts.get(team) ?? 0) / simulationCount) * 100),
         top6Pct: round2(((top6Counts.get(team) ?? 0) / simulationCount) * 100),
@@ -975,20 +945,13 @@ export default function Home() {
 
     const maxTitlePct = Math.max(...rows.map((r) => r.titlePct), 1);
 
-    return {
-      rows,
-      simulationCount,
-      maxTitlePct,
-    };
-  }, [allMatches, teamOptions, teamStrengthStats]);  
-  
-  
-  
-  
+    return { rows, simulationCount, maxTitlePct };
+  }, [teamOptions, teamStrengthStats]);
+
   return (
     <main
       style={{
-        padding: "20px",
+        padding: isMobile ? "12px" : "20px",
         fontFamily: "Arial, sans-serif",
         backgroundColor: "#f3f4f6",
         minHeight: "100vh",
@@ -997,42 +960,45 @@ export default function Home() {
         margin: "0 auto",
       }}
     >
-      <h1 style={{ fontSize: "30px", marginBottom: "8px" }}>MLSZ Országos U15 Kiemelt</h1>
+      <h1
+        style={{
+          fontSize: isMobile ? "22px" : "30px",
+          lineHeight: 1.2,
+          marginBottom: "8px",
+        }}
+      >
+        MLSZ Országos U15 Kiemelt
+      </h1>
 
       <div style={{ marginBottom: "18px" }}>
-        <div style={{ display: "flex", gap: "10px", marginBottom: "14px", flexWrap: "wrap" }}>
-          <button
-            onClick={() => setView("matches")}
-            style={tabButtonStyle(view === "matches")}
-          >
+        <div
+          style={{
+            display: "flex",
+            gap: "10px",
+            marginBottom: "14px",
+            flexWrap: "wrap",
+          }}
+        >
+          <button onClick={() => setView("matches")} style={tabButtonStyle(view === "matches")}>
             Meccsek
           </button>
-
-          <button
-            onClick={() => setView("table")}
-            style={tabButtonStyle(view === "table")}
-          >
+          <button onClick={() => setView("table")} style={tabButtonStyle(view === "table")}>
             Tabella
           </button>
-
           <button
             onClick={() => setView("goalscorers")}
             style={tabButtonStyle(view === "goalscorers")}
           >
             Góllövők
           </button>
-
-          <button
-            onClick={() => setView("stats")}
-            style={tabButtonStyle(view === "stats")}
-          >
+          <button onClick={() => setView("stats")} style={tabButtonStyle(view === "stats")}>
             Statisztika
           </button>
         </div>
 
         <div
           style={{
-            fontSize: "16px",
+            fontSize: isMobile ? "15px" : "16px",
             fontWeight: "bold",
             marginBottom: "10px",
           }}
@@ -1045,6 +1011,7 @@ export default function Home() {
             display: "flex",
             gap: "8px",
             overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
             paddingBottom: "8px",
           }}
         >
@@ -1053,8 +1020,8 @@ export default function Home() {
               key={round}
               onClick={() => setSelectedRound(round)}
               style={{
-                minWidth: "48px",
-                padding: "10px 12px",
+                minWidth: isMobile ? "40px" : "48px",
+                padding: isMobile ? "9px 10px" : "10px 12px",
                 borderRadius: "10px",
                 border: "1px solid #d1d5db",
                 backgroundColor: selectedRound === round ? "#2563eb" : "#ffffff",
@@ -1071,7 +1038,7 @@ export default function Home() {
 
       {view === "matches" ? (
         <>
-          <h2 style={{ fontSize: "22px", marginBottom: "14px" }}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             {selectedRound}. forduló meccsei
           </h2>
 
@@ -1080,36 +1047,119 @@ export default function Home() {
           ) : (
             <div style={{ display: "grid", gap: "14px" }}>
               {filteredMatches.map((m, i) => (
-                <MatchCard key={i} match={m} />
+                <MatchCard key={i} match={m} isMobile={isMobile} />
               ))}
             </div>
           )}
         </>
       ) : view === "table" ? (
         <>
-          <h2 style={{ fontSize: "22px", marginBottom: "14px" }}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             {selectedRound}. forduló tabellája
           </h2>
 
           {!selectedTable || selectedTable.table.length === 0 ? (
             <EmptyBox text="Nincs megjeleníthető tabella." />
+          ) : isMobile ? (
+            <div style={{ display: "grid", gap: "10px" }}>
+              {selectedTable.table.map((row, i) => {
+                const logo = getLogo(row.team);
+
+                return (
+                  <div key={i} style={mobileCardStyle}>
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "32px 1fr auto",
+                        gap: "10px",
+                        alignItems: "center",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: 700,
+                          fontSize: "15px",
+                          color: "#111827",
+                          textAlign: "center",
+                        }}
+                      >
+                        {row.pos}
+                      </div>
+
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: 0 }}>
+                        <LogoCircle logo={logo} team={row.team} size={26} />
+                        <div
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: 700,
+                            color: "#111827",
+                            lineHeight: 1.2,
+                          }}
+                        >
+                          {row.team}
+                        </div>
+                      </div>
+
+                      <div style={{ fontSize: "18px", fontWeight: 800 }}>{row.points}</div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(4, 1fr)",
+                        gap: "8px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      <MiniStat label="M" value={row.played} />
+                      <MiniStat label="GY" value={row.won} />
+                      <MiniStat label="D" value={row.draw} />
+                      <MiniStat label="V" value={row.lost} />
+                    </div>
+
+                    <div
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "repeat(4, 1fr)",
+                        gap: "8px",
+                        marginBottom: row.form?.length ? "10px" : "0",
+                      }}
+                    >
+                      <MiniStat label="LG" value={row.gf} />
+                      <MiniStat label="KG" value={row.ga} />
+                      <MiniStat label="GK" value={row.gd} />
+                      <MiniStat label="P" value={row.points} strong />
+                    </div>
+
+                    {row.form && row.form.length > 0 ? (
+                      <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+                        {row.form.map((f, idx) => (
+                          <span
+                            key={idx}
+                            style={{
+                              ...getFormBadgeStyle(f),
+                              display: "inline-block",
+                              minWidth: "30px",
+                              padding: "6px 8px",
+                              borderRadius: "6px",
+                              fontWeight: "bold",
+                              fontSize: "12px",
+                              textAlign: "center",
+                            }}
+                          >
+                            {f}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
           ) : (
-            <div
-              style={{
-                overflowX: "auto",
-                backgroundColor: "#ffffff",
-                borderRadius: "14px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                border: "1px solid #d1d5db",
-              }}
-            >
-              <table
-                style={{
-                  width: "100%",
-                  borderCollapse: "collapse",
-                  minWidth: "950px",
-                }}
-              >
+            <div style={tableWrapStyle}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "950px" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#e5e7eb" }}>
                     <th style={thStyle}>#</th>
@@ -1132,43 +1182,12 @@ export default function Home() {
                     return (
                       <tr key={i} style={{ backgroundColor: i < 3 ? "#f8fafc" : "#ffffff" }}>
                         <td style={tdStyle}>{row.pos}</td>
-
-                        <td
-                          style={{
-                            ...tdStyle,
-                            textAlign: "left",
-                            fontWeight: "bold",
-                          }}
-                        >
+                        <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
                           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <div
-                              style={{
-                                width: "28px",
-                                height: "28px",
-                                minWidth: "28px",
-                                borderRadius: "999px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                backgroundColor: "#f8fafc",
-                                border: "1px solid #e5e7eb",
-                                overflow: "hidden",
-                              }}
-                            >
-                              {logo ? (
-                                <Image
-                                  src={logo}
-                                  alt={row.team}
-                                  width={24}
-                                  height={24}
-                                  style={{ objectFit: "contain" }}
-                                />
-                              ) : null}
-                            </div>
+                            <LogoCircle logo={logo} team={row.team} size={24} />
                             <span>{row.team}</span>
                           </div>
                         </td>
-
                         <td style={tdStyle}>{row.played}</td>
                         <td style={tdStyle}>{row.won}</td>
                         <td style={tdStyle}>{row.draw}</td>
@@ -1177,7 +1196,6 @@ export default function Home() {
                         <td style={tdStyle}>{row.ga}</td>
                         <td style={tdStyle}>{row.gd}</td>
                         <td style={{ ...tdStyle, fontWeight: "bold" }}>{row.points}</td>
-
                         <td style={tdStyle}>
                           {row.form && row.form.length > 0 ? (
                             <div
@@ -1220,29 +1238,55 @@ export default function Home() {
         </>
       ) : view === "goalscorers" ? (
         <>
-          <h2 style={{ fontSize: "22px", marginBottom: "14px" }}>
-            {selectedRound}. forduló góllövőlistája
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            {selectedRound}. forduló góllövői
           </h2>
 
           {!selectedGoalscorers || selectedGoalscorers.goalscorers.length === 0 ? (
             <EmptyBox text="Nincs megjeleníthető góllövőlista." />
+          ) : isMobile ? (
+            <div style={{ display: "grid", gap: "10px" }}>
+              {selectedGoalscorers.goalscorers.map((row, i) => (
+                <div key={i} style={mobileCardStyle}>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "40px 1fr auto",
+                      alignItems: "center",
+                      gap: "10px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontWeight: 800,
+                        fontSize: "16px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {row.pos}
+                    </div>
+                    <div>
+                      <div style={{ fontSize: "14px", fontWeight: 700 }}>{row.player}</div>
+                      <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "2px" }}>
+                        {row.team}
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        fontWeight: 800,
+                        fontSize: "20px",
+                        color: "#166534",
+                      }}
+                    >
+                      {row.goals}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           ) : (
-            <div
-              style={{
-                overflowX: "auto",
-                backgroundColor: "#ffffff",
-                borderRadius: "14px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-                border: "1px solid #d1d5db",
-              }}
-            >
-              <table
-                style={{
-                  width: "100%",
-                  borderCollapse: "collapse",
-                  minWidth: "720px",
-                }}
-              >
+            <div style={tableWrapStyle}>
+              <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "720px" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#e5e7eb" }}>
                     <th style={thStyle}>#</th>
@@ -1252,95 +1296,46 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody>
-                  {selectedGoalscorers.goalscorers.map((row, i) => {
-                    const logo = getLogo(row.team);
-
-                    return (
-                      <tr key={i}>
-                        <td style={tdStyle}>{row.pos}</td>
-                        <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                          {row.player}
-                        </td>
-                        <td style={{ ...tdStyle, textAlign: "left" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                            <div
-                              style={{
-                                width: "28px",
-                                height: "28px",
-                                minWidth: "28px",
-                                borderRadius: "999px",
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "center",
-                                backgroundColor: "#f8fafc",
-                                border: "1px solid #e5e7eb",
-                                overflow: "hidden",
-                              }}
-                            >
-                              {logo ? (
-                                <Image
-                                  src={logo}
-                                  alt={row.team}
-                                  width={24}
-                                  height={24}
-                                  style={{ objectFit: "contain" }}
-                                />
-                              ) : null}
-                            </div>
-                            <span>{row.team}</span>
-                          </div>
-                        </td>
-                        <td style={{ ...tdStyle, fontWeight: "bold" }}>{row.goals}</td>
-                      </tr>
-                    );
-                  })}
+                  {selectedGoalscorers.goalscorers.map((row, i) => (
+                    <tr key={i}>
+                      <td style={tdStyle}>{row.pos}</td>
+                      <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
+                        {row.player}
+                      </td>
+                      <td style={{ ...tdStyle, textAlign: "left" }}>{row.team}</td>
+                      <td style={{ ...tdStyle, fontWeight: "bold" }}>{row.goals}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
           )}
         </>
-		
-		
-		
       ) : (
         <>
-          <h2 style={{ fontSize: "22px", marginBottom: "14px" }}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             Liga statisztika
           </h2>
 
           <div style={{ display: "grid", gap: "16px" }}>
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #d1d5db",
-                borderRadius: "14px",
-                padding: "16px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "8px",
-                  color: "#111827",
-                }}
-              >
-                Góltrend fordulónként
+            <div style={sectionCardStyle}>
+              <div style={sectionTitleStyle}>Góltrend fordulónként</div>
+              <div style={sectionSubTitleStyle}>
+                Fordulónkénti összgól és meccsenkénti átlag
               </div>
 
-              <div style={{ display: "grid", gap: "8px", marginTop: "12px" }}>
+              <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
                 {roundGoalsStats.rows.map((row) => (
                   <div
                     key={row.round}
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "80px 1fr 70px 70px",
+                      gridTemplateColumns: isMobile ? "58px 1fr" : "80px 1fr 70px 70px",
                       gap: "10px",
                       alignItems: "center",
                     }}
                   >
-                    <div style={{ fontSize: "14px", fontWeight: 600 }}>
+                    <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 600 }}>
                       {row.round}. ford.
                     </div>
 
@@ -1362,104 +1357,149 @@ export default function Home() {
                       />
                     </div>
 
-                    <div style={{ fontSize: "14px", fontWeight: "bold", textAlign: "right" }}>
-                      {row.totalGoals} gól
-                    </div>
-
-                    <div style={{ fontSize: "13px", color: "#6b7280", textAlign: "right" }}>
-                      átlag: {row.avgGoals}
-                    </div>
+                    {isMobile ? (
+                      <div
+                        style={{
+                          gridColumn: "1 / -1",
+                          display: "flex",
+                          justifyContent: "space-between",
+                          fontSize: "12px",
+                          color: "#6b7280",
+                          marginTop: "-4px",
+                        }}
+                      >
+                        <span style={{ fontWeight: 700, color: "#111827" }}>
+                          {row.totalGoals} gól
+                        </span>
+                        <span>átlag: {row.avgGoals}</span>
+                      </div>
+                    ) : (
+                      <>
+                        <div
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            textAlign: "right",
+                          }}
+                        >
+                          {row.totalGoals} gól
+                        </div>
+                        <div
+                          style={{
+                            fontSize: "13px",
+                            color: "#6b7280",
+                            textAlign: "right",
+                          }}
+                        >
+                          átlag: {row.avgGoals}
+                        </div>
+                      </>
+                    )}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #d1d5db",
-                borderRadius: "14px",
-                padding: "16px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "8px",
-                  color: "#111827",
-                }}
-              >
-                Csapat támadó / védekező index
+            <div style={sectionCardStyle}>
+              <div style={sectionTitleStyle}>Csapat támadó / védekező index</div>
+              <div style={sectionSubTitleStyle}>
+                Támadó index: 1 felett jobb a ligaátlagnál. Védekező index: 1 felett jobb
+                védekezés.
               </div>
 
-              <div style={{ fontSize: "13px", color: "#6b7280", marginBottom: "12px" }}>
-                Támadó index: 1 felett jobb a ligaátlagnál. Védekező index: 1 felett jobb védekezés.
-              </div>
+              {isMobile ? (
+                <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
+                  {teamStrengthStats.rows.map((row) => {
+                    const logo = getLogo(row.team);
 
-              <div
-                style={{
-                  overflowX: "auto",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "12px",
-                }}
-              >
-                <table
-                  style={{
-                    width: "100%",
-                    borderCollapse: "collapse",
-                    minWidth: "900px",
-                    backgroundColor: "#ffffff",
-                  }}
-                >
-                  <thead>
-                    <tr style={{ backgroundColor: "#e5e7eb" }}>
-                      <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
-                      <th style={thStyle}>M</th>
-                      <th style={thStyle}>LG</th>
-                      <th style={thStyle}>KG</th>
-                      <th style={thStyle}>LG / meccs</th>
-                      <th style={thStyle}>KG / meccs</th>
-                      <th style={thStyle}>Támadó index</th>
-                      <th style={thStyle}>Védekező index</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {teamStrengthStats.rows
-                      .slice()
-                      .sort((a, b) => b.attackIndex - a.attackIndex)
-                      .map((row) => {
+                    return (
+                      <div key={row.team} style={mobileCardStyle}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                            marginBottom: "10px",
+                          }}
+                        >
+                          <LogoCircle logo={logo} team={row.team} size={26} />
+                          <div style={{ minWidth: 0 }}>
+                            <div style={{ fontSize: "14px", fontWeight: 700 }}>{row.team}</div>
+                            <div style={{ fontSize: "12px", color: "#6b7280" }}>
+                              {row.matches} meccs
+                            </div>
+                          </div>
+                        </div>
+
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "repeat(2, 1fr)",
+                            gap: "8px",
+                            marginBottom: "8px",
+                          }}
+                        >
+                          <MiniStat label="LG" value={row.goalsFor} />
+                          <MiniStat label="KG" value={row.goalsAgainst} />
+                          <MiniStat label="LG / meccs" value={row.goalsForPerMatch} />
+                          <MiniStat label="KG / meccs" value={row.goalsAgainstPerMatch} />
+                        </div>
+
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "1fr 1fr",
+                            gap: "8px",
+                          }}
+                        >
+                          <MiniStat
+                            label="Támadó index"
+                            value={row.attackIndex}
+                            valueColor="#166534"
+                            strong
+                          />
+                          <MiniStat
+                            label="Védekező index"
+                            value={row.defenseIndex}
+                            valueColor="#1d4ed8"
+                            strong
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div style={tableWrapStyle}>
+                  <table
+                    style={{
+                      width: "100%",
+                      borderCollapse: "collapse",
+                      minWidth: "900px",
+                      backgroundColor: "#ffffff",
+                    }}
+                  >
+                    <thead>
+                      <tr style={{ backgroundColor: "#e5e7eb" }}>
+                        <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
+                        <th style={thStyle}>M</th>
+                        <th style={thStyle}>LG</th>
+                        <th style={thStyle}>KG</th>
+                        <th style={thStyle}>LG / meccs</th>
+                        <th style={thStyle}>KG / meccs</th>
+                        <th style={thStyle}>Támadó index</th>
+                        <th style={thStyle}>Védekező index</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {teamStrengthStats.rows.map((row) => {
                         const logo = getLogo(row.team);
 
                         return (
                           <tr key={row.team}>
                             <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
                               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                                <div
-                                  style={{
-                                    width: "28px",
-                                    height: "28px",
-                                    minWidth: "28px",
-                                    borderRadius: "999px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    backgroundColor: "#f8fafc",
-                                    border: "1px solid #e5e7eb",
-                                    overflow: "hidden",
-                                  }}
-                                >
-                                  {logo ? (
-                                    <Image
-                                      src={logo}
-                                      alt={row.team}
-                                      width={24}
-                                      height={24}
-                                      style={{ objectFit: "contain" }}
-                                    />
-                                  ) : null}
-                                </div>
+                                <LogoCircle logo={logo} team={row.team} size={24} />
                                 <span>{row.team}</span>
                               </div>
                             </td>
@@ -1477,40 +1517,25 @@ export default function Home() {
                           </tr>
                         );
                       })}
-                  </tbody>
-                </table>
-              </div>
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
 
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #d1d5db",
-                borderRadius: "14px",
-                padding: "16px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "8px",
-                  color: "#111827",
-                }}
-              >
-                Poisson meccs-előrejelző
-              </div>
-
-              <div style={{ fontSize: "13px", color: "#6b7280", marginBottom: "12px" }}>
-                A becslés a csapatok támadó és védekező indexéből számolt várható gólértékekre épül.
+            <div style={sectionCardStyle}>
+              <div style={sectionTitleStyle}>Poisson meccs-előrejelző</div>
+              <div style={sectionSubTitleStyle}>
+                A becslés a csapatok támadó és védekező indexéből számolt várható
+                gólértékekre épül.
               </div>
 
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
+                  gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                   gap: "12px",
+                  marginTop: "12px",
                   marginBottom: "16px",
                 }}
               >
@@ -1521,13 +1546,7 @@ export default function Home() {
                   <select
                     value={selectedHomeTeam}
                     onChange={(e) => setSelectedHomeTeam(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "10px 12px",
-                      borderRadius: "10px",
-                      border: "1px solid #d1d5db",
-                      backgroundColor: "#ffffff",
-                    }}
+                    style={selectStyle}
                   >
                     {teamOptions.map((team) => (
                       <option key={team} value={team}>
@@ -1544,13 +1563,7 @@ export default function Home() {
                   <select
                     value={selectedAwayTeam}
                     onChange={(e) => setSelectedAwayTeam(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "10px 12px",
-                      borderRadius: "10px",
-                      border: "1px solid #d1d5db",
-                      backgroundColor: "#ffffff",
-                    }}
+                    style={selectStyle}
                   >
                     {teamOptions.map((team) => (
                       <option key={team} value={team}>
@@ -1566,148 +1579,91 @@ export default function Home() {
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+                      gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr",
                       gap: "12px",
                     }}
                   >
-                    <div
-                      style={{
-                        backgroundColor: "#f8fafc",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "12px",
-                        padding: "12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "12px", color: "#6b7280" }}>Hazai várható gól</div>
-                      <div style={{ fontSize: "24px", fontWeight: "bold" }}>
-                        {poissonPrediction.homeLambda}
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        backgroundColor: "#f8fafc",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "12px",
-                        padding: "12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "12px", color: "#6b7280" }}>Vendég várható gól</div>
-                      <div style={{ fontSize: "24px", fontWeight: "bold" }}>
-                        {poissonPrediction.awayLambda}
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        backgroundColor: "#f8fafc",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "12px",
-                        padding: "12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "12px", color: "#6b7280" }}>Hazai győzelem</div>
-                      <div style={{ fontSize: "24px", fontWeight: "bold", color: "#166534" }}>
-                        {poissonPrediction.homeWin}%
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        backgroundColor: "#f8fafc",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "12px",
-                        padding: "12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "12px", color: "#6b7280" }}>Döntetlen / vendég</div>
-                      <div style={{ fontSize: "14px", fontWeight: "bold" }}>
-                        {poissonPrediction.draw}% / {poissonPrediction.awayWin}%
-                      </div>
-                    </div>
+                    <MetricCard label="Hazai várható gól" value={poissonPrediction.homeLambda} />
+                    <MetricCard label="Vendég várható gól" value={poissonPrediction.awayLambda} />
+                    <MetricCard
+                      label="Hazai győzelem"
+                      value={`${poissonPrediction.homeWin}%`}
+                      valueColor="#166534"
+                    />
+                    <MetricCard
+                      label="Döntetlen / vendég"
+                      value={`${poissonPrediction.draw}% / ${poissonPrediction.awayWin}%`}
+                    />
                   </div>
 
-                  <div
-                    style={{
-                      overflowX: "auto",
-                      border: "1px solid #e5e7eb",
-                      borderRadius: "12px",
-                    }}
-                  >
-                    <table
-                      style={{
-                        width: "100%",
-                        borderCollapse: "collapse",
-                        minWidth: "600px",
-                      }}
-                    >
-                      <thead>
-                        <tr style={{ backgroundColor: "#e5e7eb" }}>
-                          <th style={thStyle}>#</th>
-                          <th style={{ ...thStyle, textAlign: "left" }}>Legvalószínűbb eredmény</th>
-                          <th style={thStyle}>Valószínűség</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {poissonPrediction.top3.map((row, index) => (
-                          <tr key={`${row.homeGoals}-${row.awayGoals}`}>
-                            <td style={tdStyle}>{index + 1}</td>
-                            <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                              {selectedHomeTeam} {row.homeGoals}-{row.awayGoals} {selectedAwayTeam}
-                            </td>
-                            <td style={{ ...tdStyle, fontWeight: "bold" }}>
-                              {row.probabilityPercent}%
-                            </td>
+                  {isMobile ? (
+                    <div style={{ display: "grid", gap: "8px" }}>
+                      {poissonPrediction.top3.map((row, index) => (
+                        <div key={`${row.homeGoals}-${row.awayGoals}`} style={mobileCardStyle}>
+                          <div style={{ fontSize: "12px", color: "#6b7280", marginBottom: "4px" }}>
+                            {index + 1}. legvalószínűbb
+                          </div>
+                          <div style={{ fontSize: "14px", fontWeight: 700, marginBottom: "4px" }}>
+                            {selectedHomeTeam} {row.homeGoals}-{row.awayGoals} {selectedAwayTeam}
+                          </div>
+                          <div style={{ fontSize: "13px", color: "#111827" }}>
+                            {row.probabilityPercent}%
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={tableWrapStyle}>
+                      <table
+                        style={{
+                          width: "100%",
+                          borderCollapse: "collapse",
+                          minWidth: "600px",
+                        }}
+                      >
+                        <thead>
+                          <tr style={{ backgroundColor: "#e5e7eb" }}>
+                            <th style={thStyle}>#</th>
+                            <th style={{ ...thStyle, textAlign: "left" }}>
+                              Legvalószínűbb eredmény
+                            </th>
+                            <th style={thStyle}>Valószínűség</th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
+                        </thead>
+                        <tbody>
+                          {poissonPrediction.top3.map((row, index) => (
+                            <tr key={`${row.homeGoals}-${row.awayGoals}`}>
+                              <td style={tdStyle}>{index + 1}</td>
+                              <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
+                                {selectedHomeTeam} {row.homeGoals}-{row.awayGoals} {selectedAwayTeam}
+                              </td>
+                              <td style={{ ...tdStyle, fontWeight: "bold" }}>
+                                {row.probabilityPercent}%
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
 
                   <div
                     style={{
                       display: "grid",
-                      gridTemplateColumns: "1fr 1fr",
+                      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
                       gap: "12px",
                     }}
                   >
-                    <div
-                      style={{
-                        backgroundColor: "#f8fafc",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "12px",
-                        padding: "12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "14px", fontWeight: 700, marginBottom: "6px" }}>
-                        {selectedHomeTeam}
-                      </div>
-                      <div style={{ fontSize: "13px", color: "#374151" }}>
-                        Támadó index: <strong>{selectedHomeStats.attackIndex}</strong>
-                      </div>
-                      <div style={{ fontSize: "13px", color: "#374151" }}>
-                        Védekező index: <strong>{selectedHomeStats.defenseIndex}</strong>
-                      </div>
-                    </div>
-
-                    <div
-                      style={{
-                        backgroundColor: "#f8fafc",
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "12px",
-                        padding: "12px",
-                      }}
-                    >
-                      <div style={{ fontSize: "14px", fontWeight: 700, marginBottom: "6px" }}>
-                        {selectedAwayTeam}
-                      </div>
-                      <div style={{ fontSize: "13px", color: "#374151" }}>
-                        Támadó index: <strong>{selectedAwayStats.attackIndex}</strong>
-                      </div>
-                      <div style={{ fontSize: "13px", color: "#374151" }}>
-                        Védekező index: <strong>{selectedAwayStats.defenseIndex}</strong>
-                      </div>
-                    </div>
+                    <TeamInfoCard
+                      team={selectedHomeTeam}
+                      attackIndex={selectedHomeStats.attackIndex}
+                      defenseIndex={selectedHomeStats.defenseIndex}
+                    />
+                    <TeamInfoCard
+                      team={selectedAwayTeam}
+                      attackIndex={selectedAwayStats.attackIndex}
+                      defenseIndex={selectedAwayStats.defenseIndex}
+                    />
                   </div>
                 </div>
               ) : (
@@ -1715,165 +1671,141 @@ export default function Home() {
               )}
             </div>
 
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #d1d5db",
-                borderRadius: "14px",
-                padding: "16px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "8px",
-                  color: "#111827",
-                }}
-              >
-                Bajnoki esélymodell – Monte Carlo
+            <div style={sectionCardStyle}>
+              <div style={sectionTitleStyle}>Bajnoki esélymodell – Monte Carlo</div>
+              <div style={sectionSubTitleStyle}>
+                {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült
+                bajnoki, top 3, top 6 és utolsó hely valószínűségek.
               </div>
 
-              <div style={{ fontSize: "13px", color: "#6b7280", marginBottom: "12px" }}>
-                {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült bajnoki, top 3, top 6 és kieső zónás valószínűségek.
-              </div>
+              {isMobile ? (
+                <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
+                  {championshipMonteCarlo.rows.map((row) => {
+                    const logo = getLogo(row.team);
 
-              <div
-                style={{
-                  overflowX: "auto",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "12px",
-                }}
-              >
-                <table
-                  style={{
-                    width: "100%",
-                    borderCollapse: "collapse",
-                    minWidth: "950px",
-                    backgroundColor: "#ffffff",
-                  }}
-                >
-                  <thead>
-                    <tr style={{ backgroundColor: "#e5e7eb" }}>
-                      <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
-                      <th style={thStyle}>Jelenlegi pont</th>
-                      <th style={thStyle}>Várható pont</th>
-                      <th style={thStyle}>Bajnoki esély</th>
-                      <th style={thStyle}>Top 3</th>
-                      <th style={thStyle}>Top 6</th>
-                      <th style={thStyle}>Utolsó hely</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {championshipMonteCarlo.rows.map((row) => {
-                      const logo = getLogo(row.team);
-
-                      return (
-                        <tr key={row.team}>
-                          <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
-                            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                              <div
-                                style={{
-                                  width: "28px",
-                                  height: "28px",
-                                  minWidth: "28px",
-                                  borderRadius: "999px",
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "center",
-                                  backgroundColor: "#f8fafc",
-                                  border: "1px solid #e5e7eb",
-                                  overflow: "hidden",
-                                }}
-                              >
-                                {logo ? (
-                                  <Image
-                                    src={logo}
-                                    alt={row.team}
-                                    width={24}
-                                    height={24}
-                                    style={{ objectFit: "contain" }}
-                                  />
-                                ) : null}
-                              </div>
-                              <span>{row.team}</span>
+                    return (
+                      <div key={row.team} style={mobileCardStyle}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "10px",
+                            marginBottom: "10px",
+                          }}
+                        >
+                          <LogoCircle logo={logo} team={row.team} size={26} />
+                          <div style={{ minWidth: 0 }}>
+                            <div style={{ fontSize: "14px", fontWeight: 700 }}>{row.team}</div>
+                            <div style={{ fontSize: "12px", color: "#6b7280" }}>
+                              Jelenlegi pont: {row.currentPoints} • Várható: {row.simulatedAvgPoints}
                             </div>
-                          </td>
+                          </div>
+                        </div>
 
-                          <td style={tdStyle}>{row.currentPoints}</td>
-                          <td style={tdStyle}>{row.simulatedAvgPoints}</td>
+                        <div
+                          style={{
+                            display: "grid",
+                            gridTemplateColumns: "1fr 1fr",
+                            gap: "8px",
+                          }}
+                        >
+                          <MiniStat label="Bajnoki esély" value={`${row.titlePct}%`} />
+                          <MiniStat label="Top 3" value={`${row.top3Pct}%`} valueColor="#166534" />
+                          <MiniStat label="Top 6" value={`${row.top6Pct}%`} valueColor="#1d4ed8" />
+                          <MiniStat label="Utolsó hely" value={`${row.lastPct}%`} valueColor="#991b1b" />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div style={tableWrapStyle}>
+                  <table
+                    style={{
+                      width: "100%",
+                      borderCollapse: "collapse",
+                      minWidth: "950px",
+                      backgroundColor: "#ffffff",
+                    }}
+                  >
+                    <thead>
+                      <tr style={{ backgroundColor: "#e5e7eb" }}>
+                        <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
+                        <th style={thStyle}>Jelenlegi pont</th>
+                        <th style={thStyle}>Várható pont</th>
+                        <th style={thStyle}>Bajnoki esély</th>
+                        <th style={thStyle}>Top 3</th>
+                        <th style={thStyle}>Top 6</th>
+                        <th style={thStyle}>Utolsó hely</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {championshipMonteCarlo.rows.map((row) => {
+                        const logo = getLogo(row.team);
 
-                          <td style={tdStyle}>
-                            <div
-                              style={{
-                                display: "grid",
-                                gridTemplateColumns: "1fr 52px",
-                                gap: "8px",
-                                alignItems: "center",
-                              }}
-                            >
+                        return (
+                          <tr key={row.team}>
+                            <td style={{ ...tdStyle, textAlign: "left", fontWeight: "bold" }}>
+                              <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                <LogoCircle logo={logo} team={row.team} size={24} />
+                                <span>{row.team}</span>
+                              </div>
+                            </td>
+                            <td style={tdStyle}>{row.currentPoints}</td>
+                            <td style={tdStyle}>{row.simulatedAvgPoints}</td>
+                            <td style={tdStyle}>
                               <div
                                 style={{
-                                  backgroundColor: "#e5e7eb",
-                                  height: "14px",
-                                  borderRadius: "999px",
-                                  overflow: "hidden",
+                                  display: "grid",
+                                  gridTemplateColumns: "1fr 52px",
+                                  gap: "8px",
+                                  alignItems: "center",
                                 }}
                               >
                                 <div
                                   style={{
-                                    width: `${(row.titlePct / championshipMonteCarlo.maxTitlePct) * 100}%`,
-                                    height: "100%",
-                                    backgroundColor: "#2563eb",
+                                    backgroundColor: "#e5e7eb",
+                                    height: "14px",
                                     borderRadius: "999px",
+                                    overflow: "hidden",
                                   }}
-                                />
+                                >
+                                  <div
+                                    style={{
+                                      width: `${
+                                        (row.titlePct / championshipMonteCarlo.maxTitlePct) * 100
+                                      }%`,
+                                      height: "100%",
+                                      backgroundColor: "#2563eb",
+                                      borderRadius: "999px",
+                                    }}
+                                  />
+                                </div>
+                                <div style={{ fontWeight: "bold" }}>{row.titlePct}%</div>
                               </div>
-                              <div style={{ fontWeight: "bold" }}>{row.titlePct}%</div>
-                            </div>
-                          </td>
-
-                          <td style={{ ...tdStyle, fontWeight: "bold", color: "#166534" }}>
-                            {row.top3Pct}%
-                          </td>
-
-                          <td style={{ ...tdStyle, fontWeight: "bold", color: "#1d4ed8" }}>
-                            {row.top6Pct}%
-                          </td>
-
-                          <td style={{ ...tdStyle, fontWeight: "bold", color: "#991b1b" }}>
-                            {row.lastPct}%
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
+                            </td>
+                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#166534" }}>
+                              {row.top3Pct}%
+                            </td>
+                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#1d4ed8" }}>
+                              {row.top6Pct}%
+                            </td>
+                            <td style={{ ...tdStyle, fontWeight: "bold", color: "#991b1b" }}>
+                              {row.lastPct}%
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
-			
-            <div
-              style={{
-                backgroundColor: "#ffffff",
-                border: "1px solid #d1d5db",
-                borderRadius: "14px",
-                padding: "16px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                  marginBottom: "14px",
-                  color: "#111827",
-                }}
-              >
-                Legtöbb gólt szerző csapatok
-              </div>
 
-              <div style={{ display: "grid", gap: "10px" }}>
+            <div style={sectionCardStyle}>
+              <div style={sectionTitleStyle}>Legtöbb gólt szerző csapatok</div>
+
+              <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
                 {topScoringTeamsStats.rows.map((row) => {
                   const logo = getLogo(row.team);
 
@@ -1882,7 +1814,7 @@ export default function Home() {
                       key={row.team}
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "minmax(0, 1fr) 120px 40px",
+                        gridTemplateColumns: isMobile ? "minmax(0, 1fr) 52px" : "minmax(0, 1fr) 120px 40px",
                         alignItems: "center",
                         gap: "10px",
                       }}
@@ -1895,34 +1827,10 @@ export default function Home() {
                           minWidth: 0,
                         }}
                       >
+                        <LogoCircle logo={logo} team={row.team} size={24} />
                         <div
                           style={{
-                            width: "28px",
-                            height: "28px",
-                            minWidth: "28px",
-                            borderRadius: "999px",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            backgroundColor: "#f8fafc",
-                            border: "1px solid #e5e7eb",
-                            overflow: "hidden",
-                          }}
-                        >
-                          {logo ? (
-                            <Image
-                              src={logo}
-                              alt={row.team}
-                              width={24}
-                              height={24}
-                              style={{ objectFit: "contain" }}
-                            />
-                          ) : null}
-                        </div>
-
-                        <div
-                          style={{
-                            fontSize: "14px",
+                            fontSize: isMobile ? "13px" : "14px",
                             color: "#111827",
                             fontWeight: 600,
                             minWidth: 0,
@@ -1932,27 +1840,29 @@ export default function Home() {
                         </div>
                       </div>
 
-                      <div
-                        style={{
-                          backgroundColor: "#e5e7eb",
-                          height: "18px",
-                          borderRadius: "999px",
-                          overflow: "hidden",
-                        }}
-                      >
+                      {!isMobile ? (
                         <div
                           style={{
-                            width: `${(row.goals / topScoringTeamsStats.maxGoals) * 100}%`,
-                            height: "100%",
-                            backgroundColor: "#16a34a",
+                            backgroundColor: "#e5e7eb",
+                            height: "18px",
                             borderRadius: "999px",
+                            overflow: "hidden",
                           }}
-                        />
-                      </div>
+                        >
+                          <div
+                            style={{
+                              width: `${(row.goals / topScoringTeamsStats.maxGoals) * 100}%`,
+                              height: "100%",
+                              backgroundColor: "#16a34a",
+                              borderRadius: "999px",
+                            }}
+                          />
+                        </div>
+                      ) : null}
 
                       <div
                         style={{
-                          fontSize: "14px",
+                          fontSize: isMobile ? "13px" : "14px",
                           color: "#111827",
                           fontWeight: "bold",
                           textAlign: "right",
@@ -1987,6 +1897,139 @@ function EmptyBox({ text }: { text: string }) {
   );
 }
 
+function LogoCircle({
+  logo,
+  team,
+  size,
+}: {
+  logo: string | null;
+  team: string;
+  size: number;
+}) {
+  return (
+    <div
+      style={{
+        width: `${size + 4}px`,
+        height: `${size + 4}px`,
+        minWidth: `${size + 4}px`,
+        borderRadius: "999px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        overflow: "hidden",
+      }}
+    >
+      {logo ? (
+        <Image
+          src={logo}
+          alt={team}
+          width={size}
+          height={size}
+          style={{ objectFit: "contain" }}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function MiniStat({
+  label,
+  value,
+  strong,
+  valueColor,
+}: {
+  label: string;
+  value: string | number;
+  strong?: boolean;
+  valueColor?: string;
+}) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        borderRadius: "10px",
+        padding: "8px",
+      }}
+    >
+      <div style={{ fontSize: "11px", color: "#6b7280", marginBottom: "4px" }}>{label}</div>
+      <div
+        style={{
+          fontSize: "14px",
+          fontWeight: strong ? 800 : 700,
+          color: valueColor || "#111827",
+        }}
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function MetricCard({
+  label,
+  value,
+  valueColor,
+}: {
+  label: string;
+  value: string | number;
+  valueColor?: string;
+}) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        borderRadius: "12px",
+        padding: "12px",
+      }}
+    >
+      <div style={{ fontSize: "12px", color: "#6b7280" }}>{label}</div>
+      <div
+        style={{
+          fontSize: "24px",
+          fontWeight: "bold",
+          color: valueColor || "#111827",
+          marginTop: "4px",
+        }}
+      >
+        {value}
+      </div>
+    </div>
+  );
+}
+
+function TeamInfoCard({
+  team,
+  attackIndex,
+  defenseIndex,
+}: {
+  team: string;
+  attackIndex: number;
+  defenseIndex: number;
+}) {
+  return (
+    <div
+      style={{
+        backgroundColor: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        borderRadius: "12px",
+        padding: "12px",
+      }}
+    >
+      <div style={{ fontSize: "14px", fontWeight: 700, marginBottom: "6px" }}>{team}</div>
+      <div style={{ fontSize: "13px", color: "#374151" }}>
+        Támadó index: <strong>{attackIndex}</strong>
+      </div>
+      <div style={{ fontSize: "13px", color: "#374151", marginTop: "4px" }}>
+        Védekező index: <strong>{defenseIndex}</strong>
+      </div>
+    </div>
+  );
+}
+
 function tabButtonStyle(active: boolean): React.CSSProperties {
   return {
     padding: "10px 16px",
@@ -1998,6 +2041,49 @@ function tabButtonStyle(active: boolean): React.CSSProperties {
     cursor: "pointer",
   };
 }
+
+const sectionCardStyle: React.CSSProperties = {
+  backgroundColor: "#ffffff",
+  border: "1px solid #d1d5db",
+  borderRadius: "14px",
+  padding: "16px",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+};
+
+const sectionTitleStyle: React.CSSProperties = {
+  fontSize: "18px",
+  fontWeight: "bold",
+  marginBottom: "8px",
+  color: "#111827",
+};
+
+const sectionSubTitleStyle: React.CSSProperties = {
+  fontSize: "13px",
+  color: "#6b7280",
+};
+
+const tableWrapStyle: React.CSSProperties = {
+  overflowX: "auto",
+  WebkitOverflowScrolling: "touch",
+  border: "1px solid #e5e7eb",
+  borderRadius: "12px",
+  marginTop: "12px",
+};
+
+const mobileCardStyle: React.CSSProperties = {
+  backgroundColor: "#ffffff",
+  border: "1px solid #e5e7eb",
+  borderRadius: "12px",
+  padding: "12px",
+};
+
+const selectStyle: React.CSSProperties = {
+  width: "100%",
+  padding: "10px 12px",
+  borderRadius: "10px",
+  border: "1px solid #d1d5db",
+  backgroundColor: "#ffffff",
+};
 
 const thStyle: React.CSSProperties = {
   padding: "10px 8px",

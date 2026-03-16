@@ -1321,7 +1321,7 @@ export default function Home() {
             <div style={sectionCardStyle}>
               <div style={sectionTitleStyle}>Góltrend fordulónként</div>
               <div style={sectionSubTitleStyle}>
-                Fordulónkénti összgól és meccsenkénti átlag
+                Fordulónkénti összgól
               </div>
 
               <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
@@ -1357,44 +1357,32 @@ export default function Home() {
                       />
                     </div>
 
-                    {isMobile ? (
-                      <div
-                        style={{
-                          gridColumn: "1 / -1",
-                          display: "flex",
-                          justifyContent: "space-between",
-                          fontSize: "12px",
-                          color: "#6b7280",
-                          marginTop: "-4px",
-                        }}
-                      >
-                        <span style={{ fontWeight: 700, color: "#111827" }}>
-                          {row.totalGoals} gól
-                        </span>
-                        <span>átlag: {row.avgGoals}</span>
-                      </div>
-                    ) : (
-                      <>
-                        <div
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: "bold",
-                            textAlign: "right",
-                          }}
-                        >
-                          {row.totalGoals} gól
-                        </div>
-                        <div
-                          style={{
-                            fontSize: "13px",
-                            color: "#6b7280",
-                            textAlign: "right",
-                          }}
-                        >
-                          átlag: {row.avgGoals}
-                        </div>
-                      </>
-                    )}
+					{isMobile ? (
+					  <div
+						style={{
+						  gridColumn: "1 / -1",
+						  display: "flex",
+						  justifyContent: "flex-end",
+						  fontSize: "12px",
+						  color: "#6b7280",
+						  marginTop: "-4px",
+						}}
+					  >
+						<span style={{ fontWeight: 700, color: "#111827" }}>
+						  {row.totalGoals} gól
+						</span>
+					  </div>
+					) : (
+					  <div
+						style={{
+						  fontSize: "14px",
+						  fontWeight: "bold",
+						  textAlign: "right",
+						}}
+					  >
+						{row.totalGoals} gól
+					  </div>
+					)}
                   </div>
                 ))}
               </div>
@@ -1672,7 +1660,7 @@ export default function Home() {
             </div>
 
             <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Bajnoki esélymodell – Monte Carlo</div>
+              <div style={sectionTitleStyle}>Bajnoki esélymodell</div>
               <div style={sectionSubTitleStyle}>
                 {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült
                 bajnoki, top 3, top 6 és utolsó hely valószínűségek.

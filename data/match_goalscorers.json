@@ -1,1 +1,1561 @@
-[]
+[
+  {
+    "round": 1,
+    "home": "DVSC",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "NAGY BENCE",
+        "goals": 1
+      },
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BARANYI BORISZ",
+        "goals": 1
+      },
+      {
+        "player": "VARGA BENEDEK",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 1,
+    "home": "ETO AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 1,
+    "home": "FERENCVÁROSI TC",
+    "away": "BUDAPEST HONVÉD FC",
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "goals": 1
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 1,
+    "home": "UTE",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "DÓCZI ZÉTÉNY",
+        "goals": 1
+      },
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 1,
+    "home": "DVTK",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 1,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "goals": 1
+      },
+      {
+        "player": "LAUER OLIVÉR",
+        "goals": 1
+      },
+      {
+        "player": "ROZGONYI ROLAND",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 2,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "ETO AKADÉMIA",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "DVTK",
+    "home_scorers": [
+      {
+        "player": "NAGY GÁBOR VALENTIN",
+        "goals": 1
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BABELLA MILÁN ATTILA",
+        "goals": 1
+      },
+      {
+        "player": "SŐREGI NOEL",
+        "goals": 3
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "HUBERT ROLAND",
+        "goals": 1
+      },
+      {
+        "player": "SAJGÁL PÉTER",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "DVSC",
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "NAGY ÁKOS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 2,
+    "home": "MTK BUDAPEST",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "BODÓ BENCE",
+        "goals": 1
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 2,
+    "home": "UTE",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "UTE",
+    "home_scorers": [
+      {
+        "player": "TAKÁCS DOMINIK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "PAPP VILMOS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "BIRÓ MÁTÉ",
+        "goals": 1
+      },
+      {
+        "player": "BODÓ BENCE",
+        "goals": 1
+      },
+      {
+        "player": "BÁLINT ÁRON",
+        "goals": 1
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "goals": 1
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 2
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "FARKAS MILÁN",
+        "goals": 1
+      },
+      {
+        "player": "LAUER OLIVÉR",
+        "goals": 1
+      },
+      {
+        "player": "ROZGONYI ROLAND",
+        "goals": 2
+      },
+      {
+        "player": "RÁCZ BOTOND",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "home": "DVSC",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "goals": 2
+      },
+      {
+        "player": "LUKÁCS BARNA",
+        "goals": 1
+      },
+      {
+        "player": "PALÁSTHY PATRIK",
+        "goals": 1
+      },
+      {
+        "player": "ÁDÁM ÁKOS IVÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 3,
+    "home": "ETO AKADÉMIA",
+    "away": "BUDAPEST HONVÉD FC",
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 3,
+    "home": "DVTK",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "SŐREGI NOEL",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HUSZ MILÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "ERDŐS CSONGOR",
+        "goals": 1
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HUBERT ROLAND",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "DVTK",
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "FARKAS ANDRÁS",
+        "goals": 1
+      },
+      {
+        "player": "VÁRADI SOMA MILÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "DVSC",
+    "away": "UTE",
+    "home_scorers": [
+      {
+        "player": "BALOGH T. ALEX",
+        "goals": 1
+      },
+      {
+        "player": "KOVÁCS ZSOMBOR",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "FERENCVÁROSI TC",
+    "away": "ETO AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "FERCSIK JONATÁN",
+        "goals": 1
+      },
+      {
+        "player": "LUKÁCS BARNA",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "MILANOVICH JÁNOS",
+        "goals": 1
+      },
+      {
+        "player": "VINCZE BARNABÁS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "MOSOLITS MÁRKÓ",
+        "goals": 1
+      },
+      {
+        "player": "VARGA BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "KURUCZ MÁRTON GUSZTÁV",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "BUDAPEST HONVÉD FC",
+    "home_scorers": [
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "goals": 1
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "goals": 1
+      },
+      {
+        "player": "ROZGONYI ROLAND",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "PALÁSTI KRISZTIÁN",
+        "goals": 1
+      },
+      {
+        "player": "PISONT RICHÁRD BENJÁMIN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "UTE",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [
+      {
+        "player": "DÓCZI ZÉTÉNY",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BODÓ BENCE",
+        "goals": 1
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "goals": 2
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "DVTK",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "LUKÁCS BARNA",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "ETO AKADÉMIA",
+    "away": "DVSC",
+    "home_scorers": [
+      {
+        "player": "VARGA MÁTÉ TAMÁS",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BALOGH T. ALEX",
+        "goals": 1
+      },
+      {
+        "player": "BALÁZS PATRIK",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "VASVÁRI LEVENTE ZALÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HORVÁTH ZOLTÁN",
+        "goals": 1
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "HUBERT ROLAND",
+        "goals": 1
+      },
+      {
+        "player": "MENYHÁRT MÁRK",
+        "goals": 1
+      },
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HÁNYI BÁLINT",
+        "goals": 1
+      },
+      {
+        "player": "VARGA BENEDEK",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "NYIRI BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 6,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "MIHÓK MARTIN",
+        "goals": 1
+      },
+      {
+        "player": "VARGA BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "DENYSOV DANYLO",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BIRÓ MÁTÉ",
+        "goals": 1
+      },
+      {
+        "player": "BODÓ BENCE",
+        "goals": 2
+      },
+      {
+        "player": "FODOR BENCE",
+        "goals": 1
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 2
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 6,
+    "home": "DVSC",
+    "away": "DVTK",
+    "home_scorers": [
+      {
+        "player": "BALÁZS PATRIK",
+        "goals": 1
+      },
+      {
+        "player": "CSORBA RICHÁRD LEVENTE",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "VINCZE ZALÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "home": "UTE",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 2
+      },
+      {
+        "player": "HATVANI KENDE",
+        "goals": 1
+      },
+      {
+        "player": "HERCZEG PATRIK",
+        "goals": 1
+      },
+      {
+        "player": "NAGY ZÉTÉNY",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "ERDŐS CSONGOR",
+        "goals": 1
+      },
+      {
+        "player": "MUNKÁCSI MILÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "BOKROS BENETT",
+        "goals": 1
+      },
+      {
+        "player": "CSILLAG DOMINIK",
+        "goals": 1
+      },
+      {
+        "player": "KECZÉRY LÁSZLÓ MÁTYÁS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "home": "MTK BUDAPEST",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "BIRÓ ÁDÁM",
+        "goals": 1
+      },
+      {
+        "player": "BODÓ BENCE",
+        "goals": 1
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "goals": 1
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 7,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "BUDAPEST HONVÉD FC",
+    "home_scorers": [
+      {
+        "player": "SMILNIAK DANIIL",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "goals": 2
+      },
+      {
+        "player": "VARGA BOTOND GÁBOR",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "DVSC",
+    "home_scorers": [
+      {
+        "player": "KOCSIS DÁVID",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BALOGH T. ALEX",
+        "goals": 1
+      },
+      {
+        "player": "KOVÁCS ÁKOS JÁNOS",
+        "goals": 1
+      },
+      {
+        "player": "KÁNYÁSSY GERGELY",
+        "goals": 1
+      },
+      {
+        "player": "VONA BENCE",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "home": "DVTK",
+    "away": "ETO AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "VIGH VENCEL",
+        "goals": 1
+      },
+      {
+        "player": "VÁRADI SOMA MILÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "home": "ETO AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "KÁROLYI MIHÁLY",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 1
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "home": "DVTK",
+    "away": "UTE",
+    "home_scorers": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 1
+      },
+      {
+        "player": "LAKATOS ANDOR",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "home": "DVSC",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 8,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "MIHÓK MARTIN",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HORVÁTH MARCELL TAMÁS",
+        "goals": 1
+      },
+      {
+        "player": "KŐVÁRI TAMÁS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "home": "FERENCVÁROSI TC",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "DEÁK OLIVÉR",
+        "goals": 2
+      },
+      {
+        "player": "PALÁSTHY PATRIK",
+        "goals": 3
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 9,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "DVSC",
+    "home_scorers": [
+      {
+        "player": "SMILNIAK DANIIL",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BALOGH T. ALEX",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "home": "UTE",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 1
+      },
+      {
+        "player": "LUKÁCS BENJÁMIN",
+        "goals": 1
+      },
+      {
+        "player": "PAPP VILMOS",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 9,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "ETO AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "goals": 2
+      },
+      {
+        "player": "KÁROLYI MIHÁLY",
+        "goals": 2
+      },
+      {
+        "player": "REJTŐ ROBIN",
+        "goals": 1
+      },
+      {
+        "player": "VINCZE BARNABÁS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "BUDAPEST HONVÉD FC",
+    "home_scorers": [
+      {
+        "player": "HORVÁTH MARCELL TAMÁS",
+        "goals": 1
+      },
+      {
+        "player": "HORVÁTH ZOLTÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "SZABÓ DOMINIK",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "DVTK",
+    "home_scorers": [
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "goals": 2
+      },
+      {
+        "player": "GÁL ALEXANDER",
+        "goals": 1
+      },
+      {
+        "player": "NAGY SZILÁRD",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "SŐREGI NOEL",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "home": "MTK BUDAPEST",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "VILLÁS VINCE",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "NYIRI BENEDEK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HUSZ MILÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "UTE",
+    "home_scorers": [
+      {
+        "player": "KOCSIS DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "LAUER OLIVÉR",
+        "goals": 1
+      },
+      {
+        "player": "SPEIER KENÉZ",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "PAPP VILMOS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "home": "ETO AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "HORVÁTH HENRIK RICHÁRD",
+        "goals": 1
+      },
+      {
+        "player": "MILANOVICH JÁNOS",
+        "goals": 1
+      },
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "goals": 1
+      }
+    ],
+    "away_scorers": []
+  },
+  {
+    "round": 10,
+    "home": "FERENCVÁROSI TC",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "goals": 1
+      },
+      {
+        "player": "ÁDÁM ÁKOS IVÁN",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "KEMÉNY ÁKOS ISTVÁN",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "home": "DVTK",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "goals": 1
+      },
+      {
+        "player": "KERTÉSZ MÁRK",
+        "goals": 1
+      },
+      {
+        "player": "NÉMET ZALÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HUBERT ROLAND",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "home": "DVSC",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "LAJOS PATRIK",
+        "goals": 1
+      },
+      {
+        "player": "SZABÓ BARNA",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "HUBERT ROLAND",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BALOGH DOMONKOS",
+        "goals": 1
+      },
+      {
+        "player": "BARA ÁDÁM",
+        "goals": 1
+      },
+      {
+        "player": "SPEIER KENÉZ",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "home": "MTK BUDAPEST",
+    "away": "ETO AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "BODÓ BENCE",
+        "goals": 1
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "goals": 2
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 1
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "goals": 2
+      },
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "goals": 1
+      },
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [
+      {
+        "player": "HÁNYI BÁLINT",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "FERCSIK JONATÁN",
+        "goals": 1
+      },
+      {
+        "player": "PALÁSTHY PATRIK",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "DVSC",
+    "home_scorers": [
+      {
+        "player": "ERDŐS CSONGOR",
+        "goals": 1
+      },
+      {
+        "player": "LOI MÁRIÓ DÁNIEL",
+        "goals": 1
+      },
+      {
+        "player": "MUNKÁCSI MILÁN",
+        "goals": 1
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 1
+      },
+      {
+        "player": "SZABÓ PATRIK",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HORNOK ERIK ZSOLT",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 11,
+    "home": "UTE",
+    "away": "BUDAPEST HONVÉD FC",
+    "home_scorers": [
+      {
+        "player": "DÓCZI ZÉTÉNY",
+        "goals": 1
+      },
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 1
+      },
+      {
+        "player": "MIKLÓSVÁRI GÉZA MILÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "DVSC",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "BALÁZS PATRIK",
+        "goals": 1
+      },
+      {
+        "player": "BÁN CSONGOR",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "ETO AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "HORVÁTH MARCELL TAMÁS",
+        "goals": 1
+      },
+      {
+        "player": "KEMÉNY ÁKOS ISTVÁN",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "FERENCVÁROSI TC",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "goals": 1
+      },
+      {
+        "player": "FERCSIK JONATÁN",
+        "goals": 1
+      },
+      {
+        "player": "MAJZIK ZÉTÉNY",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "UTE",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "HATVANI KENDE",
+        "goals": 1
+      },
+      {
+        "player": "PAPP VILMOS",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "home": "MTK BUDAPEST",
+    "away": "DVTK",
+    "home_scorers": [
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "goals": 1
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 1
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "VIGH VENCEL",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 12,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "TKACH VOLODYMYR",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "BARA ÁDÁM",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "MTK BUDAPEST",
+    "home_scorers": [],
+    "away_scorers": [
+      {
+        "player": "BODÓ BENCE",
+        "goals": 1
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "goals": 2
+      },
+      {
+        "player": "MOHL PATRIK",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "home": "ETO AKADÉMIA",
+    "away": "ILLÉS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "goals": 1
+      },
+      {
+        "player": "KOZICZ KORNÉL",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "ANGLER BENETT MÓZES",
+        "goals": 1
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "home": "DVTK",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "home_scorers": [
+      {
+        "player": "SZEGEDI NORBERT",
+        "goals": 1
+      },
+      {
+        "player": "SZOBOR NOEL JÁNOS",
+        "goals": 2
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "KEMENDI MILÁN",
+        "goals": 1
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 2
+      }
+    ]
+  },
+  {
+    "round": 13,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "HORVÁTH OLIVÉR",
+        "goals": 1
+      },
+      {
+        "player": "KOVÁCS BARNABÁS",
+        "goals": 1
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "ARTOMENKO OLEKSANDR",
+        "goals": 1
+      }
+    ]
+  }
+]

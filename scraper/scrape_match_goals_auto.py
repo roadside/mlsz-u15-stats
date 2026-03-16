@@ -134,34 +134,49 @@ def parse_goal_line(line: str):
 def parse_match_goals(match_url: str) -> tuple[list[dict], list[dict]]:
     soup = fetch_soup(match_url)
 
-    goals_section = soup.select_one("div.goals table.data-row")
-    if not goals_section:
+    goals_wrapper = soup.select_one("div.goals")
+    if not goals_wrapper:
+        print(f"NINCS div.goals: {match_url}")
+        return [], []
+
+    goals_table = goals_wrapper.select_one("table.data-row")
+    if not goals_table:
+        print(f"NINCS table.data-row: {match_url}")
+        print(goals_wrapper.prettify()[:2000])
+        return [], []
+
+    rows = goals_table.select("tr")
+    if not rows:
+        print(f"NINCS tr sor: {match_url}")
         return [], []
 
     home_scorers: list[dict] = []
     away_scorers: list[dict] = []
 
-    rows = goals_section.select("tbody tr")
-    if not rows:
-        rows = goals_section.select("tr")
+    print(f"DEBUG rows: {len(rows)} | {match_url}")
 
-    for row in rows:
+    for idx, row in enumerate(rows):
         left_td = row.select_one("td.left_team_player")
         score_td = row.select_one("td.goals_intimes")
         right_td = row.select_one("td.right_team_player")
+
+        if idx < 3:
+            print(f"ROW {idx}: {row.get_text(' | ', strip=True)}")
 
         if not score_td:
             continue
 
         score_after = clean_text(score_td.get_text(" ", strip=True)).replace(" ", "")
 
-        # Hazai gól
         if left_td:
             player_link = left_td.select_one("a")
             minute_p = left_td.select_one("div.goals_info p")
 
             player = clean_text(player_link.get_text(" ", strip=True)) if player_link else ""
             minute_text = clean_text(minute_p.get_text(" ", strip=True)) if minute_p else ""
+
+            if minute_text.endswith("'"):
+                minute_text = minute_text[:-1].strip()
 
             if player and minute_text.isdigit():
                 home_scorers.append({
@@ -170,7 +185,6 @@ def parse_match_goals(match_url: str) -> tuple[list[dict], list[dict]]:
                     "score_after": score_after,
                 })
 
-        # Vendég gól
         if right_td:
             player_link = right_td.select_one("a")
             minute_p = right_td.select_one("div.goals_info p")
@@ -178,12 +192,19 @@ def parse_match_goals(match_url: str) -> tuple[list[dict], list[dict]]:
             player = clean_text(player_link.get_text(" ", strip=True)) if player_link else ""
             minute_text = clean_text(minute_p.get_text(" ", strip=True)) if minute_p else ""
 
+            if minute_text.endswith("'"):
+                minute_text = minute_text[:-1].strip()
+
             if player and minute_text.isdigit():
                 away_scorers.append({
                     "player": player,
                     "minute": int(minute_text),
                     "score_after": score_after,
                 })
+
+    print(
+        f"PARSE EREDMÉNY | hazai: {len(home_scorers)} | vendég: {len(away_scorers)} | {match_url}"
+    )
 
     return home_scorers, away_scorers
 

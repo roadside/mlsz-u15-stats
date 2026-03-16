@@ -362,7 +362,7 @@ export function StatsView({
                   domain={[0, 100]}
                 />
                 <Tooltip
-                  formatter={(value: number, name: string) => [`${value}%`, name]}
+                  formatter={(value, name) => [`${value}%`, name as string]}
                   labelFormatter={(label, payload) => {
                     const row = payload?.[0]?.payload;
                     return row

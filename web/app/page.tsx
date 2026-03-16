@@ -464,7 +464,7 @@ function MatchCard({
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             alignItems: "center",
             gap: "8px",
             flexWrap: "wrap",
@@ -1339,7 +1339,7 @@ export default function Home() {
                   onClick={() => setMatchScope("season")}
                   style={subTabButtonStyle(matchScope === "season")}
                 >
-                  Összes meccse
+                  Összes forduló
                 </button>
               </div>
             ) : null}
@@ -2026,8 +2026,6 @@ export default function Home() {
                 </tbody>
               </table>
             </div>
-          )}
-        </>
           )}
         </section>
       ) : (

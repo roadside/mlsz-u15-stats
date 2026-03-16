@@ -837,6 +837,17 @@
   },
   {
     "round": 13,
+    "date": "2026. 04. 01. 18:00",
+    "home": "FERENCVÁROSI TC",
+    "away": "UTE",
+    "home_goals": null,
+    "away_goals": null,
+    "status": "Kiírva",
+    "venue": "Ferencvárosi TC Népligeti Sportcentrum",
+    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
+  },
+  {
+    "round": 13,
     "date": "2026. 04. 02. 12:00",
     "home": "DVSC",
     "away": "BUDAPEST HONVÉD FC",
@@ -844,17 +855,6 @@
     "away_goals": null,
     "status": "Kiírva",
     "venue": "Debreceni Labdarúgó Akadémia Edzőközpont",
-    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
-  },
-  {
-    "round": 13,
-    "date": "2026. 04. 02. 12:00",
-    "home": "FERENCVÁROSI TC",
-    "away": "UTE",
-    "home_goals": null,
-    "away_goals": null,
-    "status": "Kiírva",
-    "venue": "Ferencvárosi TC Népligeti Sportcentrum",
     "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/13.html"
   },
   {

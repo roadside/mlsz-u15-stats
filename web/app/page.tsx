@@ -1940,10 +1940,9 @@ export default function Home() {
               </table>
             </div>
           )}
-        </>
-          )}
         </section>
       ) : (
+        <>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             Liga statisztika
           </h2>

@@ -606,6 +606,37 @@ export default function Home() {
     };
   }, [selectedTeamFilter, selectedTable]);
 
+
+  const teamPrevNextMatches = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") {
+      return null;
+    }
+
+    const teamMatches = allMatches
+      .filter(
+        (m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter
+      )
+      .slice()
+      .sort((a, b) => {
+        const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
+        const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
+
+        if (aDate !== bDate) {
+          return aDate - bDate;
+        }
+
+        return a.round - b.round;
+      });
+
+    const played = teamMatches.filter((m) => m.status === "Lejátszva");
+    const upcoming = teamMatches.filter((m) => m.status !== "Lejátszva");
+
+    return {
+      previous: played.length > 0 ? played[played.length - 1] : null,
+      next: upcoming.length > 0 ? upcoming[0] : null,
+    };
+  }, [selectedTeamFilter]);
+
   const playedMatches = useMemo(() => {
     return allMatches.filter(
       (m) =>
@@ -1295,13 +1326,65 @@ export default function Home() {
         </section>
       )}
 
+      {selectedTeamProfile && teamPrevNextMatches && (
+        <section style={sectionCardStyle}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+              gap: "16px",
+            }}
+          >
+            <div>
+              <div
+                style={{
+                  fontSize: isMobile ? "16px" : "17px",
+                  fontWeight: 700,
+                  marginBottom: "10px",
+                }}
+              >
+                Előző mérkőzés
+              </div>
+              {teamPrevNextMatches.previous ? (
+                <MatchCard
+                  match={teamPrevNextMatches.previous}
+                  isMobile={isMobile}
+                />
+              ) : (
+                <EmptyBox text="Nincs még lejátszott mérkőzés." />
+              )}
+            </div>
+
+            <div>
+              <div
+                style={{
+                  fontSize: isMobile ? "16px" : "17px",
+                  fontWeight: 700,
+                  marginBottom: "10px",
+                }}
+              >
+                Következő mérkőzés
+              </div>
+              {teamPrevNextMatches.next ? (
+                <MatchCard
+                  match={teamPrevNextMatches.next}
+                  isMobile={isMobile}
+                />
+              ) : (
+                <EmptyBox text="Nincs következő kiírt mérkőzés." />
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {view === "matches" ? (
         <>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
             {selectedTeamFilter === "Összes csapat"
               ? `${selectedRound}. forduló meccsei`
               : matchScope === "season"
-              ? `${selectedTeamFilter} – összes meccs`
+              ? `${selectedTeamFilter} – összes forduló`
               : `${selectedRound}. forduló – ${selectedTeamFilter} meccsei`}
           </h2>
 

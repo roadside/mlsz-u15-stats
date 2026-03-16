@@ -133,38 +133,57 @@ def parse_goal_line(line: str):
 
 def parse_match_goals(match_url: str) -> tuple[list[dict], list[dict]]:
     soup = fetch_soup(match_url)
-    text = soup.get_text("\n")
-    lines = normalize_lines(text)
 
-    try:
-        start_idx = lines.index("Gólok")
-    except ValueError:
+    goals_section = soup.select_one("div.goals table.data-row")
+    if not goals_section:
         return [], []
-
-    block: list[str] = []
-    for line in lines[start_idx + 1:]:
-        if line in STOP_MARKERS:
-            break
-        block.append(line)
 
     home_scorers: list[dict] = []
     away_scorers: list[dict] = []
 
-    for line in block:
-        parsed = parse_goal_line(line)
-        if not parsed:
+    rows = goals_section.select("tbody tr")
+    if not rows:
+        rows = goals_section.select("tr")
+
+    for row in rows:
+        left_td = row.select_one("td.left_team_player")
+        score_td = row.select_one("td.goals_intimes")
+        right_td = row.select_one("td.right_team_player")
+
+        if not score_td:
             continue
 
-        row = {
-            "player": parsed["player"],
-            "minute": parsed["minute"],
-            "score_after": parsed["score_after"],
-        }
+        score_after = clean_text(score_td.get_text(" ", strip=True)).replace(" ", "")
 
-        if parsed["side"] == "home":
-            home_scorers.append(row)
-        else:
-            away_scorers.append(row)
+        # Hazai gól
+        if left_td:
+            player_link = left_td.select_one("a")
+            minute_p = left_td.select_one("div.goals_info p")
+
+            player = clean_text(player_link.get_text(" ", strip=True)) if player_link else ""
+            minute_text = clean_text(minute_p.get_text(" ", strip=True)) if minute_p else ""
+
+            if player and minute_text.isdigit():
+                home_scorers.append({
+                    "player": player,
+                    "minute": int(minute_text),
+                    "score_after": score_after,
+                })
+
+        # Vendég gól
+        if right_td:
+            player_link = right_td.select_one("a")
+            minute_p = right_td.select_one("div.goals_info p")
+
+            player = clean_text(player_link.get_text(" ", strip=True)) if player_link else ""
+            minute_text = clean_text(minute_p.get_text(" ", strip=True)) if minute_p else ""
+
+            if player and minute_text.isdigit():
+                away_scorers.append({
+                    "player": player,
+                    "minute": int(minute_text),
+                    "score_after": score_after,
+                })
 
     return home_scorers, away_scorers
 

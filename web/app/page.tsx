@@ -1639,10 +1639,6 @@ const nextOpponentStats = useMemo(() => {
 
       {selectedTeamProfile && teamMiniStats && (
         <section style={sectionCardStyle}>
-          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            Mini stat dashboard
-          </h2>
-
           <div
             style={{
               display: "grid",
@@ -2940,7 +2936,7 @@ const nextOpponentStats = useMemo(() => {
             </div>
 
             <div style={sectionCardStyle}>
-              <div style={sectionTitleStyle}>Bajnoki esélymodell – Monte Carlo</div>
+              <div style={sectionTitleStyle}>Bajnoki esélymodell</div>
               <div style={sectionSubTitleStyle}>
                 {championshipMonteCarlo.simulationCount} szezonfutás alapján becsült
                 bajnoki, top 3, top 6 és utolsó hely valószínűségek.

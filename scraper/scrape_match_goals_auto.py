@@ -87,15 +87,15 @@ def extract_match_links(round_url: str) -> list[str]:
 
     for a in soup.find_all("a", href=True):
         href = a["href"].strip()
-        if not MATCH_LINK_RE.match(href):
-            continue
-
         full_url = urljoin("https://adatbank.mlsz.hu", href)
-        if full_url in seen:
-            continue
 
-        seen.add(full_url)
-        urls.append(full_url)
+        if (
+            f"/match/{LEAGUE_ID}/{SEASON_ID}/{COMPETITION_ID}/" in full_url
+            and full_url.endswith(".html")
+        ):
+            if full_url not in seen:
+                seen.add(full_url)
+                urls.append(full_url)
 
     return urls
 

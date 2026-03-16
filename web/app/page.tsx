@@ -840,6 +840,62 @@ const teamFormTrend = useMemo(() => {
   };
 }, [selectedTeamFilter]);
 
+const teamTableMovement = useMemo(() => {
+  if (selectedTeamFilter === "Összes csapat") {
+    return null;
+  }
+
+  const rows = allTables
+    .slice()
+    .sort((a, b) => a.round - b.round)
+    .map((roundTable) => {
+      const row = roundTable.table.find((item) => item.team === selectedTeamFilter);
+
+      if (!row) {
+        return null;
+      }
+
+      return {
+        round: roundTable.round,
+        position: Number(row.pos),
+        points: Number(row.points),
+        goalDifference: Number(row.gd),
+        form: row.form ?? [],
+      };
+    })
+    .filter(
+      (
+        item
+      ): item is {
+        round: number;
+        position: number;
+        points: number;
+        goalDifference: number;
+        form: string[];
+      } => item !== null
+    );
+
+  if (rows.length === 0) {
+    return null;
+  }
+
+  const first = rows[0];
+  const last = rows[rows.length - 1];
+  const bestPosition = rows.reduce(
+    (best, row) => Math.min(best, row.position),
+    rows[0].position
+  );
+
+  return {
+    rows,
+    firstPosition: first.position,
+    currentPosition: last.position,
+    bestPosition,
+    movement: first.position - last.position,
+  };
+}, [selectedTeamFilter]);
+
+
 
 
   const playedMatches = useMemo(() => {
@@ -1672,6 +1728,99 @@ const teamFormTrend = useMemo(() => {
     )}
   </section>
 )}
+
+      {selectedTeamProfile && teamTableMovement && (
+        <section style={sectionCardStyle}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            Tabella-mozgás
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(6, 1fr)",
+              gap: "10px",
+            }}
+          >
+            {teamTableMovement.rows.map((row) => (
+              <div
+                key={`${selectedTeamFilter}-movement-${row.round}`}
+                style={{
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "12px",
+                  padding: "12px",
+                  backgroundColor: "#f8fafc",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "12px",
+                    color: "#6b7280",
+                    marginBottom: "8px",
+                  }}
+                >
+                  {row.round}. forduló
+                </div>
+
+                <div
+                  style={{
+                    fontSize: isMobile ? "24px" : "28px",
+                    fontWeight: 800,
+                    lineHeight: 1,
+                    color: "#111827",
+                  }}
+                >
+                  {row.position}.
+                </div>
+
+                <div
+                  style={{
+                    marginTop: "8px",
+                    fontSize: "12px",
+                    color: "#374151",
+                    display: "grid",
+                    gap: "4px",
+                  }}
+                >
+                  <div>Pont: {row.points}</div>
+                  <div>GK: {row.goalDifference}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            style={{
+              marginTop: "14px",
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+              gap: "12px",
+            }}
+          >
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Nyitó → jelenlegi helyezés</div>
+              <div style={statValueStyle}>
+                {teamTableMovement.firstPosition}. → {teamTableMovement.currentPosition}.
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Legjobb helyezés</div>
+              <div style={statValueStyle}>{teamTableMovement.bestPosition}.</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Pozícióváltozás</div>
+              <div style={statValueStyle}>
+                {teamTableMovement.movement > 0
+                  ? `+${teamTableMovement.movement}`
+                  : teamTableMovement.movement}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
 
       {selectedTeamProfile && teamPrevNextMatches && (
         <section style={sectionCardStyle}>

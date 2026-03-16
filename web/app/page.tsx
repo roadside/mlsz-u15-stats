@@ -489,26 +489,88 @@ export default function Home() {
         <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: "bold", marginBottom: "10px" }}>
           Forduló kiválasztása
         </div>
-        <div style={{ display: "flex", gap: "8px", overflowX: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "8px" }}>
-          {rounds.map((round) => (
+
+        {isMobile ? (
+          /* ── Mobile: prev/next + forduló jelző ── */
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <button
-              key={round}
-              onClick={() => setSelectedRound(round)}
+              onClick={() => setSelectedRound((r) => Math.max(1, r - 1))}
+              disabled={selectedRound === 1}
               style={{
-                minWidth: isMobile ? "40px" : "48px",
-                padding: isMobile ? "9px 10px" : "10px 12px",
-                borderRadius: "10px",
-                border: "1px solid #d1d5db",
-                backgroundColor: selectedRound === round ? "#2563eb" : "#ffffff",
-                color: selectedRound === round ? "#ffffff" : "#111827",
-                fontWeight: "bold",
-                cursor: "pointer",
+                width: "40px", height: "40px", borderRadius: "10px",
+                border: "1px solid #d1d5db", backgroundColor: "#ffffff",
+                fontSize: "18px", fontWeight: "bold", cursor: selectedRound === 1 ? "default" : "pointer",
+                color: selectedRound === 1 ? "#d1d5db" : "#111827",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
               }}
             >
-              {round}
+              ‹
             </button>
-          ))}
-        </div>
+
+            {/* Visible pill row — only 5 rounds centered around active */}
+            <div style={{ display: "flex", gap: "6px", flex: 1, justifyContent: "center" }}>
+              {rounds
+                .filter((r) => {
+                  const start = Math.max(1, Math.min(selectedRound - 2, rounds.length - 4));
+                  return r >= start && r < start + 5;
+                })
+                .map((round) => (
+                  <button
+                    key={round}
+                    onClick={() => setSelectedRound(round)}
+                    style={{
+                      minWidth: "40px", height: "40px",
+                      padding: "0 6px",
+                      borderRadius: "10px",
+                      border: "1px solid #d1d5db",
+                      backgroundColor: selectedRound === round ? "#2563eb" : "#ffffff",
+                      color: selectedRound === round ? "#ffffff" : "#111827",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {round}
+                  </button>
+                ))}
+            </div>
+
+            <button
+              onClick={() => setSelectedRound((r) => Math.min(rounds.length, r + 1))}
+              disabled={selectedRound === rounds.length}
+              style={{
+                width: "40px", height: "40px", borderRadius: "10px",
+                border: "1px solid #d1d5db", backgroundColor: "#ffffff",
+                fontSize: "18px", fontWeight: "bold", cursor: selectedRound === rounds.length ? "default" : "pointer",
+                color: selectedRound === rounds.length ? "#d1d5db" : "#111827",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                flexShrink: 0,
+              }}
+            >
+              ›
+            </button>
+          </div>
+        ) : (
+          /* ── Desktop: scrollable pill row ── */
+          <div style={{ display: "flex", gap: "8px", overflowX: "auto", WebkitOverflowScrolling: "touch", paddingBottom: "8px" }}>
+            {rounds.map((round) => (
+              <button
+                key={round}
+                onClick={() => setSelectedRound(round)}
+                style={{
+                  minWidth: "48px", padding: "10px 12px",
+                  borderRadius: "10px", border: "1px solid #d1d5db",
+                  backgroundColor: selectedRound === round ? "#2563eb" : "#ffffff",
+                  color: selectedRound === round ? "#ffffff" : "#111827",
+                  fontWeight: "bold", cursor: "pointer",
+                }}
+              >
+                {round}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* ── Team profile sections ── */}

@@ -5,7 +5,18 @@
     "home": "DVSC",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096894.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "minute": 37,
+        "score_after": "1-0"
+      },
+      {
+        "player": "NAGY BENCE",
+        "minute": 75,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -14,7 +25,13 @@
     "home": "ETO AKADÉMIA",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096893.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "minute": 71,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -23,7 +40,18 @@
     "home": "FERENCVÁROSI TC",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -32,7 +60,18 @@
     "home": "UTE",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096890.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 16,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÓCZI ZÉTÉNY",
+        "minute": 30,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -41,7 +80,13 @@
     "home": "DVTK",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096892.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "minute": 13,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -50,7 +95,23 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096891.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "LAUER OLIVÉR",
+        "minute": 27,
+        "score_after": "1-0"
+      },
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 53,
+        "score_after": "2-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 63,
+        "score_after": "3-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -68,7 +129,18 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096898.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NAGY GÁBOR VALENTIN",
+        "minute": 33,
+        "score_after": "1-2"
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "minute": 76,
+        "score_after": "2-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -86,7 +158,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -95,7 +173,18 @@
     "home": "MTK BUDAPEST",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096899.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MOHL PATRIK",
+        "minute": 44,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BODÓ BENCE",
+        "minute": 47,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -104,7 +193,13 @@
     "home": "UTE",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096901.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 40,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -113,7 +208,13 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096907.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TAKÁCS DOMINIK",
+        "minute": 31,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -131,7 +232,33 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096903.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 27,
+        "score_after": "1-0"
+      },
+      {
+        "player": "LAUER OLIVÉR",
+        "minute": 35,
+        "score_after": "2-0"
+      },
+      {
+        "player": "FARKAS MILÁN",
+        "minute": 55,
+        "score_after": "3-1"
+      },
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 68,
+        "score_after": "4-1"
+      },
+      {
+        "player": "RÁCZ BOTOND",
+        "minute": 80,
+        "score_after": "5-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -140,7 +267,13 @@
     "home": "DVSC",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096906.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "minute": 69,
+        "score_after": "1-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -149,7 +282,13 @@
     "home": "ETO AKADÉMIA",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -158,7 +297,13 @@
     "home": "DVTK",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096904.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SŐREGI NOEL",
+        "minute": 4,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -167,7 +312,23 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096912.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "minute": 26,
+        "score_after": "1-0"
+      },
+      {
+        "player": "ERDŐS CSONGOR",
+        "minute": 32,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "minute": 60,
+        "score_after": "3-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -176,7 +337,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -185,7 +352,18 @@
     "home": "DVSC",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096908.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KOVÁCS ZSOMBOR",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BALOGH T. ALEX",
+        "minute": 61,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -194,7 +372,18 @@
     "home": "FERENCVÁROSI TC",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096909.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "LUKÁCS BARNA",
+        "minute": 39,
+        "score_after": "1-2"
+      },
+      {
+        "player": "FERCSIK JONATÁN",
+        "minute": 81,
+        "score_after": "2-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -203,7 +392,18 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096911.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MOSOLITS MÁRKÓ",
+        "minute": 67,
+        "score_after": "1-1"
+      },
+      {
+        "player": "VARGA BENEDEK",
+        "minute": 73,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -221,7 +421,28 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -230,7 +451,13 @@
     "home": "UTE",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096919.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "DÓCZI ZÉTÉNY",
+        "minute": 46,
+        "score_after": "1-3"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -248,7 +475,13 @@
     "home": "ETO AKADÉMIA",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096917.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "VARGA MÁTÉ TAMÁS",
+        "minute": 58,
+        "score_after": "1-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -257,7 +490,13 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096918.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "VASVÁRI LEVENTE ZALÁN",
+        "minute": 37,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -266,7 +505,23 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096914.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "minute": 29,
+        "score_after": "1-1"
+      },
+      {
+        "player": "HUBERT ROLAND",
+        "minute": 39,
+        "score_after": "2-1"
+      },
+      {
+        "player": "MENYHÁRT MÁRK",
+        "minute": 82,
+        "score_after": "3-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -284,7 +539,18 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -293,7 +559,18 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096924.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "VARGA BENEDEK",
+        "minute": 30,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MIHÓK MARTIN",
+        "minute": 50,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -302,7 +579,13 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096925.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "minute": 77,
+        "score_after": "1-6"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -311,7 +594,13 @@
     "home": "ETO AKADÉMIA",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096920.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BENYOVSZKI BOTOND",
+        "minute": 45,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -320,7 +609,18 @@
     "home": "DVSC",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096921.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BALÁZS PATRIK",
+        "minute": 13,
+        "score_after": "1-0"
+      },
+      {
+        "player": "CSORBA RICHÁRD LEVENTE",
+        "minute": 76,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -329,7 +629,38 @@
     "home": "UTE",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096931.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "HERCZEG PATRIK",
+        "minute": 4,
+        "score_after": "1-0"
+      },
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 29,
+        "score_after": "2-1"
+      },
+      {
+        "player": "NAGY ZÉTÉNY",
+        "minute": 56,
+        "score_after": "3-2"
+      },
+      {
+        "player": "HATVANI KENDE",
+        "minute": 59,
+        "score_after": "4-2"
+      },
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 63,
+        "score_after": "5-2"
+      },
+      {
+        "player": "NAGY ZÉTÉNY",
+        "minute": 80,
+        "score_after": "6-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -347,7 +678,28 @@
     "home": "MTK BUDAPEST",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096929.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BODÓ BENCE",
+        "minute": 12,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 25,
+        "score_after": "2-0"
+      },
+      {
+        "player": "BIRÓ ÁDÁM",
+        "minute": 53,
+        "score_after": "3-0"
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "minute": 63,
+        "score_after": "4-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -356,7 +708,13 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096930.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SMILNIAK DANIIL",
+        "minute": 13,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -365,7 +723,13 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096927.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KOCSIS DÁVID",
+        "minute": 50,
+        "score_after": "1-3"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -374,7 +738,18 @@
     "home": "DVTK",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096928.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "VÁRADI SOMA MILÁN",
+        "minute": 49,
+        "score_after": "1-1"
+      },
+      {
+        "player": "VIGH VENCEL",
+        "minute": 69,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -383,7 +758,13 @@
     "home": "ETO AKADÉMIA",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096933.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KÁROLYI MIHÁLY",
+        "minute": 76,
+        "score_after": "1-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -392,7 +773,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096936.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 41,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -401,7 +788,13 @@
     "home": "DVTK",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096932.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "minute": 28,
+        "score_after": "1-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -410,7 +803,13 @@
     "home": "DVSC",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096934.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "minute": 27,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -419,7 +818,18 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096937.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MIHÓK MARTIN",
+        "minute": 46,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MIHÓK MARTIN",
+        "minute": 53,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -428,7 +838,33 @@
     "home": "FERENCVÁROSI TC",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096935.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "DEÁK OLIVÉR",
+        "minute": 21,
+        "score_after": "1-0"
+      },
+      {
+        "player": "PALÁSTHY PATRIK",
+        "minute": 32,
+        "score_after": "2-0"
+      },
+      {
+        "player": "PALÁSTHY PATRIK",
+        "minute": 64,
+        "score_after": "3-0"
+      },
+      {
+        "player": "DEÁK OLIVÉR",
+        "minute": 68,
+        "score_after": "4-0"
+      },
+      {
+        "player": "PALÁSTHY PATRIK",
+        "minute": 72,
+        "score_after": "5-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -437,7 +873,13 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096942.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SMILNIAK DANIIL",
+        "minute": 48,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -446,7 +888,23 @@
     "home": "UTE",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096943.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "PAPP VILMOS",
+        "minute": 6,
+        "score_after": "1-0"
+      },
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 40,
+        "score_after": "2-0"
+      },
+      {
+        "player": "LUKÁCS BENJÁMIN",
+        "minute": 62,
+        "score_after": "3-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -455,7 +913,23 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096938.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "minute": 6,
+        "score_after": "1-0"
+      },
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "minute": 61,
+        "score_after": "2-4"
+      },
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "minute": 70,
+        "score_after": "3-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -464,7 +938,18 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096940.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "HORVÁTH ZOLTÁN",
+        "minute": 48,
+        "score_after": "1-2"
+      },
+      {
+        "player": "HORVÁTH MARCELL TAMÁS",
+        "minute": 50,
+        "score_after": "2-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -473,7 +958,28 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096939.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NAGY SZILÁRD",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 7,
+        "score_after": "2-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 65,
+        "score_after": "3-1"
+      },
+      {
+        "player": "GÁL ALEXANDER",
+        "minute": 74,
+        "score_after": "4-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -482,7 +988,13 @@
     "home": "MTK BUDAPEST",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096941.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 16,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -491,7 +1003,18 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096949.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 26,
+        "score_after": "1-0"
+      },
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 58,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -500,7 +1023,23 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096944.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "LAUER OLIVÉR",
+        "minute": 40,
+        "score_after": "1-1"
+      },
+      {
+        "player": "KOCSIS DÁVID",
+        "minute": 46,
+        "score_after": "2-1"
+      },
+      {
+        "player": "SPEIER KENÉZ",
+        "minute": 82,
+        "score_after": "3-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -509,7 +1048,23 @@
     "home": "ETO AKADÉMIA",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096946.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MILANOVICH JÁNOS",
+        "minute": 9,
+        "score_after": "1-0"
+      },
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "minute": 29,
+        "score_after": "2-0"
+      },
+      {
+        "player": "HORVÁTH HENRIK RICHÁRD",
+        "minute": 80,
+        "score_after": "3-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -518,7 +1073,23 @@
     "home": "FERENCVÁROSI TC",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096948.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ÁDÁM ÁKOS IVÁN",
+        "minute": 55,
+        "score_after": "1-1"
+      },
+      {
+        "player": "ÁDÁM ÁKOS IVÁN",
+        "minute": 68,
+        "score_after": "2-1"
+      },
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 79,
+        "score_after": "3-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -527,7 +1098,23 @@
     "home": "DVTK",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096945.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "minute": 11,
+        "score_after": "1-0"
+      },
+      {
+        "player": "KERTÉSZ MÁRK",
+        "minute": 28,
+        "score_after": "2-1"
+      },
+      {
+        "player": "NÉMET ZALÁN",
+        "minute": 48,
+        "score_after": "3-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -554,7 +1141,23 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096950.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "minute": 10,
+        "score_after": "1-0"
+      },
+      {
+        "player": "HUBERT ROLAND",
+        "minute": 27,
+        "score_after": "2-1"
+      },
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "minute": 51,
+        "score_after": "3-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -563,7 +1166,38 @@
     "home": "MTK BUDAPEST",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096953.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "BODÓ BENCE",
+        "minute": 33,
+        "score_after": "1-0"
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "minute": 41,
+        "score_after": "2-1"
+      },
+      {
+        "player": "MOHL PATRIK",
+        "minute": 50,
+        "score_after": "3-1"
+      },
+      {
+        "player": "MOHL PATRIK",
+        "minute": 58,
+        "score_after": "4-2"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 61,
+        "score_after": "5-2"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 65,
+        "score_after": "6-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -572,7 +1206,13 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096951.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "HÁNYI BÁLINT",
+        "minute": 46,
+        "score_after": "1-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -581,7 +1221,38 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096952.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SZABÓ PATRIK",
+        "minute": 11,
+        "score_after": "1-0"
+      },
+      {
+        "player": "ERDŐS CSONGOR",
+        "minute": 13,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "minute": 27,
+        "score_after": "3-0"
+      },
+      {
+        "player": "SZABÓ PATRIK",
+        "minute": 28,
+        "score_after": "4-0"
+      },
+      {
+        "player": "LOI MÁRIÓ DÁNIEL",
+        "minute": 51,
+        "score_after": "5-0"
+      },
+      {
+        "player": "MUNKÁCSI MILÁN",
+        "minute": 56,
+        "score_after": "6-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -590,7 +1261,23 @@
     "home": "UTE",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096955.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "DÓCZI ZÉTÉNY",
+        "minute": 37,
+        "score_after": "1-0"
+      },
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 40,
+        "score_after": "2-0"
+      },
+      {
+        "player": "MIKLÓSVÁRI GÉZA MILÁN",
+        "minute": 52,
+        "score_after": "3-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -608,7 +1295,18 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150238.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KEMÉNY ÁKOS ISTVÁN",
+        "minute": 32,
+        "score_after": "1-0"
+      },
+      {
+        "player": "HORVÁTH MARCELL TAMÁS",
+        "minute": 54,
+        "score_after": "2-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -635,7 +1333,23 @@
     "home": "MTK BUDAPEST",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150239.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MOHL PATRIK",
+        "minute": 17,
+        "score_after": "1-0"
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "minute": 75,
+        "score_after": "2-1"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 80,
+        "score_after": "3-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -644,7 +1358,13 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150240.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TKACH VOLODYMYR",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -662,7 +1382,18 @@
     "home": "ETO AKADÉMIA",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150245.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KOZICZ KORNÉL",
+        "minute": 15,
+        "score_after": "1-0"
+      },
+      {
+        "player": "KOLOZSVÁRI DÁVID",
+        "minute": 49,
+        "score_after": "2-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -671,7 +1402,23 @@
     "home": "DVTK",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150244.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SZEGEDI NORBERT",
+        "minute": 3,
+        "score_after": "1-0"
+      },
+      {
+        "player": "SZOBOR NOEL JÁNOS",
+        "minute": 42,
+        "score_after": "2-1"
+      },
+      {
+        "player": "SZOBOR NOEL JÁNOS",
+        "minute": 73,
+        "score_after": "3-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -680,7 +1427,18 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150242.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "KOVÁCS BARNABÁS",
+        "minute": 38,
+        "score_after": "1-0"
+      },
+      {
+        "player": "HORVÁTH OLIVÉR",
+        "minute": 42,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -689,7 +1447,18 @@
     "home": "FERENCVÁROSI TC",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -698,7 +1467,13 @@
     "home": "DVSC",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -716,7 +1491,18 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -725,7 +1511,13 @@
     "home": "MTK BUDAPEST",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -734,7 +1526,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -743,7 +1541,13 @@
     "home": "FERENCVÁROSI TC",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -752,7 +1556,28 @@
     "home": "UTE",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -761,7 +1586,18 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -770,7 +1606,13 @@
     "home": "ETO AKADÉMIA",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -779,7 +1621,13 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -788,7 +1636,13 @@
     "home": "DVTK",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -797,7 +1651,28 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -806,7 +1681,18 @@
     "home": "UTE",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -815,7 +1701,18 @@
     "home": "MTK BUDAPEST",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -824,7 +1721,13 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -833,7 +1736,13 @@
     "home": "FERENCVÁROSI TC",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -842,7 +1751,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -851,7 +1766,28 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -860,7 +1796,18 @@
     "home": "DVSC",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -869,7 +1816,18 @@
     "home": "UTE",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -878,7 +1836,13 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -887,7 +1851,13 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -896,7 +1866,13 @@
     "home": "MTK BUDAPEST",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -905,7 +1881,28 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -914,7 +1911,18 @@
     "home": "DVTK",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -923,7 +1931,18 @@
     "home": "ETO AKADÉMIA",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -932,7 +1951,13 @@
     "home": "FERENCVÁROSI TC",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -941,7 +1966,13 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -950,7 +1981,13 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -959,7 +1996,28 @@
     "home": "DVSC",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -968,7 +2026,18 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -977,7 +2046,18 @@
     "home": "UTE",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -986,7 +2066,13 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -995,7 +2081,13 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1004,7 +2096,13 @@
     "home": "MTK BUDAPEST",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1013,7 +2111,28 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1022,7 +2141,18 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1031,7 +2161,18 @@
     "home": "DVSC",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1040,7 +2181,13 @@
     "home": "FERENCVÁROSI TC",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1049,7 +2196,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1058,7 +2211,13 @@
     "home": "DVTK",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1067,7 +2226,28 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1076,7 +2256,18 @@
     "home": "ETO AKADÉMIA",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1085,7 +2276,18 @@
     "home": "VÁRDA LABDARUGÓ AKADÉMIA",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1094,7 +2296,13 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "FERENCVÁROSI TC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1103,7 +2311,13 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "BUDAPEST HONVÉD FC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1112,7 +2326,13 @@
     "home": "MTK BUDAPEST",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1121,7 +2341,28 @@
     "home": "UTE",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1130,7 +2371,18 @@
     "home": "VASAS KUBALA AKADÉMIA",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1139,7 +2391,18 @@
     "home": "PUSKÁS AKADÉMIA",
     "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "CSILLAG DOMINIK",
+        "minute": 7,
+        "score_after": "1-0"
+      },
+      {
+        "player": "DÖMÉNY NORBERT",
+        "minute": 9,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1148,7 +2411,13 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "UTE",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "TŐZSÉR LÁZÁR",
+        "minute": 35,
+        "score_after": "1-1"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1157,7 +2426,13 @@
     "home": "DVTK",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 60,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1166,7 +2441,13 @@
     "home": "ETO AKADÉMIA",
     "away": "MTK BUDAPEST",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 18,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1175,7 +2456,28 @@
     "home": "FERENCVÁROSI TC",
     "away": "ILLÉS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 5,
+        "score_after": "1-0"
+      },
+      {
+        "player": "BAJKÓ MIKLÓS",
+        "minute": 16,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 29,
+        "score_after": "3-1"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 70,
+        "score_after": "4-4"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1184,7 +2486,18 @@
     "home": "DVSC",
     "away": "VIDEOTON FC FEHÉRVÁR",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 47,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MALOMSOKI MILÁN DÁVID",
+        "minute": 53,
+        "score_after": "2-0"
+      }
+    ],
     "away_scorers": []
   }
 ]

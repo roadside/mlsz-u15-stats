@@ -48,5 +48,10 @@ jobs:
           fi
 
           git commit -m "Automatikus MLSZ adatfrissítés"
-          git pull --rebase origin main
-          git push
+
+          # Push újrapróbálás: ha közben más is pusholt, rebase-elünk és újra próbálunk
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push && break
+            echo "Push sikertelen ($i. próba), várakozás..."
+            sleep 5
+          done

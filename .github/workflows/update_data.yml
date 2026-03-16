@@ -48,4 +48,5 @@ jobs:
           fi
 
           git commit -m "Automatikus MLSZ adatfrissítés"
+          git pull --rebase origin main
           git push

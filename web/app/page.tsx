@@ -464,7 +464,7 @@ function MatchCard({
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             alignItems: "center",
             gap: "8px",
             flexWrap: "wrap",

@@ -12,7 +12,7 @@ import {
   parseHungarianDate,
   round2,
   buildPoissonMatrix,
-  sampleFromDistribution,
+  samplePoissonGoalsTruncated,
   tabButtonStyle,
   subTabButtonStyle,
   selectStyle,
@@ -31,14 +31,23 @@ const allTables = tablesData as RoundTable[];
 const allGoalscorers = goalscorersData as RoundGoalscorers[];
 const allMatchGoalscorers = matchGoalscorersData as MatchGoalscorer[];
 const rounds = Array.from({ length: 22 }, (_, i) => i + 1);
+const allTeams = Array.from(new Set(allMatches.flatMap((m) => [m.home, m.away]))).sort((a, b) =>
+  a.localeCompare(b, "hu")
+);
+const matchTimestamps = new Map<string, number>(
+  allMatches.map((m) => {
+    const ts = parseHungarianDate(m.date)?.getTime() ?? 0;
+    return [`${m.round}|${m.home}|${m.away}|${m.date}`, ts];
+  })
+);
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function Home() {
   const [selectedRound, setSelectedRound] = useState<number>(getClosestRound(allMatches));
   const [view, setView] = useState<"matches" | "table" | "goalscorers" | "stats">("matches");
   const [isMobile, setIsMobile] = useState(false);
-  const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>("");
-  const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>("");
+  const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>(() => allTeams[0] ?? "");
+  const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>(() => allTeams[1] ?? allTeams[0] ?? "");
   const [selectedTeamFilter, setSelectedTeamFilter] = useState<string>("Összes csapat");
   const [matchScope, setMatchScope] = useState<"round" | "season">("round");
 
@@ -50,88 +59,97 @@ export default function Home() {
   }, []);
 
   // ── Team options ──
-  const teamOptions = useMemo(() =>
-    Array.from(new Set(allMatches.flatMap((m) => [m.home, m.away]))).sort((a, b) =>
-      a.localeCompare(b, "hu")
-    ), []);
+  const teamOptions = allTeams;
 
-  useEffect(() => {
-    if (teamOptions.length > 0 && !selectedHomeTeam) setSelectedHomeTeam(teamOptions[0]);
-    if (teamOptions.length > 1 && !selectedAwayTeam) setSelectedAwayTeam(teamOptions[1]);
-    else if (teamOptions.length > 0 && !selectedAwayTeam) setSelectedAwayTeam(teamOptions[0]);
-  }, [teamOptions, selectedHomeTeam, selectedAwayTeam]);
-
-  useEffect(() => {
-    if (selectedTeamFilter !== "Összes csapat" && !teamOptions.includes(selectedTeamFilter)) {
-      setSelectedTeamFilter("Összes csapat");
-    }
+  const effectiveSelectedTeamFilter = useMemo(() => {
+    if (selectedTeamFilter === "Összes csapat") return selectedTeamFilter;
+    return teamOptions.includes(selectedTeamFilter) ? selectedTeamFilter : "Összes csapat";
   }, [selectedTeamFilter, teamOptions]);
 
-  useEffect(() => {
-    if (selectedTeamFilter === "Összes csapat" && matchScope !== "round") {
-      setMatchScope("round");
+  const effectiveMatchScope = useMemo(() => {
+    if (effectiveSelectedTeamFilter === "Összes csapat") return "round";
+    return matchScope;
+  }, [effectiveSelectedTeamFilter, matchScope]);
+
+  const matchGoalscorersByKey = useMemo(() => {
+    const map = new Map<string, MatchGoalscorer>();
+    for (const g of allMatchGoalscorers) {
+      map.set(`${g.round}|${g.home}|${g.away}`, g);
     }
-  }, [selectedTeamFilter, matchScope]);
+    return map;
+  }, []);
+
+  const tablesByRound = useMemo(() => new Map(allTables.map((t) => [t.round, t] as const)), []);
+  const goalscorersByRound = useMemo(() => new Map(allGoalscorers.map((g) => [g.round, g] as const)), []);
+
+  const latestRound = useMemo(() => {
+    const maxTableRound = allTables.reduce((m, t) => Math.max(m, t.round), 0);
+    const maxGoalsRound = allGoalscorers.reduce((m, g) => Math.max(m, g.round), 0);
+    return Math.max(maxTableRound, maxGoalsRound, 1);
+  }, []);
+
+  const latestTable = useMemo(() => tablesByRound.get(latestRound) ?? null, [tablesByRound, latestRound]);
+  const latestGoalscorers = useMemo(() => goalscorersByRound.get(latestRound) ?? null, [goalscorersByRound, latestRound]);
 
   // ── Matches ──
   const filteredMatches = useMemo(() => {
     const roundMatches = allMatches.filter((m) => m.round === selectedRound);
-    if (selectedTeamFilter === "Összes csapat") return roundMatches;
-    return roundMatches.filter((m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter);
-  }, [selectedRound, selectedTeamFilter]);
+    if (effectiveSelectedTeamFilter === "Összes csapat") return roundMatches;
+    return roundMatches.filter((m) => m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter);
+  }, [selectedRound, effectiveSelectedTeamFilter]);
 
   const seasonTeamMatches = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return [];
+    if (effectiveSelectedTeamFilter === "Összes csapat") return [];
     return allMatches
-      .filter((m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter)
+      .filter((m) => m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter)
       .slice()
       .sort((a, b) => {
-        const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
-        const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
-        if (aDate !== bDate) return aDate - bDate;
+        const aTs = matchTimestamps.get(`${a.round}|${a.home}|${a.away}|${a.date}`) ?? 0;
+        const bTs = matchTimestamps.get(`${b.round}|${b.home}|${b.away}|${b.date}`) ?? 0;
+        if (aTs !== bTs) return aTs - bTs;
         return a.round - b.round;
       });
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter]);
 
   const visibleMatches = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return filteredMatches;
-    return matchScope === "season" ? seasonTeamMatches : filteredMatches;
-  }, [selectedTeamFilter, matchScope, filteredMatches, seasonTeamMatches]);
+    if (effectiveSelectedTeamFilter === "Összes csapat") return filteredMatches;
+    return effectiveMatchScope === "season" ? seasonTeamMatches : filteredMatches;
+  }, [effectiveSelectedTeamFilter, effectiveMatchScope, filteredMatches, seasonTeamMatches]);
 
   // ── Table & goalscorers ──
-  const selectedTable = useMemo(() => allTables.find((t) => t.round === selectedRound), [selectedRound]);
+  const selectedTable = useMemo(() => tablesByRound.get(selectedRound), [tablesByRound, selectedRound]);
 
-  const selectedGoalscorers = useMemo(() => allGoalscorers.find((g) => g.round === selectedRound), [selectedRound]);
+  const selectedGoalscorers = useMemo(() => goalscorersByRound.get(selectedRound), [goalscorersByRound, selectedRound]);
 
   const filteredGoalscorers = useMemo(() => {
     if (!selectedGoalscorers) return null;
-    if (selectedTeamFilter === "Összes csapat") return selectedGoalscorers.goalscorers;
-    return selectedGoalscorers.goalscorers.filter((g) => g.team === selectedTeamFilter);
-  }, [selectedGoalscorers, selectedTeamFilter]);
+    if (effectiveSelectedTeamFilter === "Összes csapat") return selectedGoalscorers.goalscorers;
+    return selectedGoalscorers.goalscorers.filter((g) => g.team === effectiveSelectedTeamFilter);
+  }, [selectedGoalscorers, effectiveSelectedTeamFilter]);
 
   // ── Team profile ──
   const selectedTeamProfile = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return null;
-    const tableRow = selectedTable?.table.find((row) => row.team === selectedTeamFilter);
-    const teamMatches = allMatches.filter((m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter);
+    if (effectiveSelectedTeamFilter === "Összes csapat") return null;
+    const tableRow = selectedTable?.table.find((row) => row.team === effectiveSelectedTeamFilter);
+    const teamMatches = allMatches.filter((m) => m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter);
     const playedTeamMatches = teamMatches.filter(
       (m) => typeof m.home_goals === "number" && typeof m.away_goals === "number"
     );
     return {
-      team: selectedTeamFilter,
+      team: effectiveSelectedTeamFilter,
       position: tableRow?.pos ?? null,
       points: tableRow?.points ?? null,
       goalDifference: tableRow?.gd ?? null,
       playedMatches: playedTeamMatches.length,
       form: tableRow?.form ?? [],
     };
-  }, [selectedTeamFilter, selectedTable]);
+  }, [effectiveSelectedTeamFilter, selectedTable]);
 
   const teamMiniStats = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return null;
+    if (effectiveSelectedTeamFilter === "Összes csapat") return null;
     const played = allMatches.filter(
       (m) =>
-        (m.home === selectedTeamFilter || m.away === selectedTeamFilter) &&
+        (m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter) &&
         m.status === "Lejátszva" &&
         typeof m.home_goals === "number" &&
         typeof m.away_goals === "number"
@@ -139,7 +157,7 @@ export default function Home() {
     if (played.length === 0) return { pointsPerMatch: 0, goalsForPerMatch: 0, goalsAgainstPerMatch: 0, winRate: 0 };
     let points = 0, goalsFor = 0, goalsAgainst = 0, wins = 0;
     for (const m of played) {
-      const isHome = m.home === selectedTeamFilter;
+      const isHome = m.home === effectiveSelectedTeamFilter;
       const gf = isHome ? m.home_goals ?? 0 : m.away_goals ?? 0;
       const ga = isHome ? m.away_goals ?? 0 : m.home_goals ?? 0;
       goalsFor += gf; goalsAgainst += ga;
@@ -151,28 +169,28 @@ export default function Home() {
       goalsAgainstPerMatch: round2(goalsAgainst / played.length),
       winRate: round2((wins / played.length) * 100),
     };
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter]);
 
   const teamFormTrend = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return null;
+    if (effectiveSelectedTeamFilter === "Összes csapat") return null;
     const recentPlayed = allMatches
       .filter(
         (m) =>
-          (m.home === selectedTeamFilter || m.away === selectedTeamFilter) &&
+          (m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter) &&
           m.status === "Lejátszva" &&
           typeof m.home_goals === "number" &&
           typeof m.away_goals === "number"
       )
       .slice()
       .sort((a, b) => {
-        const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
-        const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
-        if (aDate !== bDate) return aDate - bDate;
+        const aTs = matchTimestamps.get(`${a.round}|${a.home}|${a.away}|${a.date}`) ?? 0;
+        const bTs = matchTimestamps.get(`${b.round}|${b.home}|${b.away}|${b.date}`) ?? 0;
+        if (aTs !== bTs) return aTs - bTs;
         return a.round - b.round;
       })
       .slice(-5);
     const rows = recentPlayed.map((m) => {
-      const isHome = m.home === selectedTeamFilter;
+      const isHome = m.home === effectiveSelectedTeamFilter;
       const gf = isHome ? m.home_goals ?? 0 : m.away_goals ?? 0;
       const ga = isHome ? m.away_goals ?? 0 : m.home_goals ?? 0;
       let result: "GY" | "D" | "V" = "D", points = 1;
@@ -180,15 +198,15 @@ export default function Home() {
       return { round: m.round, opponent: isHome ? m.away : m.home, isHome, result, points, goalsFor: gf, goalsAgainst: ga };
     });
     return { rows, totalPoints: rows.reduce((s, r) => s + r.points, 0) };
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter]);
 
   const teamTableMovement = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return null;
+    if (effectiveSelectedTeamFilter === "Összes csapat") return null;
     const rows = allTables
       .slice()
       .sort((a, b) => a.round - b.round)
       .map((rt) => {
-        const row = rt.table.find((r) => r.team === selectedTeamFilter);
+        const row = rt.table.find((r) => r.team === effectiveSelectedTeamFilter);
         if (!row) return null;
         return { round: rt.round, position: Number(row.pos), points: Number(row.points), goalDifference: Number(row.gd), form: row.form ?? [] };
       })
@@ -202,44 +220,43 @@ export default function Home() {
       bestPosition: rows.reduce((best, r) => Math.min(best, r.position), rows[0].position),
       movement: first.position - last.position,
     };
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter]);
 
   const teamPrevNextMatches = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return null;
+    if (effectiveSelectedTeamFilter === "Összes csapat") return null;
     const teamMatches = allMatches
-      .filter((m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter)
+      .filter((m) => m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter)
       .slice()
       .sort((a, b) => {
-        const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
-        const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
-        if (aDate !== bDate) return aDate - bDate;
+        const aTs = matchTimestamps.get(`${a.round}|${a.home}|${a.away}|${a.date}`) ?? 0;
+        const bTs = matchTimestamps.get(`${b.round}|${b.home}|${b.away}|${b.date}`) ?? 0;
+        if (aTs !== bTs) return aTs - bTs;
         return a.round - b.round;
       });
     const played = teamMatches.filter((m) => m.status === "Lejátszva");
     const upcoming = teamMatches.filter((m) => m.status !== "Lejátszva");
     return { previous: played.length > 0 ? played[played.length - 1] : null, next: upcoming.length > 0 ? upcoming[0] : null };
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter]);
 
   const nextOpponentStats = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat" || !teamPrevNextMatches?.next) return null;
+    if (effectiveSelectedTeamFilter === "Összes csapat" || !teamPrevNextMatches?.next) return null;
     const nextMatch = teamPrevNextMatches.next;
-    const opponent = nextMatch.home === selectedTeamFilter ? nextMatch.away : nextMatch.home;
-    const latestTable = [...allTables].sort((a, b) => b.round - a.round)[0];
+    const opponent = nextMatch.home === effectiveSelectedTeamFilter ? nextMatch.away : nextMatch.home;
     const opponentTableRow = latestTable?.table.find((row) => row.team === opponent);
     const headToHeadMatches = allMatches
       .filter(
         (m) =>
-          ((m.home === selectedTeamFilter && m.away === opponent) ||
-            (m.home === opponent && m.away === selectedTeamFilter)) &&
+          ((m.home === effectiveSelectedTeamFilter && m.away === opponent) ||
+            (m.home === opponent && m.away === effectiveSelectedTeamFilter)) &&
           m.status === "Lejátszva" &&
           typeof m.home_goals === "number" &&
           typeof m.away_goals === "number"
       )
       .slice()
       .sort((a, b) => {
-        const aDate = parseHungarianDate(a.date)?.getTime() ?? 0;
-        const bDate = parseHungarianDate(b.date)?.getTime() ?? 0;
-        if (aDate !== bDate) return aDate - bDate;
+        const aTs = matchTimestamps.get(`${a.round}|${a.home}|${a.away}|${a.date}`) ?? 0;
+        const bTs = matchTimestamps.get(`${b.round}|${b.home}|${b.away}|${b.date}`) ?? 0;
+        if (aTs !== bTs) return aTs - bTs;
         return a.round - b.round;
       });
     return {
@@ -251,13 +268,13 @@ export default function Home() {
       form: opponentTableRow?.form ?? [],
       lastHeadToHead: headToHeadMatches.length > 0 ? headToHeadMatches[headToHeadMatches.length - 1] : null,
     };
-  }, [selectedTeamFilter, teamPrevNextMatches]);
+  }, [effectiveSelectedTeamFilter, teamPrevNextMatches, latestTable]);
 
   const teamHomeAwayStats = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return null;
+    if (effectiveSelectedTeamFilter === "Összes csapat") return null;
     const played = allMatches.filter(
       (m) =>
-        (m.home === selectedTeamFilter || m.away === selectedTeamFilter) &&
+        (m.home === effectiveSelectedTeamFilter || m.away === effectiveSelectedTeamFilter) &&
         m.status === "Lejátszva" &&
         typeof m.home_goals === "number" &&
         typeof m.away_goals === "number"
@@ -265,7 +282,7 @@ export default function Home() {
     const mkBucket = () => ({ matches: 0, won: 0, draw: 0, lost: 0, goalsFor: 0, goalsAgainst: 0, points: 0 });
     const home = mkBucket(), away = mkBucket();
     for (const m of played) {
-      const isHome = m.home === selectedTeamFilter;
+      const isHome = m.home === effectiveSelectedTeamFilter;
       const bucket = isHome ? home : away;
       const gf = isHome ? m.home_goals ?? 0 : m.away_goals ?? 0;
       const ga = isHome ? m.away_goals ?? 0 : m.home_goals ?? 0;
@@ -280,18 +297,17 @@ export default function Home() {
       pointsPerMatch: b.matches > 0 ? round2(b.points / b.matches) : 0,
     });
     return { home: addDerived(home), away: addDerived(away) };
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter]);
 
   const teamTopScorers = useMemo(() => {
-    if (selectedTeamFilter === "Összes csapat") return [];
-    const latest = [...allGoalscorers].sort((a, b) => b.round - a.round)[0];
-    if (!latest) return [];
-    return latest.goalscorers
-      .filter((g) => g.team === selectedTeamFilter)
+    if (effectiveSelectedTeamFilter === "Összes csapat") return [];
+    if (!latestGoalscorers) return [];
+    return latestGoalscorers.goalscorers
+      .filter((g) => g.team === effectiveSelectedTeamFilter)
       .map((g) => ({ player: g.player, team: g.team, goals: Number(g.goals) || 0 }))
       .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player, "hu"))
       .slice(0, 5);
-  }, [selectedTeamFilter]);
+  }, [effectiveSelectedTeamFilter, latestGoalscorers]);
 
   // ── Stats ──
   const playedMatches = useMemo(() =>
@@ -323,7 +339,8 @@ export default function Home() {
         defenseIndex: round2(gapm > 0 ? avg / gapm : 2),
       };
     }).sort((a, b) => b.attackIndex - a.attackIndex);
-    return { rows, leagueAvgGoalsPerTeamPerMatch: round2(avg) };
+    const byTeam = new Map(rows.map((r) => [r.team, r]));
+    return { rows, byTeam, leagueAvgGoalsPerTeamPerMatch: round2(avg) };
   }, [playedMatches]);
 
   const roundGoalsStats = useMemo(() => {
@@ -347,16 +364,16 @@ export default function Home() {
   }, []);
 
   const visibleTeamStrengthRows = useMemo(() =>
-    selectedTeamFilter === "Összes csapat"
+    effectiveSelectedTeamFilter === "Összes csapat"
       ? teamStrengthStats.rows
-      : teamStrengthStats.rows.filter((r) => r.team === selectedTeamFilter),
-    [teamStrengthStats, selectedTeamFilter]);
+      : teamStrengthStats.rows.filter((r) => r.team === effectiveSelectedTeamFilter),
+    [teamStrengthStats, effectiveSelectedTeamFilter]);
 
   const visibleTopScoringTeamsRows = useMemo(() =>
-    selectedTeamFilter === "Összes csapat"
+    effectiveSelectedTeamFilter === "Összes csapat"
       ? topScoringTeamsStats.rows
-      : topScoringTeamsStats.rows.filter((r) => r.team === selectedTeamFilter),
-    [topScoringTeamsStats, selectedTeamFilter]);
+      : topScoringTeamsStats.rows.filter((r) => r.team === effectiveSelectedTeamFilter),
+    [topScoringTeamsStats, effectiveSelectedTeamFilter]);
 
   const selectedHomeStats = useMemo(() => teamStrengthStats.rows.find((t) => t.team === selectedHomeTeam) ?? null, [teamStrengthStats, selectedHomeTeam]);
   const selectedAwayStats = useMemo(() => teamStrengthStats.rows.find((t) => t.team === selectedAwayTeam) ?? null, [teamStrengthStats, selectedAwayTeam]);
@@ -395,19 +412,20 @@ export default function Home() {
     for (let i = 0; i < SIM; i++) {
       const sp = new Map(curPoints), sgd = new Map(curGD), sgf = new Map(curGF);
       for (const m of upcoming) {
-        const hs = teamStrengthStats.rows.find((t) => t.team === m.home);
-        const as_ = teamStrengthStats.rows.find((t) => t.team === m.away);
+        const hs = teamStrengthStats.byTeam.get(m.home);
+        const as_ = teamStrengthStats.byTeam.get(m.away);
         if (!hs || !as_) continue;
         const base = teamStrengthStats.leagueAvgGoalsPerTeamPerMatch;
         const hl = as_.defenseIndex > 0 ? (base * hs.attackIndex) / as_.defenseIndex : 0.01;
         const al = hs.defenseIndex > 0 ? (base * as_.attackIndex) / hs.defenseIndex : 0.01;
-        const s = sampleFromDistribution(buildPoissonMatrix(hl, al, 5), (x) => x.probability);
-        sgf.set(m.home, (sgf.get(m.home) ?? 0) + s.homeGoals);
-        sgf.set(m.away, (sgf.get(m.away) ?? 0) + s.awayGoals);
-        sgd.set(m.home, (sgd.get(m.home) ?? 0) + (s.homeGoals - s.awayGoals));
-        sgd.set(m.away, (sgd.get(m.away) ?? 0) + (s.awayGoals - s.homeGoals));
-        if (s.homeGoals > s.awayGoals) sp.set(m.home, (sp.get(m.home) ?? 0) + 3);
-        else if (s.homeGoals < s.awayGoals) sp.set(m.away, (sp.get(m.away) ?? 0) + 3);
+        const homeGoals = samplePoissonGoalsTruncated(hl, 5);
+        const awayGoals = samplePoissonGoalsTruncated(al, 5);
+        sgf.set(m.home, (sgf.get(m.home) ?? 0) + homeGoals);
+        sgf.set(m.away, (sgf.get(m.away) ?? 0) + awayGoals);
+        sgd.set(m.home, (sgd.get(m.home) ?? 0) + (homeGoals - awayGoals));
+        sgd.set(m.away, (sgd.get(m.away) ?? 0) + (awayGoals - homeGoals));
+        if (homeGoals > awayGoals) sp.set(m.home, (sp.get(m.home) ?? 0) + 3);
+        else if (homeGoals < awayGoals) sp.set(m.away, (sp.get(m.away) ?? 0) + 3);
         else { sp.set(m.home, (sp.get(m.home) ?? 0) + 1); sp.set(m.away, (sp.get(m.away) ?? 0) + 1); }
       }
       const ranking = teamOptions
@@ -434,10 +452,10 @@ export default function Home() {
   }, [teamOptions, teamStrengthStats]);
 
   const visibleMonteCarloRows = useMemo(() =>
-    selectedTeamFilter === "Összes csapat"
+    effectiveSelectedTeamFilter === "Összes csapat"
       ? championshipMonteCarlo.rows
-      : championshipMonteCarlo.rows.filter((r) => r.team === selectedTeamFilter),
-    [championshipMonteCarlo, selectedTeamFilter]);
+      : championshipMonteCarlo.rows.filter((r) => r.team === effectiveSelectedTeamFilter),
+    [championshipMonteCarlo, effectiveSelectedTeamFilter]);
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
@@ -473,15 +491,15 @@ export default function Home() {
             <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: "bold", marginBottom: "8px" }}>
               Csapat kiválasztása
             </div>
-            <select value={selectedTeamFilter} onChange={(e) => setSelectedTeamFilter(e.target.value)} style={selectStyle}>
+            <select value={effectiveSelectedTeamFilter} onChange={(e) => setSelectedTeamFilter(e.target.value)} style={selectStyle}>
               <option value="Összes csapat">Összes csapat</option>
               {teamOptions.map((t) => <option key={t} value={t}>{t}</option>)}
             </select>
 
-            {selectedTeamFilter !== "Összes csapat" ? (
+            {effectiveSelectedTeamFilter !== "Összes csapat" ? (
               <div style={{ display: "flex", gap: "8px", marginTop: "10px", flexWrap: "wrap" }}>
-                <button onClick={() => setMatchScope("round")} style={subTabButtonStyle(matchScope === "round")}>Aktuális forduló</button>
-                <button onClick={() => setMatchScope("season")} style={subTabButtonStyle(matchScope === "season")}>Összes forduló</button>
+                <button onClick={() => setMatchScope("round")} style={subTabButtonStyle(effectiveMatchScope === "round")}>Aktuális forduló</button>
+                <button onClick={() => setMatchScope("season")} style={subTabButtonStyle(effectiveMatchScope === "season")}>Összes forduló</button>
               </div>
             ) : null}
           </div>
@@ -578,7 +596,7 @@ export default function Home() {
       {/* ── Team profile sections ── */}
       <TeamProfile
         isMobile={isMobile}
-        selectedTeamFilter={selectedTeamFilter}
+        selectedTeamFilter={effectiveSelectedTeamFilter}
         selectedTeamProfile={selectedTeamProfile}
         teamMiniStats={teamMiniStats}
         teamFormTrend={teamFormTrend}
@@ -592,20 +610,18 @@ export default function Home() {
       {view === "matches" ? (
         <>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-            {selectedTeamFilter === "Összes csapat"
+            {effectiveSelectedTeamFilter === "Összes csapat"
               ? `${selectedRound}. forduló meccsei`
-              : matchScope === "season"
-              ? `${selectedTeamFilter} – összes forduló`
-              : `${selectedRound}. forduló – ${selectedTeamFilter} meccsei`}
+              : effectiveMatchScope === "season"
+              ? `${effectiveSelectedTeamFilter} – összes forduló`
+              : `${selectedRound}. forduló – ${effectiveSelectedTeamFilter} meccsei`}
           </h2>
           {visibleMatches.length === 0 ? (
             <EmptyBox text="Nincs megjeleníthető meccs." />
           ) : (
             <div style={{ display: "grid", gap: "14px" }}>
               {visibleMatches.map((m, i) => {
-                const scorers = allMatchGoalscorers.find(
-                  (g) => g.round === m.round && g.home === m.home && g.away === m.away
-                );
+                const scorers = matchGoalscorersByKey.get(`${m.round}|${m.home}|${m.away}`);
                 return <MatchCard key={i} match={m} isMobile={isMobile} goalscorers={scorers} />;
               })}
             </div>
@@ -615,20 +631,20 @@ export default function Home() {
         <TableView
           selectedTable={selectedTable}
           selectedRound={selectedRound}
-          selectedTeamFilter={selectedTeamFilter}
+          selectedTeamFilter={effectiveSelectedTeamFilter}
           isMobile={isMobile}
         />
       ) : view === "goalscorers" ? (
         <GoalscorersView
           filteredGoalscorers={filteredGoalscorers}
           selectedRound={selectedRound}
-          selectedTeamFilter={selectedTeamFilter}
+          selectedTeamFilter={effectiveSelectedTeamFilter}
           isMobile={isMobile}
         />
       ) : (
         <StatsView
           isMobile={isMobile}
-          selectedTeamFilter={selectedTeamFilter}
+          selectedTeamFilter={effectiveSelectedTeamFilter}
           roundGoalsStats={roundGoalsStats}
           visibleTeamStrengthRows={visibleTeamStrengthRows}
           teamOptions={teamOptions}

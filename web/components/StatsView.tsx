@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { TeamStrengthRow, ChampionshipChanceRow } from "./types";
 import {
   sectionCardStyle,
@@ -77,60 +77,6 @@ export function StatsView({
   visibleTopScoringTeamsRows,
   topScoringTeamsStats,
 }: StatsViewProps) {
-  const [mcSortKey, setMcSortKey] = useState<
-    "team" | "currentPoints" | "simulatedAvgPoints" | "titlePct" | "top3Pct" | "top6Pct" | "lastPct"
-  >("titlePct");
-  const [mcSortDir, setMcSortDir] = useState<"asc" | "desc">("desc");
-
-  const sortedMonteCarloRows = useMemo(() => {
-    const dir = mcSortDir === "asc" ? 1 : -1;
-
-    const keyGetters: Record<typeof mcSortKey, (r: ChampionshipChanceRow) => number | string> = {
-      team: (r) => r.team,
-      currentPoints: (r) => r.currentPoints,
-      simulatedAvgPoints: (r) => r.simulatedAvgPoints,
-      titlePct: (r) => r.titlePct,
-      top3Pct: (r) => r.top3Pct,
-      top6Pct: (r) => r.top6Pct,
-      lastPct: (r) => r.lastPct,
-    };
-
-    const get = keyGetters[mcSortKey];
-    const indexed = visibleMonteCarloRows.map((row, idx) => ({ row, idx }));
-
-    indexed.sort((a, b) => {
-      const av = get(a.row);
-      const bv = get(b.row);
-
-      if (typeof av === "string" && typeof bv === "string") {
-        const cmp = av.localeCompare(bv, "hu");
-        return cmp !== 0 ? cmp * dir : a.idx - b.idx;
-      }
-
-      const an = typeof av === "number" ? av : Number(av);
-      const bn = typeof bv === "number" ? bv : Number(bv);
-      const cmp = an - bn;
-      return cmp !== 0 ? cmp * dir : a.idx - b.idx;
-    });
-
-    return indexed.map((x) => x.row);
-  }, [visibleMonteCarloRows, mcSortKey, mcSortDir]);
-
-  const onMcHeaderClick = (key: typeof mcSortKey) => {
-    if (mcSortKey !== key) {
-      setMcSortKey(key);
-      setMcSortDir(key === "team" ? "asc" : "desc");
-      return;
-    }
-    setMcSortDir((d) => (d === "asc" ? "desc" : "asc"));
-  };
-
-  const sortLabel = (key: typeof mcSortKey, label: string) => {
-    const active = mcSortKey === key;
-    const arrow = !active ? "" : mcSortDir === "asc" ? " ▲" : " ▼";
-    return label + arrow;
-  };
-
   return (
     <>
       <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
@@ -145,7 +91,12 @@ export function StatsView({
           <div style={sectionSubTitleStyle}>Fordulónkénti összgól</div>
 
           <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-            {roundGoalsStats.rows.map((row) => (
+            {roundGoalsStats.rows
+              .filter((row) => row.totalGoals > 0)
+              .length > 0 ? (
+              roundGoalsStats.rows
+                .filter((row) => row.totalGoals > 0)
+                .map((row) => (
               <div
                 key={row.round}
                 style={{
@@ -198,7 +149,10 @@ export function StatsView({
                   </div>
                 )}
               </div>
-            ))}
+            ))
+            ) : (
+              <EmptyBox text="Nincsenek gólos fordulók" />
+            )}
           </div>
         </div>
 
@@ -379,7 +333,7 @@ export function StatsView({
 
           {isMobile ? (
             <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-              {sortedMonteCarloRows.map((row) => {
+              {visibleMonteCarloRows.map((row) => {
                 const logo = getLogo(row.team);
                 return (
                   <div key={row.team} style={mobileCardStyle}>
@@ -407,35 +361,17 @@ export function StatsView({
               <table style={{ width: "100%", borderCollapse: "collapse", minWidth: "950px", backgroundColor: "#ffffff" }}>
                 <thead>
                   <tr style={{ backgroundColor: "#e5e7eb" }}>
-                    <th
-                      style={{ ...thStyle, textAlign: "left", cursor: "pointer", userSelect: "none" }}
-                      onClick={() => onMcHeaderClick("team")}
-                      title="Rendezés"
-                    >
-                      {sortLabel("team", "Csapat")}
-                    </th>
-                    <th style={{ ...thStyle, cursor: "pointer", userSelect: "none" }} onClick={() => onMcHeaderClick("currentPoints")} title="Rendezés">
-                      {sortLabel("currentPoints", "Jelenlegi pont")}
-                    </th>
-                    <th style={{ ...thStyle, cursor: "pointer", userSelect: "none" }} onClick={() => onMcHeaderClick("simulatedAvgPoints")} title="Rendezés">
-                      {sortLabel("simulatedAvgPoints", "Várható pont")}
-                    </th>
-                    <th style={{ ...thStyle, cursor: "pointer", userSelect: "none" }} onClick={() => onMcHeaderClick("titlePct")} title="Rendezés">
-                      {sortLabel("titlePct", "Bajnoki esély")}
-                    </th>
-                    <th style={{ ...thStyle, cursor: "pointer", userSelect: "none" }} onClick={() => onMcHeaderClick("top3Pct")} title="Rendezés">
-                      {sortLabel("top3Pct", "Top 3")}
-                    </th>
-                    <th style={{ ...thStyle, cursor: "pointer", userSelect: "none" }} onClick={() => onMcHeaderClick("top6Pct")} title="Rendezés">
-                      {sortLabel("top6Pct", "Top 6")}
-                    </th>
-                    <th style={{ ...thStyle, cursor: "pointer", userSelect: "none" }} onClick={() => onMcHeaderClick("lastPct")} title="Rendezés">
-                      {sortLabel("lastPct", "Utolsó hely")}
-                    </th>
+                    <th style={{ ...thStyle, textAlign: "left" }}>Csapat</th>
+                    <th style={thStyle}>Jelenlegi pont</th>
+                    <th style={thStyle}>Várható pont</th>
+                    <th style={thStyle}>Bajnoki esély</th>
+                    <th style={thStyle}>Top 3</th>
+                    <th style={thStyle}>Top 6</th>
+                    <th style={thStyle}>Utolsó hely</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortedMonteCarloRows.map((row) => {
+                  {visibleMonteCarloRows.map((row) => {
                     const logo = getLogo(row.team);
                     return (
                       <tr key={row.team}>

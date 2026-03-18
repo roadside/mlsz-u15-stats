@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "MLSZ Országos U15 Kiemelt 2025-2026",
-  description: "MLSZ Adatbank alapú statisztikai dashboard",
+  description: "Statisztikai dashboard",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

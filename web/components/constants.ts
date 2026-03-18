@@ -72,6 +72,27 @@ export function sampleFromDistribution<T>(
   return items[items.length - 1];
 }
 
+export function samplePoissonGoalsTruncated(lambda: number, maxGoals = 5): number {
+  if (!Number.isFinite(lambda) || lambda < 0) return 0;
+  if (maxGoals <= 0) return 0;
+
+  const L = Math.exp(-lambda);
+  let p = L;
+  let cumulative = p;
+
+  const r = Math.random();
+  if (r <= cumulative) return 0;
+
+  for (let k = 1; k <= maxGoals; k++) {
+    p = (p * lambda) / k;
+    cumulative += p;
+    if (r <= cumulative) return k;
+  }
+
+  // Truncation: any remaining probability mass is mapped to maxGoals.
+  return maxGoals;
+}
+
 // ── Date helpers ─────────────────────────────────────────────────────────────
 export function parseHungarianDate(dateValue: string): Date | null {
   if (!dateValue) return null;

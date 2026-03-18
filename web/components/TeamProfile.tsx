@@ -10,7 +10,7 @@ import {
   statValueStyle,
   getLogo,
 } from "./constants";
-import { EmptyBox, LogoCircle, MiniStat, FormBadge } from "./ui";
+import { EmptyBox, MiniStat, FormBadge } from "./ui";
 import { getFormBadgeStyle } from "./constants";
 
 // ── Types ─────────────────────────────────────────────────────────────────────

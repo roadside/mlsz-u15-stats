@@ -1714,9 +1714,9 @@
   },
   {
     "round": 16,
-    "date": "2026. 04. 11. 11:00",
-    "home": "BUDAPEST HONVÉD FC",
-    "away": "PUSKÁS AKADÉMIA",
+    "date": "2026. 04. 11. 12:15",
+    "home": "ILLÉS AKADÉMIA",
+    "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
     "home_scorers": [
       {
@@ -1729,9 +1729,9 @@
   },
   {
     "round": 16,
-    "date": "2026. 04. 11. 12:15",
-    "home": "ILLÉS AKADÉMIA",
-    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2026. 04. 11. 13:00",
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
     "home_scorers": [
       {
@@ -2009,9 +2009,9 @@
   },
   {
     "round": 19,
-    "date": "2026. 05. 01. 17:00",
-    "home": "UTE",
-    "away": "DVTK",
+    "date": "2026. 04. 02. 10:00",
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
     "home_scorers": [
       {
@@ -2029,9 +2029,9 @@
   },
   {
     "round": 19,
-    "date": "2026. 05. 02.",
-    "home": "PUSKÁS AKADÉMIA",
-    "away": "ETO AKADÉMIA",
+    "date": "2026. 05. 01. 17:00",
+    "home": "UTE",
+    "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
     "home_scorers": [
       {

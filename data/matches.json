@@ -1117,18 +1117,6 @@
   },
   {
     "round": 16,
-    "date": "2026. 04. 11. 11:00",
-    "home": "BUDAPEST HONVÉD FC",
-    "away": "PUSKÁS AKADÉMIA",
-    "home_goals": null,
-    "away_goals": null,
-    "status": "Kiírva",
-    "venue": "Honvéd MFA Utánpótlás Központ",
-    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html",
-    "match_url": null
-  },
-  {
-    "round": 16,
     "date": "2026. 04. 11. 12:15",
     "home": "ILLÉS AKADÉMIA",
     "away": "VASAS KUBALA AKADÉMIA",
@@ -1136,6 +1124,18 @@
     "away_goals": null,
     "status": "Kiírva",
     "venue": "Szombathelyi Illés Akadémia Sporttelep",
+    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html",
+    "match_url": null
+  },
+  {
+    "round": 16,
+    "date": "2026. 04. 11. 13:00",
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_goals": null,
+    "away_goals": null,
+    "status": "Kiírva",
+    "venue": "Honvéd MFA Utánpótlás Központ",
     "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html",
     "match_url": null
   },
@@ -1297,6 +1297,18 @@
   },
   {
     "round": 19,
+    "date": "2026. 04. 02. 10:00",
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "ETO AKADÉMIA",
+    "home_goals": null,
+    "away_goals": null,
+    "status": "Kiírva",
+    "venue": "Puskás Akadémia Pancho Aréna",
+    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html",
+    "match_url": null
+  },
+  {
+    "round": 19,
     "date": "2026. 05. 01. 17:00",
     "home": "UTE",
     "away": "DVTK",
@@ -1304,18 +1316,6 @@
     "away_goals": null,
     "status": "Kiírva",
     "venue": "UTE Atlétikai Stadion",
-    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html",
-    "match_url": null
-  },
-  {
-    "round": 19,
-    "date": "2026. 05. 02.",
-    "home": "PUSKÁS AKADÉMIA",
-    "away": "ETO AKADÉMIA",
-    "home_goals": null,
-    "away_goals": null,
-    "status": "Kiírva",
-    "venue": "Puskás Akadémia Pancho Aréna",
     "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html",
     "match_url": null
   },

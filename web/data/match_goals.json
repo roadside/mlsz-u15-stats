@@ -1490,7 +1490,7 @@
     "date": "2026. 03. 21. 10:00",
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "PUSKÁS AKADÉMIA",
-    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150252.html",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150251.html",
     "home_scorers": [],
     "away_scorers": []
   },
@@ -1499,7 +1499,7 @@
     "date": "2026. 03. 21. 10:00",
     "home": "MTK BUDAPEST",
     "away": "VASAS KUBALA AKADÉMIA",
-    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150249.html",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150252.html",
     "home_scorers": [],
     "away_scorers": []
   },
@@ -1508,7 +1508,7 @@
     "date": "2026. 03. 21. 12:00",
     "home": "BUDAPEST HONVÉD FC",
     "away": "ETO AKADÉMIA",
-    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150248.html",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150249.html",
     "home_scorers": [],
     "away_scorers": []
   },
@@ -1517,6 +1517,15 @@
     "date": "2026. 03. 21. 12:15",
     "home": "FERENCVÁROSI TC",
     "away": "DVSC",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150248.html",
+    "home_scorers": [],
+    "away_scorers": []
+  },
+  {
+    "round": 14,
+    "date": "2026. 03. 21. 12:15",
+    "home": "UTE",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
     "home_scorers": [
       {
@@ -1528,21 +1537,6 @@
         "player": "DÖMÉNY NORBERT",
         "minute": 9,
         "score_after": "2-0"
-      }
-    ],
-    "away_scorers": []
-  },
-  {
-    "round": 14,
-    "date": "2026. 03. 21. 12:15",
-    "home": "UTE",
-    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
-    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
-    "home_scorers": [
-      {
-        "player": "TŐZSÉR LÁZÁR",
-        "minute": 35,
-        "score_after": "1-1"
       }
     ],
     "away_scorers": []

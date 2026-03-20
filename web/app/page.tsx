@@ -51,12 +51,12 @@ export default function Home() {
   const [selectedTeamFilter, setSelectedTeamFilter] = useState<string>("Összes csapat");
   const [matchScope, setMatchScope] = useState<"round" | "season">("round");
 
-  useEffect(() => {
-    const update = () => setIsMobile(window.innerWidth <= 768);
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
+	useEffect(() => {
+	  const update = () => setIsMobile(window.innerWidth <= 1024);
+	  update();
+	  window.addEventListener("resize", update);
+	  return () => window.removeEventListener("resize", update);
+	}, []);
 
   // ── Team options ──
   const teamOptions = allTeams;

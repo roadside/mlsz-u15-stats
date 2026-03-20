@@ -4,25 +4,16 @@ import json
 import time
 import requests
 from bs4 import BeautifulSoup
+from utils import clean_player_name, get_project_paths, ensure_directories
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-WEB_DATA_DIR = os.path.join(PROJECT_ROOT, "web", "data")
+paths = get_project_paths()
+ensure_directories()
 
-os.makedirs(DATA_DIR, exist_ok=True)
-os.makedirs(WEB_DATA_DIR, exist_ok=True)
-
-MATCHES_FILE = os.path.join(DATA_DIR, "matches.json")
-OUTPUT_FILE = os.path.join(DATA_DIR, "match_goalscorers.json")
-WEB_OUTPUT_FILE = os.path.join(WEB_DATA_DIR, "match_goalscorers.json")
+MATCHES_FILE = os.path.join(paths['data_dir'], "matches.json")
+OUTPUT_FILE = os.path.join(paths['data_dir'], "match_goalscorers.json")
+WEB_OUTPUT_FILE = os.path.join(paths['web_data_dir'], "match_goalscorers.json")
 
 
-def clean(text: str) -> str:
-    text = text.replace("\xa0", " ")
-    text = re.sub(r"\d{1,3}'", "", text)   # eltávolítja a perceket pl. "5'"
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
 
 
 def parse_match_page(match_url: str) -> dict:
@@ -53,8 +44,8 @@ def parse_match_page(match_url: str) -> dict:
         if not re.match(r"^\d+\s*[-–]\s*\d+$", middle.strip()):
             continue
 
-        left = clean(cells[0].get_text(" ", strip=True))
-        right = clean(cells[-1].get_text(" ", strip=True))
+        left = clean_player_name(cells[0].get_text(" ", strip=True))
+        right = clean_player_name(cells[-1].get_text(" ", strip=True))
 
         if left:
             home_scorers[left] = home_scorers.get(left, 0) + 1

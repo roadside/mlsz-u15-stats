@@ -4,7 +4,9 @@ import json
 import time
 import requests
 from bs4 import BeautifulSoup
+from utils import clean_text, normalize_lines, get_project_paths, ensure_directories
 from urllib.parse import urljoin
+from typing import Optional
 
 LEAGUE_ID = 65
 SEASON_ID = 0
@@ -39,44 +41,28 @@ STOP_MARKERS = {
     "Impresszum",
 }
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-WEB_DATA_DIR = os.path.join(PROJECT_ROOT, "web", "data")
+paths = get_project_paths()
+ensure_directories()
 
-os.makedirs(DATA_DIR, exist_ok=True)
-os.makedirs(WEB_DATA_DIR, exist_ok=True)
-
-MATCHES_FILE = os.path.join(DATA_DIR, "matches.json")
-OUTPUT_FILE = os.path.join(DATA_DIR, "match_goals.json")
-WEB_OUTPUT_FILE = os.path.join(WEB_DATA_DIR, "match_goals.json")
+MATCHES_FILE = os.path.join(paths['data_dir'], "matches.json")
+OUTPUT_FILE = os.path.join(paths['data_dir'], "match_goals.json")
+WEB_OUTPUT_FILE = os.path.join(paths['web_data_dir'], "match_goals.json")
 
 
-def clean_text(text: str) -> str:
-    text = text.replace("\xa0", " ")
-    text = re.sub(r"【\d+†\s*", "", text)
-    text = text.replace("】", "")
-    text = text.replace("Image:", "")
-    text = text.replace("Image", "")
-    text = text.replace("⚽", " ")
-    text = re.sub(r"\s+", " ", text).strip()
-    return text
 
 
-def normalize_lines(text: str) -> list[str]:
-    lines: list[str] = []
-    for raw in text.splitlines():
-        line = clean_text(raw)
-        if not line:
-            continue
-        lines.append(line)
-    return lines
-
-
-def fetch_soup(url: str) -> BeautifulSoup:
-    response = requests.get(url, headers=HEADERS, timeout=30)
-    response.raise_for_status()
-    return BeautifulSoup(response.content, "html.parser")
+def fetch_soup(url: str, max_retries: int = 3) -> BeautifulSoup:
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, headers=HEADERS, timeout=30)
+            response.raise_for_status()
+            return BeautifulSoup(response.content, "html.parser")
+        except requests.exceptions.RequestException as e:
+            if attempt == max_retries - 1:
+                raise RuntimeError(f"Failed to fetch {url} after {max_retries} attempts: {e}")
+            print(f"Retry {attempt + 1}/{max_retries} for {url}: {e}")
+            time.sleep(2 ** attempt)  # Exponential backoff
+    raise RuntimeError(f"Failed to fetch {url}")
 
 
 def extract_match_links(round_url: str) -> list[str]:
@@ -132,36 +118,34 @@ def parse_goal_line(line: str):
 
 
 def parse_match_goals(match_url: str) -> tuple[list[dict], list[dict]]:
-    soup = fetch_soup(match_url)
+    try:
+        soup = fetch_soup(match_url)
+    except Exception as e:
+        print(f"Failed to fetch match page {match_url}: {e}")
+        return [], []
 
     goals_wrapper = soup.select_one("div.goals")
     if not goals_wrapper:
-        print(f"NINCS div.goals: {match_url}")
+        print(f"No goals div found: {match_url}")
         return [], []
 
     goals_table = goals_wrapper.select_one("table.data-row")
     if not goals_table:
-        print(f"NINCS table.data-row: {match_url}")
-        print(goals_wrapper.prettify()[:2000])
+        print(f"No goals table found: {match_url}")
         return [], []
 
     rows = goals_table.select("tr")
     if not rows:
-        print(f"NINCS tr sor: {match_url}")
+        print(f"No rows in goals table: {match_url}")
         return [], []
 
     home_scorers: list[dict] = []
     away_scorers: list[dict] = []
 
-    print(f"DEBUG rows: {len(rows)} | {match_url}")
-
     for idx, row in enumerate(rows):
         left_td = row.select_one("td.left_team_player")
         score_td = row.select_one("td.goals_intimes")
         right_td = row.select_one("td.right_team_player")
-
-        if idx < 3:
-            print(f"ROW {idx}: {row.get_text(' | ', strip=True)}")
 
         if not score_td:
             continue
@@ -201,10 +185,6 @@ def parse_match_goals(match_url: str) -> tuple[list[dict], list[dict]]:
                     "minute": int(minute_text),
                     "score_after": score_after,
                 })
-
-    print(
-        f"PARSE EREDMÉNY | hazai: {len(home_scorers)} | vendég: {len(away_scorers)} | {match_url}"
-    )
 
     return home_scorers, away_scorers
 
@@ -256,8 +236,9 @@ def build_output(matches: list[dict]) -> list[dict]:
 
         try:
             home_scorers, away_scorers = parse_match_goals(match_url)
+            time.sleep(0.4)  # Only sleep after successful requests
         except Exception as e:
-            print(f"HIBA: {match_url} -> {e}")
+            print(f"ERROR: {match_url} -> {e}")
             home_scorers, away_scorers = [], []
 
         result.append({
@@ -274,7 +255,6 @@ def build_output(matches: list[dict]) -> list[dict]:
             f"{match['round']}. forduló | {match['home']} - {match['away']} | "
             f"{len(home_scorers)} hazai gól, {len(away_scorers)} vendég gól"
         )
-        time.sleep(0.4)
 
     return result
 

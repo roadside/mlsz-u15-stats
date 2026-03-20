@@ -3,20 +3,16 @@ import re
 import json
 import requests
 from bs4 import BeautifulSoup
+from utils import clean_text, normalize_lines, get_project_paths, ensure_directories
 
 BASE = "https://adatbank.mlsz.hu/league/65/0/31621/{}.html"
 MATCH_URL_BASE = "https://adatbank.mlsz.hu"
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-PROJECT_ROOT = os.path.dirname(CURRENT_DIR)
-DATA_DIR = os.path.join(PROJECT_ROOT, "data")
-WEB_DATA_DIR = os.path.join(PROJECT_ROOT, "web", "data")
+paths = get_project_paths()
+ensure_directories()
 
-os.makedirs(DATA_DIR, exist_ok=True)
-os.makedirs(WEB_DATA_DIR, exist_ok=True)
-
-OUTPUT_FILE = os.path.join(DATA_DIR, "matches.json")
-WEB_OUTPUT_FILE = os.path.join(WEB_DATA_DIR, "matches.json")
+OUTPUT_FILE = os.path.join(paths['data_dir'], "matches.json")
+WEB_OUTPUT_FILE = os.path.join(paths['web_data_dir'], "matches.json")
 
 PLAYED_SCORE_RE = re.compile(r"^\d+\s*-\s*\d+$")
 FULL_DATE_RE = re.compile(r"^\d{4}\.\s*\d{2}\.\s*\d{2}\.$")
@@ -35,24 +31,6 @@ STOP_MARKERS = {
     "Kereszttabella",
 }
 
-def clean_line(text: str) -> str:
-    text = text.replace("\xa0", " ")
-    text = re.sub(r"【\d+†", "", text)
-    text = text.replace("】", "")
-    text = re.sub(r"^#+\s*", "", text)
-    text = " ".join(text.split()).strip()
-    return text
-
-def normalize_lines(text: str):
-    lines = []
-    for raw in text.splitlines():
-        line = clean_line(raw)
-        if not line:
-            continue
-        if line == "Image":
-            continue
-        lines.append(line)
-    return lines
 
 def detect_status_and_score(token: str):
     lower = token.lower()

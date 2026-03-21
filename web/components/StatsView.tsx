@@ -285,76 +285,77 @@ export function StatsView({
           )}
         </div>
 
-        {/* ── Round goals trend ── */}
-        <div style={sectionCardStyle}>
-          <div style={sectionTitleStyle}>Góltrend fordulónként</div>
-          <div style={sectionSubTitleStyle}>Fordulónkénti összgól</div>
+        {selectedTeamFilter === "Összes csapat" ? (
+          <div style={sectionCardStyle}>
+            <div style={sectionTitleStyle}>Góltrend fordulónként</div>
+            <div style={sectionSubTitleStyle}>Fordulónkénti összgól</div>
 
-          <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
-            {roundGoalsStats.rows
-              .filter((row) => row.totalGoals > 0)
-              .length > 0 ? (
-              roundGoalsStats.rows
+            <div style={{ display: "grid", gap: "10px", marginTop: "12px" }}>
+              {roundGoalsStats.rows
                 .filter((row) => row.totalGoals > 0)
-                .map((row) => (
-              <div
-                key={row.round}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "58px 1fr" : "80px 1fr 70px",
-                  gap: "10px",
-                  alignItems: "center",
-                }}
-              >
-                <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 600 }}>
-                  {row.round}. ford.
-                </div>
-
+                .length > 0 ? (
+                roundGoalsStats.rows
+                  .filter((row) => row.totalGoals > 0)
+                  .map((row) => (
                 <div
+                  key={row.round}
                   style={{
-                    backgroundColor: "#e5e7eb",
-                    height: "14px",
-                    borderRadius: "999px",
-                    overflow: "hidden",
+                    display: "grid",
+                    gridTemplateColumns: isMobile ? "58px 1fr" : "80px 1fr 70px",
+                    gap: "10px",
+                    alignItems: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      width: `${(row.totalGoals / roundGoalsStats.maxGoals) * 100}%`,
-                      height: "100%",
-                      backgroundColor: "#2563eb",
-                      borderRadius: "999px",
-                    }}
-                  />
-                </div>
+                  <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 600 }}>
+                    {row.round}. ford.
+                  </div>
 
-                {isMobile ? (
                   <div
                     style={{
-                      gridColumn: "1 / -1",
-                      display: "flex",
-                      justifyContent: "flex-end",
-                      fontSize: "12px",
-                      color: "#6b7280",
-                      marginTop: "-4px",
+                      backgroundColor: "#e5e7eb",
+                      height: "14px",
+                      borderRadius: "999px",
+                      overflow: "hidden",
                     }}
                   >
-                    <span style={{ fontWeight: 700, color: "#111827" }}>
+                    <div
+                      style={{
+                        width: `${(row.totalGoals / roundGoalsStats.maxGoals) * 100}%`,
+                        height: "100%",
+                        backgroundColor: "#2563eb",
+                        borderRadius: "999px",
+                      }}
+                    />
+                  </div>
+
+                  {isMobile ? (
+                    <div
+                      style={{
+                        gridColumn: "1 / -1",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        fontSize: "12px",
+                        color: "#6b7280",
+                        marginTop: "-4px",
+                      }}
+                    >
+                      <span style={{ fontWeight: 700, color: "#111827" }}>
+                        {row.totalGoals} gól
+                      </span>
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: "14px", fontWeight: "bold", textAlign: "right" }}>
                       {row.totalGoals} gól
-                    </span>
-                  </div>
-                ) : (
-                  <div style={{ fontSize: "14px", fontWeight: "bold", textAlign: "right" }}>
-                    {row.totalGoals} gól
-                  </div>
-                )}
-              </div>
-            ))
-            ) : (
-              <EmptyBox text="Nincsenek gólt tartalmazó fordulók" />
-            )}
+                    </div>
+                  )}
+                </div>
+              ))
+              ) : (
+                <EmptyBox text="Nincsenek gólt tartalmazó fordulók" />
+              )}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* ── Team strength index ── */}
         <div style={sectionCardStyle}>

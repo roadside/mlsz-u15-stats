@@ -79,3 +79,19 @@ export type PoissonOutcome = {
   awayGoals: number;
   probability: number;
 };
+
+export type CardPlayer = {
+  player: string;
+  team?: string;
+  minute: number;
+};
+
+export type CardMatch = {
+  round: number;
+  home: string;
+  away: string;
+  date: string;
+  match_url?: string;
+  yellow_cards: CardPlayer[];
+  red_cards: CardPlayer[];
+};

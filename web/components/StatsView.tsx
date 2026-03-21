@@ -892,7 +892,7 @@ function describeDangerTrend(goalsByRound: number[]) {
     return { label: "emelkedő", color: "#16a34a" };
   }
   if (last < middle && middle <= first) {
-    return { label: "csökkenő", color: "#dc2626" };
+    return { label: "csökkenő teljesítmény", color: "#dc2626" };
   }
   if (last === first) {
     return { label: "stabil", color: "#6b7280" };
@@ -900,7 +900,7 @@ function describeDangerTrend(goalsByRound: number[]) {
   if (last > first) {
     return { label: "javuló", color: "#16a34a" };
   }
-  return { label: "visszaeső", color: "#dc2626" };
+  return { label: "csökkenő teljesítmény", color: "#dc2626" };
 }
 
 function buildDangerBadgeLabel(recentGoals5: number, seasonGoals: number, teamGoalShare: number, trendLabel: string): string {

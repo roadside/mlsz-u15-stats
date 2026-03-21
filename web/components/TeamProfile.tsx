@@ -111,6 +111,8 @@ export function TeamProfile({
 }: TeamProfileProps) {
   if (!selectedTeamProfile) return null;
 
+  const formTrendStats = teamFormTrend ? buildFormTrendStats(teamFormTrend.rows) : null;
+
   return (
     <>
       {/* ── Profile header ── */}
@@ -182,6 +184,77 @@ export function TeamProfile({
             <div style={statCardStyle}>
               <div style={statLabelStyle}>Győzelmi arány</div>
               <div style={statValueStyle}>{teamMiniStats.winRate}%</div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {teamFormTrend && formTrendStats && teamFormTrend.rows.length > 0 && (
+        <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>Forma + trend</h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.4fr) repeat(4, minmax(0, 1fr))",
+              gap: "12px",
+              alignItems: "stretch",
+            }}
+          >
+            <div style={statCardStyle}>
+              <div style={{ ...statLabelStyle, marginBottom: "10px" }}>Utolsó 5 meccs forma</div>
+              <div
+                title={formTrendStats.tooltipText}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: `repeat(${teamFormTrend.rows.length}, minmax(0, 1fr))`,
+                  gap: "8px",
+                }}
+              >
+                {teamFormTrend.rows.map((row, index) => (
+                  <div
+                    key={`${selectedTeamFilter}-form-spark-${index}-${row.round}`}
+                    style={{
+                      borderRadius: "10px",
+                      padding: isMobile ? "10px 8px" : "12px 10px",
+                      textAlign: "center",
+                      ...getFormBadgeStyle(row.result),
+                    }}
+                  >
+                    <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: 800 }}>{row.result}</div>
+                    <div style={{ fontSize: "11px", marginTop: "4px", opacity: 0.9 }}>{row.round}.</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginTop: "10px" }}>
+                {formTrendStats.summaryText}
+              </div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Pontátlag</div>
+              <div style={statValueStyle}>{formTrendStats.pointsPerMatch}</div>
+              <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>utolsó {teamFormTrend.rows.length} meccs</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Trend</div>
+              <div style={{ ...statValueStyle, color: formTrendStats.trendColor }}>
+                {formTrendStats.trendArrow}
+              </div>
+              <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>{formTrendStats.trendLabel}</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Veretlenségi sorozat</div>
+              <div style={statValueStyle}>{formTrendStats.unbeatenStreak}</div>
+              <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>meccs</div>
+            </div>
+
+            <div style={statCardStyle}>
+              <div style={statLabelStyle}>Győzelmi széria</div>
+              <div style={statValueStyle}>{formTrendStats.winStreak}</div>
+              <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>meccs</div>
             </div>
           </div>
         </section>
@@ -457,4 +530,63 @@ export function TeamProfile({
       </section>
     </>
   );
+}
+
+function buildFormTrendStats(rows: FormTrendRow[]) {
+  const recentRows = rows.slice(-5);
+  const totalPoints = recentRows.reduce((sum, row) => sum + row.points, 0);
+  const pointsPerMatch = recentRows.length > 0 ? (totalPoints / recentRows.length).toFixed(2) : "0.00";
+  const winCount = recentRows.filter((row) => row.result === "GY").length;
+  const drawCount = recentRows.filter((row) => row.result === "D").length;
+  const lossCount = recentRows.filter((row) => row.result === "V").length;
+
+  const olderSlice = recentRows.slice(0, Math.max(1, Math.floor(recentRows.length / 2)));
+  const newerSlice = recentRows.slice(Math.max(1, Math.floor(recentRows.length / 2)));
+  const olderAvg = olderSlice.length > 0 ? olderSlice.reduce((sum, row) => sum + row.points, 0) / olderSlice.length : 0;
+  const newerAvg = newerSlice.length > 0 ? newerSlice.reduce((sum, row) => sum + row.points, 0) / newerSlice.length : 0;
+  const diff = newerAvg - olderAvg;
+
+  let trendArrow = "➝";
+  let trendLabel = "stabil";
+  let trendColor = "#6b7280";
+
+  if (diff > 0.35) {
+    trendArrow = "⬆";
+    trendLabel = "javuló forma";
+    trendColor = "#16a34a";
+  } else if (diff < -0.35) {
+    trendArrow = "⬇";
+    trendLabel = "romló forma";
+    trendColor = "#dc2626";
+  }
+
+  let unbeatenStreak = 0;
+  for (let i = recentRows.length - 1; i >= 0; i--) {
+    if (recentRows[i].result === "V") break;
+    unbeatenStreak += 1;
+  }
+
+  let winStreak = 0;
+  for (let i = recentRows.length - 1; i >= 0; i--) {
+    if (recentRows[i].result !== "GY") break;
+    winStreak += 1;
+  }
+
+  const tooltipText = `Utolsó ${recentRows.length} meccs: ${winCount} győzelem, ${drawCount} döntetlen, ${lossCount} vereség`;
+  const summaryText = unbeatenStreak >= 3
+    ? `${unbeatenStreak} meccs óta veretlen`
+    : winStreak >= 2
+    ? `${winStreak} meccses győzelmi sorozat`
+    : tooltipText;
+
+  return {
+    pointsPerMatch,
+    trendArrow,
+    trendLabel,
+    trendColor,
+    unbeatenStreak,
+    winStreak,
+    tooltipText,
+    summaryText,
+  };
 }

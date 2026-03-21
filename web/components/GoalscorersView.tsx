@@ -42,7 +42,7 @@ export function GoalscorersView({
           }}
         >
           <div style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 800, color: "#9a3412", marginBottom: "6px" }}>
-            🔥 Forró játékosok
+            🔥 Formában lévő játékosok
           </div>
           <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginBottom: "12px" }}>
             Utolsó {trendRounds.length} forduló trendje ({trendRounds.join(", ")}. forduló)

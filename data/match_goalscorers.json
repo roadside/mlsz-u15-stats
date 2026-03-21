@@ -2464,5 +2464,28 @@
         ]
       }
     ]
+  },
+  {
+    "round": 14,
+    "home": "UTE",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "FODOR FÉLIX",
+        "goals": 2,
+        "minutes": [
+          38,
+          61
+        ]
+      },
+      {
+        "player": "HERCZEG PATRIK",
+        "goals": 1,
+        "minutes": [
+          67
+        ]
+      }
+    ],
+    "away_scorers": []
   }
 ]

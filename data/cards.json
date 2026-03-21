@@ -1709,7 +1709,24 @@
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
     "date": "2026. 03. 21. 12:15",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150253.html",
-    "yellow_cards": [],
-    "red_cards": []
+    "yellow_cards": [
+      {
+        "player": "NGUYEN TUAN MINH",
+        "minute": 80,
+        "team": "UTE"
+      },
+      {
+        "player": "CSENDES ZSOLT",
+        "minute": 51,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "SMILNIAK DANIIL",
+        "minute": 71,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ]
   }
 ]

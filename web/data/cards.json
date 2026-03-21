@@ -1,0 +1,1672 @@
+[
+  {
+    "round": 1,
+    "home": "DVSC",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2025. 08. 29. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096894.html",
+    "yellow_cards": [
+      {
+        "player": "CSORBA RICHÁRD LEVENTE",
+        "minute": 49,
+        "team": "DVSC"
+      },
+      {
+        "player": "BALOGH T. ALEX",
+        "minute": 77,
+        "team": "DVSC"
+      },
+      {
+        "player": "VARGA BENEDEK",
+        "minute": 77,
+        "team": "ILLÉS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 1,
+    "home": "ETO AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2025. 08. 30. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096893.html",
+    "yellow_cards": [
+      {
+        "player": "REJTŐ ROBIN",
+        "minute": 79,
+        "team": "ETO AKADÉMIA"
+      },
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "minute": 44,
+        "team": "ETO AKADÉMIA"
+      },
+      {
+        "player": "KEMENDI MILÁN",
+        "minute": 60,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "KÁROLYI MIHÁLY",
+        "minute": 80,
+        "team": "ETO AKADÉMIA"
+      }
+    ]
+  },
+  {
+    "round": 1,
+    "home": "FERENCVÁROSI TC",
+    "away": "BUDAPEST HONVÉD FC",
+    "date": "2025. 08. 30. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
+    "yellow_cards": [
+      {
+        "player": "MENYHÁRT MÁRTON",
+        "minute": 77,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 1,
+    "home": "UTE",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2025. 08. 30. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096890.html",
+    "yellow_cards": [
+      {
+        "player": "NAGY ZÉTÉNY",
+        "minute": 30,
+        "team": "UTE"
+      },
+      {
+        "player": "IVÁNSZKI CSANÁD",
+        "minute": 39,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 1,
+    "home": "DVTK",
+    "away": "MTK BUDAPEST",
+    "date": "2025. 08. 30. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096892.html",
+    "yellow_cards": [
+      {
+        "player": "SZEGEDI NORBERT",
+        "minute": 64,
+        "team": "DVTK"
+      },
+      {
+        "player": "PALAGA MILÁN",
+        "minute": 73,
+        "team": "DVTK"
+      },
+      {
+        "player": "PATAKY CSONGOR",
+        "minute": 26,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "MOHL PATRIK",
+        "minute": 27,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 7,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 1,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2025. 08. 30. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096891.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 2,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "ETO AKADÉMIA",
+    "date": "2025. 09. 06. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096897.html",
+    "yellow_cards": [
+      {
+        "player": "DAN FLÓRIÁN",
+        "minute": 60,
+        "team": "ETO AKADÉMIA"
+      },
+      {
+        "player": "REJTŐ ROBIN",
+        "minute": 80,
+        "team": "ETO AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 2,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "DVTK",
+    "date": "2025. 09. 06. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096898.html",
+    "yellow_cards": [
+      {
+        "player": "ERDŐS CSONGOR",
+        "minute": 64,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      },
+      {
+        "player": "KEMENDI MILÁN",
+        "minute": 29,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 2,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2025. 09. 06. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096899.html",
+    "yellow_cards": [
+      {
+        "player": "ROZGONYI ROLAND",
+        "minute": 56,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 2,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "DVSC",
+    "date": "2025. 09. 06. 13:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096900.html",
+    "yellow_cards": [
+      {
+        "player": "SVISTUNOV HERMAN",
+        "minute": 30,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "PÁSZKO NATANAEL",
+        "minute": 49,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 2,
+    "home": "MTK BUDAPEST",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2025. 09. 17. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096896.html",
+    "yellow_cards": [
+      {
+        "player": "VARGA BOTOND GÁBOR",
+        "minute": 80,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 2,
+    "home": "UTE",
+    "away": "FERENCVÁROSI TC",
+    "date": "2025. 10. 22. 18:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/2/2096901.html",
+    "yellow_cards": [
+      {
+        "player": "FODOR FÉLIX",
+        "minute": 56,
+        "team": "UTE"
+      },
+      {
+        "player": "LAKATOS ANDOR",
+        "minute": 75,
+        "team": "UTE"
+      },
+      {
+        "player": "KECZÉRY LÁSZLÓ MÁTYÁS",
+        "minute": 65,
+        "team": "FERENCVÁROSI TC"
+      },
+      {
+        "player": "VILLÁS VINCE",
+        "minute": 43,
+        "team": "FERENCVÁROSI TC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 3,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "UTE",
+    "date": "2025. 09. 12. 13:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096907.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 3,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "MTK BUDAPEST",
+    "date": "2025. 09. 13. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096902.html",
+    "yellow_cards": [
+      {
+        "player": "BELICZKY MARTIN RENATO",
+        "minute": 38,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "SALAMON ADORJÁN BALÁZS",
+        "minute": 20,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "MOHL PATRIK",
+        "minute": 53,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 77,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 3,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2025. 09. 13. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096903.html",
+    "yellow_cards": [
+      {
+        "player": "LAUER OLIVÉR",
+        "minute": 28,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "YILMAZ DENIZ",
+        "minute": 45,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 3,
+    "home": "DVSC",
+    "away": "FERENCVÁROSI TC",
+    "date": "2025. 09. 13. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096906.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 3,
+    "home": "ETO AKADÉMIA",
+    "away": "BUDAPEST HONVÉD FC",
+    "date": "2025. 09. 13. 12:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096905.html",
+    "yellow_cards": [
+      {
+        "player": "PÁNCZÉL DÁNIEL LÁSZLÓ",
+        "minute": 75,
+        "team": "ETO AKADÉMIA"
+      },
+      {
+        "player": "PISONT RICHÁRD BENJÁMIN",
+        "minute": 31,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 3,
+    "home": "DVTK",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2025. 09. 13. 13:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/3/2096904.html",
+    "yellow_cards": [
+      {
+        "player": "VIGH VENCEL",
+        "minute": 84,
+        "team": "DVTK"
+      },
+      {
+        "player": "SŐREGI NOEL",
+        "minute": 56,
+        "team": "DVTK"
+      },
+      {
+        "player": "JAKAB MARTIN",
+        "minute": 84,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "HUSZ MILÁN",
+        "minute": 59,
+        "team": "ILLÉS AKADÉMIA"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "SZEGEDI NORBERT",
+        "minute": 68,
+        "team": "DVTK"
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2025. 09. 20. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096912.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 4,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "DVTK",
+    "date": "2025. 09. 20. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096910.html",
+    "yellow_cards": [
+      {
+        "player": "NÉMET ZALÁN",
+        "minute": 67,
+        "team": "DVTK"
+      },
+      {
+        "player": "SŐREGI NOEL",
+        "minute": 80,
+        "team": "DVTK"
+      },
+      {
+        "player": "FARKAS ANDRÁS",
+        "minute": 76,
+        "team": "DVTK"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 4,
+    "home": "DVSC",
+    "away": "UTE",
+    "date": "2025. 09. 20. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096908.html",
+    "yellow_cards": [
+      {
+        "player": "RUTTKAY ZOLTÁN ANDRÁS",
+        "minute": 39,
+        "team": "UTE"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "KÁNYÁSSY GERGELY",
+        "minute": 76,
+        "team": "DVSC"
+      }
+    ]
+  },
+  {
+    "round": 4,
+    "home": "FERENCVÁROSI TC",
+    "away": "ETO AKADÉMIA",
+    "date": "2025. 09. 20. 12:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096909.html",
+    "yellow_cards": [
+      {
+        "player": "KECZÉRY LÁSZLÓ MÁTYÁS",
+        "minute": 28,
+        "team": "FERENCVÁROSI TC"
+      },
+      {
+        "player": "BOKROS BENETT",
+        "minute": 83,
+        "team": "FERENCVÁROSI TC"
+      },
+      {
+        "player": "BÉCSY BOTOND",
+        "minute": 48,
+        "team": "FERENCVÁROSI TC"
+      },
+      {
+        "player": "VINCZE BARNABÁS",
+        "minute": 71,
+        "team": "ETO AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 4,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2025. 09. 20. 12:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096911.html",
+    "yellow_cards": [
+      {
+        "player": "VERES KEVIN NOEL",
+        "minute": 77,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "BOMLÁSZ BENJÁMIN",
+        "minute": 52,
+        "team": "PUSKÁS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 4,
+    "home": "MTK BUDAPEST",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2025. 09. 20. 12:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/4/2096913.html",
+    "yellow_cards": [
+      {
+        "player": "VASS MILÁN",
+        "minute": 60,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "MOHL PATRIK",
+        "minute": 63,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "KULYK KOSTIANTYN",
+        "minute": 80,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 5,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "BUDAPEST HONVÉD FC",
+    "date": "2025. 09. 27. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096915.html",
+    "yellow_cards": [],
+    "red_cards": [
+      {
+        "player": "GEREBENES RÓBERT",
+        "minute": 84,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ]
+  },
+  {
+    "round": 5,
+    "home": "UTE",
+    "away": "MTK BUDAPEST",
+    "date": "2025. 09. 27. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096919.html",
+    "yellow_cards": [
+      {
+        "player": "KESZTHELYI BENCE",
+        "minute": 32,
+        "team": "UTE"
+      },
+      {
+        "player": "NAGY ZÉTÉNY",
+        "minute": 63,
+        "team": "UTE"
+      },
+      {
+        "player": "RUTTKAY ZOLTÁN ANDRÁS",
+        "minute": 79,
+        "team": "UTE"
+      },
+      {
+        "player": "JÁGER BENCE JÓZSEF",
+        "minute": 34,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "MOHL PATRIK",
+        "minute": 73,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 5,
+    "home": "DVTK",
+    "away": "FERENCVÁROSI TC",
+    "date": "2025. 09. 27. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096916.html",
+    "yellow_cards": [
+      {
+        "player": "MOHOS MÁTYÁS IMRE",
+        "minute": 66,
+        "team": "FERENCVÁROSI TC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 5,
+    "home": "ETO AKADÉMIA",
+    "away": "DVSC",
+    "date": "2025. 09. 27. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096917.html",
+    "yellow_cards": [
+      {
+        "player": "VARGÁN MILÁN",
+        "minute": 35,
+        "team": "ETO AKADÉMIA"
+      },
+      {
+        "player": "VINCZE BARNABÁS",
+        "minute": 10,
+        "team": "ETO AKADÉMIA"
+      },
+      {
+        "player": "NAGY BENCE",
+        "minute": 70,
+        "team": "DVSC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 5,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2025. 09. 27. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096918.html",
+    "yellow_cards": [
+      {
+        "player": "SVISTUNOV HERMAN",
+        "minute": 90,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "TAKÁCS DOMINIK",
+        "minute": 67,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "CSENDES ZSOLT",
+        "minute": 60,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "ERDŐS CSONGOR",
+        "minute": 59,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 5,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2025. 10. 07. 13:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/5/2096914.html",
+    "yellow_cards": [
+      {
+        "player": "MÉREY MÁTÉ",
+        "minute": 71,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "URAY BENCE",
+        "minute": 28,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "IHÁSZ BENDEGÚZ KOPPÁNY",
+        "minute": 58,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "VERES KEVIN NOEL",
+        "minute": 80,
+        "team": "ILLÉS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 6,
+    "home": "FERENCVÁROSI TC",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2025. 10. 04. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096922.html",
+    "yellow_cards": [
+      {
+        "player": "MAJZIK ZÉTÉNY",
+        "minute": 82,
+        "team": "FERENCVÁROSI TC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 6,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2025. 10. 04. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096923.html",
+    "yellow_cards": [
+      {
+        "player": "PISONT RICHÁRD BENJÁMIN",
+        "minute": 81,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "LABÁTH AMBRUS JAKAB",
+        "minute": 52,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 6,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2025. 10. 04. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096924.html",
+    "yellow_cards": [
+      {
+        "player": "URAY BENCE",
+        "minute": 60,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "KAPITÁNY KENDE",
+        "minute": 60,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 6,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "MTK BUDAPEST",
+    "date": "2025. 10. 04. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096925.html",
+    "yellow_cards": [
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 35,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 6,
+    "home": "ETO AKADÉMIA",
+    "away": "UTE",
+    "date": "2025. 10. 04. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096920.html",
+    "yellow_cards": [
+      {
+        "player": "NGUYEN TUAN MINH",
+        "minute": 71,
+        "team": "UTE"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 6,
+    "home": "DVSC",
+    "away": "DVTK",
+    "date": "2025. 10. 04. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/6/2096921.html",
+    "yellow_cards": [
+      {
+        "player": "SŐREGI NOEL",
+        "minute": 31,
+        "team": "DVTK"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 7,
+    "home": "UTE",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2025. 10. 10. 17:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096931.html",
+    "yellow_cards": [
+      {
+        "player": "LAKATOS ANDOR",
+        "minute": 40,
+        "team": "UTE"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 7,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "FERENCVÁROSI TC",
+    "date": "2025. 10. 11. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096926.html",
+    "yellow_cards": [
+      {
+        "player": "IVÁNSZKI CSANÁD",
+        "minute": 81,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "KECZÉRY LÁSZLÓ MÁTYÁS",
+        "minute": 43,
+        "team": "FERENCVÁROSI TC"
+      },
+      {
+        "player": "BÉCSY BOTOND",
+        "minute": 52,
+        "team": "FERENCVÁROSI TC"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "BOZÓ NORBERT",
+        "minute": 23,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "home": "MTK BUDAPEST",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2025. 10. 11. 12:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096929.html",
+    "yellow_cards": [
+      {
+        "player": "JAKAB MARTIN",
+        "minute": 31,
+        "team": "ILLÉS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 7,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "BUDAPEST HONVÉD FC",
+    "date": "2025. 10. 11. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096930.html",
+    "yellow_cards": [
+      {
+        "player": "SMIRNOV KYRYLO",
+        "minute": 60,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "CSENDES ZSOLT",
+        "minute": 54,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "NYIRI BENEDEK",
+        "minute": 55,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "BALÁZS PÉTER SZILÁRD",
+        "minute": 81,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 7,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "DVSC",
+    "date": "2025. 10. 11. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096927.html",
+    "yellow_cards": [
+      {
+        "player": "SZABADOS PÁRIS TIBOR",
+        "minute": 55,
+        "team": "DVSC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 7,
+    "home": "DVTK",
+    "away": "ETO AKADÉMIA",
+    "date": "2025. 10. 22. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/7/2096928.html",
+    "yellow_cards": [
+      {
+        "player": "VÁRADI SOMA MILÁN",
+        "minute": 24,
+        "team": "DVTK"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 8,
+    "home": "ETO AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2025. 10. 18. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096933.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 8,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "MTK BUDAPEST",
+    "date": "2025. 10. 18. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096936.html",
+    "yellow_cards": [
+      {
+        "player": "SZABÓ DOMINIK",
+        "minute": 74,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "MAGYAR ALEXANDER GYÖRGY",
+        "minute": 68,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "VASS ANDRÁS",
+        "minute": 35,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "JÓNÁS ATTILA FERENC",
+        "minute": 83,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 8,
+    "home": "DVTK",
+    "away": "UTE",
+    "date": "2025. 10. 18. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096932.html",
+    "yellow_cards": [
+      {
+        "player": "BÁRÁNY NOEL",
+        "minute": 40,
+        "team": "DVTK"
+      },
+      {
+        "player": "SZEGEDI NORBERT",
+        "minute": 55,
+        "team": "DVTK"
+      },
+      {
+        "player": "LAKATOS ANDOR",
+        "minute": 80,
+        "team": "UTE"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 8,
+    "home": "DVSC",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2025. 10. 18. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096934.html",
+    "yellow_cards": [
+      {
+        "player": "KOVÁCS ÁKOS JÁNOS",
+        "minute": 70,
+        "team": "DVSC"
+      },
+      {
+        "player": "SZILÁGYI NIMRÓD BENEDEK",
+        "minute": 62,
+        "team": "DVSC"
+      },
+      {
+        "player": "SAJGÁL PÉTER",
+        "minute": 62,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "minute": 12,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "HUBERT ROLAND",
+        "minute": 79,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2025. 10. 18. 12:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096937.html",
+    "yellow_cards": [
+      {
+        "player": "URAY BENCE",
+        "minute": 80,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "NÉMETH LEVENTE",
+        "minute": 82,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "MIHÓK MARTIN",
+        "minute": 65,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "NAGY GÁBOR VALENTIN",
+        "minute": 63,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      },
+      {
+        "player": "MUNKÁCSI MILÁN",
+        "minute": 77,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 8,
+    "home": "FERENCVÁROSI TC",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2025. 10. 18. 14:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/8/2096935.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 9,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "DVSC",
+    "date": "2025. 10. 25. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096942.html",
+    "yellow_cards": [
+      {
+        "player": "SVISTUNOV HERMAN",
+        "minute": 67,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "KOVÁCS ZSOMBOR",
+        "minute": 77,
+        "team": "DVSC"
+      },
+      {
+        "player": "KOVÁCS ÁKOS JÁNOS",
+        "minute": 20,
+        "team": "DVSC"
+      },
+      {
+        "player": "MESTER TAMÁS JÁNOS",
+        "minute": 79,
+        "team": "DVSC"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "SMILNIAK DANIIL",
+        "minute": 83,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "HABI FILIP RONALD",
+        "minute": 83,
+        "team": "DVSC"
+      }
+    ]
+  },
+  {
+    "round": 9,
+    "home": "UTE",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2025. 10. 29. 12:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096943.html",
+    "yellow_cards": [
+      {
+        "player": "HUSZ MILÁN",
+        "minute": 80,
+        "team": "ILLÉS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 9,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "ETO AKADÉMIA",
+    "date": "2025. 10. 31. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096938.html",
+    "yellow_cards": [
+      {
+        "player": "IVÁNSZKI CSANÁD",
+        "minute": 71,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "KOVÁCS DÁNIEL",
+        "minute": 33,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "SABJÁN ÁDÁM ISTVÁN",
+        "minute": 36,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "NÉMETH KEVIN LÁSZLÓ",
+        "minute": 84,
+        "team": "ETO AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 9,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "BUDAPEST HONVÉD FC",
+    "date": "2025. 10. 31. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096940.html",
+    "yellow_cards": [
+      {
+        "player": "VARGA BOTOND GÁBOR",
+        "minute": 72,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "SZABÓ DOMINIK",
+        "minute": 67,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "MAGYAR ALEXANDER GYÖRGY",
+        "minute": 41,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 9,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "DVTK",
+    "date": "2025. 11. 05. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096939.html",
+    "yellow_cards": [
+      {
+        "player": "KURUCZ MÁRTON GUSZTÁV",
+        "minute": 56,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "BABELLA MILÁN ATTILA",
+        "minute": 60,
+        "team": "DVTK"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 9,
+    "home": "MTK BUDAPEST",
+    "away": "FERENCVÁROSI TC",
+    "date": "2025. 11. 05. 17:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/9/2096941.html",
+    "yellow_cards": [
+      {
+        "player": "MOHL PATRIK",
+        "minute": 76,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "BODÓ BENCE",
+        "minute": 67,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "DUNCA KRISZTIÁN",
+        "minute": 78,
+        "team": "MTK BUDAPEST"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 10,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2025. 11. 07. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096949.html",
+    "yellow_cards": [
+      {
+        "player": "JÓZSA ROLAND",
+        "minute": 75,
+        "team": "BUDAPEST HONVÉD FC"
+      },
+      {
+        "player": "NÉMETH LEVENTE",
+        "minute": 78,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "HUSZ MILÁN",
+        "minute": 78,
+        "team": "ILLÉS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 10,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "UTE",
+    "date": "2025. 11. 08. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096944.html",
+    "yellow_cards": [
+      {
+        "player": "BOMLÁSZ BENJÁMIN",
+        "minute": 82,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "GYŐRI ÁDÁM",
+        "minute": 63,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "RÁCZ BOTOND",
+        "minute": 48,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "PAPP VILMOS",
+        "minute": 45,
+        "team": "UTE"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 10,
+    "home": "ETO AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2025. 11. 08. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096946.html",
+    "yellow_cards": [
+      {
+        "player": "VASVÁRI LEVENTE ZALÁN",
+        "minute": 79,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ],
+    "red_cards": [
+      {
+        "player": "SMIRNOV KYRYLO",
+        "minute": 17,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "home": "FERENCVÁROSI TC",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2025. 11. 08. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096948.html",
+    "yellow_cards": [
+      {
+        "player": "KŐVÁRI TAMÁS",
+        "minute": 45,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      },
+      {
+        "player": "SZABÓ PATRIK",
+        "minute": 76,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 10,
+    "home": "DVTK",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "date": "2025. 11. 08. 13:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096945.html",
+    "yellow_cards": [
+      {
+        "player": "VINCZE ZALÁN",
+        "minute": 48,
+        "team": "DVTK"
+      },
+      {
+        "player": "VIGH VENCEL",
+        "minute": 34,
+        "team": "DVTK"
+      },
+      {
+        "player": "CSAPLÁR BENCE",
+        "minute": 74,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "SAJGÁL PÉTER",
+        "minute": 58,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 10,
+    "home": "DVSC",
+    "away": "MTK BUDAPEST",
+    "date": "2025. 11. 12. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/10/2096947.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 11,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "DVTK",
+    "date": "2025. 11. 14. 15:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096954.html",
+    "yellow_cards": [
+      {
+        "player": "TASNÁDI ZSOLT",
+        "minute": 24,
+        "team": "DVTK"
+      },
+      {
+        "player": "SŐREGI NOEL",
+        "minute": 77,
+        "team": "DVTK"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 11,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2025. 11. 15. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096950.html",
+    "yellow_cards": [
+      {
+        "player": "CSAPLÁR BENCE",
+        "minute": 78,
+        "team": "VASAS KUBALA AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 11,
+    "home": "MTK BUDAPEST",
+    "away": "ETO AKADÉMIA",
+    "date": "2025. 11. 15. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096953.html",
+    "yellow_cards": [
+      {
+        "player": "MOHL PATRIK",
+        "minute": 75,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "VARGÁN MILÁN",
+        "minute": 65,
+        "team": "ETO AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 11,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "FERENCVÁROSI TC",
+    "date": "2025. 11. 15. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096951.html",
+    "yellow_cards": [
+      {
+        "player": "HÁNYI BÁLINT",
+        "minute": 77,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "HUSZ MILÁN",
+        "minute": 42,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "KECZÉRY LÁSZLÓ MÁTYÁS",
+        "minute": 50,
+        "team": "FERENCVÁROSI TC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 11,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "DVSC",
+    "date": "2025. 11. 15. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096952.html",
+    "yellow_cards": [
+      {
+        "player": "ERDŐS CSONGOR",
+        "minute": 55,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      },
+      {
+        "player": "SZABÓ PATRIK",
+        "minute": 60,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      },
+      {
+        "player": "NAGY ÁKOS",
+        "minute": 50,
+        "team": "DVSC"
+      },
+      {
+        "player": "KÁNYÁSSY GERGELY",
+        "minute": 32,
+        "team": "DVSC"
+      },
+      {
+        "player": "NAGY BENCE",
+        "minute": 12,
+        "team": "DVSC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 11,
+    "home": "UTE",
+    "away": "BUDAPEST HONVÉD FC",
+    "date": "2025. 11. 15. 14:30",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/11/2096955.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 12,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "DVSC",
+    "date": "2026. 02. 28. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150237.html",
+    "yellow_cards": [
+      {
+        "player": "MIHÓK MARTIN",
+        "minute": 80,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "KOVÁCS ÁKOS JÁNOS",
+        "minute": 20,
+        "team": "DVSC"
+      },
+      {
+        "player": "KÁNYÁSSY GERGELY",
+        "minute": 32,
+        "team": "DVSC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 12,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "ETO AKADÉMIA",
+    "date": "2026. 02. 28. 11:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150238.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 12,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "FERENCVÁROSI TC",
+    "date": "2026. 02. 28. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150236.html",
+    "yellow_cards": [
+      {
+        "player": "PALÁSTI KRISZTIÁN",
+        "minute": 64,
+        "team": "BUDAPEST HONVÉD FC"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 12,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "UTE",
+    "date": "2026. 03. 14. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150241.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 12,
+    "home": "MTK BUDAPEST",
+    "away": "DVTK",
+    "date": "2026. 03. 14. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150239.html",
+    "yellow_cards": [
+      {
+        "player": "CSAPÓ ZSOMBOR",
+        "minute": 77,
+        "team": "MTK BUDAPEST"
+      },
+      {
+        "player": "NAGY BALÁZS",
+        "minute": 59,
+        "team": "DVTK"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 12,
+    "home": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2026. 03. 14. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/12/2150240.html",
+    "yellow_cards": [
+      {
+        "player": "SVISTUNOV HERMAN",
+        "minute": 40,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "PÁSZKO NATANAEL",
+        "minute": 80,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "TAKÁCS DOMINIK",
+        "minute": 63,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "NÓRÁNT MÁTÉ",
+        "minute": 40,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "KURUCZ MÁRTON GUSZTÁV",
+        "minute": 21,
+        "team": "PUSKÁS AKADÉMIA"
+      },
+      {
+        "player": "RÁCZ BOTOND",
+        "minute": 69,
+        "team": "PUSKÁS AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 13,
+    "home": "PUSKÁS AKADÉMIA",
+    "away": "MTK BUDAPEST",
+    "date": "2026. 03. 07. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150243.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 13,
+    "home": "ETO AKADÉMIA",
+    "away": "ILLÉS AKADÉMIA",
+    "date": "2026. 03. 07. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150245.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 13,
+    "home": "DVTK",
+    "away": "VIDEOTON FC FEHÉRVÁR",
+    "date": "2026. 03. 07. 13:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150244.html",
+    "yellow_cards": [
+      {
+        "player": "VÁRKONYI NORBERT KORNÉL",
+        "minute": 79,
+        "team": "DVTK"
+      },
+      {
+        "player": "KEMENDI MILÁN",
+        "minute": 77,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 13,
+    "home": "VASAS KUBALA AKADÉMIA",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2026. 03. 07. 14:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/13/2150242.html",
+    "yellow_cards": [
+      {
+        "player": "IVÁNSZKI CSANÁD",
+        "minute": 45,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "HORVÁTH OLIVÉR",
+        "minute": 32,
+        "team": "VASAS KUBALA AKADÉMIA"
+      },
+      {
+        "player": "TKACH VOLODYMYR",
+        "minute": 72,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      },
+      {
+        "player": "CSEH ZÉTÉNY",
+        "minute": 67,
+        "team": "VÁRDA LABDARUGÓ AKADÉMIA"
+      }
+    ],
+    "red_cards": []
+  },
+  {
+    "round": 14,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "DVTK",
+    "date": "2026. 03. 21. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150250.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 14,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "PUSKÁS AKADÉMIA",
+    "date": "2026. 03. 21. 10:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150251.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 14,
+    "home": "BUDAPEST HONVÉD FC",
+    "away": "ETO AKADÉMIA",
+    "date": "2026. 03. 21. 12:00",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150249.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 14,
+    "home": "FERENCVÁROSI TC",
+    "away": "DVSC",
+    "date": "2026. 03. 21. 12:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150248.html",
+    "yellow_cards": [],
+    "red_cards": []
+  },
+  {
+    "round": 14,
+    "home": "UTE",
+    "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "date": "2026. 03. 21. 12:15",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150253.html",
+    "yellow_cards": [],
+    "red_cards": []
+  }
+]

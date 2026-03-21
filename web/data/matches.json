@@ -961,18 +961,6 @@
   },
   {
     "round": 14,
-    "date": "2026. 03. 21. 10:00",
-    "home": "MTK BUDAPEST",
-    "away": "VASAS KUBALA AKADÉMIA",
-    "home_goals": null,
-    "away_goals": null,
-    "status": "Kiírva",
-    "venue": "MTK Budapest - Sándor Károly LA",
-    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html",
-    "match_url": null
-  },
-  {
-    "round": 14,
     "date": "2026. 03. 21. 12:00",
     "home": "BUDAPEST HONVÉD FC",
     "away": "ETO AKADÉMIA",
@@ -1004,6 +992,18 @@
     "away_goals": null,
     "status": "Kiírva",
     "venue": "UTE Atlétikai Stadion",
+    "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html",
+    "match_url": null
+  },
+  {
+    "round": 14,
+    "date": "2026. 04. 03. 12:30",
+    "home": "MTK BUDAPEST",
+    "away": "VASAS KUBALA AKADÉMIA",
+    "home_goals": null,
+    "away_goals": null,
+    "status": "Kiírva",
+    "venue": "MTK Budapest - Sándor Károly LA",
     "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html",
     "match_url": null
   },

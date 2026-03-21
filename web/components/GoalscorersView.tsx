@@ -21,6 +21,11 @@ export function GoalscorersView({
   isMobile,
 }: GoalscorersViewProps) {
   const trendRounds = buildTrendRounds(selectedRound);
+  const hasSelectedRoundMatchData = allMatchGoalscorers.some(
+    (match) =>
+      match.round === selectedRound &&
+      (selectedTeamFilter === "Összes csapat" || match.home === selectedTeamFilter || match.away === selectedTeamFilter)
+  );
   const hotPlayers = buildHotPlayers(allMatchGoalscorers, trendRounds, selectedTeamFilter).slice(0, isMobile ? 5 : 8);
 
   return (
@@ -31,7 +36,7 @@ export function GoalscorersView({
           : `${selectedTeamFilter} góllövői a ${selectedRound}. forduló után`}
       </h2>
 
-      {hotPlayers.length > 0 ? (
+      {hasSelectedRoundMatchData && hotPlayers.length > 0 ? (
         <div
           style={{
             marginBottom: "18px",

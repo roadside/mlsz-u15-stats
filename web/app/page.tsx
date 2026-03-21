@@ -234,9 +234,13 @@ export default function Home() {
 
   const teamTableMovement = useMemo(() => {
     if (effectiveSelectedTeamFilter === "Összes csapat") return null;
+    const latestPlayedRound = allMatches
+      .filter((match) => match.status === "Lejátszva")
+      .reduce((maxRound, match) => Math.max(maxRound, match.round), 0);
     const rows = allTables
       .slice()
       .sort((a, b) => a.round - b.round)
+      .filter((rt) => rt.round <= latestPlayedRound)
       .map((rt) => {
         const row = rt.table.find((r) => r.team === effectiveSelectedTeamFilter);
         if (!row) return null;
@@ -252,7 +256,7 @@ export default function Home() {
       bestPosition: rows.reduce((best, r) => Math.min(best, r.position), rows[0].position),
       movement: first.position - last.position,
     };
-  }, [effectiveSelectedTeamFilter]);
+  }, [allMatches, effectiveSelectedTeamFilter]);
 
   const teamPrevNextMatches = useMemo(() => {
     if (effectiveSelectedTeamFilter === "Összes csapat") return null;

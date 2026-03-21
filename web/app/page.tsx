@@ -661,6 +661,7 @@ export default function Home() {
       ) : view === "goalscorers" ? (
         <GoalscorersView
           filteredGoalscorers={filteredGoalscorers}
+          allMatchGoalscorers={allMatchGoalscorers}
           selectedRound={selectedRound}
           selectedTeamFilter={effectiveSelectedTeamFilter}
           isMobile={isMobile}

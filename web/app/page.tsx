@@ -26,6 +26,7 @@ import { StatsView } from "../components/StatsView";
 import { CardsView } from "../components/CardsView";
 import { TeamProfile } from "../components/TeamProfile";
 import { EmptyBox } from "../components/ui";
+import { InAppNotifications } from "../components/InAppNotifications";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const allMatches = matchesData as Match[];
@@ -477,11 +478,13 @@ export default function Home() {
         MLSZ Országos U15 Kiemelt
       </h1>
 
+      <InAppNotifications />
+
       {/* ── Controls ── */}
       <div style={{ marginBottom: "18px" }}>
         {/* Tab buttons */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "14px", flexWrap: "wrap" }}>
-          {(["matches", "table", "goalscorers", "stats", "cards"] as const).map((v) => (
+          {(["matches", "table", "goalscorers", "cards", "stats"] as const).map((v) => (
             <button key={v} onClick={() => setView(v)} style={tabButtonStyle(view === v)}>
               {v === "matches" ? "Meccsek" : v === "table" ? "Tabella" : v === "goalscorers" ? "Góllövők" : v === "stats" ? "Statisztika" : "Lapok"}
             </button>

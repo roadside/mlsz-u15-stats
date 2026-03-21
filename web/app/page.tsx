@@ -302,6 +302,16 @@ export default function Home() {
     };
   }, [effectiveSelectedTeamFilter, teamPrevNextMatches, latestTable]);
 
+  useEffect(() => {
+    if (effectiveSelectedTeamFilter === "Összes csapat") return;
+
+    setSelectedHomeTeam(effectiveSelectedTeamFilter);
+
+    if (nextOpponentStats?.team && nextOpponentStats.team !== effectiveSelectedTeamFilter) {
+      setSelectedAwayTeam(nextOpponentStats.team);
+    }
+  }, [effectiveSelectedTeamFilter, nextOpponentStats, setSelectedHomeTeam, setSelectedAwayTeam]);
+
   const teamHomeAwayStats = useMemo(() => {
     if (effectiveSelectedTeamFilter === "Összes csapat") return null;
     const played = allMatches.filter(

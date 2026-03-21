@@ -57,6 +57,7 @@ interface DangerousPlayerRow {
 interface StatsViewProps {
   isMobile: boolean;
   selectedTeamFilter: string;
+  nextOpponentTeam: string | null;
   allMatchGoalscorers: MatchGoalscorer[];
   latestGoalscorers: GoalscorerRow[];
   // Round goals
@@ -83,6 +84,7 @@ interface StatsViewProps {
 export function StatsView({
   isMobile,
   selectedTeamFilter,
+  nextOpponentTeam,
   allMatchGoalscorers,
   latestGoalscorers,
   roundGoalsStats,
@@ -206,6 +208,9 @@ export function StatsView({
       away: buildDangerousPlayersForTeam(allMatchGoalscorers, latestGoalscorers, selectedAwayTeam, recentRounds5, recentRounds3),
     };
   }, [allMatchGoalscorers, latestGoalscorers, selectedHomeTeam, selectedAwayTeam]);
+
+  const showOnlyOpponentDangerousPlayers =
+    selectedTeamFilter !== "Összes csapat" && !!nextOpponentTeam && selectedAwayTeam === nextOpponentTeam;
 
   return (
     <>
@@ -535,19 +540,21 @@ export function StatsView({
                   A szezontermés, a friss gólforma és a csapat góljain belüli részesedés alapján.
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}>
-                  <div>
-                    <div style={{ fontSize: "14px", fontWeight: 800, marginBottom: "8px", color: "#111827" }}>{selectedHomeTeam}</div>
-                    {dangerousPlayers.home.length > 0 ? (
-                      <div style={{ display: "grid", gap: "8px" }}>
-                        {dangerousPlayers.home.map((player) => (
-                          <DangerousPlayerCard key={`${player.team}-${player.player}`} player={player} isMobile={isMobile} />
-                        ))}
-                      </div>
-                    ) : (
-                      <EmptyBox text="A csapatnál jelenleg nincs veszélyesnek minősülő játékos." />
-                    )}
-                  </div>
+                <div style={{ display: "grid", gridTemplateColumns: showOnlyOpponentDangerousPlayers || isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}>
+                  {showOnlyOpponentDangerousPlayers ? null : (
+                    <div>
+                      <div style={{ fontSize: "14px", fontWeight: 800, marginBottom: "8px", color: "#111827" }}>{selectedHomeTeam}</div>
+                      {dangerousPlayers.home.length > 0 ? (
+                        <div style={{ display: "grid", gap: "8px" }}>
+                          {dangerousPlayers.home.map((player) => (
+                            <DangerousPlayerCard key={`${player.team}-${player.player}`} player={player} isMobile={isMobile} />
+                          ))}
+                        </div>
+                      ) : (
+                        <EmptyBox text="A csapatnál jelenleg nincs veszélyesnek minősülő játékos." />
+                      )}
+                    </div>
+                  )}
 
                   <div>
                     <div style={{ fontSize: "14px", fontWeight: 800, marginBottom: "8px", color: "#111827" }}>{selectedAwayTeam}</div>

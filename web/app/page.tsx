@@ -5,8 +5,9 @@ import matchesData from "../data/matches.json";
 import tablesData from "../data/tables.json";
 import goalscorersData from "../data/goalscorers.json";
 import matchGoalscorersData from "../data/match_goalscorers.json";
+import cardsData from "../data/cards.json";
 
-import { Match, RoundTable, RoundGoalscorers, MatchGoalscorer } from "../components/types";
+import { Match, RoundTable, RoundGoalscorers, MatchGoalscorer, CardMatch } from "../components/types";
 import {
   getClosestRound,
   parseHungarianDate,
@@ -22,6 +23,7 @@ import { MatchCard } from "../components/MatchCard";
 import { TableView } from "../components/TableView";
 import { GoalscorersView } from "../components/GoalscorersView";
 import { StatsView } from "../components/StatsView";
+import { CardsView } from "../components/CardsView";
 import { TeamProfile } from "../components/TeamProfile";
 import { EmptyBox } from "../components/ui";
 
@@ -30,6 +32,7 @@ const allMatches = matchesData as Match[];
 const allTables = tablesData as RoundTable[];
 const allGoalscorers = goalscorersData as RoundGoalscorers[];
 const allMatchGoalscorers = matchGoalscorersData as MatchGoalscorer[];
+const allCards = cardsData as CardMatch[];
 const rounds = Array.from({ length: 22 }, (_, i) => i + 1);
 const allTeams = Array.from(new Set(allMatches.flatMap((m) => [m.home, m.away]))).sort((a, b) =>
   a.localeCompare(b, "hu")
@@ -44,7 +47,7 @@ const matchTimestamps = new Map<string, number>(
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function Home() {
   const [selectedRound, setSelectedRound] = useState<number>(getClosestRound(allMatches));
-  const [view, setView] = useState<"matches" | "table" | "goalscorers" | "stats">("matches");
+  const [view, setView] = useState<"matches" | "table" | "goalscorers" | "stats" | "cards">("matches");
   const [isMobile, setIsMobile] = useState(false);
   const [selectedHomeTeam, setSelectedHomeTeam] = useState<string>(() => allTeams[0] ?? "");
   const [selectedAwayTeam, setSelectedAwayTeam] = useState<string>(() => allTeams[1] ?? allTeams[0] ?? "");
@@ -478,9 +481,9 @@ export default function Home() {
       <div style={{ marginBottom: "18px" }}>
         {/* Tab buttons */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "14px", flexWrap: "wrap" }}>
-          {(["matches", "table", "goalscorers", "stats"] as const).map((v) => (
+          {(["matches", "table", "goalscorers", "stats", "cards"] as const).map((v) => (
             <button key={v} onClick={() => setView(v)} style={tabButtonStyle(view === v)}>
-              {v === "matches" ? "Meccsek" : v === "table" ? "Tabella" : v === "goalscorers" ? "Góllövők" : "Statisztika"}
+              {v === "matches" ? "Meccsek" : v === "table" ? "Tabella" : v === "goalscorers" ? "Góllövők" : v === "stats" ? "Statisztika" : "Lapok"}
             </button>
           ))}
         </div>
@@ -637,6 +640,13 @@ export default function Home() {
       ) : view === "goalscorers" ? (
         <GoalscorersView
           filteredGoalscorers={filteredGoalscorers}
+          selectedRound={selectedRound}
+          selectedTeamFilter={effectiveSelectedTeamFilter}
+          isMobile={isMobile}
+        />
+      ) : view === "cards" ? (
+        <CardsView
+          cardsData={allCards}
           selectedRound={selectedRound}
           selectedTeamFilter={effectiveSelectedTeamFilter}
           isMobile={isMobile}

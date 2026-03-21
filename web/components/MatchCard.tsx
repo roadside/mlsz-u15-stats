@@ -164,9 +164,8 @@ export function MatchCard({
       {/* Date / venue row */}
       <div
         style={{
-          marginTop: "14px",
-          paddingTop: "12px",
-          borderTop: "1px solid #e5e7eb",
+          marginTop: "8px",
+          paddingTop: "4px",
           display: "grid",
           gap: "6px",
         }}

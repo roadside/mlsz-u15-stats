@@ -2342,5 +2342,51 @@
         ]
       }
     ]
+  },
+  {
+    "round": 14,
+    "home": "ILLÉS AKADÉMIA",
+    "away": "DVTK",
+    "home_scorers": [
+      {
+        "player": "NÉMETH LEVENTE",
+        "goals": 2,
+        "minutes": [
+          56,
+          84
+        ]
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "SZOBOR NOEL JÁNOS",
+        "goals": 1,
+        "minutes": [
+          17
+        ]
+      },
+      {
+        "player": "FARKAS ANDRÁS",
+        "goals": 1,
+        "minutes": [
+          30
+        ]
+      }
+    ]
+  },
+  {
+    "round": 14,
+    "home": "VIDEOTON FC FEHÉRVÁR",
+    "away": "PUSKÁS AKADÉMIA",
+    "home_scorers": [
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "goals": 1,
+        "minutes": [
+          71
+        ]
+      }
+    ],
+    "away_scorers": []
   }
 ]

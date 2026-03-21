@@ -474,11 +474,12 @@ export function StatsView({
 
           {poissonPrediction && selectedHomeStats && selectedAwayStats ? (
             <div style={{ display: "grid", gap: "14px" }}>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr", gap: "12px" }}>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "1fr 1fr 1fr 1fr 1fr", gap: "12px" }}>
                 <MetricCard label="Hazai várható gól" value={poissonPrediction.homeLambda} />
                 <MetricCard label="Vendég várható gól" value={poissonPrediction.awayLambda} />
                 <MetricCard label="Hazai győzelem" value={`${poissonPrediction.homeWin}%`} valueColor="#166534" />
-                <MetricCard label="Döntetlen / vendég" value={`${poissonPrediction.draw}% / ${poissonPrediction.awayWin}%`} />
+                <MetricCard label="Döntetlen" value={`${poissonPrediction.draw}%`} />
+                <MetricCard label="Vendég győzelem" value={`${poissonPrediction.awayWin}%`} valueColor="#1d4ed8" />
               </div>
 
               {isMobile ? (

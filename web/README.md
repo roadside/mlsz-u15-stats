@@ -8,14 +8,14 @@
 A modern, responsive football statistics web application built with Next.js.  
 The app provides match data, league tables, player statistics, and advanced analytics.
 
-> Replace `https://YOUR-PROJECT.vercel.app` with your actual Vercel domain.  
+> Replace `https://www.ute2011.hu` with your actual Vercel domain.  
 > After that, the **Live Demo** badge and link will work automatically.
 
 ---
 
 ## 🌐 Live URL
 
-**Production:** https://YOUR-PROJECT.vercel.app
+**Production:** https://mlsz-u15-stats.vercel.app/
 
 ---
 
@@ -153,14 +153,14 @@ Educational / personal use.
 
 Modern, reszponzív futball statisztikai webalkalmazás Next.js alapokon.
 
-> Cseréld le a `https://YOUR-PROJECT.vercel.app` címet a saját Vercel linkedre,  
+> Cseréld le a `https://www.ute2011.hu` címet a saját Vercel linkedre,  
 > és utána a **Live Demo** badge automatikusan működni fog.
 
 ---
 
 ## 🌐 Éles URL
 
-**Production:** https://YOUR-PROJECT.vercel.app
+**Production:** https://mlsz-u15-stats.vercel.app/
 
 ---
 

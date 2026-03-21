@@ -9,6 +9,7 @@ interface GoalscorersViewProps {
   filteredGoalscorers: GoalscorerRow[] | null;
   allMatchGoalscorers: MatchGoalscorer[];
   selectedRound: number;
+  goalscorersRoundLabel: number;
   selectedTeamFilter: string;
   isMobile: boolean;
 }
@@ -17,6 +18,7 @@ export function GoalscorersView({
   filteredGoalscorers,
   allMatchGoalscorers,
   selectedRound,
+  goalscorersRoundLabel,
   selectedTeamFilter,
   isMobile,
 }: GoalscorersViewProps) {
@@ -30,12 +32,6 @@ export function GoalscorersView({
 
   return (
     <section style={sectionCardStyle}>
-      <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-        {selectedTeamFilter === "Összes csapat"
-          ? `Góllövőlista a ${selectedRound}. forduló után`
-          : `${selectedTeamFilter} góllövői a ${selectedRound}. forduló után`}
-      </h2>
-
       {hasSelectedRoundMatchData && hotPlayers.length > 0 ? (
         <div
           style={{
@@ -101,6 +97,12 @@ export function GoalscorersView({
           </div>
         </div>
       ) : null}
+
+      <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+        {selectedTeamFilter === "Összes csapat"
+          ? `Góllövőlista a ${goalscorersRoundLabel}. forduló után`
+          : `${selectedTeamFilter} góllövői a ${goalscorersRoundLabel}. forduló után`}
+      </h2>
 
       {!filteredGoalscorers || filteredGoalscorers.length === 0 ? (
         <EmptyBox text="Nincs megjeleníthető góllövőlista." />

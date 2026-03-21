@@ -1,4 +1,4 @@
-# ⚽ Football Statistics Dashboard U15
+# ⚽ Football Statistics Dashboard Hungarian National U15 Elite
 
 ![Next.js](https://img.shields.io/badge/Next.js-13+-black?logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Enabled-blue?logo=typescript)
@@ -146,7 +146,7 @@ Educational / personal use.
 
 ---
 
-# ⚽ Labdarúgás Statisztikai Dashboard U15
+# ⚽ Labdarúgás Statisztikai Dashboard MLSZ Országos U15 Kiemelt
 
 Modern, reszponzív futball statisztikai webalkalmazás Next.js alapokon.
 

@@ -100,8 +100,16 @@ export default function Home() {
     return Math.max(maxTableRound, maxGoalsRound, 1);
   }, []);
 
+  const latestGoalscorersRound = useMemo(
+    () => allGoalscorers.reduce((maxRound, row) => Math.max(maxRound, row.round), 0),
+    []
+  );
+
   const latestTable = useMemo(() => tablesByRound.get(latestRound) ?? null, [tablesByRound, latestRound]);
-  const latestGoalscorers = useMemo(() => goalscorersByRound.get(latestRound) ?? null, [goalscorersByRound, latestRound]);
+  const latestGoalscorers = useMemo(
+    () => goalscorersByRound.get(latestGoalscorersRound) ?? null,
+    [goalscorersByRound, latestGoalscorersRound]
+  );
 
   // ── Matches ──
   const filteredMatches = useMemo(() => {

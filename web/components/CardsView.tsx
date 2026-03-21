@@ -201,12 +201,6 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
 
   return (
     <div>
-      <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "16px" }}>
-        {selectedTeamFilter === "Összes csapat"
-          ? `${selectedRound}. forduló lapjai`
-          : `${selectedRound}. forduló – ${selectedTeamFilter} lapjai`}
-      </h2>
-
       <div style={disciplinaryCardStyle}>
         <h3 style={headerStyle}>🟥🟨 Fegyelmi index</h3>
         <div
@@ -293,6 +287,12 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
           </table>
         )}
       </div>
+
+      <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "16px" }}>
+        {selectedTeamFilter === "Összes csapat"
+          ? `${selectedRound}. forduló lapjai`
+          : `${selectedRound}. forduló – ${selectedTeamFilter} lapjai`}
+      </h2>
 
       {/* Statisztikák */}
       <div style={statsGridStyle}>

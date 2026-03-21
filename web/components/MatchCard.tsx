@@ -2,27 +2,38 @@
 
 import React from "react";
 import Image from "next/image";
-import { Match, MatchGoalscorer } from "./types";
+import { CardMatch, Match, MatchGoalscorer } from "./types";
 import { getLogo, formatDateParts, getStatusStyle } from "./constants";
 
 export function MatchCard({
   match,
   isMobile,
   goalscorers,
+  cards,
+  compactScorers = false,
 }: {
   match: Match;
   isMobile: boolean;
   goalscorers?: MatchGoalscorer;
+  cards?: CardMatch;
+  compactScorers?: boolean;
 }) {
   const homeLogo = getLogo(match.home);
   const awayLogo = getLogo(match.away);
   const dateParts = formatDateParts(match.date);
   const isPlayed = match.status === "Lejátszva";
+  const homeScorers = goalscorers?.home_scorers ?? [];
+  const awayScorers = goalscorers?.away_scorers ?? [];
+  const homeYellowCards = (cards?.yellow_cards ?? []).filter((card) => card.team === match.home);
+  const awayYellowCards = (cards?.yellow_cards ?? []).filter((card) => card.team === match.away);
+  const homeRedCards = (cards?.red_cards ?? []).filter((card) => card.team === match.home);
+  const awayRedCards = (cards?.red_cards ?? []).filter((card) => card.team === match.away);
 
   const hasScorers =
     isPlayed &&
     goalscorers &&
-    (goalscorers.home_scorers.length > 0 || goalscorers.away_scorers.length > 0);
+    (homeScorers.length > 0 || awayScorers.length > 0);
+  const hasCards = homeYellowCards.length > 0 || awayYellowCards.length > 0 || homeRedCards.length > 0 || awayRedCards.length > 0;
 
   return (
     <div
@@ -92,37 +103,60 @@ export function MatchCard({
         <div
           style={{
             marginTop: "12px",
-            paddingTop: "10px",
-            borderTop: "1px solid #f3f4f6",
+            padding: compactScorers ? (isMobile ? "8px" : "10px") : isMobile ? "10px" : "12px",
+            borderRadius: "12px",
+            border: "1px solid #e5e7eb",
+            backgroundColor: "#f8fafc",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "8px",
+            gap: compactScorers ? "4px" : "6px",
           }}
         >
-          {/* Home scorers */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "3px" }}>
-            {goalscorers!.home_scorers.map((s, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                <span style={{ fontSize: "11px" }}>⚽</span>
-                <span style={{ fontSize: isMobile ? "11px" : "12px", color: "#374151", fontWeight: 600 }}>
-                  {formatPlayerName(s.player)}
-                  {s.goals > 1 ? <span style={{ color: "#6b7280" }}> ×{s.goals}</span> : null}
-                </span>
-              </div>
-            ))}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: compactScorers ? (isMobile ? "8px" : "10px") : isMobile ? "10px" : "14px",
+              alignItems: "start",
+            }}
+          >
+            <ScorersColumn scorers={homeScorers} isMobile={isMobile} align="left" compact={compactScorers} />
+            <ScorersColumn scorers={awayScorers} isMobile={isMobile} align="right" compact={compactScorers} />
           </div>
+        </div>
+      )}
 
-          {/* Away scorers */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "3px", alignItems: "flex-end" }}>
-            {goalscorers!.away_scorers.map((s, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-                <span style={{ fontSize: isMobile ? "11px" : "12px", color: "#374151", fontWeight: 600, textAlign: "right" }}>
-                  {formatPlayerName(s.player)}
-                  {s.goals > 1 ? <span style={{ color: "#6b7280" }}> ×{s.goals}</span> : null}
-                </span>
-                <span style={{ fontSize: "11px" }}>⚽</span>
-              </div>
-            ))}
+      {hasCards && (
+        <div
+          style={{
+            marginTop: "10px",
+            padding: compactScorers ? (isMobile ? "8px" : "10px") : isMobile ? "10px" : "12px",
+            borderRadius: "12px",
+            border: "1px solid #e5e7eb",
+            backgroundColor: "#fafafa",
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: compactScorers ? (isMobile ? "8px" : "10px") : isMobile ? "10px" : "14px",
+              alignItems: "start",
+            }}
+          >
+            <CardsColumn
+              yellowCards={homeYellowCards}
+              redCards={homeRedCards}
+              isMobile={isMobile}
+              compact={compactScorers}
+              align="left"
+            />
+            <CardsColumn
+              yellowCards={awayYellowCards}
+              redCards={awayRedCards}
+              isMobile={isMobile}
+              compact={compactScorers}
+              align="right"
+            />
           </div>
         </div>
       )}
@@ -191,6 +225,131 @@ function formatPlayerName(name: string): string {
 function capitalize(s: string): string {
   if (!s) return s;
   return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
+}
+
+function formatGoalMinutes(minutes: number[]): string {
+  return minutes
+    .filter((minute) => minute > 0)
+    .map((minute) => `${minute}`)
+    .join(", ");
+}
+
+function ScorersColumn({
+  scorers,
+  isMobile,
+  align,
+  compact,
+}: {
+  scorers: MatchGoalscorer["home_scorers"];
+  isMobile: boolean;
+  align: "left" | "right";
+  compact: boolean;
+}) {
+  const isRight = align === "right";
+
+  if (scorers.length === 0) {
+    return <div style={{ minHeight: "8px" }} />;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: compact ? "4px" : "6px", alignItems: isRight ? "flex-end" : "flex-start" }}>
+      {scorers.map((s, i) => (
+        <div
+          key={i}
+          style={{
+            display: "flex",
+            alignItems: "flex-start",
+            gap: compact ? "4px" : "6px",
+            justifyContent: isRight ? "flex-end" : "flex-start",
+            width: "100%",
+          }}
+        >
+          {!isRight ? <span style={{ fontSize: compact ? "10px" : isMobile ? "11px" : "12px", lineHeight: 1.4 }}>⚽</span> : null}
+          <div style={{ textAlign: isRight ? "right" : "left", minWidth: 0 }}>
+            <div style={{ fontSize: compact ? "10px" : isMobile ? "11px" : "12px", color: "#111827", fontWeight: 700, lineHeight: 1.35 }}>
+              {formatPlayerName(s.player)}
+              {s.goals > 1 ? <span style={{ color: "#6b7280", fontWeight: 700 }}> ×{s.goals}</span> : null}
+            </div>
+            {s.minutes && s.minutes.length > 0 ? (
+              <div style={{ fontSize: compact ? "9px" : isMobile ? "10px" : "11px", color: "#6b7280", lineHeight: 1.25, marginTop: "1px" }}>
+                {formatGoalMinutes(s.minutes)}
+              </div>
+            ) : null}
+          </div>
+          {isRight ? <span style={{ fontSize: compact ? "10px" : isMobile ? "11px" : "12px", lineHeight: 1.4 }}>⚽</span> : null}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CardsColumn({
+  yellowCards,
+  redCards,
+  isMobile,
+  compact,
+  align,
+}: {
+  yellowCards: CardMatch["yellow_cards"];
+  redCards: CardMatch["red_cards"];
+  isMobile: boolean;
+  compact: boolean;
+  align: "left" | "right";
+}) {
+  const isRight = align === "right";
+  const items = [
+    ...yellowCards.map((card) => ({ ...card, type: "yellow" as const })),
+    ...redCards.map((card) => ({ ...card, type: "red" as const })),
+  ].sort((a, b) => a.minute - b.minute);
+
+  if (items.length === 0) {
+    return <div style={{ minHeight: "8px" }} />;
+  }
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: compact ? "4px" : "6px", alignItems: isRight ? "flex-end" : "flex-start" }}>
+      {items.map((card, i) => (
+        <div
+          key={`${card.type}-${card.player}-${card.minute}-${i}`}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: compact ? "4px" : "6px",
+            justifyContent: isRight ? "flex-end" : "flex-start",
+            width: "100%",
+          }}
+        >
+          {!isRight ? <CardBadge type={card.type} compact={compact} /> : null}
+          <div style={{ textAlign: isRight ? "right" : "left", minWidth: 0 }}>
+            <div style={{ fontSize: compact ? "10px" : isMobile ? "11px" : "12px", color: "#111827", fontWeight: 700, lineHeight: 1.35 }}>
+              {formatPlayerName(card.player)}
+            </div>
+            <div style={{ fontSize: compact ? "9px" : isMobile ? "10px" : "11px", color: "#6b7280", lineHeight: 1.25 }}>
+              {card.minute}
+            </div>
+          </div>
+          {isRight ? <CardBadge type={card.type} compact={compact} /> : null}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CardBadge({ type, compact }: { type: "yellow" | "red"; compact: boolean }) {
+  return (
+    <span
+      style={{
+        display: "inline-block",
+        width: compact ? "9px" : "10px",
+        height: compact ? "12px" : "14px",
+        borderRadius: "2px",
+        backgroundColor: type === "yellow" ? "#fbbf24" : "#ef4444",
+        border: "1px solid rgba(17, 24, 39, 0.12)",
+        flexShrink: 0,
+        marginTop: "1px",
+      }}
+    />
+  );
 }
 
 // ── Internal helper ───────────────────────────────────────────────────────────

@@ -15,8 +15,8 @@ export type MatchGoalscorer = {
   round: number;
   home: string;
   away: string;
-  home_scorers: { player: string; goals: number }[];
-  away_scorers: { player: string; goals: number }[];
+  home_scorers: { player: string; goals: number; minutes?: number[] }[];
+  away_scorers: { player: string; goals: number; minutes?: number[] }[];
 };
 
 export type TableRow = {

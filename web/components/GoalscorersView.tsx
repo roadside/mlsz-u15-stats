@@ -22,8 +22,8 @@ export function GoalscorersView({
     <section style={sectionCardStyle}>
       <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
         {selectedTeamFilter === "Összes csapat"
-          ? `${selectedRound}. forduló góllövői`
-          : `${selectedRound}. forduló – ${selectedTeamFilter} góllövői`}
+          ? `Góllövőlista a ${selectedRound}. forduló után`
+          : `${selectedTeamFilter} góllövői a ${selectedRound}. forduló után`}
       </h2>
 
       {!filteredGoalscorers || filteredGoalscorers.length === 0 ? (

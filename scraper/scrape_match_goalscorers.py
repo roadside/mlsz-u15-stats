@@ -115,14 +115,24 @@ def is_goal_icon(cell) -> bool:
     return "event_goal" in html or "event_goal_penal" in html or "goal.png" in html
 
 
-def extract_minute_from_row(row) -> list[int]:
-    row_text = clean_text(row.get_text(" ", strip=True))
+def extract_goal_minutes_from_cell(cell) -> list[int]:
+    if not cell:
+        return []
+
     minutes: list[int] = []
-    for match in re.finditer(r"(\d{1,3})\s*'", row_text):
-        try:
-            minutes.append(int(match.group(1)))
-        except ValueError:
-            pass
+
+    for span in cell.find_all("span"):
+        style = span.get("style", "")
+        if "event_goal" not in style and "goal.png" not in style:
+            continue
+
+        minute_text = clean_text(span.get_text(" ", strip=True))
+        for match in re.finditer(r"(\d{1,3})\s*'", minute_text):
+            try:
+                minutes.append(int(match.group(1)))
+            except ValueError:
+                pass
+
     return minutes
 
 
@@ -135,9 +145,6 @@ def parse_timeline_goal_rows(soup: BeautifulSoup) -> dict:
         if not is_goal_icon(cards_cell):
             continue
 
-        if row.find("a", class_="match_players_changeup"):
-            continue
-
         player_link = row.find("a", class_="match_players_name")
         if not player_link:
             continue
@@ -146,7 +153,7 @@ def parse_timeline_goal_rows(soup: BeautifulSoup) -> dict:
         if not player_name:
             continue
 
-        minutes = extract_minute_from_row(row)
+        minutes = extract_goal_minutes_from_cell(cards_cell)
         if not minutes:
             minutes = [0]
 

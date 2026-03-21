@@ -222,11 +222,15 @@ export function StatsView({
 
         {/* ── Goal timing ── */}
         <div style={sectionCardStyle}>
-          <div style={sectionTitleStyle}>⚽ Gól-időzítés statisztika</div>
+          <div style={sectionTitleStyle}>
+            {selectedTeamFilter === "Összes csapat"
+              ? "⚽ Gól-időzítés statisztika"
+              : `⚽ Gól-időzítés statisztika - ${selectedTeamFilter}`}
+          </div>
           <div style={sectionSubTitleStyle}>
             {selectedTeamFilter === "Összes csapat"
               ? "Az összes rögzített gól időzítése a meccspercek alapján."
-              : `${selectedTeamFilter} lőtt góljainak eloszlása időszakokra bontva.`}
+              : "A csapat góljainak eloszlása időszakokra bontva."}
           </div>
 
           {goalTimingStats.totalGoals > 0 ? (
@@ -756,7 +760,7 @@ function buildGoalTimingInsight(peakLabel: string, selectedTeamFilter: string, t
   if (peakLabel === "31–45" || peakLabel === "46–60") {
     return `${selectedTeamFilter} a meccs középső szakaszában a legveszélyesebb.`;
   }
-  return `${selectedTeamFilter} a második félidő második felében termeli a legtöbb gólt.`;
+  return "A csapat a második félidő második felében termeli a legtöbb gólt.";
 }
 
 function buildRecentRoundsFromMatches(allMatchGoalscorers: MatchGoalscorer[], count: number): number[] {

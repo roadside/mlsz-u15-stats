@@ -131,7 +131,19 @@ export default function Home() {
   // ── Table & goalscorers ──
   const selectedTable = useMemo(() => tablesByRound.get(selectedRound), [tablesByRound, selectedRound]);
 
-  const selectedGoalscorers = useMemo(() => goalscorersByRound.get(selectedRound), [goalscorersByRound, selectedRound]);
+  const selectedGoalscorersRound = useMemo(() => {
+    const availableRounds = allGoalscorers
+      .map((g) => g.round)
+      .filter((round) => round <= selectedRound)
+      .sort((a, b) => b - a);
+
+    return availableRounds[0] ?? null;
+  }, [selectedRound]);
+
+  const selectedGoalscorers = useMemo(
+    () => (selectedGoalscorersRound ? goalscorersByRound.get(selectedGoalscorersRound) ?? null : null),
+    [goalscorersByRound, selectedGoalscorersRound]
+  );
 
   const filteredGoalscorers = useMemo(() => {
     if (!selectedGoalscorers) return null;
@@ -663,6 +675,7 @@ export default function Home() {
           filteredGoalscorers={filteredGoalscorers}
           allMatchGoalscorers={allMatchGoalscorers}
           selectedRound={selectedRound}
+          goalscorersRoundLabel={selectedGoalscorersRound ?? selectedRound}
           selectedTeamFilter={effectiveSelectedTeamFilter}
           isMobile={isMobile}
         />

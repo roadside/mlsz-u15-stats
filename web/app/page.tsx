@@ -544,13 +544,6 @@ export default function Home() {
                 <option value="Összes csapat">Összes csapat</option>
                 {teamOptions.map((t) => <option key={t} value={t}>{t}</option>)}
               </select>
-
-              {effectiveSelectedTeamFilter !== "Összes csapat" ? (
-                <div style={{ display: "flex", gap: "8px", marginTop: "10px", flexWrap: "wrap" }}>
-                  <button onClick={() => setMatchScope("round")} style={subTabButtonStyle(effectiveMatchScope === "round")}>Aktuális forduló</button>
-                  <button onClick={() => setMatchScope("season")} style={subTabButtonStyle(effectiveMatchScope === "season")}>Összes forduló</button>
-                </div>
-              ) : null}
             </div>
           </div>
         ) : null}

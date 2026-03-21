@@ -1517,7 +1517,33 @@
     "home": "BUDAPEST HONVÉD FC",
     "away": "ETO AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150249.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MENYHÁRT MÁRTON",
+        "minute": 11,
+        "score_after": "1-0"
+      },
+      {
+        "player": "MENYHÁRT MÁRTON",
+        "minute": 27,
+        "score_after": "2-0"
+      },
+      {
+        "player": "SZIJJÁRTÓ PÉTER",
+        "minute": 43,
+        "score_after": "3-0"
+      },
+      {
+        "player": "VASS ANDRÁS",
+        "minute": 54,
+        "score_after": "4-0"
+      },
+      {
+        "player": "GEREBENES RÓBERT",
+        "minute": 62,
+        "score_after": "5-1"
+      }
+    ],
     "away_scorers": []
   },
   {

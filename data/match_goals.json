@@ -1552,7 +1552,13 @@
     "home": "FERENCVÁROSI TC",
     "away": "DVSC",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150248.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "MAJZIK ZÉTÉNY",
+        "minute": 2,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {

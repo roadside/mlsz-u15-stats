@@ -976,9 +976,9 @@
     "date": "2026. 03. 21. 12:15",
     "home": "FERENCVÁROSI TC",
     "away": "DVSC",
-    "home_goals": null,
-    "away_goals": null,
-    "status": "Kiírva",
+    "home_goals": 1,
+    "away_goals": 2,
+    "status": "Lejátszva",
     "venue": "Ferencvárosi TC Népligeti Sportcentrum",
     "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html",
     "match_url": null

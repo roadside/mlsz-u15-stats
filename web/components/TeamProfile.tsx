@@ -513,14 +513,11 @@ export function TeamProfile({
                   {index + 1}
                 </div>
                 <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: isMobile ? "14px" : "15px", fontWeight: 800, color: "#111827", textTransform: "uppercase", lineHeight: 1.2 }}>
+                  <div style={{ fontSize: isMobile ? "14px" : "15px", fontWeight: 500, color: "#111827", textTransform: "uppercase", lineHeight: 1.2 }}>
                     {row.player}
                   </div>
-                  <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginTop: "4px" }}>
-                    {row.team}
-                  </div>
                 </div>
-                <div style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 900, color: "#166534", paddingLeft: "8px" }}>
+                <div style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 500, color: "#166534", paddingLeft: "8px" }}>
                   {row.goals}
                 </div>
               </div>

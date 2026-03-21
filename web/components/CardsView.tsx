@@ -297,7 +297,7 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
                     {match.yellow_cards.map((card, idx) => (
                       <div key={idx} style={{ fontSize: "14px", display: "flex", justifyContent: "space-between" }}>
                         <span>{card.player}</span>
-                        <span style={{ color: "#6b7280" }}>{card.minute}'</span>
+                        <span style={{ color: "#6b7280" }}>{card.minute}</span>
                       </div>
                     ))}
                   </div>
@@ -314,7 +314,7 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
                     {match.red_cards.map((card, idx) => (
                       <div key={idx} style={{ fontSize: "14px", display: "flex", justifyContent: "space-between" }}>
                         <span>{card.player}</span>
-                        <span style={{ color: "#6b7280" }}>{card.minute}'</span>
+                        <span style={{ color: "#6b7280" }}>{card.minute}</span>
                       </div>
                     ))}
                   </div>

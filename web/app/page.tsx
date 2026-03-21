@@ -677,6 +677,7 @@ export default function Home() {
         <StatsView
           isMobile={isMobile}
           selectedTeamFilter={effectiveSelectedTeamFilter}
+          allMatchGoalscorers={allMatchGoalscorers}
           roundGoalsStats={roundGoalsStats}
           visibleTeamStrengthRows={visibleTeamStrengthRows}
           teamOptions={teamOptions}

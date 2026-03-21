@@ -678,6 +678,7 @@ export default function Home() {
           isMobile={isMobile}
           selectedTeamFilter={effectiveSelectedTeamFilter}
           allMatchGoalscorers={allMatchGoalscorers}
+          latestGoalscorers={latestGoalscorers?.goalscorers ?? []}
           roundGoalsStats={roundGoalsStats}
           visibleTeamStrengthRows={visibleTeamStrengthRows}
           teamOptions={teamOptions}

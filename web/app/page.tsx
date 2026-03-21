@@ -83,6 +83,14 @@ export default function Home() {
     return map;
   }, []);
 
+  const cardsByKey = useMemo(() => {
+    const map = new Map<string, CardMatch>();
+    for (const c of allCards) {
+      map.set(`${c.round}|${c.home}|${c.away}`, c);
+    }
+    return map;
+  }, []);
+
   const tablesByRound = useMemo(() => new Map(allTables.map((t) => [t.round, t] as const)), []);
   const goalscorersByRound = useMemo(() => new Map(allGoalscorers.map((g) => [g.round, g] as const)), []);
 
@@ -628,7 +636,17 @@ export default function Home() {
             <div style={{ display: "grid", gap: "14px" }}>
               {visibleMatches.map((m, i) => {
                 const scorers = matchGoalscorersByKey.get(`${m.round}|${m.home}|${m.away}`);
-                return <MatchCard key={i} match={m} isMobile={isMobile} goalscorers={scorers} />;
+                const cards = cardsByKey.get(`${m.round}|${m.home}|${m.away}`);
+                return (
+                  <MatchCard
+                    key={i}
+                    match={m}
+                    isMobile={isMobile}
+                    goalscorers={scorers}
+                    cards={cards}
+                    compactScorers={effectiveSelectedTeamFilter === "Összes csapat" && effectiveMatchScope === "round"}
+                  />
+                );
               })}
             </div>
           )}

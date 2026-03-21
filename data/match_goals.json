@@ -1496,15 +1496,6 @@
   },
   {
     "round": 14,
-    "date": "2026. 03. 21. 10:00",
-    "home": "MTK BUDAPEST",
-    "away": "VASAS KUBALA AKADÉMIA",
-    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150252.html",
-    "home_scorers": [],
-    "away_scorers": []
-  },
-  {
-    "round": 14,
     "date": "2026. 03. 21. 12:00",
     "home": "BUDAPEST HONVÉD FC",
     "away": "ETO AKADÉMIA",
@@ -1526,6 +1517,15 @@
     "date": "2026. 03. 21. 12:15",
     "home": "UTE",
     "away": "VÁRDA LABDARUGÓ AKADÉMIA",
+    "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150253.html",
+    "home_scorers": [],
+    "away_scorers": []
+  },
+  {
+    "round": 14,
+    "date": "2026. 04. 03. 12:30",
+    "home": "MTK BUDAPEST",
+    "away": "VASAS KUBALA AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/1/2096895.html",
     "home_scorers": [
       {

@@ -3129,6 +3129,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -3144,26 +3164,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
       },
@@ -3290,20 +3290,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
       }
@@ -3374,6 +3374,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -3389,26 +3409,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
       },
@@ -3535,20 +3535,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
       }
@@ -3619,6 +3619,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -3634,26 +3654,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
       },
@@ -3780,20 +3780,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
       }
@@ -3864,6 +3864,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -3879,26 +3899,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
       },
@@ -4025,20 +4025,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
       }
@@ -4109,6 +4109,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -4124,26 +4144,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
       },
@@ -4270,20 +4270,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
       }
@@ -4354,6 +4354,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -4369,26 +4389,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
       },
@@ -4515,20 +4515,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
       }
@@ -4599,6 +4599,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -4614,26 +4634,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
       },
@@ -4760,20 +4760,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
       }
@@ -4844,6 +4844,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -4859,26 +4879,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
       },
@@ -5005,20 +5005,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
       }
@@ -5089,6 +5089,26 @@
       },
       {
         "pos": "4",
+        "team": "UTE",
+        "played": "13",
+        "won": "6",
+        "draw": "4",
+        "lost": "3",
+        "gf": "27",
+        "ga": "18",
+        "gd": "9",
+        "points": "22",
+        "form": [
+          "GY",
+          "GY",
+          "GY",
+          "V",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "5",
         "team": "DVSC",
         "played": "13",
         "won": "5",
@@ -5104,26 +5124,6 @@
           "V",
           "V",
           "D"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
-      },
-      {
-        "pos": "5",
-        "team": "UTE",
-        "played": "12",
-        "won": "5",
-        "draw": "4",
-        "lost": "3",
-        "gf": "24",
-        "ga": "18",
-        "gd": "6",
-        "points": "19",
-        "form": [
-          "GY",
-          "GY",
-          "V",
-          "GY",
-          "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
       },
@@ -5250,20 +5250,20 @@
       {
         "pos": "12",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "0",
         "draw": "5",
-        "lost": "8",
+        "lost": "9",
         "gf": "7",
-        "ga": "25",
-        "gd": "-18",
+        "ga": "28",
+        "gd": "-21",
         "points": "5",
         "form": [
           "V",
-          "D",
-          "D",
           "V",
-          "D"
+          "D",
+          "D",
+          "V"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
       }

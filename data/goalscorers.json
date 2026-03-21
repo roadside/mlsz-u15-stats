@@ -7774,6 +7774,14 @@
       {
         "round": 14,
         "pos": "34",
+        "player": "FARKAS ANDRÁS",
+        "team": "DVTK",
+        "goals": "2",
+        "source_url": "https://adatbank.mlsz.hu/goalshooter/65/0/31621/14.html"
+      },
+      {
+        "round": 14,
+        "pos": "34",
         "player": "HÁNYI BÁLINT",
         "team": "ILLÉS AKADÉMIA",
         "goals": "2",
@@ -7854,6 +7862,14 @@
       {
         "round": 14,
         "pos": "34",
+        "player": "NÉMETH LEVENTE",
+        "team": "ILLÉS AKADÉMIA",
+        "goals": "2",
+        "source_url": "https://adatbank.mlsz.hu/goalshooter/65/0/31621/14.html"
+      },
+      {
+        "round": 14,
+        "pos": "34",
         "player": "NYIRI BENEDEK",
         "team": "BUDAPEST HONVÉD FC",
         "goals": "2",
@@ -7925,7 +7941,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "ANGLER BENETT MÓZES",
         "team": "ILLÉS AKADÉMIA",
         "goals": "1",
@@ -7933,7 +7949,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "ARTOMENKO OLEKSANDR",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
         "goals": "1",
@@ -7941,7 +7957,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BABELLA MILÁN ATTILA",
         "team": "DVTK",
         "goals": "1",
@@ -7949,7 +7965,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BÁLINT ÁRON",
         "team": "MTK BUDAPEST",
         "goals": "1",
@@ -7957,7 +7973,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BALOGH DOMONKOS",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -7965,7 +7981,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BÁN CSONGOR",
         "team": "DVSC",
         "goals": "1",
@@ -7973,7 +7989,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BARANYI BORISZ",
         "team": "ILLÉS AKADÉMIA",
         "goals": "1",
@@ -7981,7 +7997,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BIRÓ ÁDÁM",
         "team": "MTK BUDAPEST",
         "goals": "1",
@@ -7989,7 +8005,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "BOKROS BENETT",
         "team": "FERENCVÁROSI TC",
         "goals": "1",
@@ -7997,7 +8013,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "CSORBA RICHÁRD LEVENTE",
         "team": "DVSC",
         "goals": "1",
@@ -8005,7 +8021,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "DENYSOV DANYLO",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
         "goals": "1",
@@ -8013,7 +8029,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "DÖMÉNY NORBERT",
         "team": "FERENCVÁROSI TC",
         "goals": "1",
@@ -8021,15 +8037,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
-        "player": "FARKAS ANDRÁS",
-        "team": "DVTK",
-        "goals": "1",
-        "source_url": "https://adatbank.mlsz.hu/goalshooter/65/0/31621/14.html"
-      },
-      {
-        "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "FARKAS MILÁN",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -8037,7 +8045,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "FODOR BENCE",
         "team": "MTK BUDAPEST",
         "goals": "1",
@@ -8045,7 +8053,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "GÁL ALEXANDER",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -8053,7 +8061,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "HERCZEG PATRIK",
         "team": "UTE",
         "goals": "1",
@@ -8061,7 +8069,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "HORNOK ERIK ZSOLT",
         "team": "DVSC",
         "goals": "1",
@@ -8069,7 +8077,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "HORVÁTH HENRIK RICHÁRD",
         "team": "ETO AKADÉMIA",
         "goals": "1",
@@ -8077,7 +8085,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "HORVÁTH OLIVÉR",
         "team": "VASAS KUBALA AKADÉMIA",
         "goals": "1",
@@ -8085,7 +8093,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KÁNYÁSSY GERGELY",
         "team": "DVSC",
         "goals": "1",
@@ -8093,7 +8101,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KECZÉRY LÁSZLÓ MÁTYÁS",
         "team": "FERENCVÁROSI TC",
         "goals": "1",
@@ -8101,7 +8109,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KEMENDI MILÁN",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "goals": "1",
@@ -8109,7 +8117,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KERTÉSZ MÁRK",
         "team": "DVTK",
         "goals": "1",
@@ -8117,7 +8125,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KOVÁCS ÁKOS JÁNOS",
         "team": "DVSC",
         "goals": "1",
@@ -8125,7 +8133,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KOVÁCS ZSOMBOR",
         "team": "DVSC",
         "goals": "1",
@@ -8133,7 +8141,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KOVÁCS BARNABÁS",
         "team": "VASAS KUBALA AKADÉMIA",
         "goals": "1",
@@ -8141,7 +8149,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KOZICZ KORNÉL",
         "team": "ETO AKADÉMIA",
         "goals": "1",
@@ -8149,7 +8157,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KŐVÁRI TAMÁS",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "goals": "1",
@@ -8157,7 +8165,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "KURUCZ MÁRTON GUSZTÁV",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -8165,7 +8173,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "LAJOS PATRIK",
         "team": "MTK BUDAPEST",
         "goals": "1",
@@ -8173,7 +8181,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "LAKATOS ANDOR",
         "team": "UTE",
         "goals": "1",
@@ -8181,7 +8189,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "LOI MÁRIÓ DÁNIEL",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "goals": "1",
@@ -8189,7 +8197,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "LUKÁCS BENJÁMIN",
         "team": "UTE",
         "goals": "1",
@@ -8197,7 +8205,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "MAJZIK ZÉTÉNY",
         "team": "FERENCVÁROSI TC",
         "goals": "1",
@@ -8205,7 +8213,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "MENYHÁRT MÁRK",
         "team": "VASAS KUBALA AKADÉMIA",
         "goals": "1",
@@ -8213,7 +8221,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "MIKLÓSVÁRI GÉZA MILÁN",
         "team": "UTE",
         "goals": "1",
@@ -8221,7 +8229,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "MOSOLITS MÁRKÓ",
         "team": "ILLÉS AKADÉMIA",
         "goals": "1",
@@ -8229,7 +8237,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "NAGY ÁKOS",
         "team": "DVSC",
         "goals": "1",
@@ -8237,7 +8245,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "NAGY BENCE",
         "team": "DVSC",
         "goals": "1",
@@ -8245,7 +8253,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "NAGY GÁBOR VALENTIN",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "goals": "1",
@@ -8253,7 +8261,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "NAGY SZILÁRD",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -8261,7 +8269,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "NÉMET ZALÁN",
         "team": "DVTK",
         "goals": "1",
@@ -8269,7 +8277,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "NÓRÁNT MÁTÉ",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -8277,7 +8285,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "PALÁSTI KRISZTIÁN",
         "team": "BUDAPEST HONVÉD FC",
         "goals": "1",
@@ -8285,7 +8293,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "PISONT RICHÁRD BENJÁMIN",
         "team": "BUDAPEST HONVÉD FC",
         "goals": "1",
@@ -8293,7 +8301,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "RÁCZ BOTOND",
         "team": "PUSKÁS AKADÉMIA",
         "goals": "1",
@@ -8301,7 +8309,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "REJTŐ ROBIN",
         "team": "ETO AKADÉMIA",
         "goals": "1",
@@ -8309,7 +8317,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "SAJGÁL PÉTER",
         "team": "VASAS KUBALA AKADÉMIA",
         "goals": "1",
@@ -8317,7 +8325,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "SZABÓ BARNA",
         "team": "MTK BUDAPEST",
         "goals": "1",
@@ -8325,7 +8333,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "SZEGEDI NORBERT",
         "team": "DVTK",
         "goals": "1",
@@ -8333,7 +8341,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "TAKÁCS DOMINIK",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
         "goals": "1",
@@ -8341,7 +8349,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "TKACH VOLODYMYR",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
         "goals": "1",
@@ -8349,7 +8357,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "TŐZSÉR LÁZÁR",
         "team": "BUDAPEST HONVÉD FC",
         "goals": "1",
@@ -8357,7 +8365,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "VARGA MÁTÉ TAMÁS",
         "team": "ETO AKADÉMIA",
         "goals": "1",
@@ -8365,7 +8373,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "VARGA BOTOND GÁBOR",
         "team": "BUDAPEST HONVÉD FC",
         "goals": "1",
@@ -8373,7 +8381,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "VASVÁRI LEVENTE ZALÁN",
         "team": "VÁRDA LABDARUGÓ AKADÉMIA",
         "goals": "1",
@@ -8381,7 +8389,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "VINCZE ZALÁN",
         "team": "DVTK",
         "goals": "1",
@@ -8389,7 +8397,7 @@
       },
       {
         "round": 14,
-        "pos": "56",
+        "pos": "58",
         "player": "VONA BENCE",
         "team": "DVSC",
         "goals": "1",

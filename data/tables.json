@@ -3110,19 +3110,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
@@ -3189,6 +3189,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -3208,7 +3228,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -3222,26 +3242,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -3355,19 +3355,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
@@ -3434,6 +3434,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -3453,7 +3473,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -3467,26 +3487,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/15.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -3600,19 +3600,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
@@ -3679,6 +3679,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -3698,7 +3718,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -3712,26 +3732,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/16.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -3845,19 +3845,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
@@ -3924,6 +3924,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -3943,7 +3963,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -3957,26 +3977,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/17.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -4090,19 +4090,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
@@ -4169,6 +4169,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -4188,7 +4208,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -4202,26 +4222,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/18.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -4335,19 +4335,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
@@ -4414,6 +4414,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -4433,7 +4453,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -4447,26 +4467,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/19.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -4580,19 +4580,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
@@ -4659,6 +4659,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -4678,7 +4698,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -4692,26 +4712,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/20.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -4825,19 +4825,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
@@ -4904,6 +4904,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -4923,7 +4943,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -4937,26 +4957,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/21.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],
@@ -5070,19 +5070,19 @@
       {
         "pos": "3",
         "team": "ETO AKADÉMIA",
-        "played": "13",
+        "played": "14",
         "won": "7",
         "draw": "2",
-        "lost": "4",
-        "gf": "22",
-        "ga": "21",
-        "gd": "1",
+        "lost": "5",
+        "gf": "24",
+        "ga": "26",
+        "gd": "-2",
         "points": "23",
         "form": [
+          "V",
           "GY",
           "D",
           "V",
-          "GY",
           "GY"
         ],
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
@@ -5149,6 +5149,26 @@
       },
       {
         "pos": "7",
+        "team": "BUDAPEST HONVÉD FC",
+        "played": "13",
+        "won": "5",
+        "draw": "2",
+        "lost": "6",
+        "gf": "24",
+        "ga": "24",
+        "gd": "0",
+        "points": "17",
+        "form": [
+          "GY",
+          "V",
+          "V",
+          "GY",
+          "GY"
+        ],
+        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
+      },
+      {
+        "pos": "8",
         "team": "DVSC",
         "played": "12",
         "won": "4",
@@ -5168,7 +5188,7 @@
         "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
       },
       {
-        "pos": "8",
+        "pos": "9",
         "team": "VIDEOTON FC FEHÉRVÁR",
         "played": "14",
         "won": "4",
@@ -5182,26 +5202,6 @@
           "GY",
           "D",
           "D",
-          "GY",
-          "V"
-        ],
-        "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/22.html"
-      },
-      {
-        "pos": "9",
-        "team": "BUDAPEST HONVÉD FC",
-        "played": "12",
-        "won": "4",
-        "draw": "2",
-        "lost": "6",
-        "gf": "19",
-        "ga": "22",
-        "gd": "-3",
-        "points": "14",
-        "form": [
-          "V",
-          "V",
-          "GY",
           "GY",
           "V"
         ],

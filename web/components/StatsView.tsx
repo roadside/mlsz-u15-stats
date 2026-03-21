@@ -40,6 +40,20 @@ interface GoalTimingBucketRow {
   value: number;
 }
 
+interface DangerousPlayerRow {
+  player: string;
+  team: string;
+  seasonGoals: number;
+  recentGoals5: number;
+  recentGoals3: number;
+  teamGoalShare: number;
+  trendLabel: string;
+  trendColor: string;
+  goalsByRecentRound: number[];
+  dangerScore: number;
+  badgeLabel: string;
+}
+
 interface StatsViewProps {
   isMobile: boolean;
   selectedTeamFilter: string;
@@ -180,6 +194,16 @@ export function StatsView({
       insight: buildGoalTimingInsight(peakBucket.label, selectedTeamFilter, totalGoals),
     };
   }, [allMatchGoalscorers, selectedTeamFilter]);
+
+  const dangerousPlayers = useMemo(() => {
+    const recentRounds5 = buildRecentRoundsFromMatches(allMatchGoalscorers, 5);
+    const recentRounds3 = recentRounds5.slice(-3);
+
+    return {
+      home: buildDangerousPlayersForTeam(allMatchGoalscorers, selectedHomeTeam, recentRounds5, recentRounds3),
+      away: buildDangerousPlayersForTeam(allMatchGoalscorers, selectedAwayTeam, recentRounds5, recentRounds3),
+    };
+  }, [allMatchGoalscorers, selectedHomeTeam, selectedAwayTeam]);
 
   return (
     <>
@@ -492,6 +516,50 @@ export function StatsView({
                 <TeamInfoCard team={selectedHomeTeam} attackIndex={selectedHomeStats.attackIndex} defenseIndex={selectedHomeStats.defenseIndex} />
                 <TeamInfoCard team={selectedAwayTeam} attackIndex={selectedAwayStats.attackIndex} defenseIndex={selectedAwayStats.defenseIndex} />
               </div>
+
+              <div
+                style={{
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "12px",
+                  padding: isMobile ? "12px" : "14px",
+                  backgroundColor: "#ffffff",
+                }}
+              >
+                <div style={{ fontSize: "16px", fontWeight: 800, color: "#111827", marginBottom: "4px" }}>
+                  Veszélyes játékosok
+                </div>
+                <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginBottom: "12px" }}>
+                  A szezontermés, a friss gólforma és a csapat góljain belüli részesedés alapján.
+                </div>
+
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "12px" }}>
+                  <div>
+                    <div style={{ fontSize: "14px", fontWeight: 800, marginBottom: "8px", color: "#111827" }}>{selectedHomeTeam}</div>
+                    {dangerousPlayers.home.length > 0 ? (
+                      <div style={{ display: "grid", gap: "8px" }}>
+                        {dangerousPlayers.home.map((player) => (
+                          <DangerousPlayerCard key={`${player.team}-${player.player}`} player={player} isMobile={isMobile} />
+                        ))}
+                      </div>
+                    ) : (
+                      <EmptyBox text="Nincs elég góladat a veszélyes játékosokhoz." />
+                    )}
+                  </div>
+
+                  <div>
+                    <div style={{ fontSize: "14px", fontWeight: 800, marginBottom: "8px", color: "#111827" }}>{selectedAwayTeam}</div>
+                    {dangerousPlayers.away.length > 0 ? (
+                      <div style={{ display: "grid", gap: "8px" }}>
+                        {dangerousPlayers.away.map((player) => (
+                          <DangerousPlayerCard key={`${player.team}-${player.player}`} player={player} isMobile={isMobile} />
+                        ))}
+                      </div>
+                    ) : (
+                      <EmptyBox text="Nincs elég góladat a veszélyes játékosokhoz." />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
           ) : (
             <EmptyBox text="Nincs elég adat az előrejelzéshez." />
@@ -675,7 +743,190 @@ function buildGoalTimingInsight(peakLabel: string, selectedTeamFilter: string, t
     return `${selectedTeamFilter} inkább korai gólokra épít.`;
   }
   if (peakLabel === "31–45" || peakLabel === "46–60") {
-    return `${selectedTeamFilter} a félidők környékén különösen aktív.`;
+    return `${selectedTeamFilter} a meccs középső szakaszában a legveszélyesebb.`;
   }
   return `${selectedTeamFilter} a második félidő második felében termeli a legtöbb gólt.`;
+}
+
+function buildRecentRoundsFromMatches(allMatchGoalscorers: MatchGoalscorer[], count: number): number[] {
+  const rounds = Array.from(new Set(allMatchGoalscorers.map((match) => match.round))).sort((a, b) => a - b);
+  return rounds.slice(-count);
+}
+
+function buildDangerousPlayersForTeam(
+  allMatchGoalscorers: MatchGoalscorer[],
+  team: string,
+  recentRounds5: number[],
+  recentRounds3: number[]
+): DangerousPlayerRow[] {
+  const byPlayer = new Map<
+    string,
+    {
+      player: string;
+      team: string;
+      seasonGoals: number;
+      recentGoals5: number;
+      recentGoals3: number;
+      goalsByRecentRound: number[];
+    }
+  >();
+
+  let teamSeasonGoals = 0;
+
+  for (const match of allMatchGoalscorers) {
+    const scorerGroups = [
+      ...(match.home === team ? [{ scorers: match.home_scorers }] : []),
+      ...(match.away === team ? [{ scorers: match.away_scorers }] : []),
+    ];
+
+    for (const group of scorerGroups) {
+      for (const scorer of group.scorers) {
+        teamSeasonGoals += scorer.goals;
+
+        const existing = byPlayer.get(scorer.player) ?? {
+          player: scorer.player,
+          team,
+          seasonGoals: 0,
+          recentGoals5: 0,
+          recentGoals3: 0,
+          goalsByRecentRound: Array.from({ length: recentRounds5.length }, () => 0),
+        };
+
+        existing.seasonGoals += scorer.goals;
+
+        const recentIndex = recentRounds5.indexOf(match.round);
+        if (recentIndex >= 0) {
+          existing.recentGoals5 += scorer.goals;
+          existing.goalsByRecentRound[recentIndex] += scorer.goals;
+        }
+
+        if (recentRounds3.includes(match.round)) {
+          existing.recentGoals3 += scorer.goals;
+        }
+
+        byPlayer.set(scorer.player, existing);
+      }
+    }
+  }
+
+  return Array.from(byPlayer.values())
+    .map((player) => {
+      const teamGoalShare = teamSeasonGoals > 0 ? player.seasonGoals / teamSeasonGoals : 0;
+      const trend = describeDangerTrend(player.goalsByRecentRound);
+      const dangerScore = player.recentGoals5 * 3 + player.recentGoals3 * 2 + player.seasonGoals + teamGoalShare * 10;
+
+      return {
+        ...player,
+        teamGoalShare,
+        trendLabel: trend.label,
+        trendColor: trend.color,
+        dangerScore,
+        badgeLabel: buildDangerBadgeLabel(player.recentGoals5, player.seasonGoals, teamGoalShare, trend.label),
+      };
+    })
+    .filter((player) => player.seasonGoals > 0)
+    .sort(
+      (a, b) =>
+        b.dangerScore - a.dangerScore ||
+        b.recentGoals5 - a.recentGoals5 ||
+        b.seasonGoals - a.seasonGoals ||
+        a.player.localeCompare(b.player, "hu")
+    )
+    .slice(0, 3);
+}
+
+function describeDangerTrend(goalsByRound: number[]) {
+  if (goalsByRound.length === 0) {
+    return { label: "stabil", color: "#6b7280" };
+  }
+
+  const first = goalsByRound[0] ?? 0;
+  const last = goalsByRound[goalsByRound.length - 1] ?? 0;
+  const middle = goalsByRound.length > 1 ? goalsByRound[goalsByRound.length - 2] ?? 0 : first;
+
+  if (first === 0 && middle === 0 && last > 0) {
+    return { label: "berobbant", color: "#ea580c" };
+  }
+  if (last > middle && middle >= first) {
+    return { label: "emelkedő", color: "#16a34a" };
+  }
+  if (last < middle && middle <= first) {
+    return { label: "csökkenő", color: "#dc2626" };
+  }
+  if (last === first) {
+    return { label: "stabil", color: "#6b7280" };
+  }
+  if (last > first) {
+    return { label: "javuló", color: "#16a34a" };
+  }
+  return { label: "visszaeső", color: "#dc2626" };
+}
+
+function buildDangerBadgeLabel(recentGoals5: number, seasonGoals: number, teamGoalShare: number, trendLabel: string): string {
+  if (teamGoalShare >= 0.3) return "gólfelelős";
+  if (recentGoals5 >= 3) return "formában";
+  if (trendLabel === "berobbant" || trendLabel === "emelkedő") return "figyelni kell rá";
+  if (seasonGoals >= 5) return "stabil befejező";
+  return "veszélyes";
+}
+
+function DangerousPlayerCard({ player, isMobile }: { player: DangerousPlayerRow; isMobile: boolean }) {
+  return (
+    <div
+      style={{
+        border: "1px solid #e5e7eb",
+        borderRadius: "10px",
+        backgroundColor: "#f8fafc",
+        padding: isMobile ? "10px" : "12px",
+      }}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "10px" }}>
+        <div style={{ minWidth: 0 }}>
+          <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 800, color: "#111827" }}>{player.player}</div>
+          <div style={{ fontSize: "12px", color: player.trendColor, fontWeight: 700, marginTop: "2px" }}>{player.trendLabel}</div>
+        </div>
+        <div
+          style={{
+            fontSize: "11px",
+            fontWeight: 800,
+            color: "#9a3412",
+            backgroundColor: "#ffedd5",
+            border: "1px solid #fdba74",
+            borderRadius: "999px",
+            padding: "4px 8px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          {player.badgeLabel}
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "8px", marginTop: "10px" }}>
+        <MiniStat label="Szezon gól" value={player.seasonGoals} strong valueColor="#111827" />
+        <MiniStat label="Utolsó 5" value={player.recentGoals5} valueColor="#166534" />
+        <MiniStat label="Gólrész" value={`${Math.round(player.teamGoalShare * 100)}%`} valueColor="#1d4ed8" />
+      </div>
+
+      <div style={{ marginTop: "10px" }}>
+        <div style={{ fontSize: "11px", color: "#6b7280", marginBottom: "6px" }}>Friss forma</div>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: "4px", flexWrap: "wrap" }}>
+          {player.goalsByRecentRound.map((goals, index) => (
+            <div
+              key={`${player.player}-${index}`}
+              title={`${index + 1}. minta: ${goals} gól`}
+              style={{
+                width: isMobile ? "12px" : "14px",
+                height: `${Math.max(8, goals * 12 + 8)}px`,
+                borderRadius: "999px",
+                backgroundColor: index === player.goalsByRecentRound.length - 1 ? "#ea580c" : "#fdba74",
+              }}
+            />
+          ))}
+          <div style={{ fontSize: "12px", color: "#6b7280", marginLeft: "6px" }}>
+            {player.goalsByRecentRound.join(" - ")}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

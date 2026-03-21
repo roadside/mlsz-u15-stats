@@ -45,7 +45,9 @@ export function GoalscorersView({
             🔥 Formában lévő játékosok
           </div>
           <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginBottom: "12px" }}>
-            Utolsó {trendRounds.length} forduló trendje ({trendRounds.join(", ")}. forduló)
+            {selectedTeamFilter === "Összes csapat"
+              ? `Utolsó ${trendRounds.length} forduló trendje a teljes szezonból (${trendRounds.join(", ")}. forduló)`
+              : `${selectedTeamFilter} utolsó ${trendRounds.length} fordulós trendje (${trendRounds.join(", ")}. forduló)`}
           </div>
 
           <div style={{ display: "grid", gap: "10px" }}>

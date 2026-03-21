@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { TeamStrengthRow, ChampionshipChanceRow, MatchGoalscorer } from "./types";
+import { TeamStrengthRow, ChampionshipChanceRow, MatchGoalscorer, GoalscorerRow } from "./types";
 import {
   sectionCardStyle,
   sectionTitleStyle,
@@ -58,6 +58,7 @@ interface StatsViewProps {
   isMobile: boolean;
   selectedTeamFilter: string;
   allMatchGoalscorers: MatchGoalscorer[];
+  latestGoalscorers: GoalscorerRow[];
   // Round goals
   roundGoalsStats: { rows: RoundGoalRow[]; maxGoals: number };
   // Team strength
@@ -83,6 +84,7 @@ export function StatsView({
   isMobile,
   selectedTeamFilter,
   allMatchGoalscorers,
+  latestGoalscorers,
   roundGoalsStats,
   visibleTeamStrengthRows,
   teamOptions,
@@ -200,10 +202,10 @@ export function StatsView({
     const recentRounds3 = recentRounds5.slice(-3);
 
     return {
-      home: buildDangerousPlayersForTeam(allMatchGoalscorers, selectedHomeTeam, recentRounds5, recentRounds3),
-      away: buildDangerousPlayersForTeam(allMatchGoalscorers, selectedAwayTeam, recentRounds5, recentRounds3),
+      home: buildDangerousPlayersForTeam(allMatchGoalscorers, latestGoalscorers, selectedHomeTeam, recentRounds5, recentRounds3),
+      away: buildDangerousPlayersForTeam(allMatchGoalscorers, latestGoalscorers, selectedAwayTeam, recentRounds5, recentRounds3),
     };
-  }, [allMatchGoalscorers, selectedHomeTeam, selectedAwayTeam]);
+  }, [allMatchGoalscorers, latestGoalscorers, selectedHomeTeam, selectedAwayTeam]);
 
   return (
     <>
@@ -542,7 +544,7 @@ export function StatsView({
                         ))}
                       </div>
                     ) : (
-                      <EmptyBox text="Nincs elég góladat a veszélyes játékosokhoz." />
+                      <EmptyBox text="A csapatnál jelenleg nincs veszélyesnek minősülő játékos." />
                     )}
                   </div>
 
@@ -555,7 +557,7 @@ export function StatsView({
                         ))}
                       </div>
                     ) : (
-                      <EmptyBox text="Nincs elég góladat a veszélyes játékosokhoz." />
+                      <EmptyBox text="A csapatnál jelenleg nincs veszélyesnek minősülő játékos." />
                     )}
                   </div>
                 </div>
@@ -755,6 +757,7 @@ function buildRecentRoundsFromMatches(allMatchGoalscorers: MatchGoalscorer[], co
 
 function buildDangerousPlayersForTeam(
   allMatchGoalscorers: MatchGoalscorer[],
+  latestGoalscorers: GoalscorerRow[],
   team: string,
   recentRounds5: number[],
   recentRounds3: number[]
@@ -809,7 +812,7 @@ function buildDangerousPlayersForTeam(
     }
   }
 
-  return Array.from(byPlayer.values())
+  const primaryPlayers = Array.from(byPlayer.values())
     .map((player) => {
       const teamGoalShare = teamSeasonGoals > 0 ? player.seasonGoals / teamSeasonGoals : 0;
       const trend = describeDangerTrend(player.goalsByRecentRound);
@@ -833,6 +836,44 @@ function buildDangerousPlayersForTeam(
         a.player.localeCompare(b.player, "hu")
     )
     .slice(0, 3);
+
+  if (primaryPlayers.length > 0) {
+    return primaryPlayers;
+  }
+
+  const fallbackRows = latestGoalscorers
+    .filter((row) => row.team === team)
+    .map((row) => {
+      const seasonGoals = Number(row.goals) || 0;
+      return {
+        player: row.player,
+        team,
+        seasonGoals,
+        recentGoals5: 0,
+        recentGoals3: 0,
+        teamGoalShare: 0,
+        trendLabel: "stabil",
+        trendColor: "#6b7280",
+        goalsByRecentRound: Array.from({ length: recentRounds5.length }, () => 0),
+        dangerScore: seasonGoals,
+        badgeLabel: seasonGoals >= 5 ? "stabil befejező" : "veszélyes",
+      };
+    })
+    .filter((player) => player.seasonGoals > 0)
+    .sort(
+      (a, b) =>
+        b.seasonGoals - a.seasonGoals ||
+        a.player.localeCompare(b.player, "hu")
+    )
+    .slice(0, 3);
+
+  const fallbackTotalGoals = fallbackRows.reduce((sum, player) => sum + player.seasonGoals, 0);
+
+  return fallbackRows.map((player) => ({
+    ...player,
+    teamGoalShare: fallbackTotalGoals > 0 ? player.seasonGoals / fallbackTotalGoals : 0,
+    badgeLabel: buildDangerBadgeLabel(player.recentGoals5, player.seasonGoals, fallbackTotalGoals > 0 ? player.seasonGoals / fallbackTotalGoals : 0, player.trendLabel),
+  }));
 }
 
 function describeDangerTrend(goalsByRound: number[]) {

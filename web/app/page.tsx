@@ -26,7 +26,7 @@ import { StatsView } from "../components/StatsView";
 import { CardsView } from "../components/CardsView";
 import { TeamProfile } from "../components/TeamProfile";
 import { EmptyBox } from "../components/ui";
-import { InAppNotifications } from "../components/InAppNotifications";
+import InAppNotifications from "../components/InAppNotifications";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const allMatches = matchesData as Match[];

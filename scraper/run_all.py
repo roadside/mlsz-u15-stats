@@ -5,6 +5,7 @@ SCRIPTS = [
     ("scrape_tables", "Tabellák"),
     ("scrape_goalscorers", "Góllövőlista"),
     ("scrape_match_goals_auto", "Meccs góllövők"),
+    ("scrape_cards", "Lapok"),
 ]
 
 

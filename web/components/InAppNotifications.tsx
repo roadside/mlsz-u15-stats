@@ -88,3 +88,5 @@ export function InAppNotifications() {
     </>
   );
 }
+
+export default InAppNotifications;

@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 interface CardPlayer {
   player: string;
@@ -24,6 +24,8 @@ interface CardsViewProps {
 }
 
 export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobile }: CardsViewProps) {
+  const [disciplinaryScope, setDisciplinaryScope] = useState<"season" | "round">("season");
+
   const filteredCards = useMemo(() => {
     let roundCards = cardsData.filter((m) => m.round === selectedRound);
     
@@ -33,6 +35,46 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
     
     return roundCards;
   }, [cardsData, selectedRound, selectedTeamFilter]);
+
+  const disciplinaryCards = useMemo(() => {
+    let scopedCards = disciplinaryScope === "season" ? cardsData : cardsData.filter((m) => m.round === selectedRound);
+
+    if (selectedTeamFilter !== "Összes csapat") {
+      scopedCards = scopedCards.filter((m) => m.home === selectedTeamFilter || m.away === selectedTeamFilter);
+    }
+
+    return scopedCards;
+  }, [cardsData, disciplinaryScope, selectedRound, selectedTeamFilter]);
+
+  const disciplinaryStats = useMemo(() => {
+    const teamYellowCards = new Map<string, number>();
+    const teamRedCards = new Map<string, number>();
+
+    for (const match of disciplinaryCards) {
+      for (const card of match.yellow_cards) {
+        const team = card.team || (match.home.includes(card.player) ? match.home : match.away);
+        teamYellowCards.set(team, (teamYellowCards.get(team) || 0) + 1);
+      }
+
+      for (const card of match.red_cards) {
+        const team = card.team || (match.home.includes(card.player) ? match.home : match.away);
+        teamRedCards.set(team, (teamRedCards.get(team) || 0) + 1);
+      }
+    }
+
+    return Array.from(new Set([...teamYellowCards.keys(), ...teamRedCards.keys()]))
+      .map((team) => {
+        const yellow = teamYellowCards.get(team) || 0;
+        const red = teamRedCards.get(team) || 0;
+        return {
+          team,
+          yellow,
+          red,
+          points: yellow + red * 3,
+        };
+      })
+      .sort((a, b) => b.points - a.points || b.red - a.red || b.yellow - a.yellow || a.team.localeCompare(b.team, "hu"));
+  }, [disciplinaryCards]);
 
   const cardsStats = useMemo(() => {
     const teamYellowCards = new Map<string, number>();
@@ -132,6 +174,12 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
     verticalAlign: "middle",
   };
 
+  const disciplinaryCardStyle = {
+    ...cardStyle,
+    background: "linear-gradient(180deg, #fff7ed 0%, #ffffff 100%)",
+    border: "1px solid #fed7aa",
+  };
+
   const redCardStyle = {
     display: "inline-block",
     width: "12px",
@@ -158,6 +206,93 @@ export function CardsView({ cardsData, selectedRound, selectedTeamFilter, isMobi
           ? `${selectedRound}. forduló lapjai`
           : `${selectedRound}. forduló – ${selectedTeamFilter} lapjai`}
       </h2>
+
+      <div style={disciplinaryCardStyle}>
+        <h3 style={headerStyle}>🟥🟨 Fegyelmi index</h3>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: isMobile ? "flex-start" : "center",
+            gap: "10px",
+            flexWrap: "wrap",
+            marginBottom: "12px",
+          }}
+        >
+          <div style={{ fontSize: isMobile ? "13px" : "14px", color: "#4b5563" }}>
+            Pontozás: sárga = 1, piros = 3
+          </div>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            <button
+              type="button"
+              onClick={() => setDisciplinaryScope("season")}
+              style={{
+                padding: "6px 10px",
+                borderRadius: "999px",
+                border: disciplinaryScope === "season" ? "1px solid #ea580c" : "1px solid #d1d5db",
+                backgroundColor: disciplinaryScope === "season" ? "#ffedd5" : "#ffffff",
+                color: disciplinaryScope === "season" ? "#9a3412" : "#374151",
+                fontSize: isMobile ? "12px" : "13px",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
+            >
+              Összesített
+            </button>
+            <button
+              type="button"
+              onClick={() => setDisciplinaryScope("round")}
+              style={{
+                padding: "6px 10px",
+                borderRadius: "999px",
+                border: disciplinaryScope === "round" ? "1px solid #ea580c" : "1px solid #d1d5db",
+                backgroundColor: disciplinaryScope === "round" ? "#ffedd5" : "#ffffff",
+                color: disciplinaryScope === "round" ? "#9a3412" : "#374151",
+                fontSize: isMobile ? "12px" : "13px",
+                fontWeight: 700,
+                cursor: "pointer",
+              }}
+            >
+              {selectedRound}. forduló
+            </button>
+          </div>
+        </div>
+
+        <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginBottom: "12px" }}>
+          {disciplinaryScope === "season"
+            ? selectedTeamFilter === "Összes csapat"
+              ? "Az összes forduló összesített fegyelmi pontjai alapján."
+              : `${selectedTeamFilter} összes fordulós meccsei alapján.`
+            : selectedTeamFilter === "Összes csapat"
+            ? `Csak a ${selectedRound}. forduló alapján.`
+            : `Csak a ${selectedRound}. forduló ${selectedTeamFilter} meccsei alapján.`}
+        </div>
+
+        {disciplinaryStats.length > 0 && (
+          <table style={tableStyle}>
+            <thead>
+              <tr>
+                <th style={thStyle}>#</th>
+                <th style={thStyle}>Csapat</th>
+                <th style={{ ...thStyle, textAlign: "right" }}>Index</th>
+                <th style={{ ...thStyle, textAlign: "right" }}>Sárga</th>
+                <th style={{ ...thStyle, textAlign: "right" }}>Piros</th>
+              </tr>
+            </thead>
+            <tbody>
+              {disciplinaryStats.map(({ team, points, yellow, red }, index) => (
+                <tr key={team}>
+                  <td style={{ ...tdStyle, width: "44px", fontWeight: "bold" }}>{index + 1}</td>
+                  <td style={{ ...tdStyle, fontWeight: index === 0 ? "bold" : 600 }}>{team}</td>
+                  <td style={{ ...tdStyle, textAlign: "right", fontWeight: "bold", color: "#b45309" }}>{points}</td>
+                  <td style={{ ...tdStyle, textAlign: "right" }}>{yellow}</td>
+                  <td style={{ ...tdStyle, textAlign: "right" }}>{red}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
 
       {/* Statisztikák */}
       <div style={statsGridStyle}>

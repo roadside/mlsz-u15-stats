@@ -214,9 +214,11 @@ export function StatsView({
 
   return (
     <>
-      <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-        Liga statisztika
-      </h2>
+      {selectedTeamFilter === "Összes csapat" ? (
+        <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+          Liga statisztika
+        </h2>
+      ) : null}
 
       <div style={{ display: "grid", gap: "16px" }}>
 
@@ -752,13 +754,13 @@ function buildGoalTimingInsight(peakLabel: string, selectedTeamFilter: string, t
   }
 
   if (peakLabel === "76–90") {
-    return `${selectedTeamFilter} a meccsek végén a legerősebb támadásban.`;
+    return `A csapat a meccsek végén a legerősebb támadásban.`;
   }
   if (peakLabel === "0–15" || peakLabel === "16–30") {
-    return `${selectedTeamFilter} inkább korai gólokra épít.`;
+    return `A csapat inkább korai gólokra épít.`;
   }
   if (peakLabel === "31–45" || peakLabel === "46–60") {
-    return `${selectedTeamFilter} a meccs középső szakaszában a legveszélyesebb.`;
+    return `A csapat a meccs középső szakaszában a legveszélyesebb.`;
   }
   return "A csapat a második félidő második felében termeli a legtöbb gólt.";
 }

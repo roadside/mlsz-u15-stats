@@ -499,6 +499,11 @@ export default function Home() {
       : championshipMonteCarlo.rows.filter((r) => r.team === effectiveSelectedTeamFilter),
     [championshipMonteCarlo, effectiveSelectedTeamFilter]);
 
+  const handleViewChange = (nextView: "matches" | "table" | "goalscorers" | "stats" | "cards") => {
+    setView(nextView);
+    setSelectedTeamFilter("Összes csapat");
+  };
+
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <main
@@ -523,31 +528,32 @@ export default function Home() {
         {/* Tab buttons */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "14px", flexWrap: "wrap" }}>
           {(["matches", "table", "goalscorers", "cards", "stats"] as const).map((v) => (
-            <button key={v} onClick={() => setView(v)} style={tabButtonStyle(view === v)}>
+            <button key={v} onClick={() => handleViewChange(v)} style={tabButtonStyle(view === v)}>
               {v === "matches" ? "Meccsek" : v === "table" ? "Tabella" : v === "goalscorers" ? "Góllövők" : v === "stats" ? "Statisztika" : "Lapok"}
             </button>
           ))}
         </div>
 
-        {/* Team selector */}
-        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "280px", gap: "10px", marginBottom: "14px" }}>
-          <div>
-            <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: "bold", marginBottom: "8px" }}>
-              Csapat kiválasztása
-            </div>
-            <select value={effectiveSelectedTeamFilter} onChange={(e) => setSelectedTeamFilter(e.target.value)} style={selectStyle}>
-              <option value="Összes csapat">Összes csapat</option>
-              {teamOptions.map((t) => <option key={t} value={t}>{t}</option>)}
-            </select>
-
-            {effectiveSelectedTeamFilter !== "Összes csapat" ? (
-              <div style={{ display: "flex", gap: "8px", marginTop: "10px", flexWrap: "wrap" }}>
-                <button onClick={() => setMatchScope("round")} style={subTabButtonStyle(effectiveMatchScope === "round")}>Aktuális forduló</button>
-                <button onClick={() => setMatchScope("season")} style={subTabButtonStyle(effectiveMatchScope === "season")}>Összes forduló</button>
+        {view === "stats" ? (
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "280px", gap: "10px", marginBottom: "14px" }}>
+            <div>
+              <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: "bold", marginBottom: "8px" }}>
+                Csapat kiválasztása
               </div>
-            ) : null}
+              <select value={effectiveSelectedTeamFilter} onChange={(e) => setSelectedTeamFilter(e.target.value)} style={selectStyle}>
+                <option value="Összes csapat">Összes csapat</option>
+                {teamOptions.map((t) => <option key={t} value={t}>{t}</option>)}
+              </select>
+
+              {effectiveSelectedTeamFilter !== "Összes csapat" ? (
+                <div style={{ display: "flex", gap: "8px", marginTop: "10px", flexWrap: "wrap" }}>
+                  <button onClick={() => setMatchScope("round")} style={subTabButtonStyle(effectiveMatchScope === "round")}>Aktuális forduló</button>
+                  <button onClick={() => setMatchScope("season")} style={subTabButtonStyle(effectiveMatchScope === "season")}>Összes forduló</button>
+                </div>
+              ) : null}
+            </div>
           </div>
-        </div>
+        ) : null}
 
         {/* Round selector */}
         <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: "bold", marginBottom: "10px" }}>

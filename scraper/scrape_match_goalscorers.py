@@ -258,8 +258,6 @@ result = []
 for m in all_matches:
     if m["status"] != "Lejátszva":
         continue
-    if m["round"] < 13:
-        continue
     match_key = (m.get("round"), m.get("home"), m.get("away"))
     match_url = m.get("match_url") or cards_by_key.get(match_key) or find_match_url_by_teams(m)
     if not match_url:

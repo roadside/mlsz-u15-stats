@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { TeamStrengthRow, ChampionshipChanceRow } from "./types";
+import { TeamStrengthRow, ChampionshipChanceRow, MatchGoalscorer } from "./types";
 import {
   sectionCardStyle,
   sectionTitleStyle,
@@ -35,9 +35,15 @@ interface TopScoringTeamRow {
   goals: number;
 }
 
+interface GoalTimingBucketRow {
+  label: string;
+  value: number;
+}
+
 interface StatsViewProps {
   isMobile: boolean;
   selectedTeamFilter: string;
+  allMatchGoalscorers: MatchGoalscorer[];
   // Round goals
   roundGoalsStats: { rows: RoundGoalRow[]; maxGoals: number };
   // Team strength
@@ -62,6 +68,7 @@ interface StatsViewProps {
 export function StatsView({
   isMobile,
   selectedTeamFilter,
+  allMatchGoalscorers,
   roundGoalsStats,
   visibleTeamStrengthRows,
   teamOptions,
@@ -130,6 +137,50 @@ export function StatsView({
     const arrow = !active ? "" : mcSortDir === "asc" ? " ▲" : " ▼";
     return label + arrow;
   };
+
+  const goalTimingStats = useMemo(() => {
+    const buckets: GoalTimingBucketRow[] = [
+      { label: "0–15", value: 0 },
+      { label: "16–30", value: 0 },
+      { label: "31–45", value: 0 },
+      { label: "46–60", value: 0 },
+      { label: "61–75", value: 0 },
+      { label: "76–90", value: 0 },
+    ];
+
+    for (const match of allMatchGoalscorers) {
+      const scorerGroups =
+        selectedTeamFilter === "Összes csapat"
+          ? [match.home_scorers, match.away_scorers]
+          : [
+              ...(match.home === selectedTeamFilter ? [match.home_scorers] : []),
+              ...(match.away === selectedTeamFilter ? [match.away_scorers] : []),
+            ];
+
+      for (const scorers of scorerGroups) {
+        for (const scorer of scorers) {
+          for (const rawMinute of scorer.minutes ?? []) {
+            const bucketIndex = getGoalTimingBucketIndex(rawMinute);
+            if (bucketIndex >= 0) {
+              buckets[bucketIndex].value += 1;
+            }
+          }
+        }
+      }
+    }
+
+    const maxValue = Math.max(...buckets.map((bucket) => bucket.value), 1);
+    const totalGoals = buckets.reduce((sum, bucket) => sum + bucket.value, 0);
+    const peakBucket = buckets.reduce((best, current) => (current.value > best.value ? current : best), buckets[0]);
+
+    return {
+      buckets,
+      maxValue,
+      totalGoals,
+      insight: buildGoalTimingInsight(peakBucket.label, selectedTeamFilter, totalGoals),
+    };
+  }, [allMatchGoalscorers, selectedTeamFilter]);
+
   return (
     <>
       <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
@@ -137,6 +188,76 @@ export function StatsView({
       </h2>
 
       <div style={{ display: "grid", gap: "16px" }}>
+
+        {/* ── Goal timing ── */}
+        <div style={sectionCardStyle}>
+          <div style={sectionTitleStyle}>⚽ Gól-időzítés statisztika</div>
+          <div style={sectionSubTitleStyle}>
+            {selectedTeamFilter === "Összes csapat"
+              ? "Az összes rögzített gól időzítése a meccspercek alapján."
+              : `${selectedTeamFilter} lőtt góljainak eloszlása időszakokra bontva.`}
+          </div>
+
+          {goalTimingStats.totalGoals > 0 ? (
+            <>
+              <div
+                style={{
+                  marginTop: "12px",
+                  marginBottom: "14px",
+                  padding: isMobile ? "10px" : "12px",
+                  borderRadius: "12px",
+                  backgroundColor: "#eff6ff",
+                  color: "#1e3a8a",
+                  fontSize: isMobile ? "13px" : "14px",
+                  fontWeight: 700,
+                }}
+              >
+                {goalTimingStats.insight}
+              </div>
+
+              <div style={{ display: "grid", gap: "10px" }}>
+                {goalTimingStats.buckets.map((bucket) => (
+                  <div
+                    key={bucket.label}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: isMobile ? "58px 1fr 34px" : "80px 1fr 56px",
+                      gap: "10px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 700 }}>{bucket.label}</div>
+                    <div
+                      style={{
+                        backgroundColor: "#e5e7eb",
+                        height: isMobile ? "16px" : "18px",
+                        borderRadius: "999px",
+                        overflow: "hidden",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: `${(bucket.value / goalTimingStats.maxValue) * 100}%`,
+                          minWidth: bucket.value > 0 ? "8px" : "0px",
+                          height: "100%",
+                          background: "linear-gradient(90deg, #f97316 0%, #ea580c 100%)",
+                          borderRadius: "999px",
+                        }}
+                      />
+                    </div>
+                    <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 800, textAlign: "right", color: "#9a3412" }}>
+                      {bucket.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div style={{ marginTop: "12px" }}>
+              <EmptyBox text="Nincs elég perc alapú góladat a gól-időzítés statisztikához." />
+            </div>
+          )}
+        </div>
 
         {/* ── Round goals trend ── */}
         <div style={sectionCardStyle}>
@@ -530,4 +651,31 @@ export function StatsView({
       </div>
     </>
   );
+}
+
+function getGoalTimingBucketIndex(minute: number): number {
+  const safeMinute = Math.min(Math.max(Math.floor(minute), 0), 90);
+  if (safeMinute <= 15) return 0;
+  if (safeMinute <= 30) return 1;
+  if (safeMinute <= 45) return 2;
+  if (safeMinute <= 60) return 3;
+  if (safeMinute <= 75) return 4;
+  return 5;
+}
+
+function buildGoalTimingInsight(peakLabel: string, selectedTeamFilter: string, totalGoals: number): string {
+  if (selectedTeamFilter === "Összes csapat") {
+    return `A legtöbb rögzített gól a ${peakLabel}. perc közötti sávban született (${totalGoals} összgól alapján).`;
+  }
+
+  if (peakLabel === "76–90") {
+    return `${selectedTeamFilter} a meccsek végén a legerősebb támadásban.`;
+  }
+  if (peakLabel === "0–15" || peakLabel === "16–30") {
+    return `${selectedTeamFilter} inkább korai gólokra épít.`;
+  }
+  if (peakLabel === "31–45" || peakLabel === "46–60") {
+    return `${selectedTeamFilter} a félidők környékén különösen aktív.`;
+  }
+  return `${selectedTeamFilter} a második félidő második felében termeli a legtöbb gólt.`;
 }

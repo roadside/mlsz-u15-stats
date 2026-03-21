@@ -1684,7 +1684,23 @@
     "away": "DVSC",
     "date": "2026. 03. 21. 12:15",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150248.html",
-    "yellow_cards": [],
+    "yellow_cards": [
+      {
+        "player": "PALÁSTHY PATRIK",
+        "minute": 73,
+        "team": "FERENCVÁROSI TC"
+      },
+      {
+        "player": "NAGY ÁKOS",
+        "minute": 66,
+        "team": "DVSC"
+      },
+      {
+        "player": "PÁNTYA LÁSZLÓ",
+        "minute": 62,
+        "team": "DVSC"
+      }
+    ],
     "red_cards": []
   },
   {

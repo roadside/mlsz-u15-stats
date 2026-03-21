@@ -952,9 +952,9 @@
     "date": "2026. 03. 21. 10:00",
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "PUSKÁS AKADÉMIA",
-    "home_goals": null,
-    "away_goals": null,
-    "status": "Kiírva",
+    "home_goals": 1,
+    "away_goals": 0,
+    "status": "Lejátszva",
     "venue": "Székesfehérvári Sóstói Stadion",
     "source_url": "https://adatbank.mlsz.hu/league/65/0/31621/14.html",
     "match_url": null

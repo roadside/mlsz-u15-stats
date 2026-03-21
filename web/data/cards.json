@@ -1630,7 +1630,28 @@
     "away": "DVTK",
     "date": "2026. 03. 21. 10:00",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150250.html",
-    "yellow_cards": [],
+    "yellow_cards": [
+      {
+        "player": "URAY BENCE",
+        "minute": 23,
+        "team": "ILLÉS AKADÉMIA"
+      },
+      {
+        "player": "NAGY BALÁZS",
+        "minute": 56,
+        "team": "DVTK"
+      },
+      {
+        "player": "NÉMET ZALÁN",
+        "minute": 49,
+        "team": "DVTK"
+      },
+      {
+        "player": "HORVÁTH ÁRMIN",
+        "minute": 35,
+        "team": "DVTK"
+      }
+    ],
     "red_cards": []
   },
   {
@@ -1639,7 +1660,13 @@
     "away": "PUSKÁS AKADÉMIA",
     "date": "2026. 03. 21. 10:00",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150251.html",
-    "yellow_cards": [],
+    "yellow_cards": [
+      {
+        "player": "KŐVÁRI TAMÁS",
+        "minute": 55,
+        "team": "VIDEOTON FC FEHÉRVÁR"
+      }
+    ],
     "red_cards": []
   },
   {

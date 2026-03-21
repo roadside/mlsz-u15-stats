@@ -1482,7 +1482,18 @@
     "home": "ILLÉS AKADÉMIA",
     "away": "DVTK",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150250.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "NÉMETH LEVENTE",
+        "minute": 56,
+        "score_after": "1-2"
+      },
+      {
+        "player": "NÉMETH LEVENTE",
+        "minute": 84,
+        "score_after": "2-2"
+      }
+    ],
     "away_scorers": []
   },
   {
@@ -1491,7 +1502,13 @@
     "home": "VIDEOTON FC FEHÉRVÁR",
     "away": "PUSKÁS AKADÉMIA",
     "match_url": "https://adatbank.mlsz.hu/match/65/0/31621/14/2150251.html",
-    "home_scorers": [],
+    "home_scorers": [
+      {
+        "player": "SITKU ZOÁRD ILLÉS",
+        "minute": 71,
+        "score_after": "1-0"
+      }
+    ],
     "away_scorers": []
   },
   {

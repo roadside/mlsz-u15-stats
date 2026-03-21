@@ -225,5 +225,29 @@
         ]
       }
     ]
+  },
+  {
+    "round": 14,
+    "home": "FERENCVÁROSI TC",
+    "away": "DVSC",
+    "home_scorers": [
+      {
+        "player": "MAJZIK ZÉTÉNY",
+        "goals": 1,
+        "minutes": [
+          2
+        ]
+      }
+    ],
+    "away_scorers": [
+      {
+        "player": "HORNOK ERIK ZSOLT",
+        "goals": 2,
+        "minutes": [
+          14,
+          44
+        ]
+      }
+    ]
   }
 ]

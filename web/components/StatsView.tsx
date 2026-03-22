@@ -608,7 +608,7 @@ export function StatsView({
                   {showOnlyOpponentDangerousPlayers ? null : (
                     <div>
                       {dangerousPlayers.home.length > 0 ? (
-                        <div style={{ display: "grid", gap: "8px", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0, 1fr))" }}>
+                        <div style={{ display: "grid", gap: "8px", gridTemplateColumns: "1fr" }}>
                           {dangerousPlayers.home.map((player) => (
                             <DangerousPlayerCard key={`${player.team}-${player.player}`} player={player} isMobile={isMobile} isNarrowMobile={isNarrowMobile} />
                           ))}
@@ -621,7 +621,7 @@ export function StatsView({
 
                   <div>
                     {dangerousPlayers.away.length > 0 ? (
-                      <div style={{ display: "grid", gap: "8px", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0, 1fr))" }}>
+                      <div style={{ display: "grid", gap: "8px", gridTemplateColumns: "1fr" }}>
                         {dangerousPlayers.away.map((player) => (
                           <DangerousPlayerCard key={`${player.team}-${player.player}`} player={player} isMobile={isMobile} isNarrowMobile={isNarrowMobile} />
                         ))}

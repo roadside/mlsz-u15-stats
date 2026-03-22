@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GoalscorerRow, MatchGoalscorer } from "./types";
 import { sectionCardStyle, tableWrapStyle, mobileCardStyle, thStyle, tdStyle } from "./constants";
 import { EmptyBox } from "./ui";
@@ -22,6 +22,18 @@ export function GoalscorersView({
   selectedTeamFilter,
   isMobile,
 }: GoalscorersViewProps) {
+  const [isNarrowMobile, setIsNarrowMobile] = useState(false);
+
+  useEffect(() => {
+    const updateViewportFlags = () => {
+      setIsNarrowMobile(window.innerWidth <= 640);
+    };
+
+    updateViewportFlags();
+    window.addEventListener("resize", updateViewportFlags);
+    return () => window.removeEventListener("resize", updateViewportFlags);
+  }, []);
+
   const trendRounds = buildTrendRounds(selectedRound);
   const hasSelectedRoundMatchData = allMatchGoalscorers.some(
     (match) =>
@@ -57,9 +69,9 @@ export function GoalscorersView({
                 key={`${player.player}-${player.team}`}
                 style={{
                   display: "grid",
-                  gridTemplateColumns: isMobile ? "1fr" : "36px minmax(0, 1fr) auto auto",
-                  gap: isMobile ? "6px" : "12px",
-                  alignItems: isMobile ? "start" : "center",
+                  gridTemplateColumns: isMobile && isNarrowMobile ? "1fr" : "36px minmax(0, 1fr) auto auto",
+                  gap: isMobile && isNarrowMobile ? "6px" : "12px",
+                  alignItems: isMobile && isNarrowMobile ? "start" : "center",
                   padding: isMobile ? "10px" : "12px",
                   borderRadius: "10px",
                   backgroundColor: "rgba(255,255,255,0.92)",
@@ -73,7 +85,7 @@ export function GoalscorersView({
                   <div style={{ fontSize: isMobile ? "14px" : "15px", fontWeight: 800, color: "#111827" }}>{player.player}</div>
                   <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280", marginTop: "2px" }}>{player.team}</div>
                 </div>
-                <div style={{ display: "flex", alignItems: "flex-end", gap: "3px", justifyContent: isMobile ? "flex-start" : "center", minWidth: isMobile ? undefined : "76px" }}>
+                <div style={{ display: "flex", alignItems: "flex-end", gap: "3px", justifyContent: isMobile && isNarrowMobile ? "flex-start" : "center", minWidth: isMobile && isNarrowMobile ? undefined : "76px" }}>
                   {player.goalsByRound.map((goals, i) => (
                     <div
                       key={i}
@@ -88,7 +100,7 @@ export function GoalscorersView({
                     />
                   ))}
                 </div>
-                <div style={{ display: "grid", gap: "2px", justifyItems: isMobile ? "start" : "end" }}>
+                <div style={{ display: "grid", gap: "2px", justifyItems: isMobile && isNarrowMobile ? "start" : "end" }}>
                   <div style={{ fontSize: isMobile ? "12px" : "13px", fontWeight: 800, color: player.trendColor }}>{player.trendLabel}</div>
                   <div style={{ fontSize: isMobile ? "12px" : "13px", color: "#6b7280" }}>{player.goalsText}</div>
                 </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RoundTable } from "./types";
 import { getLogo, tableWrapStyle, mobileCardStyle, thStyle, tdStyle } from "./constants";
 import { EmptyBox, LogoCircle, MiniStat, FormBadge } from "./ui";
@@ -18,6 +18,18 @@ export function TableView({
   selectedTeamFilter,
   isMobile,
 }: TableViewProps) {
+  const [isNarrowMobile, setIsNarrowMobile] = useState(false);
+
+  useEffect(() => {
+    const updateViewportFlags = () => {
+      setIsNarrowMobile(window.innerWidth <= 640);
+    };
+
+    updateViewportFlags();
+    window.addEventListener("resize", updateViewportFlags);
+    return () => window.removeEventListener("resize", updateViewportFlags);
+  }, []);
+
   if (!selectedTable || selectedTable.table.length === 0) {
     return <EmptyBox text="Nincs megjeleníthető tabella." />;
   }
@@ -64,21 +76,18 @@ export function TableView({
                   <div style={{ fontSize: "18px", fontWeight: 800 }}>{row.points}</div>
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "8px", marginBottom: "10px" }}>
-                  <MiniStat label="M" value={row.played} />
-                  <MiniStat label="GY" value={row.won} />
-                  <MiniStat label="D" value={row.draw} />
-                  <MiniStat label="V" value={row.lost} />
-                </div>
-
                 <div
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(4, 1fr)",
+                    gridTemplateColumns: isNarrowMobile ? "repeat(4, 1fr)" : "repeat(8, minmax(0, 1fr))",
                     gap: "8px",
                     marginBottom: row.form?.length ? "10px" : "0",
                   }}
                 >
+                  <MiniStat label="M" value={row.played} />
+                  <MiniStat label="GY" value={row.won} />
+                  <MiniStat label="D" value={row.draw} />
+                  <MiniStat label="V" value={row.lost} />
                   <MiniStat label="LG" value={row.gf} />
                   <MiniStat label="KG" value={row.ga} />
                   <MiniStat label="GK" value={row.gd} />

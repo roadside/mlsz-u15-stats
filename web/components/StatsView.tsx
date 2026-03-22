@@ -1143,12 +1143,13 @@ function DangerousPlayerCard({ player, isMobile, isNarrowMobile }: { player: Dan
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? (isNarrowMobile ? "1fr" : "repeat(4, minmax(0, 1fr))") : "repeat(4, minmax(0, 1fr))", gap: "8px", marginTop: "10px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(3, minmax(0, 1fr))" : "repeat(4, minmax(0, 1fr))", gap: "8px", marginTop: "10px" }}>
         <MiniStat label="Szezon gól" value={player.seasonGoals} strong valueColor="#111827" />
         <MiniStat label="Utolsó 5" value={player.recentGoals5} valueColor="#166534" />
         <MiniStat label="Gólrész" value={`${Math.round(player.teamGoalShare * 100)}%`} valueColor="#1d4ed8" />
         <div
           style={{
+            gridColumn: isMobile ? "1 / -1" : undefined,
             border: "1px solid #e5e7eb",
             borderRadius: "10px",
             backgroundColor: "#ffffff",

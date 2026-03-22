@@ -142,7 +142,7 @@ The application is designed for:
 
 ## 📄 License
 
-Educational / personal use.
+This project is licensed under the MIT License.
 
 ---
 
@@ -262,4 +262,4 @@ Optimalizálva:
 
 ## 📄 Licenc
 
-Oktatási és személyes célú használatra.
+Ez a projekt MIT-licenccel rendelkezik.

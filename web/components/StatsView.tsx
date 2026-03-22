@@ -652,7 +652,7 @@ export function StatsView({
                       </div>
                       <div style={{ fontSize: "14px", marginBottom: "4px" }}>
                         <span>{selectedHomeTeam} </span>
-                        <strong>{row.homeGoals}-{row.awayGoals}</strong>
+                        <strong style={{ color: "#1d4ed8" }}>{` ${row.homeGoals} - ${row.awayGoals} `}</strong>
                         <span> {selectedAwayTeam}</span>
                       </div>
                       <div style={{ fontSize: "13px", color: "#111827" }}>{row.probabilityPercent}%</div>
@@ -675,7 +675,7 @@ export function StatsView({
                           <td style={tdStyle}>{index + 1}</td>
                           <td style={{ ...tdStyle, textAlign: "left" }}>
                             <span>{selectedHomeTeam} </span>
-                            <strong>{row.homeGoals}-{row.awayGoals}</strong>
+                            <strong style={{ color: "#1d4ed8" }}>{` ${row.homeGoals} - ${row.awayGoals} `}</strong>
                             <span> {selectedAwayTeam}</span>
                           </td>
                           <td style={{ ...tdStyle, fontWeight: "bold" }}>{row.probabilityPercent}%</td>

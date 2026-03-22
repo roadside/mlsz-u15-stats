@@ -421,6 +421,11 @@ export default function Home() {
       : topScoringTeamsStats.rows.filter((r) => r.team === effectiveSelectedTeamFilter),
     [topScoringTeamsStats, effectiveSelectedTeamFilter]);
 
+  const selectedTeamStrength = useMemo(
+    () => teamStrengthStats.rows.find((row) => row.team === effectiveSelectedTeamFilter) ?? null,
+    [teamStrengthStats, effectiveSelectedTeamFilter]
+  );
+
   const selectedHomeStats = useMemo(() => teamStrengthStats.rows.find((t) => t.team === selectedHomeTeam) ?? null, [teamStrengthStats, selectedHomeTeam]);
   const selectedAwayStats = useMemo(() => teamStrengthStats.rows.find((t) => t.team === selectedAwayTeam) ?? null, [teamStrengthStats, selectedAwayTeam]);
 
@@ -512,12 +517,12 @@ export default function Home() {
   return (
     <main
       style={{
-        padding: isMobile ? "12px" : "20px",
+        padding: isMobile ? "12px" : "24px",
         fontFamily: "Arial, sans-serif",
         backgroundColor: "#f3f4f6",
         minHeight: "100vh",
         color: "#111827",
-        maxWidth: "1100px",
+        maxWidth: "1440px",
         margin: "0 auto",
       }}
     >
@@ -539,7 +544,7 @@ export default function Home() {
         </div>
 
         {view === "stats" ? (
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "280px", gap: "10px", marginBottom: "14px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "420px", gap: "10px", marginBottom: "14px" }}>
             <div>
               <div style={{ fontSize: isMobile ? "15px" : "16px", fontWeight: "bold", marginBottom: "8px" }}>
                 Csapat kiválasztása
@@ -646,11 +651,14 @@ export default function Home() {
         selectedTeamFilter={effectiveSelectedTeamFilter}
         selectedTeamProfile={selectedTeamProfile}
         teamMiniStats={teamMiniStats}
+        selectedTeamStrength={selectedTeamStrength}
         teamFormTrend={teamFormTrend}
         teamTableMovement={teamTableMovement}
         nextOpponentStats={nextOpponentStats}
         teamHomeAwayStats={teamHomeAwayStats}
         teamTopScorers={teamTopScorers}
+        showPostMovementSections={!(view === "stats" && effectiveSelectedTeamFilter !== "Összes csapat")}
+        showTopScorers={!(view === "stats" && effectiveSelectedTeamFilter !== "Összes csapat")}
       />
 
       {/* ── Main view ── */}
@@ -714,6 +722,7 @@ export default function Home() {
           nextOpponentTeam={nextOpponentStats?.team ?? null}
           allMatchGoalscorers={allMatchGoalscorers}
           latestGoalscorers={latestGoalscorers?.goalscorers ?? []}
+          teamTopScorers={teamTopScorers}
           roundGoalsStats={roundGoalsStats}
           visibleTeamStrengthRows={visibleTeamStrengthRows}
           teamOptions={teamOptions}

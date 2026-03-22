@@ -305,10 +305,6 @@ export function TeamProfile({
           </div>
 
           <div style={{ marginTop: "14px", display: "grid", gap: "10px" }}>
-            <div style={{ fontSize: isMobile ? "16px" : "17px", fontWeight: 700, color: "#111827" }}>
-              Részletes forma trend
-            </div>
-
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fit, minmax(220px, 1fr))" : "repeat(5, minmax(0, 1fr))", gap: "10px" }}>
               {teamFormTrend.rows.map((row, index) => (
                 <div

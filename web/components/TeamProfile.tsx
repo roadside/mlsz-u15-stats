@@ -95,6 +95,7 @@ interface TeamProfileProps {
   nextOpponentStats: NextOpponentStats | null;
   teamHomeAwayStats: TeamHomeAwayStats | null;
   teamTopScorers: TopScorer[];
+  showNextOpponent?: boolean;
   showPostMovementSections?: boolean;
   showTopScorers?: boolean;
 }
@@ -112,6 +113,7 @@ export function TeamProfile({
   nextOpponentStats,
   teamHomeAwayStats,
   teamTopScorers,
+  showNextOpponent = true,
   showPostMovementSections = true,
   showTopScorers = true,
 }: TeamProfileProps) {
@@ -401,7 +403,7 @@ export function TeamProfile({
       )}
 
       {/* ── Next opponent ── */}
-      {showPostMovementSections && nextOpponentStats && (
+      {showNextOpponent && nextOpponentStats && (
         <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>Következő ellenfél</h2>
 

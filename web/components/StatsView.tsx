@@ -531,7 +531,6 @@ export function StatsView({
                     <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: "#111827", lineHeight: 1.2 }}>
                       {nextOpponentStats.team}
                     </div>
-                    <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "4px" }}>Következő ellenfél</div>
                   </div>
                 </div>
 

@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Match } from "./types";
+import { Match, TeamStrengthRow } from "./types";
 import {
   sectionCardStyle,
   statCardStyle,
@@ -89,11 +89,14 @@ interface TeamProfileProps {
   selectedTeamFilter: string;
   selectedTeamProfile: TeamProfile | null;
   teamMiniStats: TeamMiniStats | null;
+  selectedTeamStrength: TeamStrengthRow | null;
   teamFormTrend: { rows: FormTrendRow[]; totalPoints: number } | null;
   teamTableMovement: TeamTableMovement | null;
   nextOpponentStats: NextOpponentStats | null;
   teamHomeAwayStats: TeamHomeAwayStats | null;
   teamTopScorers: TopScorer[];
+  showPostMovementSections?: boolean;
+  showTopScorers?: boolean;
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
@@ -103,12 +106,27 @@ export function TeamProfile({
   selectedTeamFilter,
   selectedTeamProfile,
   teamMiniStats,
+  selectedTeamStrength,
   teamFormTrend,
   teamTableMovement,
   nextOpponentStats,
   teamHomeAwayStats,
   teamTopScorers,
+  showPostMovementSections = true,
+  showTopScorers = true,
 }: TeamProfileProps) {
+  const [isNarrowMobile, setIsNarrowMobile] = useState(false);
+
+  useEffect(() => {
+    const updateViewportFlags = () => {
+      setIsNarrowMobile(window.innerWidth <= 640);
+    };
+
+    updateViewportFlags();
+    window.addEventListener("resize", updateViewportFlags);
+    return () => window.removeEventListener("resize", updateViewportFlags);
+  }, []);
+
   if (!selectedTeamProfile) return null;
 
   const formTrendStats = teamFormTrend ? buildFormTrendStats(teamFormTrend.rows) : null;
@@ -117,14 +135,45 @@ export function TeamProfile({
     <>
       {/* ── Profile header ── */}
       <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
-        <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-          {selectedTeamProfile.team} – csapatprofil
-        </h2>
+        <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "14px" }}>
+          <div
+            style={{
+              width: isMobile ? "40px" : "44px",
+              height: isMobile ? "40px" : "44px",
+              borderRadius: "999px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "#f8fafc",
+              border: "1px solid #e5e7eb",
+              overflow: "hidden",
+              flexShrink: 0,
+            }}
+          >
+            {getLogo(selectedTeamProfile.team) ? (
+              <Image
+                src={getLogo(selectedTeamProfile.team)!}
+                alt={selectedTeamProfile.team}
+                width={isMobile ? 28 : 32}
+                height={isMobile ? 28 : 32}
+                style={{ objectFit: "contain" }}
+              />
+            ) : (
+              <span style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 800, color: "#1d4ed8" }}>
+                {selectedTeamProfile.team.slice(0, 2).toUpperCase()}
+              </span>
+            )}
+          </div>
+
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", margin: 0 }}>
+            {selectedTeamProfile.team} – csapatprofil
+          </h2>
+        </div>
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(5, 1fr)",
+            gridTemplateColumns: isMobile ? (isNarrowMobile ? "1fr 1fr" : "repeat(4, minmax(0, 1fr))") : "repeat(8, minmax(0, 1fr))",
             gap: "12px",
           }}
         >
@@ -144,50 +193,29 @@ export function TeamProfile({
             <div style={statLabelStyle}>Lejátszott meccsek</div>
             <div style={statValueStyle}>{selectedTeamProfile.playedMatches}</div>
           </div>
-          <div style={statCardStyle}>
-            <div style={statLabelStyle}>Forma</div>
-            {selectedTeamProfile.form?.length ? (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", alignItems: "center", minHeight: "40px" }}>
-                {selectedTeamProfile.form.map((f, idx) => (
-                  <FormBadge key={idx} form={f} />
-                ))}
+
+          {teamMiniStats ? (
+            <>
+              <div style={statCardStyle}>
+                <div style={statLabelStyle}>Pont / meccs</div>
+                <div style={statValueStyle}>{teamMiniStats.pointsPerMatch}</div>
               </div>
-            ) : (
-              <div style={statValueStyle}>-</div>
-            )}
-          </div>
+              <div style={statCardStyle}>
+                <div style={statLabelStyle}>Lőtt gól / meccs</div>
+                <div style={statValueStyle}>{teamMiniStats.goalsForPerMatch}</div>
+              </div>
+              <div style={statCardStyle}>
+                <div style={statLabelStyle}>Kapott gól / meccs</div>
+                <div style={statValueStyle}>{teamMiniStats.goalsAgainstPerMatch}</div>
+              </div>
+              <div style={statCardStyle}>
+                <div style={statLabelStyle}>Győzelmi arány</div>
+                <div style={statValueStyle}>{teamMiniStats.winRate}%</div>
+              </div>
+            </>
+          ) : null}
         </div>
       </section>
-
-      {/* ── Mini stats ── */}
-      {teamMiniStats && (
-        <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
-              gap: "12px",
-            }}
-          >
-            <div style={statCardStyle}>
-              <div style={statLabelStyle}>Pont / meccs</div>
-              <div style={statValueStyle}>{teamMiniStats.pointsPerMatch}</div>
-            </div>
-            <div style={statCardStyle}>
-              <div style={statLabelStyle}>Lőtt gól / meccs</div>
-              <div style={statValueStyle}>{teamMiniStats.goalsForPerMatch}</div>
-            </div>
-            <div style={statCardStyle}>
-              <div style={statLabelStyle}>Kapott gól / meccs</div>
-              <div style={statValueStyle}>{teamMiniStats.goalsAgainstPerMatch}</div>
-            </div>
-            <div style={statCardStyle}>
-              <div style={statLabelStyle}>Győzelmi arány</div>
-              <div style={statValueStyle}>{teamMiniStats.winRate}%</div>
-            </div>
-          </div>
-        </section>
-      )}
 
       {teamFormTrend && formTrendStats && teamFormTrend.rows.length > 0 && (
         <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
@@ -196,12 +224,12 @@ export function TeamProfile({
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.4fr) repeat(4, minmax(0, 1fr))",
+              gridTemplateColumns: isMobile ? (isNarrowMobile ? "repeat(2, minmax(0, 1fr))" : "repeat(6, minmax(0, 1fr))") : "minmax(0, 1.8fr) repeat(6, minmax(0, 1fr))",
               gap: "12px",
               alignItems: "stretch",
             }}
           >
-            <div style={statCardStyle}>
+            <div style={{ ...statCardStyle, gridColumn: isMobile ? "1 / -1" : "auto" }}>
               <div style={{ ...statLabelStyle, marginBottom: "10px" }}>Utolsó 5 meccs forma</div>
               <div
                 title={formTrendStats.tooltipText}
@@ -256,66 +284,75 @@ export function TeamProfile({
               <div style={statValueStyle}>{formTrendStats.winStreak}</div>
               <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>meccs</div>
             </div>
+
+            {selectedTeamStrength ? (
+              <>
+                <div style={statCardStyle}>
+                  <div style={statLabelStyle}>Támadó index</div>
+                  <div style={{ ...statValueStyle, color: "#166534" }}>{selectedTeamStrength.attackIndex}</div>
+                  <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>1 felett jobb a ligaátlagnál</div>
+                </div>
+
+                <div style={statCardStyle}>
+                  <div style={statLabelStyle}>Védekező index</div>
+                  <div style={{ ...statValueStyle, color: "#1d4ed8" }}>{selectedTeamStrength.defenseIndex}</div>
+                  <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px" }}>1 felett jobb védekezés</div>
+                </div>
+              </>
+            ) : null}
           </div>
-        </section>
-      )}
 
-      {/* ── Form trend ── */}
-      {teamFormTrend && (
-        <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
-          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>Forma trend</h2>
+          <div style={{ marginTop: "14px", display: "grid", gap: "10px" }}>
+            <div style={{ fontSize: isMobile ? "16px" : "17px", fontWeight: 700, color: "#111827" }}>
+              Részletes forma trend
+            </div>
 
-          {teamFormTrend.rows.length === 0 ? (
-            <EmptyBox text="Nincs még elegendő lejátszott mérkőzés." />
-          ) : (
-            <>
-              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(5, 1fr)", gap: "10px" }}>
-                {teamFormTrend.rows.map((row, index) => (
-                  <div
-                    key={`${selectedTeamFilter}-trend-${index}-${row.round}`}
-                    style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "12px", backgroundColor: "#f8fafc" }}
-                  >
-                    <div style={{ fontSize: "12px", color: "#6b7280", marginBottom: "8px" }}>
-                      {row.round}. forduló
-                    </div>
-                    <div
-                      style={{
-                        display: "inline-flex",
-                        minWidth: "40px",
-                        height: "32px",
-                        padding: "0 10px",
-                        borderRadius: "8px",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "15px",
-                        fontWeight: 800,
-                        ...getFormBadgeStyle(row.result),
-                      }}
-                    >
-                      {row.result}
-                    </div>
-                    <div style={{ marginTop: "10px", fontSize: "13px", fontWeight: 700, color: "#111827", lineHeight: 1.3 }}>
-                      {row.isHome ? "vs. " : "@ "}{row.opponent}
-                    </div>
-                    <div style={{ marginTop: "6px", fontSize: "12px", color: "#374151" }}>
-                      {row.goalsFor}-{row.goalsAgainst} • {row.points} pont
-                    </div>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(auto-fit, minmax(220px, 1fr))" : "repeat(5, minmax(0, 1fr))", gap: "10px" }}>
+              {teamFormTrend.rows.map((row, index) => (
+                <div
+                  key={`${selectedTeamFilter}-trend-${index}-${row.round}`}
+                  style={{ border: "1px solid #e5e7eb", borderRadius: "12px", padding: "12px", backgroundColor: "#f8fafc" }}
+                >
+                  <div style={{ fontSize: "12px", color: "#6b7280", marginBottom: "8px" }}>
+                    {row.round}. forduló
                   </div>
-                ))}
-              </div>
+                  <div
+                    style={{
+                      display: "inline-flex",
+                      minWidth: "40px",
+                      height: "32px",
+                      padding: "0 10px",
+                      borderRadius: "8px",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "15px",
+                      fontWeight: 800,
+                      ...getFormBadgeStyle(row.result),
+                    }}
+                  >
+                    {row.result}
+                  </div>
+                  <div style={{ marginTop: "10px", fontSize: "13px", fontWeight: 700, color: "#111827", lineHeight: 1.3 }}>
+                    {row.isHome ? "vs. " : "@ "}{row.opponent}
+                  </div>
+                  <div style={{ marginTop: "6px", fontSize: "12px", color: "#374151" }}>
+                    {row.goalsFor}-{row.goalsAgainst} • {row.points} pont
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              <div style={{ marginTop: "14px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "12px" }}>
-                <div style={statCardStyle}>
-                  <div style={statLabelStyle}>Utolsó {teamFormTrend.rows.length} meccs pontjai</div>
-                  <div style={statValueStyle}>{teamFormTrend.totalPoints}</div>
-                </div>
-                <div style={statCardStyle}>
-                  <div style={statLabelStyle}>Maximum szerezhető pont</div>
-                  <div style={statValueStyle}>{teamFormTrend.rows.length * 3}</div>
-                </div>
+            <div style={{ marginTop: "4px", display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "12px" }}>
+              <div style={statCardStyle}>
+                <div style={statLabelStyle}>Utolsó {teamFormTrend.rows.length} meccs pontjai</div>
+                <div style={statValueStyle}>{teamFormTrend.totalPoints}</div>
               </div>
-            </>
-          )}
+              <div style={statCardStyle}>
+                <div style={statLabelStyle}>Maximum szerezhető pont</div>
+                <div style={statValueStyle}>{teamFormTrend.rows.length * 3}</div>
+              </div>
+            </div>
+          </div>
         </section>
       )}
 
@@ -324,7 +361,7 @@ export function TeamProfile({
         <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>Tabella-mozgás</h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(6, 1fr)", gap: "10px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? (isNarrowMobile ? "repeat(3, minmax(0, 1fr))" : "repeat(6, minmax(0, 1fr))") : "repeat(6, minmax(0, 1fr))", gap: "10px" }}>
             {teamTableMovement.rows.map((row) => (
               <div
                 key={`${selectedTeamFilter}-movement-${row.round}`}
@@ -342,8 +379,8 @@ export function TeamProfile({
             ))}
           </div>
 
-          <div style={{ marginTop: "14px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "12px" }}>
-            <div style={statCardStyle}>
+          <div style={{ marginTop: "14px", display: "grid", gridTemplateColumns: isMobile ? (isNarrowMobile ? "repeat(2, minmax(0, 1fr))" : "repeat(3, minmax(0, 1fr))") : "repeat(3, minmax(0, 1fr))", gap: "12px" }}>
+            <div style={{ ...statCardStyle, gridColumn: isMobile && isNarrowMobile ? "1 / -1" : undefined }}>
               <div style={statLabelStyle}>Nyitó → jelenlegi helyezés</div>
               <div style={statValueStyle}>
                 {teamTableMovement.firstPosition}. → {teamTableMovement.currentPosition}.
@@ -364,11 +401,11 @@ export function TeamProfile({
       )}
 
       {/* ── Next opponent ── */}
-      {nextOpponentStats && (
+      {showPostMovementSections && nextOpponentStats && (
         <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>Következő ellenfél</h2>
 
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: "16px", alignItems: "stretch" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? (isNarrowMobile ? "1fr" : "minmax(0, 1.35fr) minmax(360px, 1fr)") : "minmax(0, 1.35fr) minmax(360px, 1fr)", gap: "16px", alignItems: "stretch" }}>
             <div style={statCardStyle}>
               <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
                 <div style={{ width: "46px", height: "46px", borderRadius: "999px", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "#f8fafc", border: "1px solid #e5e7eb", overflow: "hidden", flexShrink: 0 }}>
@@ -386,22 +423,22 @@ export function TeamProfile({
                 </div>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-                <div style={statCardStyle}>
-                  <div style={statLabelStyle}>Helyezés</div>
-                  <div style={statValueStyle}>{nextOpponentStats.position}.</div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "12px" }}>
+                <div style={{ ...statCardStyle, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                  <div style={{ ...statLabelStyle, marginBottom: 0 }}>Helyezés</div>
+                  <div style={{ ...statValueStyle, textAlign: "right" }}>{nextOpponentStats.position}.</div>
                 </div>
-                <div style={statCardStyle}>
-                  <div style={statLabelStyle}>Pont</div>
-                  <div style={statValueStyle}>{nextOpponentStats.points}</div>
+                <div style={{ ...statCardStyle, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                  <div style={{ ...statLabelStyle, marginBottom: 0 }}>Pont</div>
+                  <div style={{ ...statValueStyle, textAlign: "right" }}>{nextOpponentStats.points}</div>
                 </div>
-                <div style={statCardStyle}>
-                  <div style={statLabelStyle}>Gólkülönbség</div>
-                  <div style={statValueStyle}>{nextOpponentStats.goalDifference}</div>
+                <div style={{ ...statCardStyle, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                  <div style={{ ...statLabelStyle, marginBottom: 0 }}>Gólkülönbség</div>
+                  <div style={{ ...statValueStyle, textAlign: "right" }}>{nextOpponentStats.goalDifference}</div>
                 </div>
-                <div style={statCardStyle}>
-                  <div style={statLabelStyle}>Lejátszott meccs</div>
-                  <div style={statValueStyle}>{nextOpponentStats.played}</div>
+                <div style={{ ...statCardStyle, display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                  <div style={{ ...statLabelStyle, marginBottom: 0 }}>Lejátszott meccs</div>
+                  <div style={{ ...statValueStyle, textAlign: "right" }}>{nextOpponentStats.played}</div>
                 </div>
               </div>
             </div>
@@ -446,7 +483,7 @@ export function TeamProfile({
       )}
 
       {/* ── Home / Away stats ── */}
-      {teamHomeAwayStats && (
+      {showPostMovementSections && teamHomeAwayStats && (
         <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
           <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>Hazai / vendég statisztika</h2>
 
@@ -457,7 +494,7 @@ export function TeamProfile({
               return (
                 <div key={side} style={statCardStyle}>
                   <div style={{ fontSize: "16px", fontWeight: 700, marginBottom: "12px" }}>{label}</div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: isMobile ? (isNarrowMobile ? "1fr 1fr" : "repeat(6, minmax(0, 1fr))") : "repeat(3, minmax(0, 1fr))", gap: "10px" }}>
                     <MiniStat label="Meccs" value={bucket.matches} />
                     <MiniStat label="Pont" value={bucket.points} />
                     <MiniStat label="Mérleg" value={`${bucket.won}-${bucket.draw}-${bucket.lost}`} />
@@ -472,59 +509,60 @@ export function TeamProfile({
         </section>
       )}
 
-      {/* ── Top scorers ── */}
-      <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
-        <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
-          Top góllövők – {selectedTeamFilter}
-        </h2>
+      {showTopScorers ? (
+        <section style={{ ...sectionCardStyle, marginBottom: "16px" }}>
+          <h2 style={{ fontSize: isMobile ? "20px" : "22px", marginBottom: "14px" }}>
+            Top góllövők
+          </h2>
 
-        {teamTopScorers.length === 0 ? (
-          <EmptyBox text="Nincs megjeleníthető góllövő adat." />
-        ) : (
-          <div style={{ display: "grid", gap: "12px" }}>
-            {teamTopScorers.map((row, index) => (
-              <div
-                key={`${row.player}-${index}`}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: isMobile ? "44px 1fr auto" : "52px 1fr auto",
-                  alignItems: "center",
-                  gap: "14px",
-                  padding: isMobile ? "14px" : "16px",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: "14px",
-                  backgroundColor: "#f8fafc",
-                }}
-              >
+          {teamTopScorers.length === 0 ? (
+            <EmptyBox text="Nincs megjeleníthető góllövő adat." />
+          ) : (
+            <div style={{ display: "grid", gap: "8px" }}>
+              {teamTopScorers.map((row, index) => (
                 <div
+                  key={`${row.player}-${index}`}
                   style={{
-                    width: isMobile ? "36px" : "40px",
-                    height: isMobile ? "36px" : "40px",
-                    borderRadius: "999px",
-                    display: "flex",
+                    display: "grid",
+                    gridTemplateColumns: isMobile ? "38px 1fr auto" : "44px 1fr auto",
                     alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: 800,
-                    fontSize: isMobile ? "20px" : "22px",
-                    color: "#1d4ed8",
-                    backgroundColor: "#dbeafe",
+                    gap: "10px",
+                    padding: isMobile ? "10px 12px" : "12px 14px",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: "12px",
+                    backgroundColor: "#f8fafc",
                   }}
                 >
-                  {index + 1}
-                </div>
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: isMobile ? "14px" : "15px", fontWeight: 500, color: "#111827", textTransform: "uppercase", lineHeight: 1.2 }}>
-                    {row.player}
+                  <div
+                    style={{
+                      width: isMobile ? "30px" : "34px",
+                      height: isMobile ? "30px" : "34px",
+                      borderRadius: "999px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontWeight: 800,
+                      fontSize: isMobile ? "16px" : "18px",
+                      color: "#1d4ed8",
+                      backgroundColor: "#dbeafe",
+                    }}
+                  >
+                    {index + 1}
+                  </div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ fontSize: isMobile ? "13px" : "14px", fontWeight: 500, color: "#111827", textTransform: "uppercase", lineHeight: 1.15 }}>
+                      {row.player}
+                    </div>
+                  </div>
+                  <div style={{ fontSize: isMobile ? "16px" : "18px", fontWeight: 500, color: "#166534", paddingLeft: "4px", lineHeight: 1 }}>
+                    {row.goals}
                   </div>
                 </div>
-                <div style={{ fontSize: isMobile ? "18px" : "20px", fontWeight: 500, color: "#166534", paddingLeft: "8px" }}>
-                  {row.goals}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
+              ))}
+            </div>
+          )}
+        </section>
+      ) : null}
     </>
   );
 }

@@ -182,7 +182,10 @@ export function MatchCard({
             fontWeight: 600,
           }}
         >
-          <span>{dateParts.full}</span>
+          <span>
+            <span>{dateParts.full}</span>
+            <span style={{ fontWeight: 400, color: "#374151" }}>{` - ${match.venue || "Nincs megadva"}`}</span>
+          </span>
           {match.status !== "Lejátszva" ? (
             <span
               style={{
@@ -196,10 +199,6 @@ export function MatchCard({
               {match.status}
             </span>
           ) : null}
-        </div>
-
-        <div style={{ fontSize: isMobile ? "12px" : "14px", color: "#374151" }}>
-          {match.venue || "Nincs megadva"}
         </div>
       </div>
     </div>

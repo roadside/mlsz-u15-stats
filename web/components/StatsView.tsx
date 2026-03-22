@@ -594,6 +594,7 @@ export function StatsView({
         ) : null}
 
         {/* ── Poisson predictor ── */}
+        {selectedTeamFilter !== "Összes csapat" ? (
         <div style={sectionCardStyle}>
           <div style={sectionTitleStyle}>Poisson meccs-előrejelző</div>
           <div style={sectionSubTitleStyle}>
@@ -733,6 +734,7 @@ export function StatsView({
             <EmptyBox text="Nincs elég adat az előrejelzéshez." />
           )}
         </div>
+        ) : null}
 
         {/* ── Team strength index ── */}
         {selectedTeamFilter === "Összes csapat" ? (

@@ -3,7 +3,7 @@
 ![Next.js](https://img.shields.io/badge/Next.js-13+-black?logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-Enabled-blue?logo=typescript)
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Open-success?logo=vercel)](https://www.ute2011.hu)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Open-success?logo=vercel)](https://www.mlszu15.hu)
 
 A modern, responsive football statistics web application built with Next.js.  
 The app provides match data, league tables, player statistics, and advanced analytics.
@@ -12,7 +12,7 @@ The app provides match data, league tables, player statistics, and advanced anal
 
 ## 🌐 Live URL
 
-**Production:** https://www.ute2011.hu
+**Production:** https://www.mlszu15.hu
 
 ---
 
@@ -154,7 +154,7 @@ Modern, reszponzív futball statisztikai webalkalmazás Next.js alapokon.
 
 ## 🌐 Éles URL
 
-**Production:** https://www.ute2011.hu
+**Production:** https://www.mlszu15.hu
 
 ---
 

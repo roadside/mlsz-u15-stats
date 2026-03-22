@@ -657,6 +657,7 @@ export default function Home() {
         nextOpponentStats={nextOpponentStats}
         teamHomeAwayStats={teamHomeAwayStats}
         teamTopScorers={teamTopScorers}
+        showNextOpponent={!(view === "stats" && effectiveSelectedTeamFilter !== "Összes csapat")}
         showPostMovementSections={!(view === "stats" && effectiveSelectedTeamFilter !== "Összes csapat")}
         showTopScorers={!(view === "stats" && effectiveSelectedTeamFilter !== "Összes csapat")}
       />
@@ -720,6 +721,7 @@ export default function Home() {
           isMobile={isMobile}
           selectedTeamFilter={effectiveSelectedTeamFilter}
           nextOpponentTeam={nextOpponentStats?.team ?? null}
+          nextOpponentStats={nextOpponentStats}
           allMatchGoalscorers={allMatchGoalscorers}
           latestGoalscorers={latestGoalscorers?.goalscorers ?? []}
           teamTopScorers={teamTopScorers}
